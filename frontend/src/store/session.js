@@ -30,6 +30,7 @@ export const clearSessionErrors = () => ({
 export const getCurrentUser = () => async dispatch => {
     const res = await jwtFetch('/api/users/current');
     const user = await res.json();
+    console.log('user in get current user', user)
     return dispatch(receiveCurrentUser(user));
   };
 
@@ -38,12 +39,15 @@ export const login = user => startSession(user, '/api/users/login');
 
 
 const startSession = (userInfo, route) => async dispatch => {
+  
     try {  
       const res = await jwtFetch(route, {
         method: "POST",
         body: JSON.stringify(userInfo)
       });
       const { user, token } = await res.json();
+      console.log('user in start session',user)
+      console.log('token in start session',token)
       localStorage.setItem('jwtToken', token);
       return dispatch(receiveCurrentUser(user));
     } catch(err) {

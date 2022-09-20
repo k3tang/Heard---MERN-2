@@ -39,7 +39,9 @@ const User = require('../models/User')
 
 const admin = asyncHandler(async (req, res, next) => {
   console.log('running admin!')
+  console.log('request in admin', req)
   let token;
+  // console.log('req headers', req.headers)
 
   if (
     req.headers.authorization &&

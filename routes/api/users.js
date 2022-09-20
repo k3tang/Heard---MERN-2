@@ -1,7 +1,8 @@
 require("../../models/User"); // mongoose.model("User");
+const { protect, admin } = require("../../middleware/authMiddleware");
 
-// const validateRegisterInput = require('../../validation/register');
-// const validateLoginInput = require('../../validation/login');
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 const express = require('express');
 const router = express.Router();
@@ -11,6 +12,7 @@ const passport = require('passport');
 const { isProduction } = require('../../config/keys');
 
 const { loginUser, restoreUser } = require("../../config/passport");
+const { requireUser } = require('../../config/passport')
 
 
 const User = mongoose.model("User");
@@ -21,10 +23,10 @@ router.get('/', async function(req, res, next) {
   res.json(users);
 });
 
-router.post('/register', async (req, res, next) => {
+router.post('/signup', validateRegisterInput, async (req, res, next) => {
   const user = await User.findOne({
-    $or: [{ email: req.body.email}, { username: req.body.username }]
-  });
+    $or: [{ email: req.body.email }, { username: req.body.username }]
+  })
 
   if (user) {
     const err = new Error("Error de validacion");
@@ -52,7 +54,7 @@ router.post('/register', async (req, res, next) => {
       try {
         newUser.hashedPassword = hashedPassword;
         const user = await newUser.save();
-        return res.json(user );
+        return res.json(await loginUser(user));
       }
       catch(err) {
         next(err);

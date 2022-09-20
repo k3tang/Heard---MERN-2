@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const { secretOrKey } = require('./keys');
 const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 
+
 const options = {};
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 options.secretOrKey = secretOrKey;
@@ -30,12 +31,16 @@ passport.use(new JwtStrategy(options, async (jwtPayload, done) => {
 exports.requireUser = passport.authenticate('jwt', { session: false });
 
 exports.restoreUser = (req, res, next) => {
-  return passport.authenticate('jwt', { session: false }, (err, user) => {
-      console.log(user);
+  console.log('request in restore ', req.headers)
+  console.log('are we here in restore user middleware??')
+  return passport.authenticate('jwt', { session: false }, function (err, user) {
+      console.log('the user',user);
     if (user) req.user = user;
     next();
   })(req, res, next);
 };
+
+
 
 passport.use(new LocalStrategy({
     session: false,

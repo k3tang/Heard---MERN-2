@@ -7,6 +7,8 @@ import SignupForm from "./components/SessionForms/SignupForm";
 import HomePage from "./components/HomePage/index";
 import { getCurrentUser } from './store/session';
 import { Route } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import NavBar from './components/NavBar';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -17,11 +19,12 @@ function App() {
 
   return loaded && (
     <>
-      {/* <NavBar /> */}
+      <NavBar />
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={LoginForm} />
         <Route exact path="/signup" component={SignupForm} />
+        <Route exact path="/home" component={HomePage} />
       </Switch>
     </>
   );
