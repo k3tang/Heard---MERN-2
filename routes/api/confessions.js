@@ -10,6 +10,7 @@ const Confession = require('../../models/Confessions')
 // });
 
 const getAllConfessions = asyncHandler(async (req, res) => {
+   
     const confessions = await Confession.find()
     return res.json(confessions);
 })

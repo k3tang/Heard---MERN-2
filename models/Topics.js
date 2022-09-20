@@ -1,5 +1,20 @@
 const mongoose = require("mongoose");
-const topicSchema = mongoose.Schema({
+
+const TopicResponses = mongoose.Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User'
+    },
+    body: {
+        type: String,
+        required: true,
+    }
+}, {
+    timestamps: true
+})
+
+const TopicSchema = mongoose.Schema({
     ownerId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -10,19 +25,18 @@ const topicSchema = mongoose.Schema({
         required: false,
         ref: 'User'
     }, //need to store responses? or response Id's? maybe make a responses.js?
-    mood: {
-        type: String,
-        enum: ['blue', 'pink', 'green', 'yellow', 'red'],
-        required: true
-    },
-    responses: [TopicResponses],
-
     title: {
         type: String,
         required: true,
         minLength: 30,
         maxLength: 300
     },
+    mood: {
+        type: String,
+        enum: ['blue', 'pink', 'green', 'yellow', 'red'],
+        required: true
+    },
+    responses: [TopicResponses],
     persist: {
         type: Boolean,
         required: true,
@@ -44,19 +58,4 @@ const topicSchema = mongoose.Schema({
     timestamps: true
 })
 
-const TopicResponses = mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-    },
-    body: {
-        type: String,
-        required: true,
-    }
-}, {
-    timestamps: true
-})
-
-
-module.exports = mongoose.model("Topic", TopicsSchema);
+module.exports = mongoose.model("Topic", TopicSchema);
