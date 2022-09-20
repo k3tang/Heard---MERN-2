@@ -2,20 +2,14 @@ const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const { admin, protect } = require("../../middleware/authMiddleware");
-const Confession = require('../../models/Confessions')
-// router.get('/', function(req, res, next) {
-//     res.json({
-//         message: "GET /api/confessions"
-//     });
-// });
 
-const getAllConfessions = asyncHandler(async (req, res) => {
-    const confessions = await Confession.find()
-    return res.json(confessions);
+const getAllTopics = asyncHandler(async (req, res) => {
+    const topics = await Topic.find()
+    return res.json(topics);
 })
 
-const createConfession = asyncHandler(async (req, res) => {
-    const { userId, mood, body ,persist } = req.body;
+const createTopic = asyncHandler(async (req, res) => {
+    const { ownerId, participantId, mood, persist } = req.body;
     if (!userId || !mood || !body) {
         res.status(400);
         throw new Error('please add all fields to confession');
@@ -81,12 +75,10 @@ const getUserConfessions = asyncHandler(async (req, res) => {
     }
 })
 
-//WHEN USING THE ROUTE BELOW: needs the information in the body as such { moods: ["yellow","green"]} as json. 
-
 const getConfessionsByMoods = asyncHandler(async (req, res) => {
-    console.log('body in confessionby moods',req.body.moods)
-    const {moods}  = req.body
-    const confessions = await Confession.find({ mood: { $in: moods} }) //moods should be an array 
+    // console.log('body in confessionby moods',req.body: 
+    // const {moods}  = req.body
+    const confessions = await Confession.find({ mood: { $in: ['blue','pink']} }) //moods should be an array 
     if (!confessions) {
         res.status(401)
         throw new Error('No confessions match these mood preferences')
@@ -96,15 +88,20 @@ const getConfessionsByMoods = asyncHandler(async (req, res) => {
 })
 
 
+// router
+//   .route("/")
+//   .get(getAllConfessions)
+//   .post(admin, protect, createConfession);
 router
   .route("/")
-  .get(getAllConfessions)
-  .post(createConfession);
+  .get(getAllTopics)
+  .post(createTopic);
 router
     .route("/:id")
-    .put( editConfession)
-    .delete(deleteConfession);
-router.route("/moods").get(getConfessionsByMoods); // needs an array of moods in the body like moods: `${user.moods}`
-router.route("/user/:userId").get( getUserConfessions);// this is api/confessions/userId and will get all confessions by user Id
+    .put( editTopic)
+    .post(pushTopicResponse)
+    .delete(deleteTopic);
+router.route("/moods").get(getTopicsByMoods); // needs an array of moods in the body like moods: `${user.moods}`
+router.route("/user/:userId").get( getUserTopics);// this is api/confessions/userId and will get all confessions by user Id
 
 module.exports = router;
