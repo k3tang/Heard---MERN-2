@@ -3,20 +3,20 @@ import { useSelector } from "react-redux";
 import "./index.css";
 
 const UserPreferences = () => {
-    // const user = useSelector(state => state.session.user)
-    // const [checkedKeywords, setCheckedKeywords] = useState(user.moods)
+    const user = useSelector(state => state.session.user)
+    const [checkedKeywords, setCheckedKeywords] = useState(user.moods)
 
-    // const toggleItem = (e) => {
-    //     if (e.target.classList.contains("mood-checked")) {
-    //         setCheckedKeywords(checkedKeywords.filter((x) => x !== e.target.value));
-    //         e.target.classList.remove("mood-checked");
-    //         e.target.classList.add("mood-unchecked");
-    //     } else {
-    //         setCheckedKeywords([...checkedKeywords, e.target.value]);
-    //         e.target.classList.add("mood-checked");
-    //         e.target.classList.remove("mood-unchecked")
-    //     }
-    // }
+    const toggleItem = (e) => {
+        if (e.target.classList.contains("mood-checked")) {
+            setCheckedKeywords(checkedKeywords.filter((x) => x !== e.target.value));
+            e.target.classList.remove("mood-checked");
+            e.target.classList.add("mood-unchecked");
+        } else {
+            setCheckedKeywords([...checkedKeywords, e.target.value]);
+            e.target.classList.add("mood-checked");
+            e.target.classList.remove("mood-unchecked")
+        }
+    }
 
 
     // add mode toggle for light/dark mode 

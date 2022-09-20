@@ -18,15 +18,15 @@ const HomePage = () => {
         }
     }
 
-    useEffect(() => {
+    // useEffect(() => {
         
-    }, [])
+    // }, [])
 
     return (
         <>
             <h1>this is a homepage</h1>
             <div id="background-modal">Instructions here</div>
-            <div>{user.name}</div>
+            {/* <div>{user.name}</div> */}
             <div className="listen-home-button" onClick={() => history.push("/listen")}>Listen</div>
             <div className="share-home-button" onClick={() => history.push("/share")}>Share</div>
         </>

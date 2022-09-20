@@ -8,6 +8,12 @@ import HomePage from "./components/HomePage/index";
 import { getCurrentUser } from './store/session';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
+import UserPreferences from "./components/UserPreferences";
+import ListenStart from './components/ListenStart/index';
+import ShareStart from "./components/ShareStart/index";
+import ConfessionCreate from './components/ConfessionCreate';
+import ConfessionShow from './components/ConfessionShow';
+import TopicCreate from './components/TopicCreate';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -24,49 +30,17 @@ function App() {
         <AuthRoute exact path="/" component={LandingPage} />
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
-        <AuthRoute exact path="/home" component={HomePage} />
+        <ProtectedRoute exact path="/home" component={HomePage} />
+        <ProtectedRoute exact path="/settings" component={UserPreferences} />
+        <ProtectedRoute exact path="/listen" component={ListenStart} />
+        <ProtectedRoute exact path="/share" component={ShareStart} />
+        <ProtectedRoute exact path="/confession-create" component={ConfessionCreate} />
+        <ProtectedRoute exact path="/confession-show" component={ConfessionShow} />
+        <ProtectedRoute exact path="/topic-create" component={TopicCreate} />
       <Redirect to="/" />
       </Switch>
     </>
   );
 }
-
-// function App() {
-//   return (
-//     <>
-//       <Switch>
-//           <Route exact path="/login">
-//             <LoginForm />
-//           </Route>
-//           <Route exact path="/signup">
-//             <SignupForm />
-//           </Route>
-//           <Route exact path="/">
-//             <LandingPage />
-//           </Route>
-//       </Switch>
-    
-//     </>
-
-//   );
-// }
-// function App() {
-//   const [loaded, setLoaded] = useState(false);
-//   const dispatch = useDispatch();
-//   useEffect(() => {
-//     dispatch(getCurrentUser()).then(() => setLoaded(true));
-//   }, [dispatch]);
-
-//   return loaded && (
-//     <>
-//       {/* <NavBar /> */}
-//       <Switch>
-//         <AuthRoute exact path="/" component={LandingPage} />
-//         <AuthRoute exact path="/login" component={LoginForm} />
-//         <AuthRoute exact path="/signup" component={SignupForm} />
-//       </Switch>
-//     </>
-//   );
-// }
 
 export default App;
