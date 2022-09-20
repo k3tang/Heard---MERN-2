@@ -5,11 +5,12 @@ const logger = require('morgan');
 const cors = require('cors');
 const debug = require('debug');
 const csurf = require('csurf');
-
+const passport = require('passport');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/api/users');
-const tweetsRouter = require('./routes/api/tweets');
+const confessionsRouter = require('./routes/api/confessions');
 const csrfRouter = require('./routes/api/csrf');
+require('./config/passport');
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')))
 
 const { isProduction } = require('./config/keys');
+
+app.use(passport.initialize());
 
 if(!isProduction) {
     app.use(cors());
@@ -38,7 +41,6 @@ app.use(
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/tweets', tweetsRouter);
 app.use('/api/csrf', csrfRouter);
 
 app.use((req, res, next) => {

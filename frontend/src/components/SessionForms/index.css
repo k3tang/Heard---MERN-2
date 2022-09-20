@@ -1,0 +1,13 @@
+.form-button {
+    border-radius: 50px;
+    background: linear-gradient(145deg, #F0F0F0, #CACACA);
+    box-shadow: 20px 20px 41px #A4A4A4,
+        -20px -20px 41px #FFFFFF;
+}
+
+.form-input {
+    border-radius: 50px;
+    background: linear-gradient(145deg, #F0F0F0, #CACACA);
+    box-shadow: 20px 20px 41px #A4A4A4,
+        -20px -20px 41px #FFFFFF;
+}
