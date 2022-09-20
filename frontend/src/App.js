@@ -6,6 +6,7 @@ import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import HomePage from "./components/HomePage/index";
 import { getCurrentUser } from './store/session';
+import { Route } from 'react-router-dom';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -18,9 +19,9 @@ function App() {
     <>
       {/* <NavBar /> */}
       <Switch>
-        <AuthRoute exact path="/" component={HomePage} />
-        <AuthRoute exact path="/login" component={LoginForm} />
-        <AuthRoute exact path="/signup" component={SignupForm} />
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/login" component={LoginForm} />
+        <Route exact path="/signup" component={SignupForm} />
       </Switch>
     </>
   );
