@@ -11,7 +11,7 @@ function LoginForm () {
   const dispatch = useDispatch();
 
   const sessionUser = useSelector(state=>state.session.user) 
-
+ // this is a special note
   useEffect(() => {
     return () => {
       dispatch(clearSessionErrors());
