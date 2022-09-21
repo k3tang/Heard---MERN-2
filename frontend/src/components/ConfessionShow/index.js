@@ -2,13 +2,14 @@ import "./ConfessionShow.css";
 import { useEffect, useState } from "react";
 import { fetchConfessions, getConfessions } from "../../store/confessions";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 
 const ConfessionShow = () => {
     const dispatch = useDispatch();
     const confessions = useSelector(getConfessions)
     const [showConfession, setShowConfession] = useState(true)
+    const history = useHistory()
     
 
     // const showConfession = false
@@ -32,6 +33,7 @@ const ConfessionShow = () => {
     useEffect(() => {
         setTimeout(function () {
             setShowConfession(false);
+            history.push(`/confession-next`)
         }, 10000)
     }, [])
     // setTimeout(confessionTimer() {
