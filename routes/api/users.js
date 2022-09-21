@@ -21,7 +21,7 @@ const User = mongoose.model("User");
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
   const users =  await User.find()
-  res.json(users);
+  res.json(users).populate('User')
 });
 
 router.post('/signup', validateRegisterInput, async (req, res, next) => {
@@ -66,6 +66,7 @@ router.post('/signup', validateRegisterInput, async (req, res, next) => {
 
 router.post('/login', validateLoginInput, async (req, res, next) => {
   passport.authenticate('local', async function(err, user) {
+    // debug(user, "passport user")
     if (err) return next(err);
     if (!user) {
       const err = new Error('Invalid credentials');
@@ -79,22 +80,24 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
 
 // routes/api/users.js
 router.get('/current', restoreUser, (req, res) => {
+  // debug(user, "passport user")
   if (!isProduction) {
     // In development, allow React server to gain access to the CSRF token
     // whenever the current user information is first loaded into the
     // React application
     const csrfToken = req.csrfToken();
-
     res.cookie("CSRF-TOKEN", csrfToken);
   }
-  // console.log(req.user);
+
+console.log(req.user, "req")
   if (!req.user) return res.json(null);
-  res.json({
+  res.send({
+    moods: req.user.moods,
     _id: req.user._id,
     username: req.user.username,
     email: req.user.email,
-    moods: req.user.moods
-  });
+    audio: req.user.audio
+  }).populate()
 })
 
 const getUser = asyncHandler(async (req, res) => {

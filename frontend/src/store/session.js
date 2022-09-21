@@ -53,6 +53,7 @@ const startSession = (userInfo, route) => async dispatch => {
         method: "POST",
         body: JSON.stringify(userInfo)
       });
+
       const { user, token } = await res.json();
       console.log('user in start session',user)
       console.log('token in start session',token)
