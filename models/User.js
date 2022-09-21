@@ -15,10 +15,10 @@ const userSchema = Schema({
         type: String,
         required: true
     },
-    audio: {
-        type: Boolean,
+    image: {
+        type: String,
         required: true,
-        default: false,
+        default: "https://images.nightcafe.studio//assets/profile.png?tr=w-1600,c-at_max",
     },
     moods: {
         type: Array,
