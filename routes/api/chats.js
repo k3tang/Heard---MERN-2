@@ -39,7 +39,7 @@ const accessChat = asyncHandler(async (req,res,next)=>{
       res.send(foundChat[0])
     } else {
       const newChat = {
-        chatName: 'sender',
+        title: 'sender',
         isGroupChat: false,
         users: [req.user.id, userId]
       }

@@ -1,4 +1,4 @@
-// import 
+import "./chatbox.css"
 
 function ChatBox() {
   return (

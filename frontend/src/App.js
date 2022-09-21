@@ -17,6 +17,7 @@ import TopicCreate from './components/TopicCreate';
 import UserProfile from './components/UserProfile';
 import ChatPage from './components/ChatPages/ChatPage';
 import ChatPage1 from './components/ChatPages/ChatPage1/ChatPage1';
+import TopicIndex from './components/TopicIndex';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -40,7 +41,8 @@ function App() {
         <ProtectedRoute exact path="/share" component={ShareStart} />
         <ProtectedRoute exact path="/confession-create" component={ConfessionCreate} />
         <ProtectedRoute exact path="/confession-show" component={ConfessionShow} />
-        <ProtectedRoute exact path="/topic-create" component={TopicCreate} />
+        <Route exact path="/topic-create" component={TopicCreate} />
+        <Route exact path="/topic-index" component={TopicIndex} />
 
         <Route exact path="/talk" component={ChatPage1}/>
           <Route exact path="/talk/:chatId" component={ChatPage}/>

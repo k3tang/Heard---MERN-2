@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const chatSchema = mongoose.Schema({
-  chatName:{
+  title:{
     type: String,
     trim: true
   },
@@ -21,6 +21,23 @@ const chatSchema = mongoose.Schema({
        ref: 'User',
        //need to set a defaut admin user 
   },
+     mood: {
+        type: String,
+        enum: ['blue', 'pink', 'green', 'yellow', 'red'],
+        required: true
+    },
+
+    flagged: {
+        flaggedBy: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        isFlagged: {
+            type: Boolean,
+            required: true,
+            default: false,
+        }
+    }
 },
 {
   timestamps: true

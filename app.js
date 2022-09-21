@@ -10,7 +10,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/api/users');
 const confessionsRouter = require('./routes/api/confessions');
 const csrfRouter = require('./routes/api/csrf');
-
+const http = require("http")
 const chatsRouter = require("./routes/api/chats")
 
 const topicsRouter = require('./routes/api/topics');
@@ -68,11 +68,6 @@ app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 
 app.use('/api/chats', chatsRouter)
-
-
-
-
-
 
 app.use('/api/confessions', confessionsRouter);
 app.use('/api/topics', topicsRouter);

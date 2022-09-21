@@ -22,13 +22,13 @@ const getTopic = asyncHandler(async (req,res) => {
 })
 
 const createTopic = asyncHandler(async (req, res) => {
-    const { ownerId, title, mood ,persist} = req.body;
-    if (!ownerId || !mood || !title) {
+    const { userId, title, mood } = req.body;
+    if (!userId || !mood || !title) {
         res.status(400);
         throw new Error('please add all fields to topic');
     }
     const topic = await Topic.create({
-        ownerId, title, mood, persist
+        userId, title, mood
     })
     if (topic) {
         res.status(201).json(topic);
@@ -131,7 +131,7 @@ const addResponse = asyncHandler(async (req, res) => {
 router
   .route("/")
   .get(restoreUser, getAllTopics)
-  .post(createTopic);
+  .post(restoreUser, createTopic);
 router
     .route("/:id")
     .put( editTopic)

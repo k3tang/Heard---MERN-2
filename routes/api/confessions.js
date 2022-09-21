@@ -16,7 +16,7 @@ const getAllConfessions = asyncHandler(async (req, res) => {
 })
 
 const createConfession = asyncHandler(async (req, res) => {
-    const { userId, mood, body ,persist } = req.body;
+    const { userId, mood, body} = req.body;
     if (!userId || !mood || !body) {
         res.status(400);
         throw new Error('please add all fields to confession');
