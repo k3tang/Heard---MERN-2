@@ -10,7 +10,11 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/api/users');
 const confessionsRouter = require('./routes/api/confessions');
 const csrfRouter = require('./routes/api/csrf');
+
 const chatsRouter = require("./routes/api/chats")
+
+const topicsRouter = require('./routes/api/topics');
+
 require('./config/passport');
 // const { createServer } = require("http");
 // const { Server } = require("socket.io");
@@ -62,35 +66,16 @@ app.use(
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
+
 app.use('/api/chats', chatsRouter)
 
-io.on('connection', (socket) => {
-    console.log("Un utilisateur s'est connecté au chat", socket.id );
-    console.log(socket.rooms)
-    socket.on('disconnect', () => {
-        console.log("Un utilisateur s'est déconnecté du chat");
-    });
-    socket.on("private message", (msg) => {
-        io.emit("message de chat", msg);
-    })
-      socket.on("connected message", (msg) => {
-        socket.emit("CONNECTION RECEIVED");
-    })
-
-});
 
 
-io.listen(8080, () => {
-    console.log("Listening on *:8080");
-})
 
-// app.listen(8080, () => {
-//     console.log("Listening on *:8080");
-// })
 
-// server.listen(8080, () => {
-//     console.log("Listening on *:8080");
-// })
+
+app.use('/api/confessions', confessionsRouter);
+app.use('/api/topics', topicsRouter);
 
 
 app.use((req, res, next) => {

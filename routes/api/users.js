@@ -14,6 +14,7 @@ const { isProduction } = require('../../config/keys');
 const { loginUser, restoreUser } = require("../../config/passport");
 const { requireUser } = require('../../config/passport')
 
+const asyncHandler = require("express-async-handler");
 
 const User = mongoose.model("User");
 
@@ -91,8 +92,67 @@ router.get('/current', restoreUser, (req, res) => {
   res.json({
     _id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email,
+    moods: req.user.moods
   });
 })
+
+const getUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  res.json(user);
+});
+
+
+router.get('/:id', getUser);
+
+const deleteUser = asyncHandler(async (req, res) => {
+
+  const user = await User.findById(req.params.id);
+
+  if(!user) {
+    res.status(400);
+    throw new Error("User not found");
+  }
+
+  console.log(req.user);
+  // console.log("At deleteUser")
+
+  // if(req.user.admin || req.user.id === req.params.id) {
+    const deletingUser = await User.findByIdAndDelete(req.params.id);
+    res.status(200).json(deletingUser);
+
+  // } else {
+    // res.status(401);
+    // throw new Error("You must either be an admin or the actual user to delete the user")
+    
+  // }
+
+
+});
+
+router.delete('/:id', deleteUser);
+
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+  if(!user){
+    res.status(400)
+    throw new Error('user not found' )
+  } 
+  // if (req.user.admin || req.params.id === req.user.id){
+  // if (req.params.password){
+  // }
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body,{
+      new: true,
+    })
+  res.status(200).json(updatedUser);
+  // } else {
+  //   res.status(401);
+  //   throw new Error("You must either be an admin or the actual user to update preferences")
+  // }
+})
+
+router.put('/:id', updateUser)
+
+
 
 module.exports = router;
