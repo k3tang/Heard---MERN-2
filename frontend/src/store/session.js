@@ -4,6 +4,7 @@ const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
+const REMOVE_CURRENT_USER = "session/REMOVE_CURRENT_USER";
 
 // Dispatch receiveCurrentUser when a user logs in.
 const receiveCurrentUser = currentUser => ({
@@ -34,6 +35,13 @@ export const getCurrentUser = () => async dispatch => {
     return dispatch(receiveCurrentUser(user));
   };
 
+export const removeCurrentUser = (userId) => {
+  return {
+    type: REMOVE_CURRENT_USER,
+    userId
+  };
+};
+
 export const signup = user => startSession(user, '/api/users/signup');
 export const login = user => startSession(user, '/api/users/login');
 
@@ -58,25 +66,12 @@ const startSession = (userInfo, route) => async dispatch => {
     }
   };
 
-// const startSession = (userInfo, route) => async dispatch => {
-//     console.log(route)
-//     try {
-//         const res = await jwtFetch('/api/users/signup', {
-//             method: "POST",
-//             body: JSON.stringify(userInfo)
-//         });
-//         const { user } = await res.json();
-//         console.log('in the start session, the user object', user)
-//         localStorage.setItem('jwtToken', user.token);
-//         return dispatch(receiveCurrentUser(user));
-//     } catch (error) {
-//         console.log('error in the start session', error)
-//         const res = await error.json();
-//         if (res.statusCode === 400) {
-//             return dispatch(receiveErrors(res.errors));
-//         }
-//     }
-// };
+  export const deleteUser = (userId) => async dispatch => {
+    const res = await jwtFetch(`/api/users/${userId}`, {
+      method: "DELETE"
+    })
+    dispatch(removeCurrentUser(userId))
+  }
 
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');
@@ -109,6 +104,8 @@ const sessionReducer = (state = initialState, action) => {
             return { user: action.currentUser };
         case RECEIVE_USER_LOGOUT:
             return initialState;
+        case REMOVE_CURRENT_USER:
+          return initialState;
         default:
             return state;
     }
