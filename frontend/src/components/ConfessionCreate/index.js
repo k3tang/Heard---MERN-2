@@ -31,18 +31,21 @@ function ConfessionCreate () {
 
     const [mood, setMood] = useState('');
     const [body, setBody] = useState('');
-    const userId = sessionUser.id
+    const userId = sessionUser._id
+    console.log(userId)
 
     const update = (field) => {
-        const setState = field === 'moood' ? setMood : setBody;
+        const setState = field === 'mood' ? setMood : setBody;
         return e => setState(e.currentTarget.value);
     }
+
+    
 
     const handleSubmit = e => {
         e.preventDefault();
         const confession = {
             userId,
-            checkedKeywords,
+            mood,
             body
         }
         console.log('listing in submit', confession)
@@ -54,36 +57,24 @@ function ConfessionCreate () {
         <>
         <h2>create a confession </h2>
         <div class='confession-form-container'>
-            <form class='confession-create-form'>
+            <form class='confession-create-form' onSubmit={handleSubmit}>
                 <div class='mood-input-container'>
                     <label> mood </label>
-                        <div class='mood-button-container'>
-                            <button button class="mood-button" value="angry" onClick={(e) => toggleItem(e.target.value)}/>
-                            <h2 class='mood-text'>Angry</h2>
-                        </div>
-                        <div class='mood-button-container'>
-                            <button button class="mood-button" value="loved" onClick={(e) => toggleItem(e.target.value)}/>
-                            <h2 class='mood-text'>Loved</h2>
-                        </div>
-                        <div class='mood-button-container'>
-                            <button button class="mood-button" value="anxious" onClick={(e) => toggleItem(e.target.value)}/>
-                            <h2 class='mood-text'>Anxious</h2>
-                        </div>
-                        <div class='mood-button-container'>
-                            <button button class="mood-button" value="happy" onClick={(e) => toggleItem(e.target.value)}/>
-                            <h2 class='mood-text'>Happy</h2>
-                        </div>
-                        <div class='mood-button-container'>
-                            <button button class="mood-button" value="sad" onClick={(e) => toggleItem(e.target.value)}/>
-                            <h2 class='mood-text'>Angry</h2>
-                        </div>
+                        <select name="mood" id="mood" value={mood} onChange={update('mood')}>
+                            <option value="blue" >Angry</option>
+                            <option value="loved" >Loved</option>
+                            <option value="anxious">Anxious</option>
+                            <option value="happy" >Happy</option>
+                            <option value="sad" >Sad</option>
+                        </select>
+                       
                 </div>
                 <label> body </label>
                     <textarea 
                         type='text' 
                         value={body} 
-                        onChange={update('mood')} />
-                    
+                        onChange={update('body')} />
+                <input type='submit' value='confess'/>
             </form>
         </div>
         </>

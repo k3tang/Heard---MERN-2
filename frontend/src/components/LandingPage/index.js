@@ -6,12 +6,15 @@ const LandingPage = () => {
 
     return (
         <>
+        <div class='page-container'>
+            <h1 class='landing-title'>Heard</h1>
             <div className="landing-background">
             </div>
             <div className="landing-button-container">
-                <div className="login-button" onClick={() => history.push("/login")}>Login</div>
-                <div className="signup-button" onClick={() => history.push("/signup")}>Sign Up</div>
+                <button className="landing-button" onClick={() => history.push("/login")}>Login</button>
+                <button className="landing-button" onClick={() => history.push("/signup")}>Sign Up</button>
             </div>
+        </div>
         </>
     )
 };

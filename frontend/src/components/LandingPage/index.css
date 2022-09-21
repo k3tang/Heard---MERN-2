@@ -1,0 +1,29 @@
+body {
+    background-color:#7097a8c4;
+}
+
+
+.page-container {
+    background-color: #7097a8;
+    max-width: 1280px;
+    /* max-height: 100vh;  */
+    margin: auto;
+    display: block;
+    box-shadow: 0px 10px 40px rgba(0,0,0,0.5);
+
+}
+
+.landing-button {
+    border-radius: 50px;
+    color: white;
+    /* color: #ecd59f; */
+    background-color: #abd1da;
+    background: linear-gradient(145deg, #F0F0F0, #CACACA);
+    box-shadow:  20px 20px 41px #A4A4A4,
+             -20px -20px 41px #FFFFFF;
+}
+
+.landing-title {
+    font-family: 'Lora', serif;
+    font-size: 50px;
+}

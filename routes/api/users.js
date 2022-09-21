@@ -21,7 +21,7 @@ const User = mongoose.model("User");
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
   const users =  await User.find()
-  res.json(users);
+  res.json(users).populate('User')
 });
 
 router.post('/signup', validateRegisterInput, async (req, res, next) => {
@@ -66,6 +66,7 @@ router.post('/signup', validateRegisterInput, async (req, res, next) => {
 
 router.post('/login', validateLoginInput, async (req, res, next) => {
   passport.authenticate('local', async function(err, user) {
+    // debug(user, "passport user")
     if (err) return next(err);
     if (!user) {
       const err = new Error('Invalid credentials');
@@ -79,22 +80,24 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
 
 // routes/api/users.js
 router.get('/current', restoreUser, (req, res) => {
+  // debug(user, "passport user")
   if (!isProduction) {
     // In development, allow React server to gain access to the CSRF token
     // whenever the current user information is first loaded into the
     // React application
     const csrfToken = req.csrfToken();
-
     res.cookie("CSRF-TOKEN", csrfToken);
   }
-  // console.log(req.user);
+
+console.log(req.user, "req")
   if (!req.user) return res.json(null);
   res.json({
+    moods: req.user.moods,
     _id: req.user._id,
     username: req.user.username,
     email: req.user.email,
-    moods: req.user.moods
-  });
+    audio: req.user.audio
+  })
 })
 
 const getUser = asyncHandler(async (req, res) => {
@@ -141,17 +144,14 @@ const updateUser = asyncHandler(async (req, res) => {
   // if (req.user.admin || req.params.id === req.user.id){
   // if (req.params.password){
   // }
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body,{
-      new: true,
-    })
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body,
+      {new: true})
+
   res.status(200).json(updatedUser);
-  // } else {
-  //   res.status(401);
-  //   throw new Error("You must either be an admin or the actual user to update preferences")
-  // }
+ 
 })
 
-router.put('/:id', updateUser)
+router.patch('/:id', updateUser)
 
 
 

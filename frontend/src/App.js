@@ -9,15 +9,19 @@ import { getCurrentUser } from './store/session';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 import UserPreferences from "./components/UserPreferences";
-import ListenStart from './components/ListenStart/index';
+import ListenStart from './components/ListenStart/index.js';
 import ShareStart from "./components/ShareStart/index";
 import ConfessionCreate from './components/ConfessionCreate';
 import ConfessionShow from './components/ConfessionShow';
 import TopicCreate from './components/TopicCreate';
 import UserProfile from './components/UserProfile';
+<<<<<<< HEAD
 import ChatPage from './components/ChatPages/ChatPage';
 import ChatPage1 from './components/ChatPages/ChatPage1/ChatPage1';
 import TopicIndex from './components/TopicIndex';
+=======
+import AnotherConfession from './components/AnotherConfession'
+>>>>>>> main
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -41,6 +45,7 @@ function App() {
         <ProtectedRoute exact path="/share" component={ShareStart} />
         <ProtectedRoute exact path="/confession-create" component={ConfessionCreate} />
         <ProtectedRoute exact path="/confession-show" component={ConfessionShow} />
+<<<<<<< HEAD
         <Route exact path="/topic-create" component={TopicCreate} />
         <Route exact path="/topic-index" component={TopicIndex} />
 
@@ -48,6 +53,13 @@ function App() {
           <Route exact path="/talk/:chatId" component={ChatPage}/>
 
      
+=======
+        <ProtectedRoute exact path="/topic-create" component={TopicCreate} />
+        <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
+
+        {/* <ProtectedRoute exact path="/talk" component={ChatPage1}/>
+          <ProtectedRoute exact path="/talk/:chatId" component={ChatPage}/> */}
+>>>>>>> main
       <Redirect to="/" />
       </Switch>
     </>
