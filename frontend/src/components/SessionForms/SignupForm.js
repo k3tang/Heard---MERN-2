@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './index.css';
 import { signup, clearSessionErrors } from '../../store/session';
+import { useHistory } from 'react-router-dom';
 
 function SignupForm () {
   const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ function SignupForm () {
   const [password2, setPassword2] = useState('');
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     return () => {
@@ -98,6 +100,7 @@ function SignupForm () {
         value="Sign Up"
         disabled={!email || !password || password !== password2}
       />
+      <div className='login-link' onClick={() => history.push("/login")}>Already have an account?</div>
     </form>
   );
 }

@@ -3,12 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import './index.css';
 
 import { login, clearSessionErrors } from '../../store/session';
+import { useHistory } from 'react-router-dom';
 
 function LoginForm () {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const sessionUser = useSelector(state=>state.session.user) 
 
@@ -26,6 +28,11 @@ function LoginForm () {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password })); 
+  }
+
+  const demoLogin = (e) => {
+    e.preventDefault();
+    dispatch(login({email: "demo@test.com", password: "password"}));
   }
 
   return (
@@ -54,6 +61,8 @@ function LoginForm () {
         value="Log In"
         disabled={!email || !password}
       />
+      <div className='demo-login' onClick={demoLogin}>Login as Demo User</div>
+      <div className="signup-link" onClick={() => history.push("/signup")}>Don't have an account?</div>
     </form>
   );
 }
