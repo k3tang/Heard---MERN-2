@@ -42,7 +42,7 @@ const UserPreferences = () => {
                         <div id="mood-color-pink"></div>
                         <div className="mood-text">Loved</div>
                     </div>
-                    <div className="mood-button mood-checked" value="anxious" onClick={(e) => toggleItem()}>
+                    <div className="mood-button mood-checked" value="" onClick={(e) => toggleItem()}>
                         <div id="mood-color-green"></div>
                         <div className="mood-text">Anxious</div>
                     </div>

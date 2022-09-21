@@ -39,8 +39,8 @@ function App() {
         <ProtectedRoute exact path="/confession-create" component={ConfessionCreate} />
         <ProtectedRoute exact path="/confession-show" component={ConfessionShow} />
         <ProtectedRoute exact path="/topic-create" component={TopicCreate} />
-        <ProtectedRoute exact path="/talk" component={ChatPage1}/>
-          <ProtectedRoute exact path="/talk/:chatId" component={ChatPage}/>
+        {/* <ProtectedRoute exact path="/talk" component={ChatPage1}/>
+          <ProtectedRoute exact path="/talk/:chatId" component={ChatPage}/> */}
       <Redirect to="/" />
       </Switch>
     </>
