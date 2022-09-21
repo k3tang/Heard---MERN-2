@@ -28,3 +28,13 @@ topic id: 632a4c4ba72f81898cb60bf9
 owner id: 632a01dd3edcc578ceef55df
 
 responder id: 
+
+route path="/socket/:socketId" component={ChatPage}
+
+make a topic:
+on >
+make a chatroom.
+
+open chats in user page -> link to their chat page
+
+clicks the link - > routes to that page
