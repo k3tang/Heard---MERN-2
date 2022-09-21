@@ -91,13 +91,13 @@ router.get('/current', restoreUser, (req, res) => {
 
 console.log(req.user, "req")
   if (!req.user) return res.json(null);
-  res.send({
+  res.json({
     moods: req.user.moods,
     _id: req.user._id,
     username: req.user.username,
     email: req.user.email,
     audio: req.user.audio
-  }).populate()
+  })
 })
 
 const getUser = asyncHandler(async (req, res) => {
@@ -144,17 +144,14 @@ const updateUser = asyncHandler(async (req, res) => {
   // if (req.user.admin || req.params.id === req.user.id){
   // if (req.params.password){
   // }
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body,{
-      new: true,
-    })
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body,
+      {new: true})
+
   res.status(200).json(updatedUser);
-  // } else {
-  //   res.status(401);
-  //   throw new Error("You must either be an admin or the actual user to update preferences")
-  // }
+ 
 })
 
-router.put('/:id', updateUser)
+router.patch('/:id', updateUser)
 
 
 
