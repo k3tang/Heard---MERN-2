@@ -67,6 +67,7 @@ export const createConfession = data => async dispatch => {
             body: JSON.stringify(data)
         });
         const confession = await res.json();
+        console.log('Confession in create',confession)
         dispatch(receiveNewConfession(confession));
     } catch (err) {
         const resBody = await err.json();
