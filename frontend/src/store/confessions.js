@@ -80,7 +80,7 @@ export const createConfession = data => async dispatch => {
         const confession = await res.json();
         console.log(confession)
         console.log('Confession in create',confession)
-        dispatch(receiveNewConfession(confession));
+        return dispatch(receiveNewConfession(confession));
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {

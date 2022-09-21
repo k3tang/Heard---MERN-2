@@ -16,6 +16,7 @@ const getAllConfessions = asyncHandler(async (req, res) => {
 })
 
 const createConfession = asyncHandler(async (req, res) => {
+    console.log('i am here')
     const { userId, mood, body ,persist } = req.body;
     if (!userId || !mood || !body) {
         res.status(400);
@@ -24,6 +25,7 @@ const createConfession = asyncHandler(async (req, res) => {
     const confession = await Confession.create({
         userId, mood, body, persist
     })
+    console.log(confession)
     if (confession) {
         res.status(201).json(confession);
     } else {

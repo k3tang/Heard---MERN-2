@@ -61,7 +61,7 @@ function ConfessionCreate () {
                 <div class='mood-input-container'>
                     <label> mood </label>
                         <select name="mood" id="mood" value={mood} onChange={update('mood')}>
-                            <option value="angry" >Angry</option>
+                            <option value="blue" >Angry</option>
                             <option value="loved" >Loved</option>
                             <option value="anxious">Anxious</option>
                             <option value="happy" >Happy</option>

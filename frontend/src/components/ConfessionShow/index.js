@@ -46,8 +46,9 @@ const ConfessionShow = () => {
             <div className="confession-show-container">
                 {/* { showConfession  && ( */}
                     <div className="confession-content" style={{display: showConfession ? 'block' : 'none'}}>Confession here
-                        <p>{randomConfession.mood}</p>
-                        <p>{randomConfession.body}</p>
+                    <h1>hello   </h1>
+                        {/* <p>{randomConfession.mood}</p>
+                        <p>{randomConfession.body}</p> */}
                     </div>  
                     <div className="confession-content" style={{display: showConfession ? 'none' : 'block'}}>Confession here
                       <Link to={`/confession-show`}> <button value='Another Question'  > Another Question?</button> </Link>
