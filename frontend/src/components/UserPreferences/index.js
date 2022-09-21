@@ -6,9 +6,9 @@ import getCurrentUser from "../../store/session.js"
 const UserPreferences = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user)
-    const [checkedKeywords, setCheckedKeywords] = useState(user.moods)
     const moodState = ["angry","loved", "anxious", "happy", "sad"]
-    const [moods, setMoods] = useState(moodState);
+    const [checkedKeywords, setCheckedKeywords] = useState(moodState)
+    // const [moods, setMoods] = useState(moodState);
 
     // for (let i = 0; i < moods.length; i++) {
     //     console.log(moods[i], "moods")
@@ -17,25 +17,37 @@ const UserPreferences = () => {
     //     ele.classList.add("mood-unchecked");
     //     ele.style.backgroundColor = "blue";
     // }
+// 
+// setting initial/saved mood preferences 
+useEffect(() => {
+    for (let moodName of moodState) {
+        let cb = document.getElementById(`${moodName}`);
+        cb.classList.add("mood-checked");
+        cb.classList.remove("mood-unchecked")
+    }
+}, [])
 
+
+//toggle item based on user interaction 
     const toggleItem = (e) => {
-        e.preventDefault();
-        console.log(e.currentTarget.value, "target")
-        if (e.target.classList.contains("mood-checked")) {
-            setCheckedKeywords(checkedKeywords.filter((x) => x !== e.target.value));
-            e.target.classList.remove("mood-checked");
-            e.target.classList.add("mood-unchecked");
+        // e.preventDefault();
+        console.log(e, "target")
+        const ele = document.getElementById(`${e}`)
+        console.log(ele, "ele")
+        console.log(checkedKeywords, "keywords")
+        if (ele.classList.contains("mood-checked")) {
+            setCheckedKeywords(checkedKeywords.filter((x) => x !== ele.id));
+            ele.classList.remove("mood-checked");
+            ele.classList.add("mood-unchecked");
         } else {
-            setCheckedKeywords([...checkedKeywords, e.target.value]);
-            e.target.classList.add("mood-checked");
-            e.target.classList.remove("mood-unchecked")
+            setCheckedKeywords([...checkedKeywords, ele.id]);
+            ele.classList.add("mood-checked");
+            ele.classList.remove("mood-unchecked")
         }
     }
-
-    // useEffect(() => {
-    //     dispatch(getCurrentUser())
-    // }, [])
-
+    
+    console.log(checkedKeywords, "selected keywords")
+    
     // add mode toggle for light/dark mode 
     return (
         <>
@@ -50,11 +62,14 @@ const UserPreferences = () => {
                 <div id="dark-mode-icon" className=" fas fa-moon"></div>
             </div>
             <h2 className="mood-header">Mood Preferences</h2>
-            <form className="mood-list" onSubmit={(e) => toggleItem()}>
-                <button id="angry" className="mood-button mood-checked" value="angry" onClick={(e) => toggleItem()}/>
-                    <div id="mood-color-red"></div>
-                    <button className="mood-text" value="angry" onClick={(e) => toggleItem(e.target.value)}>Angry</button>
-                    <div className="mood-button mood-checked" value="loved" onClick={(e) => toggleItem(e.target)}>
+              {moodState.map((moodName) => <p key={moodName} id={moodName} className="mood-item mood-unchecked" onClick={(e) => toggleItem(moodName)}>{moodName}</p>)}
+
+
+            {/* <form className="mood-list" onSubmit={(e) => toggleItem}> */}
+                {/* <button id="angry" className="mood-button mood-checked" value="angry" onClick={(e) => toggleItem()}/> */}
+                    {/* <div id="mood-color-red"></div>
+                <p className="mood-text mood-checked" onClick={toggleItem}>Angry</p> */}
+                    {/* <div className="mood-button mood-checked" value="loved" onClick={(e) => toggleItem(ele)}>
                         <div id="mood-color-pink"></div>
                         <div className="mood-text">Loved</div>
                     </div>
@@ -81,8 +96,8 @@ const UserPreferences = () => {
                 <div id="mood-sad" className="mood-button mood-checked" value="sad" onClick={(e) => toggleItem()}>
                     <div id="mood-color-red"></div>
                     <div className="mood-text-blue">Sad</div>
-                </div>
-            </form>
+                </div> */}
+            {/* </form> */}
         </>
     )
 }

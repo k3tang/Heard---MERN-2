@@ -4,7 +4,6 @@ import {deleteUser} from "../../store/session";
 
 const DeleteUser = () => {
     const userId = useSelector(state => state.session.user._id)
-    console.log(userId, "id")
     const dispatch = useDispatch();
 
     const closeModal = () => {
