@@ -2,12 +2,15 @@ import "./ConfessionShow.css";
 import { useEffect, useState } from "react";
 import { fetchConfessions, getConfessions } from "../../store/confessions";
 import { useDispatch, useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
 
 
 const ConfessionShow = () => {
     const dispatch = useDispatch();
     const confessions = useSelector(getConfessions)
     const [showConfession, setShowConfession] = useState(true)
+    const history = useHistory()
+    
 
     // const showConfession = false
     
@@ -29,8 +32,9 @@ const ConfessionShow = () => {
 
     useEffect(() => {
         setTimeout(function () {
-            setShowConfession(true);
-        }, 5000)
+            setShowConfession(false);
+            history.push(`/confession-next`)
+        }, 10000)
     }, [])
     // setTimeout(confessionTimer() {
     //     $('#confession-content').fadeOut('fast');
@@ -40,13 +44,15 @@ const ConfessionShow = () => {
     return (
         <>
             <div className="confession-show-container">
-                {showConfession ? (
+                {/* { showConfession  && ( */}
                     <div className="confession-content" style={{display: showConfession ? 'block' : 'none'}}>Confession here
                         <p>{randomConfession.mood}</p>
                         <p>{randomConfession.body}</p>
-                    </div> ) : (
-                        <div />
-                    )}                
+                    </div>  
+                    <div className="confession-content" style={{display: showConfession ? 'none' : 'block'}}>Confession here
+                      <Link to={`/confession-show`}> <button value='Another Question'  > Another Question?</button> </Link>
+                    </div>  
+                    {/* )}                 */}
             </div>
         </>
     )

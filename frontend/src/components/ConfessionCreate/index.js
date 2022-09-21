@@ -38,6 +38,8 @@ function ConfessionCreate () {
         return e => setState(e.currentTarget.value);
     }
 
+    
+
     const handleSubmit = e => {
         e.preventDefault();
         const confession = {

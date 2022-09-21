@@ -15,6 +15,7 @@ import ConfessionCreate from './components/ConfessionCreate';
 import ConfessionShow from './components/ConfessionShow';
 import TopicCreate from './components/TopicCreate';
 import UserProfile from './components/UserProfile';
+import AnotherConfession from './components/AnotherConfession'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,6 +40,8 @@ function App() {
         <ProtectedRoute exact path="/confession-create" component={ConfessionCreate} />
         <ProtectedRoute exact path="/confession-show" component={ConfessionShow} />
         <ProtectedRoute exact path="/topic-create" component={TopicCreate} />
+        <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
+
         {/* <ProtectedRoute exact path="/talk" component={ChatPage1}/>
           <ProtectedRoute exact path="/talk/:chatId" component={ChatPage}/> */}
       <Redirect to="/" />
