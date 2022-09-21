@@ -10,12 +10,18 @@ const ConfessionShow = () => {
     const confessions = useSelector(getConfessions)
     const [showConfession, setShowConfession] = useState(true)
     const history = useHistory()
+
+    const [isLoading, setIsLoading] = useState(false)
     
 
     // const showConfession = false
     
     useEffect(() => {
         dispatch(fetchConfessions())
+        setTimeout(function () {
+            setShowConfession(false);
+            history.push(`/confession-next`)
+        }, 10000)
         // .then(console.log(confessions))
     },[])
     let posts = confessions[0]
@@ -30,12 +36,9 @@ const ConfessionShow = () => {
     }
     console.log(showConfession)
 
-    useEffect(() => {
-        setTimeout(function () {
-            setShowConfession(false);
-            history.push(`/confession-next`)
-        }, 10000)
-    }, [])
+    // useEffect(() => {
+        
+    // }, [])
     // setTimeout(confessionTimer() {
     //     $('#confession-content').fadeOut('fast');
     // }, 1000)
@@ -47,8 +50,8 @@ const ConfessionShow = () => {
                 {/* { showConfession  && ( */}
                     <div className="confession-content" style={{display: showConfession ? 'block' : 'none'}}>Confession here
                     <h1>hello   </h1>
-                        {/* <p>{randomConfession.mood}</p>
-                        <p>{randomConfession.body}</p> */}
+                        {/* <p>{randomConfession.mood}</p> */}
+                        {/* <p>{randomConfession.body}</p> */}
                     </div>  
                     <div className="confession-content" style={{display: showConfession ? 'none' : 'block'}}>Confession here
                       <Link to={`/confession-show`}> <button value='Another Question'  > Another Question?</button> </Link>
