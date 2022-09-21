@@ -64,7 +64,7 @@ passport.use(new LocalStrategy({
         _id: user._id,
         username: user.username,
         email: user.email, 
-        // moods: user.moods
+        moods: user.moods
     };
     const token = await jwt.sign(
         userInfo,
