@@ -51,15 +51,8 @@ const UserPreferences = () => {
             </div>
             <h2 className="mood-header">Mood Preferences</h2>
             <form className="mood-list" onSubmit={(e) => toggleItem()}>
-                <button id="angry" className="mood-button mood-checked" value="angry" onClick={(e) => toggleItem()}>
+                <button id="angry" className="mood-button mood-checked" value="angry" onClick={(e) => toggleItem()}/>
                     <div id="mood-color-red"></div>
-<<<<<<< HEAD
-                    <div className="mood-text">Angry</div>
-                </button>
-                <div id="loved" className="mood-button mood-checked" value="loved" onClick={(e) => toggleItem(e.target)}>
-                    <div id="mood-color-pink"></div>
-                    <div className="mood-text">Loved</div>
-=======
                     <button className="mood-text" value="angry" onClick={(e) => toggleItem(e.target.value)}>Angry</button>
                     <div className="mood-button mood-checked" value="loved" onClick={(e) => toggleItem(e.target)}>
                         <div id="mood-color-pink"></div>
@@ -77,8 +70,6 @@ const UserPreferences = () => {
                         <div id="mood-color-red"></div>
                         <div className="mood-text-blue">Sad</div>
                     </div>
->>>>>>> refs/remotes/origin/component
-                </div>
                 <div id="mood-anxious" className="mood-button mood-checked" value="anxious" onClick={(e) => toggleItem()}>
                     <div id="mood-color-green"></div>
                     <div className="mood-text">Anxious</div>
