@@ -38,15 +38,15 @@ const editConfession = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('confession not found')
     }
-    if (req.params.id === req.user.id) {
+    // if (req.params.id === req.user.id) {
         const updatedConfession = await Confession.findByIdAndUpdate(req.params.id, req.body, {
             new: true
         })
         res.status(200).json(updatedConfession);
-    } else {
-        res.status(401);
-        throw new Error('you must be an admin or author of confession to edit')
-    }
+    // } else {
+        // res.status(401);
+        // throw new Error('you must be an admin or author of confession to edit')
+    // }
 })
 
 const deleteConfession = asyncHandler(async (req, res) => {
@@ -56,19 +56,19 @@ const deleteConfession = asyncHandler(async (req, res) => {
         throw new Error("confession not found");
     }
 
-    if ( req.user.id === req.params.id) {
+    // if ( req.user.id === confession.userId) {
         if (confession.persist) {
             res.status(200).json({ message: "Seed confession recycled" });
         } else {
             const deletingConfession = await Confession.findByIdAndDelete(req.params.id);
             res.status(200).json(deletingConfession);
         }
-    } else {
-        res.status(401);
-        throw new Error(
-            "You must either be an admin confession author to delete confession"
-        );
-    }
+    // } else {
+        // res.status(401);
+        // throw new Error(
+            // "You must either be an admin confession author to delete confession"
+        // );
+    // }
 
 })
 
@@ -106,6 +106,6 @@ router
     .put( editConfession)
     .delete(deleteConfession);
 router.route("/moods").get(getConfessionsByMoods); // needs an array of moods in the body like moods: `${user.moods}`
-router.route("/user/:userId").get( getUserConfessions);// this is api/confessions/userId and will get all confessions by user Id
+router.route("/user/:id").get( getUserConfessions);// this is api/confessions/userId and will get all confessions by user Id
 
 module.exports = router;

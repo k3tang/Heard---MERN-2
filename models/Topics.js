@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const TopicResponses = mongoose.Schema({
+const TopicResponseSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -10,8 +10,6 @@ const TopicResponses = mongoose.Schema({
         type: String,
         required: true,
     }
-}, {
-    timestamps: true
 })
 
 const TopicSchema = mongoose.Schema({
@@ -28,15 +26,15 @@ const TopicSchema = mongoose.Schema({
     title: {
         type: String,
         required: true,
-        minLength: 30,
-        maxLength: 300
+        minLength: 15,
+        maxLength: 60
     },
     mood: {
         type: String,
         enum: ['blue', 'pink', 'green', 'yellow', 'red'],
         required: true
     },
-    responses: [TopicResponses],
+    responses: [TopicResponseSchema],
     persist: {
         type: Boolean,
         required: true,
@@ -58,4 +56,8 @@ const TopicSchema = mongoose.Schema({
     timestamps: true
 })
 
-module.exports = mongoose.model("Topic", TopicSchema);
+const Topic = mongoose.model("Topic", TopicSchema);
+const TopicResponse = mongoose.model('TopicResponse', TopicResponseSchema)
+module.exports = {
+    Topic, TopicResponse
+}
