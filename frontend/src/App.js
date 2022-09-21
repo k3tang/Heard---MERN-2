@@ -9,7 +9,7 @@ import { getCurrentUser } from './store/session';
 import LandingPage from './components/LandingPage';
 import NavBar from './components/NavBar';
 import UserPreferences from "./components/UserPreferences";
-import ListenStart from './components/ListenStart/index';
+import ListenStart from './components/ListenStart/index.js';
 import ShareStart from "./components/ShareStart/index";
 import ConfessionCreate from './components/ConfessionCreate';
 import ConfessionShow from './components/ConfessionShow';
