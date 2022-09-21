@@ -10,6 +10,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/api/users');
 const confessionsRouter = require('./routes/api/confessions');
 const csrfRouter = require('./routes/api/csrf');
+const topicsRouter = require('./routes/api/topics');
 require('./config/passport');
 
 const app = express();
@@ -42,6 +43,8 @@ app.use(
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
+app.use('/api/confessions', confessionsRouter);
+app.use('/api/topics', topicsRouter);
 
 app.use((req, res, next) => {
     const err = new Error("Not Found");
