@@ -32,13 +32,23 @@ export const clearConfessionErrors = errors => ({
     errors
 });
 
+export const getConfessions = state => {
+    console.log('i am here')
+    if(!state.confessions) {
+        return []
+    } else {
+        return Object.values(state.confessions)
+    }
+}
+
 //thunk action creators 
 
 export const fetchConfessions = () => async dispatch => {
     try {
         const res = await jwtFetch("/api/confessions");
         const confessions = await res.json();
-        dispatch(receiveConfessions(confessions))
+        // console.log(confessions)
+        return dispatch(receiveConfessions(confessions))
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
@@ -67,6 +77,7 @@ export const createConfession = data => async dispatch => {
             body: JSON.stringify(data)
         });
         const confession = await res.json();
+        console.log('Confession in create',confession)
         dispatch(receiveNewConfession(confession));
     } catch (err) {
         const resBody = await err.json();
