@@ -6,11 +6,12 @@ const Message = require('../../models/Messages');
 const User = require("../../models/User");
 
 const sendMessage = asyncHandler(async (req, res) => {
+  console.log('hellooooo in send message back end controller')
   const { chatId, content, userId } = req.body;
-  // if (!chatId|| !content || !userId) {
-  //   res.status(400);
-  //   throw new Error("invalid date or data missing. need chat id,content, and userid");
-  // }
+  if (!chatId|| !content || !userId) {
+    res.status(400);
+    throw new Error("invalid date or data missing. need chat id,content, and userid");
+  }
   const messageInfo ={
    sender: userId,
     content,
@@ -19,19 +20,16 @@ const sendMessage = asyncHandler(async (req, res) => {
   console.log('message unfo in back', messageInfo)
   try {
     const newMessage = await Message.create(messageInfo)
-    newMessage =  await newMessage.populate('sender', 'name image') //might need .execPopulate()this is because we're calling populate on an instance of the class and not on the message class itself
-    newMessage = await newMessage.populate('chat')
-    newMessage = await User.populate(newMessage, {
-      path: 'chat.users',
-      select: 'username image email'
-    })
+    const fullMessage = await Message.findOne({_id : newMessage._id})
+    .populate('chatId')
 
-    await Chat.findByIdAndUpdate(req.body.chatId,{
+
+    await Chat.findByIdAndUpdate(chatId,{
       latestMessage: newMessage
     })
-    res.status(200).json(newMessage)
+    res.status(200).json(fullMessage)
   }catch(error) {
-    res.status(401).json({message: 'problem in messages controller'})
+    res.status(401).json({message: 'problem in messages controller', error: error})
   }
 });
 

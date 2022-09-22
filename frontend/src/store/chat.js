@@ -80,10 +80,11 @@ const chatsReducer = (state = {}, action) => {
     case RECEIVE_CHATS:
       return { ...newState, ...action.chats };
     case RECEIVE_CURRENT_CHAT:
-      if (!newState['currentChat']){
+      // if (!newState['currentChat']){
       newState['currentChat'] = action.chat;
-      } else{
-      }
+      // } else{
+
+      // }
       return { ...newState };
     case REMOVE_CHAT:
         delete newState[action.chatId];

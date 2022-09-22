@@ -35,8 +35,8 @@ exports.restoreUser = (req, res, next) => {
   // console.log('are we here in restore user middleware??')
   return passport.authenticate('jwt', { session: false }, function (err, user) {
     if (user) req.user = user;
+    console.log('the user is ',user);
     next();
-    // console.log('the user is ',user);
   })(req, res, next);
 };
 

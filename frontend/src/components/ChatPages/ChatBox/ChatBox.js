@@ -27,9 +27,10 @@ function ChatBox() {
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
   };
-  const sendMessage = async(content, userId, chatId) => {
-    // console.log('pre-fetch', content,senderId, chatId)
 
+
+
+  const sendMessage = async(content, userId, chatId) => {
     try {
       const data = await jwtFetch("/api/messages", {
         method: "POST",
@@ -39,15 +40,9 @@ function ChatBox() {
       const createdMessage = await data.json()
       if (createdMessage) {
         setMessages([ ...messages, createdMessage])
+        setLoading(false)
       }
     } catch (error) {
-      //  toast({
-      //    title: "An error occurred.",
-      //    description: "Your message didnt' send :(",
-      //    status: "error",
-      //    duration: 8000,
-      //    isClosable: true,
-      //  });
     }
   };
   const handleClick = (e) => {

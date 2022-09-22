@@ -54,12 +54,13 @@ useEffect(()=>{
   },[currentUser,chatId])
 
   const moveChats=(chatId)=>{
-    setSelectedChat(storeChats[chatId])
-    dispatch(receiveCurrentChat(storeChats[chatId]));
+    const chat = Object.values(storeChats).find(chat => chat._id === chatId)
+    console.log('what is',chat)
+    setSelectedChat(chat)
+    dispatch(receiveCurrentChat(chat));
      history.push(`/chats/${chatId}`)
-
   }
-  console.log('storechats', storeChats, userChats)
+
 
   return (
     <>

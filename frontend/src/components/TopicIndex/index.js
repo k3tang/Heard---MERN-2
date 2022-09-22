@@ -55,14 +55,23 @@ const TopicIndex = () => {
   }, [currentUser]);
 
   const makeChat = (currentUserId, authorId, topicId) => {
-    dispatch(accessChat(user._id, authorId, topicId));
+    // console.log('user._id', user._id)
+    // console.log('currentuserid', currentUser._id)
+    // console.log('authorId', authorId)
+    dispatch(accessChat(currentUserId, authorId, topicId));
+  
   };
-
+  
   useEffect(() => {
-    // console.log('does chat have id?',currentChat._id)
-    if (currentChat) history.push(`/chats/${currentChat?._id}`);
+    if (currentChat){
+    history.push(`/chats/${currentChat?._id}`);
+    console.log('chatId',currentChat._id)
+    }
+      
+
   }, [currentChat]);
-console.log('store topics', storeTopics)
+
+// console.log('store topics', storeTopics)
   return (
     <>
       <MyTopicsDrawer />
@@ -70,7 +79,7 @@ console.log('store topics', storeTopics)
         <ul>
           
           {topics && topics?.map ((topic=> 
-                <Topic topic={topic} handleFunction={() => makeChat(user.id,topic.userId,topic._id)}/>
+                <Topic topic={topic} handleFunction={() => makeChat(user._id,topic.userId,topic._id)}/>
             )) 
         }
       

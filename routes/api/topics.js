@@ -22,7 +22,8 @@ const getTopic = asyncHandler(async (req,res) => {
 })
 
 const createTopic = asyncHandler(async (req, res) => {
-    const { userId, title, mood } = req.body;
+    const { title, mood } = req.body;
+    const userId = req.user._id
     if (!userId || !mood || !title) {
         res.status(400);
         throw new Error('please add all fields to topic');
