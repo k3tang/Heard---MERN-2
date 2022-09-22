@@ -33,3 +33,7 @@
         padding: 5vh 10vw;
     }
 }
+
+.nav-bar > div {
+    cursor: pointer;
+}

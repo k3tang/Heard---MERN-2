@@ -12,6 +12,9 @@
     font-family: 'Lato';
     font-style: italic;
     font-weight:bolder;
+    color: #5a6794;
+    cursor: pointer;
+
 }
 
 .confession-form-container{
@@ -23,5 +26,44 @@
 }
 
 .confession-create-title{
-    
+    text-align: center;
+}
+
+.confession-text-area{
+    text-align: center;
+    resize: none;
+    width: 100%;
+    height: 150px;
+    background: transparent;
+    border: none;
+    border-radius: 2vh;
+    text-transform: lowercase;
+    font-style: italic;
+    /* letter-spacing: ; */
+    box-shadow: 2.55vh 2.55vh 2.88vh #adadad;
+}
+
+.confession-textarea-container{
+    width: 100%;
+}
+.confession-mood-dropdown{
+    background: transparent;
+    font-size: 48px;
+    border: none;
+    font-style: italic;
+      color: #5a6794
+}
+
+.mood-input-container{
+    margin-bottom: 10vh;
+}
+
+.confession-create-form{
+    display: contents;
+}
+
+.errors {
+    color: red;
+    font-weight: 400;
+    text-align: center;
 }
