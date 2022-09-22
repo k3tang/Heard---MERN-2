@@ -13,13 +13,13 @@ const receiveTopic = (topic)=>({
 export const getAllTopics =  (state) => {
         if (!state) return null;
         else if (!state.topics) return null;
-        else return state.topics
+        else return Object.values(state.topics);
     }
 
 export const fetchAllTopics = () => async dispatch =>{
   const res = await jwtFetch("/api/topics/")
   const topics = await res.json()
-  console.log(topics);
+  // console.log(topics);
   if (res.ok){
     dispatch({type: RECEIVE_TOPICS, topics: topics})
   } else{
