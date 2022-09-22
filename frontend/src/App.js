@@ -27,6 +27,7 @@ function App() {
 
   return loaded && (
     <>
+    <div className='entire-container'>
       <NavBar />
       <Switch>
         <AuthRoute exact path="/" component={LandingPage} />
@@ -46,6 +47,7 @@ function App() {
           <ProtectedRoute exact path="/talk/:chatId" component={ChatPage}/> */}
       <Redirect to="/" />
       </Switch>
+      </div>
     </>
   );
 }

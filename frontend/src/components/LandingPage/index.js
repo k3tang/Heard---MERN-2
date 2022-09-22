@@ -6,8 +6,8 @@ const LandingPage = () => {
 
     return (
         <>
-        <div class='page-container'>
-            <h1 class='landing-title'>Heard</h1>
+        <div className='page-container'>
+            <h1 className='landing-title'>Heard</h1>
             <div className="landing-background">
             </div>
             <div className="landing-button-container">

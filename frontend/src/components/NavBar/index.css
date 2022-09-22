@@ -1,0 +1,12 @@
+.nav-bar {
+    display: flex;
+    color: #a4a7ab;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4vh 3vw;
+}
+
+.nav-bar div {
+    font-size: 3vw;
+}
