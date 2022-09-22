@@ -1,98 +1,69 @@
-const mongoose = require("mongoose");
-require("./models/User")
-require("./models/Confessions")
-require("./models/TopicResponse")
-require("./models/Topics")
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const cors = require('cors');
-const debug = require('debug');
-const csurf = require('csurf');
+const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
+const LocalStrategy = require('passport-local');
+const bcrypt = require('bcryptjs');
+const mongoose = require('mongoose');
+const User = mongoose.model('User');
+const jwt = require('jsonwebtoken');
+const { secretOrKey } = require('./keys');
 const passport = require('passport');
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/api/users');
-const confessionsRouter = require('./routes/api/confessions');
-const csrfRouter = require('./routes/api/csrf');
-const topicsRouter = require('./routes/api/topics');
-require('./config/passport');
 
-const app = express();
+passport.use(new LocalStrategy({
+    session: false,
+    usernameField: 'email',
+    passwordField: 'password',
+}, async function (email, password, done) {
+    const user = await User.findOne({ email });
+    if (user) {
+        bcrypt.compare(password, user.hashedPassword, (err, isMatch) => {
+            if (err || !isMatch) done(null, false);
+            else done(null, user);
+        });
+    } else
+        done(null, false);
+}));
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')))
-app.use(passport.initialize());
+exports.loginUser = async function (user) {
+    const userInfo = {
+        _id: user._id,
+        username: user.username,
+        email: user.email
+    };
+    const token = await jwt.sign(
+        userInfo, // payload
+        secretOrKey, // sign with secret key
+        // Tell the key to expire in one hour
+        { expiresIn: 3600 }
+    );
+    return {
+        user: userInfo,
+        token
+    };
+};
 
-const { isProduction } = require('./config/keys');
+const options = {};
+options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+options.secretOrKey = secretOrKey;
 
-// Serve static React build files statically in production
-
-app.use(
-    csurf({
-        cookie: {
-            secure: isProduction,
-            sameSite: isProduction && "Lax",
-            httpOnly: true
+passport.use(new JwtStrategy(options, async (jwtPayload, done) => {
+    try {
+        const user = await User.findById(jwtPayload._id)
+        if (user) {
+            // return the user to the frontend
+            return done(null, user);
         }
-    })
-);
+        // return false since there is no user
+        return done(null, false);
+    }
+    catch (err) {
+        done(err);
+    }
+}));
 
+exports.requireUser = passport.authenticate('jwt', { session: false });
 
-// app.use('/', indexRouter);
-app.use('/api/users', usersRouter);
-app.use('/api/csrf', csrfRouter);
-app.use('/api/confessions', confessionsRouter);
-app.use('/api/topics', topicsRouter);
-
-
-if (isProduction) {
-    const path = require('path');
-    // Serve the frontend's index.html file at the root route
-    app.get('/', (req, res) => {
-        res.cookie('CSRF-TOKEN', req.csrfToken());
-        res.sendFile(
-            path.resolve(__dirname, './frontend', 'build', 'index.html')
-        );
-    });
-
-    // Serve the static assets in the frontend's build folder
-    app.use(express.static(path.resolve("./frontend/build")));
-
-    // Serve the frontend's index.html file at all other routes NOT starting with /api
-    app.get(/^(?!\/?api).*/, (req, res) => {
-        res.cookie('CSRF-TOKEN', req.csrfToken());
-        res.sendFile(
-            path.resolve(__dirname, './frontend', 'build', 'index.html')
-        );
-    });
-}
-
-if (!isProduction) {
-    app.use(cors());
-}
-
-
-app.use((req, res, next) => {
-    const err = new Error("Not Found");
-    err.statusCode = 404;
-    next(err);
-});
-
-const serverErrorLogger = debug('backend:error');
-
-app.use((err, req, res, next) => {
-    serverErrorLogger(err);
-    const statusCode = err.statusCode || 500;
-    res.status(statusCode);
-    res.json({
-        message: err.message,
-        statusCode,
-        errors: err.errors
-    })
-});
-
-module.exports = app;
+exports.restoreUser = (req, res, next) => {
+    return passport.authenticate('jwt', { session: false }, function (err, user) {
+        if (user) req.user = user;
+        next();
+    })(req, res, next);
+};
