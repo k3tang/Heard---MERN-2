@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-require("./models/User")
-require("./models/Confession")
-require("./models/TopicResponse")
-require("./models/Topic")
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+require("./models/User")
+require("./models/Confession")
+require("./models/TopicResponse")
+require("./models/Topic")
 const cors = require('cors');
 const debug = require('debug');
 const csurf = require('csurf');
@@ -61,7 +61,7 @@ if (isProduction) {
     });
 
     // Serve the static assets in the frontend's build folder
-    app.use(express.static(path.resolve("../frontend/build")));
+    app.use(express.static(path.resolve("./frontend/build")));
 
     // Serve the frontend's index.html file at all other routes NOT starting with /api
     app.get(/^(?!\/?api).*/, (req, res) => {
