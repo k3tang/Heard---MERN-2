@@ -7,15 +7,17 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
-  Input
+  Input,
+  Box,
+  Text
 } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { getCurrentUser } from '../../../store/session'
-import {fetchChatsbyUser} from '../../../store/chat'
+import { getCurrentUser, _getCurrentUser } from '../../../store/session'
+import {fetchChatsbyUser, getAllChats, getCurrentChat} from '../../../store/chat'
 
 
 function MyTopicsDrawer() {
@@ -25,37 +27,39 @@ function MyTopicsDrawer() {
   const dispatch = useDispatch()
     const [user, setUser] = useState()
     const [userChats, setUserChats] = useState();
-  const currentUser = useSelector((state)=>{
-        if (!state) return null;
-        else if (!state.session?.user) return null;
-        else return state.session.user
-  })
+  const currentUser = useSelector(_getCurrentUser)
+  
 
-   const storeChats = useSelector((state)=>{
-        if (!state) return null;
-        else if (!state.chats) return null;
-        else return state.chats
-  })
+    const currentChat = useSelector(getCurrentChat)
+  
+    const [selectedChat, setSelectedChat] = useState();
+    
+    const storeChats = useSelector(getAllChats)
+  
+    
+    useEffect(()=>{
+        setUser(currentUser)
+        setUserChats(storeChats)
+      },[currentUser, storeChats])
 
+  // useEffect(()=>{
+  // setSelectedChat(currentChat)
+  // },[currentChat])
+ //
+   //
 useEffect(()=>{
-    // dispatch(getCurrentUser())
-    console.log('curent user', currentUser)
+
    if(currentUser) dispatch(fetchChatsbyUser(currentUser._id))
   },[currentUser])
 
-useEffect(()=>{
-    setUser(currentUser)
-    setUserChats(storeChats)
-  },[currentUser, storeChats])
-
   return (
     <>
-      <Button ref={btnRef} colorScheme='teal' onClick={onOpen}>
+      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
         My Chats
       </Button>
       <Drawer
         isOpen={isOpen}
-        placement='left'
+        placement="left"
         onClose={onClose}
         finalFocusRef={btnRef}
       >
@@ -65,17 +69,48 @@ useEffect(()=>{
           <DrawerHeader>My Topics</DrawerHeader>
 
           <DrawerBody>
-            
+            <Box
+              d="flex"
+              flexDir="column"
+              p={3}
+              bg="pink"
+              w="100%"
+              h="100%"
+              overflowY="hidden"
+            >
+              {/* array ? (
+              <Stack>
+              [TBDARRAY].map((chat) => (
+                <Box
+                onClick={()=> moveChats(chat.id)}
+                cursor="pointer"
+                bg={selectedChat === chat ? 'blue' : 'white' }
+                color={selectedChat === chat ? 'white' : 'blue' }
+                px={3}
+                py{2}
+                > 
+                <Text> {chat.title}</Text>
+
+                </Box>
+              )) 
+              </Stack
+          ): <></>
+          */}
+            </Box>
           </DrawerBody>
 
           <DrawerFooter>
-       
-            <Button colorScheme='blue' onClick={()=> history.push("/topic-create")}>New Topic Request</Button>
+            <Button
+              colorScheme="blue"
+              onClick={() => history.push("/topic-create")}
+            >
+              New Topic Request
+            </Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
-  )
+  );
 }
 
 export default MyTopicsDrawer

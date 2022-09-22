@@ -21,11 +21,11 @@ const chatSchema = mongoose.Schema({
        ref: 'User',
        //need to set a defaut admin user 
   },
-     mood: {
-        type: String,
-        enum: ['angry', 'loved', 'anxious', 'happy', 'sad'],
-        required: true
-    },
+  topic: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Topic',
+
+  },
 
     flagged: {
         flaggedBy: {

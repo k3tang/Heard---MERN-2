@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
+// const { default: Topic } = require("../../frontend/src/components/TopicIndex/Topic");
 const { admin, protect } = require("../../middleware/authMiddleware");
 const Chat = require("../../models/Chats");
 const User = require("../../models/User");
-
+const Topic = require("../../models/Topics")
 const getChats =  asyncHandler(async (req, res, next) => {
   const userId = req.params.userId
   const foundChats = await Chat.find({users:{ $elemMatch: {$eq: userId}}})
@@ -18,7 +19,7 @@ const getChat =  asyncHandler(async (req, res, next) => {
 });
 
 const accessChat = asyncHandler(async (req,res,next)=>{
-    const { userId, currentUserId, mood } = req.body; 
+    const { userId, currentUserId, topicId } = req.body; 
     console.log('in back end access chat', req.body)
   
    if (!userId){
@@ -41,15 +42,16 @@ const accessChat = asyncHandler(async (req,res,next)=>{
     if (foundChat.length > 0)   {
       res.send(foundChat[0])
     } else {
+      const topic = await Topic.findById(topicId)
       const newChat = {
-        title: 'sender',
+        title: topic.title,
         isGroupChat: false,
         users: [currentUserId, userId],
-        mood: mood
+        topicId: topicId
       }
       try {
         const createdChat = await Chat.create(newChat)
-        const fullChat = await Chat.findOne({_id:  createdChat.id}).populate('users', "-password")
+        const fullChat = await Chat.findOne({_id:  createdChat.id}).populate('users', "topic", "-password")
         res.status(200).json(fullChat)
       }catch(error){
         res.status(401).json( {message: error, text: 'error from access chat back end'})

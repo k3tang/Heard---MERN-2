@@ -9,13 +9,25 @@ Getting a user's chats are the chats that are active and created by the user.
 
 
 */
+export const getCurrentChat =(state) =>{
+        if (!state) return null;
+      else if (!state.chats?.currentChat) return null;
+      else return state.chats.currentChat;
+    
+}
 
-export const accessChat = (userId,currentUserId,mood) => async (dispatch) => {
+export const getAllChats =(state)=>{
+if (!state) return null;
+if (!state.chats) return null;
+else return state.chats
+}
+
+export const accessChat = (userId,currentUserId, topicId) => async (dispatch) => {
     try {
         // setLoadingChat(true)
        const res = await jwtFetch("/api/chats/",{
         method: "POST",
-        body: JSON.stringify({userId, currentUserId,mood})
+        body: JSON.stringify({userId, currentUserId, topicId})
        })
        const chat = await res.json();
        dispatch(receiveCurrentChat(chat));

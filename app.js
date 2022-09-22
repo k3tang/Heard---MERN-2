@@ -17,7 +17,7 @@ const confessionsRouter = require('./routes/api/confessions');
 const csrfRouter = require('./routes/api/csrf');
 const http = require("http")
 const chatsRouter = require("./routes/api/chats")
-
+const messageRoutes = require("./routes/api/messages")
 const topicsRouter = require('./routes/api/topics');
 
 require('./config/passport');
@@ -73,7 +73,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 
 app.use('/api/chats', chatsRouter)
-
+app.use('api/messages', messageRoutes)
 app.use('/api/confessions', confessionsRouter);
 app.use('/api/topics', topicsRouter);
 

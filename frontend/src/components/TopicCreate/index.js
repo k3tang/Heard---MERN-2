@@ -1,23 +1,32 @@
 import "./index.css"
 import { useSelector,useDispatch } from "react-redux";
 import getCurrentUser from "../../store/session"
-import createTopic from "../../store/topics"
+import { createTopic } from "../../store/topics"
 import { useState, useEffect, } from "react";
-
+import { Input } from "@chakra-ui/react";
 const TopicCreate = () => {
     const dispatch = useDispatch();
-    const [chatTitle, setChatTitle] = useState("");
+    const [topicTitle, setTopicTitle] = useState("");
     const [mood, setMood] = useState("loved");
-    const [user, setUser] = useState()
-     const currentUser = useSelector((state) => state.session.user);
+    const [user, setUser] = useState();
+
+     const currentUser = useSelector((state)=>{
+        if (!state) return null;
+        else if (!state.session?.user) return null;
+        else return state.session.user
+  })
+  
+  useEffect(()=>{
+      setUser(currentUser);
+    },[currentUser])
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const newTopic = {
-            userId: currentUser?.id,
+            userId: user._id,
             mood: mood,
-            title: chatTitle,
+            title: topicTitle,
         } 
         console.log(newTopic);
 
@@ -26,21 +35,21 @@ const TopicCreate = () => {
 
     useEffect(() => {
         dispatch(getCurrentUser);
-
-            setUser(currentUser);
     }, []);
 
     return (
         <>
             <div className="topic-create-container">
-                <h1 className="topic-title">Create a message request</h1>
+                <h1 className="topic-title">Create a Topic for Chat!!!</h1>
                 <div className="topic-form">
                     <form onSubmit={handleSubmit}>
                         <label>
                             <p>
                             Enter a title!
                             </p>
-                            <input type="text" value={chatTitle} onChange={(e) => setChatTitle(e.target.value)} />
+                            <Input 
+                            w="40%"
+                            type="text" value={topicTitle} onChange={(e) => setTopicTitle(e.target.value)} />
                         <label>
                             <p>
                             Choose a mood:
@@ -54,7 +63,7 @@ const TopicCreate = () => {
                                 <option value="sad">Sad</option>
                             </select>
                         </label>
-                        <input type="submit" value="Create Chat Request" />                       
+                        <input type="submit" value="Create Topic" />                       
                         </label>
                     </form>
                 </div>

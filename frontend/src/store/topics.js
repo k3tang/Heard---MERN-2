@@ -16,9 +16,10 @@ export const getAllTopics =  (state) => {
         else return state.topics
     }
 
-const fetchAllTopics = () => async dispatch =>{
+export const fetchAllTopics = () => async dispatch =>{
   const res = await jwtFetch("/api/topics/")
   const topics = await res.json()
+  console.log(topics);
   if (res.ok){
     dispatch({type: RECEIVE_TOPICS, topics: topics})
   } else{
@@ -26,19 +27,18 @@ const fetchAllTopics = () => async dispatch =>{
   }
 }
 
-const createTopic = (topicInfo) => async dispatch =>{
-  console.log('IN CREATE TOPIC',topicInfo);
+export const createTopic = (topicInfo) => async dispatch =>{
+  // console.log('IN CREATE TOPIC',topicInfo);
   const res = await jwtFetch("/api/topics/",{
     method: 'POST',
-    title: topicInfo.title,
-    mood: topicInfo.mood,
-    userId: topicInfo.userId
+    body: JSON.stringify(topicInfo)
   })
   const topic = await res.json()
+  // console.log(topic);
   if (res.ok){
     dispatch(receiveTopic(topic))
   } else{
-    console.log('problems in fetchAllTopics in store')
+    console.log('problems in fetching topic into store')
   }
 }
 
@@ -52,7 +52,7 @@ const topicsReducer = (state = {}, action) => {
         case RECEIVE_TOPICS:
             return {...newState, ...action.topics}
         case RECEIVE_TOPIC:
-          newState[action.id] = action.topic
+          newState[action.topic.id] = action.topic
           return {...newState}
         default:
             return newState;
