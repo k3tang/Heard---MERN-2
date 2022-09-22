@@ -55,53 +55,63 @@ function SignupForm () {
   }
 
   return (
-    <form className="session-form" onSubmit={usernameSubmit}>
+    <div className='form-container'>
+      <div className='session-form-container'>
       <h2>Sign Up Form</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        Email   </label> <br />
-        <input type="text"
-          value={email}
-          onChange={update('email')}
-          placeholder="Email"
-        />
-    
-      <div className="errors">{errors?.username}</div>
-      <label>
-        Username     </label> <br />
-        <input type="text"
-          value={username}
-          onChange={update('username')}
-          placeholder="Username"
-        />
-  
-      <div className="errors">{errors?.password}</div>
-      <label>
-        Password  </label> <br />
-        <input type="password"
-          value={password}
-          onChange={update('password')}
-          placeholder="Password"
-        />
-     
-      <div className="errors">
-        {password !== password2 && 'Confirm Password field must match'}
+        <form className="session-form" onSubmit={usernameSubmit}>
+          <div className="errors">{errors?.email}</div>
+          {/* <label className='session-form-title'>
+            Email   </label> <br /> */}
+            <input type="text"
+              value={email}
+              onChange={update('email')}
+              placeholder="Email"
+              className='form-input'
+              
+            />
+        
+          <div className="errors">{errors?.username}</div>
+          {/* <label className='session-form-title'>
+            Username     </label> <br /> */}
+            <input type="text"
+              value={username}
+              onChange={update('username')}
+              placeholder="Username"
+              className='form-input'
+            />
+      
+          <div className="errors">{errors?.password}</div>
+          {/* <label className='session-form-title'>
+            Password  </label> <br /> */}
+            <input type="password"
+              value={password}
+              onChange={update('password')}
+              placeholder="Password"
+              className='form-input'
+            />
+        
+          <div className="errors">
+            {password !== password2 && 'Confirm Password field must match'}
+          </div>
+          {/* <label className='session-form-title'>
+            Confirm Password  </label> <br /> */}
+            <input type="password"
+              value={password2}
+              onChange={update('password2')}
+              placeholder="Confirm Password"
+              className='form-input'
+            /> <br />
+        
+          <input
+            type="submit"
+            value="Sign Up"
+            disabled={!email || !password || password !== password2}
+            className='session-form-submit-button'
+          />
+          <div className='login-link' onClick={() => history.push("/login")}>Already have an account?</div>
+        </form>
       </div>
-      <label>
-        Confirm Password  </label> <br />
-        <input type="password"
-          value={password2}
-          onChange={update('password2')}
-          placeholder="Confirm Password"
-        />
-    
-      <input
-        type="submit"
-        value="Sign Up"
-        disabled={!email || !password || password !== password2}
-      />
-      <div className='login-link' onClick={() => history.push("/login")}>Already have an account?</div>
-    </form>
+    </div>
   );
 }
 
