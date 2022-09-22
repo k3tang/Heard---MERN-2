@@ -76,7 +76,7 @@ function ConfessionCreate () {
                     {/* <label> mood </label> */}
                         <select className='confession-mood-dropdown'name="mood" id="mood" value={mood} onChange={update('mood')}>
                             <option defaultValue value='invalid'> I'm feeling...</option>
-                            <option value="pink" >Angry</option>
+                            <option value="angry" >Angry</option>
                             <option value="loved" >Loved</option>
                             <option value="anxious">Anxious</option>
                             <option value="happy" >Happy</option>
