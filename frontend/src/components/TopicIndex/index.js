@@ -12,7 +12,7 @@ import { getAllTopics, fetchAllTopics } from "../../store/topics";
 
 const TopicIndex = () => {
   const storeChats = useSelector((state) => getAllChats(state));
-  //   const [loadingChat, setLoadingChat] = useState();
+    const [topics, setTopics] = useState();
   const dispatch = useDispatch();
   const history = useHistory();
   const [myChats, setMyChats] = useState();
@@ -35,54 +35,45 @@ const TopicIndex = () => {
   window.topics = topics;
 
   useEffect(() => {
-    dispatch(fetchAllTopics);
+    dispatch(fetchAllTopics());
     if (user) dispatch(fetchChatsbyUser(user.id));
-  }, []);
+  },[]);
 
   useEffect(() => {
     setMyChats(storeChats);
   }, [storeChats]);
-  
+
   useEffect(()=>{
-    setTpics(storeTopics)
+    setTopics(Object.values(storeTopics))
   },[storeTopics])
-  //   useEffect(() => {
-  //     dispatch(getCurrentUser());
-  //   }, []);
+    useEffect(() => {
+      dispatch(getCurrentUser());
+    }, []);
 
   useEffect(() => {
     setUser(currentUser);
   }, [currentUser]);
 
-  const makeChat = (authorId, topicId) => {
-    dispatch(accessChat(authorId, user._id, topicId));
+  const makeChat = (currentUserId, authorId, topicId) => {
+    dispatch(accessChat(user._id, authorId, topicId));
   };
 
   useEffect(() => {
-    if (currentChat) history.push(`/chats/${currentChat?.id}`);
+    // console.log('does chat have id?',currentChat._id)
+    if (currentChat) history.push(`/chats/${currentChat?._id}`);
   }, [currentChat]);
-
+console.log('store topics', storeTopics)
   return (
     <>
       <MyTopicsDrawer />
       <div className="topic-container">
         <ul>
-          List of topics
-          {/* topics.map (topic)=>{
-            return <Topic topic={topic} handleFunction={() => makeChat(topic.userId,topic.mood)}
-          } */}
-          <Topic
-            topic={{
-              id: 1,
-              title: "I am sad",
-              mood: "blue",
-              userId: "632a2f571b035eb8b3cbf3b6",
-            }}
-            handleFunction={() => makeChat("632a2f571b035eb8b3cbf3b6", 1)}
-          />
-          {/* {
-                    topics?.map(topic => <li key={topic._id}><Link to={`/talk/${topic._id}`}>{topic.title}</Link></li>)
-                    } */}
+          
+          {topics && topics?.map ((topic=> 
+                <Topic topic={topic} handleFunction={() => makeChat(user.id,topic.userId,topic._id)}/>
+            )) 
+        }
+      
         </ul>
       </div>
     </>

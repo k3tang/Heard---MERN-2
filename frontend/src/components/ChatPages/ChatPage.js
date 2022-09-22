@@ -31,7 +31,6 @@ function ChatPage() {
     <div className='chat-page'>
      <MyTopicsDrawer/>
       <Box>
-     
         {currentUser && <ChatBox />}
       </Box>
     </div>

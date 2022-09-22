@@ -6,10 +6,11 @@ const { admin, protect } = require("../../middleware/authMiddleware");
 const Chat = require("../../models/Chats");
 const User = require("../../models/User");
 const Topic = require("../../models/Topics")
+
 const getChats =  asyncHandler(async (req, res, next) => {
   const userId = req.params.userId
   const foundChats = await Chat.find({users:{ $elemMatch: {$eq: userId}}})
-
+  console.log(foundChats, userId)
     res.json(foundChats);
   });
 
@@ -36,7 +37,7 @@ const accessChat = asyncHandler(async (req,res,next)=>{
 
     foundChat = await User.populate(foundChat, {
       path: 'latestMessage.sender',
-      select:'username, image,email',
+      select:'username image email',
     });
 
     if (foundChat.length > 0)   {
@@ -51,7 +52,7 @@ const accessChat = asyncHandler(async (req,res,next)=>{
       }
       try {
         const createdChat = await Chat.create(newChat)
-        const fullChat = await Chat.findOne({_id:  createdChat.id}).populate('users', "topic", "-password")
+        const fullChat = await Chat.findOne({_id:  createdChat._id}).populate('users', "topic", "-password")
         res.status(200).json(fullChat)
       }catch(error){
         res.status(401).json( {message: error, text: 'error from access chat back end'})

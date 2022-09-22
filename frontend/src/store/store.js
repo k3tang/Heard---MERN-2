@@ -12,10 +12,8 @@ import chats from './chat'
 const rootReducer = combineReducers({
   session,
   errors,
-
   topics,
   chats,
-
   confessions,
 
 });
