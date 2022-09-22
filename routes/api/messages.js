@@ -7,15 +7,16 @@ const User = require("../../models/User");
 
 const sendMessage = asyncHandler(async (req, res) => {
   const { chatId, content, userId } = req.body;
-  if (!chatId|| !content || !userId) {
-    res.status(400);
-    throw new Error("invalid date or data missing. need chat id,content, and userid");
-  }
+  // if (!chatId|| !content || !userId) {
+  //   res.status(400);
+  //   throw new Error("invalid date or data missing. need chat id,content, and userid");
+  // }
   const messageInfo ={
    sender: userId,
     content,
     chatId
   };
+  console.log('message unfo in back', messageInfo)
   try {
     const newMessage = await Message.create(messageInfo)
     newMessage =  await newMessage.populate('sender', 'name image') //might need .execPopulate()this is because we're calling populate on an instance of the class and not on the message class itself

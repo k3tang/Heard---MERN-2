@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { Box } from "@chakra-ui/layout"
 import ChatBox from "./ChatBox/ChatBox"
 import { useSelector, useDispatch } from 'react-redux'
-import { getCurrentUser } from '../../store/session'
+import { getCurrentUser, _getCurrentUser } from '../../store/session'
 import MyTopicsDrawer from '../TopicIndex/MyTopicsDrawer'
 
 
@@ -14,11 +14,7 @@ function ChatPage() {
  const dispatch = useDispatch()
   const [chat, setChat] = useState('')
   const [user, setUser] = useState()
-  const currentUser = useSelector((state)=>{
-        if (!state) return null;
-        else if (!state.session?.user) return null;
-        else return state.session.user
-  })
+  const currentUser = useSelector(_getCurrentUser)
   useEffect(()=>{
     dispatch(getCurrentUser())
   },[])
