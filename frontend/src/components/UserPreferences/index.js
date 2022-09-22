@@ -11,18 +11,21 @@ const UserPreferences = () => {
     const moodState = ["angry","loved", "anxious", "happy", "sad"]
     const [checkedKeywords, setCheckedKeywords] = useState(userMoods)
 
-    console.log(userMoods, "moods");
+   
+    
 
 
-
+console.log(userMoods);
 // setting initial/saved mood preferences 
 useEffect(() => {
-    for (let moodName of checkedKeywords) {
-        let cb = document.getElementById(`${moodName}`);
-        cb.classList.add("mood-checked");
-        cb.classList.remove("mood-unchecked")
-    }
-}, [])
+    console.log(userMoods, "moods");
+    if (userMoods) {
+        for (let moodName of userMoods) {
+            let cb = document.getElementById(`${moodName}`);
+            cb.classList.add("mood-checked");
+            cb.classList.remove("mood-unchecked")
+    } }
+}, [userMoods])
 
 
 //toggle item based on user interaction 
