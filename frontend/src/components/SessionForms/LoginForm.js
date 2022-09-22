@@ -36,34 +36,43 @@ function LoginForm () {
   }
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Log In Form</h2>
-      <div className="errors">{errors?.email}</div>
-      <label>
-        Email     </label> <br />
-        <input type="text"
-          value={email}
-          onChange={update('email')}
-          placeholder="Email"
-        />
+    <div className='form-container'>
+      <div className='session-form-container'>
+      <h2 className='session-form-title'>Log In Form</h2>
+        <form className="session-form" onSubmit={handleSubmit}>
+         
+          <div className="errors">{errors?.email}</div>
+          {/* <label className='session-form-title'>
+            Email     </label> <br /> */}
+            <input type="text"
+              value={email}
+              onChange={update('email')}
+              placeholder="Email"
+              className='form-input'
+            />
+            <span class="focus-bg"></span>
 
-      <div className="errors">{errors?.password}</div>
-      <label>
-        Password </label> <br />
-        <input type="password"
-          value={password}
-          onChange={update('password')}
-          placeholder="Password"
-        />
-    
-      <input
-        type="submit"
-        value="Log In"
-        disabled={!email || !password}
-      />
-      <div className='demo-login' onClick={demoLogin}>Login as Demo User</div>
-      <div className="signup-link" onClick={() => history.push("/signup")}>Don't have an account?</div>
-    </form>
+          <div className="errors">{errors?.password}</div>
+          {/* <label className='session-form-title'>
+            Password </label> <br /> */}
+            <input type="password"
+              value={password}
+              onChange={update('password')}
+              placeholder="Password"
+              className='form-input'
+            />
+        
+          <input
+            type="submit"
+            value="Log In"
+            disabled={!email || !password}
+            className='session-form-submit-button'
+          />
+          <div className='demo-login' onClick={demoLogin}>Login as Demo User</div>
+          <div className="signup-link" onClick={() => history.push("/signup")}>Don't have an account?</div>
+        </form>
+    </div>
+    </div>
   );
 }
 
