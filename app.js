@@ -43,7 +43,7 @@ app.use(
     })
 );
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/confessions', confessionsRouter);
