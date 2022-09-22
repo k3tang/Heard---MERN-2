@@ -26,41 +26,30 @@ function MyTopicsDrawer() {
   const btnRef = React.useRef()
   const history = useHistory()
   const dispatch = useDispatch()
-    const [user, setUser] = useState()
-    const [userChats, setUserChats] = useState();
+
   const currentUser = useSelector(_getCurrentUser)
   
-
-    const currentChat = useSelector((state)=>getCurrentChat(state))
+  const currentChat = useSelector((state)=>getCurrentChat(state))
   
-    const [selectedChat, setSelectedChat] = useState();
-    
-    const storeChats = useSelector((state)=>getAllChats(state))
   
-    
-    useEffect(()=>{
-        setUser(currentUser)
-        setUserChats(Object.values(storeChats))
-      },[currentUser, storeChats])
+   const chats = useSelector((state)=>getAllChats(state))
+  
 
-  useEffect(()=>{
-  setSelectedChat(currentChat)
-   setUserChats(Object.values(storeChats));
-  },[currentChat])
+    useEffect(() => {
+      dispatch(getCurrentUser());
+    }, []);
  
    //
 useEffect(()=>{
    if(currentUser) dispatch(fetchChatsbyUser(currentUser._id))
-  },[currentUser,chatId])
+  },[currentUser])
 
   const moveChats=(chatId)=>{
-    const chat = Object.values(storeChats).find(chat => chat._id === chatId)
+    const chat = chats.find(chat => chat._id === chatId)
     console.log('what is',chat)
-    setSelectedChat(chat)
     dispatch(receiveCurrentChat(chat));
      history.push(`/chats/${chatId}`)
   }
-
 
   return (
     <>
@@ -91,9 +80,10 @@ useEffect(()=>{
             >
            
               <Stack>
-                 {  userChats?.map(chat => {
+                 {  chats?.map(chat => {
                  
              return <Box
+                  key={chat._id}
                 onClick={()=> moveChats(chat?._id)}
                 cursor="pointer"
                 bg={chatId === chat?._id ? 'blue' : 'white' }

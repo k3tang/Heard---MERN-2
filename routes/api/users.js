@@ -21,7 +21,7 @@ const User = mongoose.model("User");
 /* GET users listing. */
 router.get('/', async function(req, res, next) {
   const users =  await User.find()
-  res.json(users).populate('User')
+  res.json(users)
 });
 
 router.post('/signup', validateRegisterInput, async (req, res, next) => {

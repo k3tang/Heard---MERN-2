@@ -19,19 +19,22 @@ export const getCurrentChat =(state) =>{
 export const getAllChats =(state)=>{
 if (!state) return null;
 if (!state.chats) return null;
-else return state.chats
+else return Object.values(state.chats)
 }
 
 export const accessChat = (currentUserId, userId, topicId) => async (dispatch) => {
-  try {
+
     // setLoadingChat(true)
     const res = await jwtFetch("/api/chats", {
       method: "POST",
       body: JSON.stringify({ userId, currentUserId, topicId }),
     });
     const chat = await res.json();
+
     dispatch(receiveCurrentChat(chat));
-  } catch (error) {}
+
+    return chat;
+
 };
 
 export const deleteChat =(chatId) => async dispatch =>{
