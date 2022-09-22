@@ -1,0 +1,27 @@
+.form-submit-button {
+    border: none;
+    border-radius: 40%;
+    /* box-shadow: 2.55vh 2.55vh 2.88vh #d9dade, -2.55vh -2.55vh 1.52vw #ffffff; */
+    font-size: 2vw;
+    border-radius: 2vh;
+    width: 11vw;
+    height: 4vw;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    font-family: 'Lato';
+    font-style: italic;
+    font-weight:bolder;
+}
+
+.confession-form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 75vh;
+}
+
+.confession-create-title{
+    
+}

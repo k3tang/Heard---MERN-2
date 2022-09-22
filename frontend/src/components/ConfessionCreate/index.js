@@ -55,13 +55,15 @@ function ConfessionCreate () {
 
     return (
         <>
-        <h2>create a confession </h2>
+        <h2 class='confession-create-title'> you may confess my child </    h2>
+
         <div class='confession-form-container'>
             <form class='confession-create-form' onSubmit={handleSubmit}>
                 <div class='mood-input-container'>
-                    <label> mood </label>
+                    {/* <label> mood </label> */}
                         <select name="mood" id="mood" value={mood} onChange={update('mood')}>
-                            <option value="blue" >Angry</option>
+                            {/* <option disabled> describe the vibe</option> */}
+                            <option value="angry" >Angry</option>
                             <option value="loved" >Loved</option>
                             <option value="anxious">Anxious</option>
                             <option value="happy" >Happy</option>
@@ -69,12 +71,15 @@ function ConfessionCreate () {
                         </select>
                        
                 </div>
-                <label> body </label>
+                {/* <label> body </label> */}
                     <textarea 
                         type='text' 
                         value={body} 
                         onChange={update('body')} />
-                <input type='submit' value='confess'/>
+                <input 
+                    className="form-submit-button"
+                    type='submit' 
+                    value='confess'/>
             </form>
         </div>
         </>
