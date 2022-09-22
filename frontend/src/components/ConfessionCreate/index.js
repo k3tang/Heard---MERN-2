@@ -1,31 +1,27 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import './ConfessionCreate.css'
-import { createConfession } from "../../store/confessions";
+import { createConfession, getConfessions, fetchConfessions } from "../../store/confessions";
 import { clearSessionErrors } from "../../store/session";
+import { clearConfessionErrors } from "../../store/confessions";
+import {useHistory} from "react-router-dom"
 
 function ConfessionCreate () {
     const sessionUser = useSelector(state=>state.session.user);
     const errors = useSelector(state => state.errors.confessions);
     const dispatch = useDispatch();
-    const [checkedKeywords, setCheckedKeywords] = useState(sessionUser.moods)
+    const history = useHistory()
+    const confessions = useSelector(getConfessions)
+    let newConfession = confessions[1]
 
-    const toggleItem = (target) => {
-        console.log(target.classList, "target")
-        if (target.classList.contains("mood-checked")) {
-            setCheckedKeywords(checkedKeywords.filter((x) => x !== target.value));
-            target.classList.remove("mood-checked");
-            target.classList.add("mood-unchecked");
-        } else {
-            setCheckedKeywords([...checkedKeywords, target.value]);
-            target.classList.add("mood-checked");
-            target.classList.remove("mood-unchecked")
-        }
-    }
+
+    useEffect(() =>{
+        dispatch(fetchConfessions())
+    }, [])
 
     useEffect(() => {
         return () => {
-          dispatch(clearSessionErrors());
+          dispatch(clearConfessionErrors());
         };
       }, [dispatch]);
 
@@ -34,11 +30,13 @@ function ConfessionCreate () {
     const userId = sessionUser._id
     console.log(userId)
 
+
+    console.log(newConfession)
+
     const update = (field) => {
         const setState = field === 'mood' ? setMood : setBody;
         return e => setState(e.currentTarget.value);
     }
-    console.log(errors)
     
 
     const handleSubmit = e => {
@@ -49,7 +47,18 @@ function ConfessionCreate () {
             body
         }
         console.log('listing in submit', confession)
-        dispatch(createConfession(confession))
+    
+        dispatch(createConfession(confession)).then( res =>{
+            if(res.type === 'confessions/RECEIVE_NEW_CONFESSION') {
+                history.push('/')
+                alert('your secrets safe with us')
+            }
+        } )
+            // .then(onFulfilled)
+        // if(totalConfessions !== confessions.length) {
+        //    
+        // }
+
     }
     
 
@@ -61,8 +70,7 @@ function ConfessionCreate () {
         <div class='confession-form-container'>
             <form class='confession-create-form' onSubmit={handleSubmit}>
                 <div class='mood-input-container'>          
-                <div className="errors">{errors?.mood.message}</div>
-                <div className="errors">{errors?.body.message}</div>
+
 
 
  
@@ -75,9 +83,11 @@ function ConfessionCreate () {
                             <option value="happy" >Happy</option>
                             <option value="sad" >Sad</option>
                         </select>
-                       
+                        <div className="errors">{errors?.mood.message}</div>
                 </div>
                 {/* <label> body </label> */}
+
+
                 <div className="confession-textarea-container">
                     <textarea 
                         type='text' 
@@ -85,6 +95,7 @@ function ConfessionCreate () {
                         value={body} 
                         placeholder="what's on your mind?"
                         onChange={update('body')} />
+                        <div className="errors">{errors?.body.message}</div>
                 </div>
                 <input 
                     className="form-submit-button"
