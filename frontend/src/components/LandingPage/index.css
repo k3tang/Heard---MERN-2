@@ -1,12 +1,12 @@
-.landing-button-container {
+.button-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
-    height: 80vh;
+    height: 75vh;
 }
 
-.landing-button {
+.square-button {
     background: #EEF0F4;
     border: none;
     border-radius: 40%;
@@ -15,6 +15,7 @@
     border-radius: 2vh;
     width: 10vw;
     height: 10vw;
+    text-align: center;
 }
 
 .landing-title {

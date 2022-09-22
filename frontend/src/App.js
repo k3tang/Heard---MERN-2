@@ -16,6 +16,7 @@ import ConfessionShow from './components/ConfessionShow';
 import TopicCreate from './components/TopicCreate';
 import UserProfile from './components/UserProfile';
 import AnotherConfession from './components/AnotherConfession'
+import "./index.css"
 
 function App() {
   const [loaded, setLoaded] = useState(false);
