@@ -13,6 +13,21 @@ const options = {};
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 options.secretOrKey = secretOrKey;
 
+passport.use(new LocalStrategy({
+  session: false,
+  usernameField: 'email',
+  passwordField: 'password',
+}, async function (email, password, done) {
+  const user = await User.findOne({ email });
+  if (user) {
+    bcrypt.compare(password, user.hashedPassword, (err, isMatch) => {
+      if (err || !isMatch) done(null, false);
+      else done(null, user);
+    });
+  } else
+    done(null, false);
+}));
+
 
 passport.use(new JwtStrategy(options, async (jwtPayload, done) => {
   try {
@@ -40,21 +55,6 @@ exports.restoreUser = (req, res, next) => {
 };
 
 
-
-passport.use(new LocalStrategy({
-    session: false,
-    usernameField: 'email',
-    passwordField: 'password',
-  }, async function (email, password, done) {
-    const user = await User.findOne({ email });
-    if (user) {
-      bcrypt.compare(password, user.hashedPassword, (err, isMatch) => {
-        if (err || !isMatch) done(null, false);
-        else done(null, user);
-      });
-    } else
-      done(null, false);
-  }));
 
 
   exports.loginUser = async function(user) {
