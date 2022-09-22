@@ -14,7 +14,6 @@ const passport = require('passport');
 // const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/api/users');
 const confessionsRouter = require('./routes/api/confessions');
-const csrfRouter = require('./routes/api/csrf');
 const topicsRouter = require('./routes/api/topics');
 // require('./config/passport');
 
@@ -42,6 +41,8 @@ app.use(
         }
     })
 );
+
+const csrfRouter = require('./routes/api/csrf');
 
 // app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
