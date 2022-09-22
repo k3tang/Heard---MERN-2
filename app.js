@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 require("./models/User")
-require("./models/Confessions")
+require("./models/Confession")
 require("./models/TopicResponse")
-require("./models/Topics")
+require("./models/Topic")
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
