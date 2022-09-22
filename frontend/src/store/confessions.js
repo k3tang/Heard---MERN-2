@@ -1,5 +1,9 @@
+
+import { Redirect } from 'react-router-dom';
 import jwtFetch from './jwt';
 import { RECEIVE_USER_LOGOUT } from './session';
+
+
 
 const RECEIVE_CONFESSIONS = "confessions/RECEIVE_CONFESSIONS";
 const RECEIVE_USER_CONFESSIONS = "confessions/RECEIVE_USER_CONFESSIONS";
@@ -33,7 +37,6 @@ export const clearConfessionErrors = errors => ({
 });
 
 export const getConfessions = state => {
-    console.log('i am here')
     if(!state.confessions) {
         return []
     } else {
@@ -47,7 +50,6 @@ export const fetchConfessions = () => async dispatch => {
     try {
         const res = await jwtFetch("/api/confessions");
         const confessions = await res.json();
-        // console.log(confessions)
         return dispatch(receiveConfessions(confessions))
     } catch (err) {
         const resBody = await err.json();
@@ -71,7 +73,6 @@ export const fetchUserConfessions = id => async dispatch => {
 };
 
 export const createConfession = data => async dispatch => {
-    console.log('i am here creating a confession:', data)
     try {
         const res = await jwtFetch('/api/confessions/', {
             method: 'POST',
@@ -80,11 +81,15 @@ export const createConfession = data => async dispatch => {
         const confession = await res.json();
         console.log(confession)
         console.log('Confession in create',confession)
-        return dispatch(receiveNewConfession(confession));
+       return dispatch(receiveNewConfession(confession));
+        
     } catch (err) {
         const resBody = await err.json();
-        if (resBody.statusCode === 400) {
+        console.log(resBody)
+        if (resBody.statusCode === 500) {
             return dispatch(receiveErrors(resBody.errors));
+        } else {
+           
         }
     }
 };

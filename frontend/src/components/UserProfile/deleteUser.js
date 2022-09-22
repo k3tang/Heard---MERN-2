@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import {deleteUser} from "../../store/session";
+import "./index.css";
 
 
 const DeleteUser = () => {
@@ -17,8 +18,10 @@ const DeleteUser = () => {
         <>
             <div id="close-delete-modal" className="fa-solid fa-x" onClick={closeModal}></div>
             <h1 className="delete-modal">Are you sure you want to delete user?</h1>
-            <div className="delete-button" onClick={() => dispatch(deleteUser(userId))}>Delete User</div>
-            <div className="no-delete-button" onClick={closeModal}>Cancel</div>
+            <div className="delete-button-container">
+                <div id="delete-user" className="delete-square-button" onClick={() => dispatch(deleteUser(userId))}>Delete User</div>
+                <div className="delete-square-button" onClick={closeModal}>Cancel</div>
+            </div>
         </>
     )
 }

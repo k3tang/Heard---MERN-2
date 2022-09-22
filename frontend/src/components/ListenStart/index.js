@@ -7,8 +7,11 @@ const ListenStart = () => {
     return (
         <>
             <div className="listen-container">
-                <div className="listen-chat">Chat as Listener</div>
-                <div className="listen-confession" onClick={() => history.push("/confession-show")}>Hear Confession</div>
+                <h1 className="listen-header">Lend your ear to ... </h1>
+                <div className="listen-button-container">
+                <div className="listen-square-button">Chat as Listener</div>
+                <div className="listen-square-button" onClick={() => history.push("/confession-show")}>Hear Confession</div>
+                </div>
             </div>
         </>
     )

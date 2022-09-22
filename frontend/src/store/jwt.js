@@ -16,7 +16,6 @@ async function jwtFetch(url, options = {}) {
     // Set the "Authorization" header to the value of "jwtToken" in localStorage.
     const jwtToken = localStorage.getItem("jwtToken");
     if (jwtToken) options.headers["Authorization"] = "Bearer " + jwtToken;
-  // console.log('option.headers in jwt fetch', options.headers["Authorization"]);
     // If the options.method is not 'GET', then set the "Content-Type" header to
     // "application/json".
     if (options.method.toUpperCase() !== "GET") {

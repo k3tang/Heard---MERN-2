@@ -7,9 +7,6 @@ const HomePage = () => {
     const user = useSelector(state => state.session.user)
     const history = useHistory();
 
-    // if (!user) {
-    //     history.push("/")
-    // }
 
     window.onclick = function (event) {
         let modalBackground = document.getElementById("background-modal")
@@ -24,11 +21,12 @@ const HomePage = () => {
 
     return (
         <>
-            <h1>this is a homepage</h1>
             {/* <div id="background-modal">Instructions here</div> */}
-            {/* <div>{user.name}</div> */}
-            <div className="listen-home-button" onClick={() => history.push("/listen")}>Listen</div>
-            <div className="share-home-button" onClick={() => history.push("/share")}>Share</div>
+            <div className="home-button-container">
+                <h1 className="home-header">What would you like to do?</h1>
+                <div className="home-square-button" onClick={() => history.push("/listen")}>Be a Listener</div>
+                <div className="home-square-button" onClick={() => history.push("/share")}>Share your thoughts</div>
+            </div>
         </>
     )
 }

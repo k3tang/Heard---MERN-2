@@ -2,6 +2,15 @@
 
 .light-dark-mode {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2vh;
+}
+
+.light-dark-mode div {
+    font-size: 2vw;
+    padding-left: 0.75vw;
+    padding-right: 0.75vw;
 }
 
 .switch {
@@ -66,10 +75,87 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
-.mood-unchecked {
-    background-color: blue;
-}
-.mood-checked {
-    background-color: red;
+/* mood preferences */
+
+.mood-header {
+        text-align: center;
+        font-size: 1.75vw;
+        letter-spacing: 0.03em;
+        padding-top: 5vh;
+        padding-bottom: 2vh;
 }
 
+.mood-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 55vh;
+}
+
+.mood-unchecked {
+    background: #EDF0F4;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
+    font-size: 1.25vw;
+    width: 20vw;
+    height: 7vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mood-checked {
+    background: #EDF0F4;
+    box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
+    font-size: 1.25vw;
+    color: #8893b7;
+    width: 20vw;
+    height: 7vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mood-submit {
+    display: block;
+    margin: auto;
+    border: none;
+    background: #EDF0F4;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
+    font-size: 1.25vw;
+    color: #5a6794;
+    font-weight: bold;
+    width: 15vw;
+    height: 7vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mood-submit:hover {
+        background: #EDF0F4;
+        box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+        border-radius: 10px;
+}
+
+@media screen and (max-width: 950px) {
+    .mood-header {
+        font-size: 4.75vw;
+    }
+
+    .mood-button-container > p {
+        width: 50vw;
+        font-size: 4vw;
+    }
+
+    .mood-submit {
+        width: 35vw;
+        font-size: 3.75vw;
+    }
+}

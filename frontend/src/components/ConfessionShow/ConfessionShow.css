@@ -1,0 +1,18 @@
+.loading-container{
+    text-align: center;
+}
+
+.loading-title{
+    font-weight: 400;
+    font-style: italic;
+}
+
+.confession-body {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 5vw;
+    font-family: 'Lora', serif;
+    text-transform: none;
+    font-size: xx-large;
+    font-style: italic;
+}

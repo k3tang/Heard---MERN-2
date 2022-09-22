@@ -1,0 +1,41 @@
+.share-button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 75vh;
+}
+
+.share-square-button {
+    background: #EDF0F4;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
+    font-size: 1.25vw;
+    border-radius: 2vh;
+    width: 25vw;
+    height: 10vw;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.share-header {
+    text-align: center;
+    font-size: 1.75vw;
+    letter-spacing: 0.03em;
+    padding-top: 8vh;
+}
+
+@media screen and (max-width: 950px) {
+    .share-header {
+            font-size: 4.5vw;
+        }
+    
+        .share-square-button {
+            width: 50vw;
+            height: 13vh;
+            font-size: 4vw;
+            padding: 2vh;
+        }
+}
