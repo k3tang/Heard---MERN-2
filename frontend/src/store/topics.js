@@ -22,7 +22,6 @@ export const getAllTopics =  (state) => {
 export const fetchAllTopics = () => async dispatch =>{
   const res = await jwtFetch("/api/topics/")
   const topics = await res.json()
-  console.log(topics)
   if (res.ok){
     dispatch({type: RECEIVE_TOPICS, topics: topics})
   } else{
