@@ -14,6 +14,8 @@ import {
 } from "@chakra-ui/react";
 import {useParams} from 'react-router-dom'
 import jwtFetch from "../../../store/jwt";
+import {sendMessage, fetchMessages, getAllMessages, getLatestMessage} from '../../../store/messages'
+import { useEffect } from "react";
 
 function ChatBox() {
   const toast = useToast
@@ -24,36 +26,42 @@ function ChatBox() {
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const {chatId} = useParams()
+  const storeMessages = useSelector((state)=>getAllMessages(state,chatId))
+  // const latestMessage = getLatestMessage(chatId)
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
+ 
   };
 
+  useEffect(()=>{
+   dispatch(fetchMessages(chatId))
+   if (storeMessages) setLoading(false)
+  //  console.log('are they here?',storeMessages)
+  },[currentUser,chatId])
+
+  useEffect(()=>{
+  if(storeMessages) { 
+    setMessages(storeMessages)
+    setLoading(false);
+  } 
+},[chatId,storeMessages?.length])
 
 
-  const sendMessage = async(content, userId, chatId) => {
-    try {
-      const data = await jwtFetch("/api/messages", {
-        method: "POST",
-        body: JSON.stringify({content,userId,chatId})
-        }
-      );
-      const createdMessage = await data.json()
-      if (createdMessage) {
-        setMessages([ ...messages, createdMessage])
-        setLoading(false)
-      }
-    } catch (error) {
-    }
-  };
+
+
+ 
   const handleClick = (e) => {
     if (e.type === 'keydown' && e.key === "Enter" && newMessage) {
-      console.log((e.key === 'Enter'))
-      // dispatch(sendNewMessage(newMessage, currentUser._id));
-      sendMessage(newMessage,chatId,currentUser._id)
+ 
+     dispatch(sendMessage(newMessage,chatId))
+     console.log(messages)
+        setMessages([...messages, newMessage]);
+        // console.log(messages)
       setNewMessage("");
     } else if (e.type === 'click' && newMessage) {
-        // dispatch(sendNewMessage(newMessage, currentUser._id))
-         sendMessage(newMessage, chatId, currentUser._id);
+
+     dispatch(sendMessage(newMessage,chatId))
+        setMessages([...messages, newMessage]);
       setNewMessage("");
     }
   };
@@ -77,7 +85,7 @@ function ChatBox() {
         />
       ) : (
         <div>
-          {messages && messages.map((message)=>(
+          {messages.map((message)=>(
             <div className={currentUser._id === message._id ? 'current-user-text' : 'listener-text'}>
               <Text>{message.content}</Text>
               </div>

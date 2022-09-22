@@ -7,7 +7,7 @@ import topics from './topics';
 
 import confessions from './confessions'
 import chats from './chat'
-
+import messages from "./messages"
 
 const rootReducer = combineReducers({
   session,
@@ -15,7 +15,7 @@ const rootReducer = combineReducers({
   topics,
   chats,
   confessions,
-
+  messages
 });
 
 let enhancer;

@@ -60,28 +60,23 @@ const accessChat = asyncHandler(async (req,res,next)=>{
     }
 })
 
-const addToChat = asyncHandler(async (req,res,next)=>{
-    res.json({
-        message: "PUT add a user to chat"
-    });
+const deleteChat = asyncHandler(async (req,res) =>{
+  console.log(req.params)
+   const chat = await Chat.find({_id : req.params.id});
+   try {
+    chat.delete
+    res.status(200).json(chat)
+   }catch(err){
+    res.status(400)
+    console.log('error from delete', err)
+   }
+   
 })
 
-const removeFromChat = asyncHandler(async (req,res,next)=>{
-    res.json({
-        message: "PUT remove a user from chat"
-    });
-})
-
-
-// const editChatUsers = asyncHandler(async(req,res,next)=>{
-//    res.json({
-//         message: "add/remove users from chat"
-//     });
-// })
 
 
 
-router.route("/:id").get(getChat);
+router.route("/:id").get(getChat).delete(deleteChat)
 router.route("/user/:userId").get(getChats)                 ///.put(editChatUsers)
 router.route("/").post(accessChat) // accessChat needs a userId (spelled this way as the key) in the body from the front. it checks to see if that user already has a chat with that userID. if they have one then it will return that chat. else it will make a new chat.  
 // router.route('/chatadd').put(addToChat)

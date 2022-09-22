@@ -21,23 +21,10 @@ const messageRoutes = require("./routes/api/messages")
 const topicsRouter = require('./routes/api/topics');
 
 require('./config/passport');
-// const { createServer } = require("http");
-// const { Server } = require("socket.io");
-const eiows = require("eiows")
+
 const app = express();
-// const httpServer = createServer(app);
-
-const { Server } = require("socket.io");
 
 
-const server = http.createServer(app);
-const io = new Server(server, {
-    cors: {
-        origin: 'http://localhost:3000',
-            methods: ['GET', 'POST']
-    }
-}
-);
 
 
 
@@ -73,7 +60,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 
 app.use('/api/chats', chatsRouter)
-app.use('/api/messages', messageRoutes)
+app.use('api/messages', messageRoutes)
 app.use('/api/confessions', confessionsRouter);
 app.use('/api/topics', topicsRouter);
 

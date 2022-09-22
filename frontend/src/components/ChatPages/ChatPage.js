@@ -7,6 +7,8 @@ import ChatBox from "./ChatBox/ChatBox"
 import { useSelector, useDispatch } from 'react-redux'
 import { getCurrentUser, _getCurrentUser } from '../../store/session'
 import MyTopicsDrawer from '../TopicIndex/MyTopicsDrawer'
+import { Button } from '@chakra-ui/react'
+import Modal2 from './modal2'
 
 
 function ChatPage() {
@@ -23,10 +25,15 @@ function ChatPage() {
     setUser(currentUser)
   },[currentUser])
 
+  const handleClick=(e)=>{
+    
+  }
   return (
     <div className='chat-page'>
      <MyTopicsDrawer/>
       <Box>
+        <Modal2/>
+
         {currentUser && <ChatBox />}
       </Box>
     </div>

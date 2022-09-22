@@ -28,8 +28,8 @@ const ConfessionShow = () => {
     let total = posts.length
     let random = Math.floor(Math.random()*total)
     let randomConfession = posts[random]
-    console.log(random)
-    console.log(posts[random])
+    // console.log(random)
+    // console.log(posts[random])
 
     const hideConfession = () =>{
         document.getElementsByClassName('confession-content').style.display = 'none'

@@ -11,7 +11,7 @@ function ConfessionCreate () {
     const [checkedKeywords, setCheckedKeywords] = useState(sessionUser.moods)
 
     const toggleItem = (target) => {
-        console.log(target.classList, "target")
+        // console.log(target.classList, "target")
         if (target.classList.contains("mood-checked")) {
             setCheckedKeywords(checkedKeywords.filter((x) => x !== target.value));
             target.classList.remove("mood-checked");
@@ -48,7 +48,7 @@ function ConfessionCreate () {
             mood,
             body
         }
-        console.log('listing in submit', confession)
+        // console.log('listing in submit', confession)
         dispatch(createConfession(confession))
     }
     

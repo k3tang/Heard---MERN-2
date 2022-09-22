@@ -34,6 +34,15 @@ export const accessChat = (currentUserId, userId, topicId) => async (dispatch) =
   } catch (error) {}
 };
 
+export const deleteChat =(chatId) => async dispatch =>{
+  const res = await jwtFetch(`/api/chats/${chatId}`, {
+    method: "DELETE",
+
+  });
+  const chat = await res.json();
+  dispatch(removeChat(chat));
+}
+
 export const fetchChatsbyUser = (userId) => async (dispatch) => {
 
     const res = await jwtFetch(`/api/chats/user/${userId}`);
@@ -74,20 +83,22 @@ export const removeChat = (chatId) => ({
 
 const chatsReducer = (state = {}, action) => {
   Object.freeze(state);
-  const newState = { ...state };
+  let newState = { ...state };
   console.log(action);
   switch (action.type) {
     case RECEIVE_CHATS:
-      return { ...newState, ...action.chats };
+      for (let chat of action.chats) {
+       newState[chat._id] = chat
+      } 
+      return { ...newState};
     case RECEIVE_CURRENT_CHAT:
-      // if (!newState['currentChat']){
-      newState['currentChat'] = action.chat;
-      // } else{
 
-      // }
+      newState['currentChat'] = action.chat;
+     
       return { ...newState };
     case REMOVE_CHAT:
-        delete newState[action.chatId];
+        newState['currentChat'] = null
+       delete newState[action.chatId]
         return newState;
     default:
       return newState;
