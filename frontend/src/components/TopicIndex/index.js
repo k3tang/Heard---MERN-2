@@ -8,11 +8,13 @@ import MyTopicsDrawer from "./MyTopicsDrawer";
 import Topic from "./Topic";
 import { getCurrentUser } from "../../store/session";
 import { accessChat, getAllChats, fetchChatsbyUser } from "../../store/chat";
-import { getAllTopics, fetchAllTopics } from "../../store/topics";
+import { getAllTopics, fetchAllTopics, deleteTopic } from "../../store/topics";
 
 const TopicIndex = () => {
   const storeChats = useSelector((state) => getAllChats(state));
-    const [topics, setTopics] = useState();
+    // const [topics, setTopics] = useState();
+
+  const topics = useSelector(getAllTopics);
   const dispatch = useDispatch();
   const history = useHistory();
   const [myChats, setMyChats] = useState();
@@ -23,8 +25,6 @@ const TopicIndex = () => {
   });
   const [selectedChat, setSelectedChat] = useState();
   const [user, setUser] = useState();
-
-  const storeTopics = useSelector(getAllTopics);
 
   const currentUser = useSelector((state) => {
     if (!state) return null;
@@ -43,24 +43,24 @@ const TopicIndex = () => {
     setMyChats(storeChats);
   }, [storeChats]);
 
-  useEffect(()=>{
-    setTopics(Object.values(storeTopics))
-  },[storeTopics])
     useEffect(() => {
       dispatch(getCurrentUser());
     }, []);
 
   useEffect(() => {
+    console.log(currentUser);
     setUser(currentUser);
   }, [currentUser]);
 
   const makeChat = (currentUserId, authorId, topicId) => {
-    // console.log('user._id', user._id)
-    // console.log('currentuserid', currentUser._id)
-    // console.log('authorId', authorId)
+    console.log('user._id', user._id)
+    console.log('currentuserid', currentUser._id)
+    console.log('authorId', authorId)
     dispatch(accessChat(currentUserId, authorId, topicId));
+    dispatch(deleteTopic(topicId));
   
   };
+
   
   useEffect(() => {
     if (currentChat){
@@ -71,6 +71,8 @@ const TopicIndex = () => {
 
   }, [currentChat]);
 
+  if(!topics) return null;
+
 // console.log('store topics', storeTopics)
   return (
     <>
@@ -78,7 +80,7 @@ const TopicIndex = () => {
       <div className="topic-container">
         <ul>
           
-          {topics && topics?.map ((topic=> 
+          {topics?.filter(topic => topic.userId !== user?._id).map ((topic=> 
                 <Topic topic={topic} handleFunction={() => makeChat(user._id,topic.userId,topic._id)}/>
             )) 
         }

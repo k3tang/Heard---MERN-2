@@ -4,33 +4,37 @@ import getCurrentUser from "../../store/session"
 import { createTopic } from "../../store/topics"
 import { useState, useEffect, } from "react";
 import { Input } from "@chakra-ui/react";
+import { useHistory } from 'react-router-dom';
 const TopicCreate = () => {
     const dispatch = useDispatch();
     const [topicTitle, setTopicTitle] = useState("");
     const [mood, setMood] = useState("loved");
-    const [user, setUser] = useState();
+    // const [user, setUser] = useState();
 
-     const currentUser = useSelector((state)=>{
-        if (!state) return null;
-        else if (!state.session?.user) return null;
-        else return state.session.user
-  })
-  
-  useEffect(()=>{
-      setUser(currentUser);
-    },[currentUser])
+    const errors = useSelector(state => state.errors.session);
 
-    const handleSubmit = (e) => {
+     const sessionUser = useSelector(state => state.session.user);
+
+     const history = useHistory();
+
+     const userId = sessionUser._id;
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newTopic = {
-            userId: user._id,
-            mood: mood,
+            userId,
+            mood,
             title: topicTitle,
         } 
         console.log(newTopic);
 
-        dispatch(createTopic(newTopic));
+        dispatch(createTopic(newTopic)).then((res) => {
+            console.log(res);
+            history.push("/topic-index");
+        }).catch((err) => console.log(`Error ${err.status}: ${err.statusText}`));
+
+        
     }
 
     useEffect(() => {
