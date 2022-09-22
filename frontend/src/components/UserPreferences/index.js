@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.css";
 import getCurrentUser, { updateUser } from "../../store/session.js"
+import { useHistory } from "react-router-dom";
 
 
 const UserPreferences = () => {
@@ -10,6 +11,7 @@ const UserPreferences = () => {
     const userMoods = useSelector(state => state.session.user.moods)
     const moodState = ["angry","loved", "anxious", "happy", "sad"]
     const [checkedKeywords, setCheckedKeywords] = useState(userMoods)
+    const history = useHistory()
 
    
     
@@ -53,8 +55,16 @@ useEffect(() => {
             
         }
 
-        return dispatch(updateUser(newUser))
-    }
+        dispatch(updateUser(newUser)).then( res =>{
+            console.log(res.type)
+            if(res.type === 'session/RECEIVE_CURRENT_USER') {
+                history.push('/account')
+                alert('updates saved')
+            }
+        // } 
+    } )
+}
+
 
     // const toggleMode = () => {
     //     const body = document.getElementById("root")

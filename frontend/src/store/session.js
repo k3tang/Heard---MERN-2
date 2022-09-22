@@ -77,7 +77,7 @@ export const updateUser = (userData) => async dispatch => {
     body: JSON.stringify(userData)
   })
   const user = await res.json();
-  dispatch(receiveCurrentUser({ user }))
+  return dispatch(receiveCurrentUser({ user }))
 }
 
 export const logout = () => dispatch => {
