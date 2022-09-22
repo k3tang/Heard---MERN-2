@@ -3,26 +3,39 @@
     box-sizing: border-box;
     font-family: 'Lato';
     text-transform: uppercase;
-    color: #5a6794;
+    letter-spacing: 0.02em;
     margin: 0;
-    padding: 0;
+    padding: 0.15vh;
 }
 
 body {
-      background: #D2DBEE;
+      background: #929ab6;
+        color: #5a6794;
 }
 
+/* .dark {
+    background: black;
+} */
 
-.entire-container {
-    background-color: white;
+#entire-container {
     max-width: 1280px;
     width: 40vw;
-    height: 100vh;
+    height: 99vh;
     margin: auto;
     display: block;
     background: #EEF0F4;
     border-radius: 5%;
     box-shadow: inset 9.91px 9.91px 15px #BBBCC0, inset -9.91px -9.91px 15px #FFFFFF;
-
 }
+/* 
+#entire-container-dark {
+    max-width: 1280px;
+    width: 40vw;
+    height: 99vh;
+    margin: auto;
+    display: block;
+    background: #4a4c4f;
+    border-radius: 5%;
+    box-shadow: inset 12.01px 12.01px 21px #444649, inset -12.01px -12.01px 21px #505255;
+} */
 

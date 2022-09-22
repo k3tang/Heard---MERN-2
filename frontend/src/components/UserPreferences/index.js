@@ -58,22 +58,39 @@ useEffect(() => {
 
         return dispatch(updateUser(newUser))
     }
+
+    // const toggleMode = () => {
+    //     const body = document.getElementById("root")
+    //     const container = document.getElementById("entire-container")
+    //     // console.log(container, "container")
+    //     if (body.classList.contains("dark")) {
+    //         body.classList.remove("dark");
+    //         const container = document.getElementById("entire-container-dark")
+    //         container.id = 'entire-container';
+    //     } else {
+    //         console.log(container, "container")
+    //         body.classList.add("dark");
+    //         container.id = 'entire-container-dark';
+    //     }
+    // }
     
     // add mode toggle for light/dark mode 
     return (
         <>
-            <div className="light-dark-mode">
+            {/* <div className="light-dark-mode">
                 <div id="light-mode-icon" className="fas fa-sun"></div>
                 <div className="toggle-container">
                     <label className="switch">
-                        <input type="checkbox" />
+                        <input type="checkbox" onClick={toggleMode} />
                             <span className="slider round"></span>
                     </label>
                 </div>
                 <div id="dark-mode-icon" className=" fas fa-moon"></div>
-            </div>
+            </div> */}
             <h2 className="mood-header">Mood Preferences</h2>
+            <div className="mood-button-container">
               {moodState.map((moodName) => <p key={moodName} id={moodName} className="mood-item mood-unchecked" onClick={(e) => toggleItem(moodName)}>{moodName}</p>)}
+            </div>
             <button className="mood-submit" onClick={handleSubmit}>Submit</button>
         </>
     )

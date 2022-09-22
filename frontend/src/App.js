@@ -28,7 +28,7 @@ function App() {
 
   return loaded && (
     <>
-    <div className='entire-container'>
+    <div id='entire-container'>
       <NavBar />
       <Switch>
         <AuthRoute exact path="/" component={LandingPage} />
