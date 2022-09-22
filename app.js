@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 require("./models/User")
 require("./models/Confessions")
-require("./models/TopicResponse")
+
 require("./models/Topics")
 const express = require('express');
 const path = require('path');

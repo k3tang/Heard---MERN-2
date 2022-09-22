@@ -4,13 +4,14 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Box } from "@chakra-ui/layout"
 import ChatBox from "./ChatBox/ChatBox"
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
 import { getCurrentUser } from '../../store/session'
+import MyTopicsDrawer from '../TopicIndex/MyTopicsDrawer'
 
 
 function ChatPage() {
  //get chat from store and in useEffect setChat
+ const dispatch = useDispatch()
   const [chat, setChat] = useState('')
   const [user, setUser] = useState()
   const currentUser = useSelector((state)=>{
@@ -18,17 +19,19 @@ function ChatPage() {
         else if (!state.session?.user) return null;
         else return state.session.user
   })
+  useEffect(()=>{
+    dispatch(getCurrentUser())
+  },[])
 
   useEffect(()=>{
-    dispatchEvent(getCurrentUser())
     setUser(currentUser)
   },[currentUser])
 
   return (
     <div className='chat-page'>
-      {/* {user && <SideDrawer/>} */}
+     <MyTopicsDrawer/>
       <Box>
-        {/* {user && <MyTopics /> } LEAVE THIS FOR LATER. if we want a side drawer with a user's topics*/}
+     
         {currentUser && <ChatBox />}
       </Box>
     </div>
@@ -36,3 +39,4 @@ function ChatPage() {
 }
  
 export default ChatPage;
+

@@ -50,7 +50,7 @@ function App() {
         <Route exact path="/topic-index" component={TopicIndex} />
 
         <Route exact path="/talk" component={ChatPage1}/>
-          <Route exact path="/talk/:chatId" component={ChatPage}/>
+          <Route exact path="/chats/:chatId" component={ChatPage}/>
 
         <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
 

@@ -23,7 +23,7 @@ const userSchema = Schema({
     moods: {
         type: Array,
         required: true,
-        default: ["red", "pink", "green", "yellow", "blue"], // red= anger pink=love, green=anxious, yellow= happy blue=sad
+        default: ['angry', 'loved', 'anxious', 'happy', 'sad'], // red= anger pink=love, green=anxious, yellow= happy blue=sad
     },
     admin: {
         type: Boolean,

@@ -6,6 +6,7 @@ import errors from "./errors";
 import topics from './topics';
 
 import confessions from './confessions'
+import chats from './chat'
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   errors,
 
   topics,
+  chats,
 
   confessions,
 

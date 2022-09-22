@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const TopicSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -15,7 +14,7 @@ const TopicSchema = mongoose.Schema({
     },
     mood: {
         type: String,
-        enum: ['blue', 'pink', 'green', 'yellow', 'red'],
+        enum: ['angry', 'loved', 'anxious', 'happy', 'sad'],
         required: true
     }
 

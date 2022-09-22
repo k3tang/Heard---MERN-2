@@ -13,8 +13,9 @@ import { useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-
+import { useState, useEffect } from 'react'
 import { getCurrentUser } from '../../../store/session'
+import {fetchChatsbyUser} from '../../../store/chat'
 
 
 function MyTopicsDrawer() {
@@ -22,17 +23,30 @@ function MyTopicsDrawer() {
   const btnRef = React.useRef()
   const history = useHistory()
   const dispatch = useDispatch()
-    const [user, setUser] = React.useState()
+    const [user, setUser] = useState()
+    const [userChats, setUserChats] = useState();
   const currentUser = useSelector((state)=>{
         if (!state) return null;
         else if (!state.session?.user) return null;
         else return state.session.user
   })
 
-  React.useEffect(()=>{
-    dispatch(getCurrentUser())
-    setUser(currentUser)
+   const storeChats = useSelector((state)=>{
+        if (!state) return null;
+        else if (!state.chats) return null;
+        else return state.chats
+  })
+
+useEffect(()=>{
+    // dispatch(getCurrentUser())
+    console.log('curent user', currentUser)
+   if(currentUser) dispatch(fetchChatsbyUser(currentUser._id))
   },[currentUser])
+
+useEffect(()=>{
+    setUser(currentUser)
+    setUserChats(storeChats)
+  },[currentUser, storeChats])
 
   return (
     <>

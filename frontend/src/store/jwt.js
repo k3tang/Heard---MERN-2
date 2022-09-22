@@ -8,6 +8,7 @@ function getCookie(cookieName) {
   }
 
 async function jwtFetch(url, options = {}) {
+  console.log('jwt fetch the options', options)
     // Set options.method to 'GET' if there is no method.
     options.method = options.method || "GET";
     // Set options.headers to an empty object if there is no headers.
@@ -23,7 +24,7 @@ async function jwtFetch(url, options = {}) {
         options.headers["Content-Type"] || "application/json";
         options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
     }
-  
+    
     // Call fetch with the url and the updated options hash.
     const res = await fetch(url, options);
   

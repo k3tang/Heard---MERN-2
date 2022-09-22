@@ -7,7 +7,7 @@ const chatSchema = mongoose.Schema({
   isGroupChat :{
     type: Boolean,
     default: false
-  },
+  }, // add topic as a mongoose.Schema.Types.ObjectId, ref: 'Topic'
   users : [{
     type:mongoose.Schema.Types.ObjectId,
     ref: 'User'
@@ -23,7 +23,7 @@ const chatSchema = mongoose.Schema({
   },
      mood: {
         type: String,
-        enum: ['blue', 'pink', 'green', 'yellow', 'red'],
+        enum: ['angry', 'loved', 'anxious', 'happy', 'sad'],
         required: true
     },
 
