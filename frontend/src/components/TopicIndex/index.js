@@ -12,7 +12,9 @@ import { getAllTopics, fetchAllTopics } from "../../store/topics";
 
 const TopicIndex = () => {
   const storeChats = useSelector((state) => getAllChats(state));
-    const [topics, setTopics] = useState();
+    // const [topics, setTopics] = useState();
+
+  const topics = useSelector(getAllTopics);
   const dispatch = useDispatch();
   const history = useHistory();
   const [myChats, setMyChats] = useState();
@@ -23,8 +25,6 @@ const TopicIndex = () => {
   });
   const [selectedChat, setSelectedChat] = useState();
   const [user, setUser] = useState();
-
-  const storeTopics = useSelector(getAllTopics);
 
   const currentUser = useSelector((state) => {
     if (!state) return null;
@@ -43,9 +43,6 @@ const TopicIndex = () => {
     setMyChats(storeChats);
   }, [storeChats]);
 
-  useEffect(()=>{
-    setTopics(Object.values(storeTopics))
-  },[storeTopics])
     useEffect(() => {
       dispatch(getCurrentUser());
     }, []);
@@ -70,6 +67,8 @@ const TopicIndex = () => {
       
 
   }, [currentChat]);
+
+  if(!topics) return null;
 
 // console.log('store topics', storeTopics)
   return (

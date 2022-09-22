@@ -11,15 +11,18 @@ const receiveTopic = (topic)=>({
 })
 
 export const getAllTopics =  (state) => {
-        if (!state) return null;
-        else if (!state.topics) return null;
-        else return state.topics
+        if (!state) return [];
+        else if (!state.topics) return [];
+        else {
+          // console.log(Object.values(state.topics)); 
+          return Object.values(state.topics);
+        }
     }
 
 export const fetchAllTopics = () => async dispatch =>{
   const res = await jwtFetch("/api/topics/")
   const topics = await res.json()
-  console.log(topics);
+  console.log(topics)
   if (res.ok){
     dispatch({type: RECEIVE_TOPICS, topics: topics})
   } else{
@@ -34,7 +37,7 @@ export const createTopic = (topicInfo) => async dispatch =>{
     body: JSON.stringify(topicInfo)
   })
   const topic = await res.json()
-  // console.log(topic);
+  // console.log(topic._id);
   if (res.ok){
     dispatch(receiveTopic(topic))
 
@@ -49,12 +52,14 @@ export const createTopic = (topicInfo) => async dispatch =>{
 const topicsReducer = (state = {}, action) => { 
   Object.freeze(state)
   const newState = {...state}
-    console.log(action);
     switch (action.type) {
         case RECEIVE_TOPICS:
-            return {...newState, ...action.topics}
+            for(let topic of action.topics) {
+              newState[topic._id] = topic;
+            }
+            return newState;
         case RECEIVE_TOPIC:
-          newState[action.topic.id] = action.topic
+          newState[action.topic._id] = action.topic
           return {...newState}
         default:
             return newState;
