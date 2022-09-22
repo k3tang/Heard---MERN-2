@@ -120,4 +120,10 @@
     color: rgb(178, 83, 83);
 }
 
-
+.conf-body {
+    background-color: pink;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+}
