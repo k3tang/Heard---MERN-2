@@ -37,6 +37,8 @@ export const createTopic = (topicInfo) => async dispatch =>{
   // console.log(topic);
   if (res.ok){
     dispatch(receiveTopic(topic))
+
+    return topic;
   } else{
     console.log('problems in fetching topic into store')
   }
