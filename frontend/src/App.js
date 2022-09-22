@@ -21,6 +21,7 @@ import ChatPage1 from './components/ChatPages/ChatPage1/ChatPage1';
 import TopicIndex from './components/TopicIndex';
 
 import AnotherConfession from './components/AnotherConfession'
+import "./index.css"
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
 
   return loaded && (
     <>
+    <div id='entire-container'>
       <NavBar />
       <Switch>
         <AuthRoute exact path="/" component={LandingPage} />
@@ -57,6 +59,7 @@ function App() {
 
       <Redirect to="/" />
       </Switch>
+      </div>
     </>
   );
 }

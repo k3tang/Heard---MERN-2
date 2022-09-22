@@ -11,18 +11,19 @@ const UserPreferences = () => {
     const moodState = ["angry","loved", "anxious", "happy", "sad"]
     const [checkedKeywords, setCheckedKeywords] = useState(userMoods)
 
-    console.log(userMoods, "moods");
-
+   
+    
 
 
 // setting initial/saved mood preferences 
 useEffect(() => {
-    for (let moodName of checkedKeywords) {
-        let cb = document.getElementById(`${moodName}`);
-        cb.classList.add("mood-checked");
-        cb.classList.remove("mood-unchecked")
-    }
-}, [])
+    if (userMoods) {
+        for (let moodName of userMoods) {
+            let cb = document.getElementById(`${moodName}`);
+            cb.classList.add("mood-checked");
+            cb.classList.remove("mood-unchecked")
+    } }
+}, [userMoods])
 
 
 //toggle item based on user interaction 
@@ -38,8 +39,7 @@ useEffect(() => {
             ele.classList.remove("mood-unchecked")
         }
     }
-    
-    console.log(checkedKeywords, "selected keywords")
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -55,22 +55,37 @@ useEffect(() => {
 
         return dispatch(updateUser(newUser))
     }
+
+    // const toggleMode = () => {
+    //     const body = document.getElementById("root")
+    //     const container = document.getElementById("entire-container")
+    //     if (body.classList.contains("dark")) {
+    //         body.classList.remove("dark");
+    //         const container = document.getElementById("entire-container-dark")
+    //         container.id = 'entire-container';
+    //     } else {
+    //         body.classList.add("dark");
+    //         container.id = 'entire-container-dark';
+    //     }
+    // }
     
     // add mode toggle for light/dark mode 
     return (
         <>
-            <div className="light-dark-mode">
+            {/* <div className="light-dark-mode">
                 <div id="light-mode-icon" className="fas fa-sun"></div>
                 <div className="toggle-container">
                     <label className="switch">
-                        <input type="checkbox" />
+                        <input type="checkbox" onClick={toggleMode} />
                             <span className="slider round"></span>
                     </label>
                 </div>
                 <div id="dark-mode-icon" className=" fas fa-moon"></div>
-            </div>
+            </div> */}
             <h2 className="mood-header">Mood Preferences</h2>
+            <div className="mood-button-container">
               {moodState.map((moodName) => <p key={moodName} id={moodName} className="mood-item mood-unchecked" onClick={(e) => toggleItem(moodName)}>{moodName}</p>)}
+            </div>
             <button className="mood-submit" onClick={handleSubmit}>Submit</button>
         </>
     )

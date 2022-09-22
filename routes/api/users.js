@@ -89,7 +89,6 @@ router.get('/current', restoreUser, (req, res) => {
     res.cookie("CSRF-TOKEN", csrfToken);
   }
 
-console.log(req.user, "req")
   if (!req.user) return res.json(null);
   res.json({
     moods: req.user.moods,
@@ -117,8 +116,6 @@ const deleteUser = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-  console.log(req.user);
-  // console.log("At deleteUser")
 
   // if(req.user.admin || req.user.id === req.params.id) {
     const deletingUser = await User.findByIdAndDelete(req.params.id);

@@ -1,12 +1,16 @@
 const mongoose = require("mongoose");
 require("./models/User")
 require("./models/Confessions")
-
+require("./models/TopicResponse")
 require("./models/Topics")
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+require("./models/User")
+require("./models/Confession")
+require("./models/TopicResponse")
+require("./models/Topic")
 const cors = require('cors');
 const debug = require('debug');
 const csurf = require('csurf');
@@ -34,14 +38,13 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')))
 app.use(passport.initialize());
 
 const { isProduction } = require('./config/keys');
 const { createSocket } = require('dgram');
 
 
-if(!isProduction) {
+if (!isProduction) {
     app.use(cors());
 }
 
@@ -55,6 +58,7 @@ app.use(
     })
 );
 
+
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
@@ -63,6 +67,30 @@ app.use('/api/chats', chatsRouter)
 app.use('api/messages', messageRoutes)
 app.use('/api/confessions', confessionsRouter);
 app.use('/api/topics', topicsRouter);
+
+// Serve static React build files statically in production
+if (isProduction) {
+    const path = require('path');
+    // Serve the frontend's index.html file at the root route
+    app.get('/', (req, res) => {
+        res.cookie('CSRF-TOKEN', req.csrfToken());
+        res.sendFile(
+            path.resolve(__dirname, './frontend', 'build', 'index.html')
+        );
+    });
+
+    // Serve the static assets in the frontend's build folder
+    app.use(express.static(path.resolve("./frontend/build")));
+
+    // Serve the frontend's index.html file at all other routes NOT starting with /api
+    app.get(/^(?!\/?api).*/, (req, res) => {
+        res.cookie('CSRF-TOKEN', req.csrfToken());
+        res.sendFile(
+            path.resolve(__dirname, './frontend', 'build', 'index.html')
+        );
+    });
+}
+
 
 
 app.use((req, res, next) => {

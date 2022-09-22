@@ -11,51 +11,51 @@ const ConfessionShow = () => {
     const [showConfession, setShowConfession] = useState(true)
     const history = useHistory()
 
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
     
-
-    // const showConfession = false
     
     useEffect(() => {
         dispatch(fetchConfessions())
         setTimeout(function () {
+            setIsLoading(false);
+        }, 3000)
+        setTimeout(function () {
             setShowConfession(false);
             history.push(`/confession-next`)
-        }, 10000)
+        }, 13000)
         // .then(console.log(confessions))
     },[])
     let posts = confessions[0]
     let total = posts.length
     let random = Math.floor(Math.random()*total)
     let randomConfession = posts[random]
-    // console.log(random)
-    // console.log(posts[random])
 
     const hideConfession = () =>{
         document.getElementsByClassName('confession-content').style.display = 'none'
     }
-    console.log(showConfession)
 
-    // useEffect(() => {
-        
-    // }, [])
-    // setTimeout(confessionTimer() {
-    //     $('#confession-content').fadeOut('fast');
-    // }, 1000)
      
 
     return (
         <>
             <div className="confession-show-container">
-                {/* { showConfession  && ( */}
-                    <div className="confession-content" style={{display: showConfession ? 'block' : 'none'}}>Confession here
-                    <h1>hello   </h1>
+                {isLoading ?
+                <div className="loading-container">      
+                    <h1 className="loading-title"> gathering secrets... </h1>
+                    <img src="https://derailed-seed.s3.us-west-1.amazonaws.com/loading-gif.gif"></img>
+                </div>
+                    :           
+                    <div className="confession-content" style={{display: showConfession ? 'block' : 'none'}}>
+                        
                         {/* <p>{randomConfession.mood}</p> */}
-                        {/* <p>{randomConfession.body}</p> */}
+                        <p class='confession-body'>{randomConfession.body}</p>
                     </div>  
-                    <div className="confession-content" style={{display: showConfession ? 'none' : 'block'}}>Confession here
+                }
+                {/* { showConfession  && ( */}
+          
+                    {/* <div className="confession-content" style={{display: showConfession ? 'none' : 'block'}}>Confession here
                       <Link to={`/confession-show`}> <button value='Another Question'  > Another Question?</button> </Link>
-                    </div>  
+                    </div>   */}
                     {/* )}                 */}
             </div>
         </>
