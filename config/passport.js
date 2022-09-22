@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 require("../models/User");
 const User = mongoose.model("User");
 const jwt = require("jsonwebtoken");
-const secretOrKey = require('./keys');
+const {secretOrKey} = require('./keys');
 const { Strategy: JwtStrategy, ExtractJwt } = require("passport-jwt");
 
 

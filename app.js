@@ -30,6 +30,25 @@ app.use(passport.initialize());
 const { isProduction } = require('./config/keys');
 
 // Serve static React build files statically in production
+
+app.use(
+    csurf({
+        cookie: {
+            secure: isProduction,
+            sameSite: isProduction && "Lax",
+            httpOnly: true
+        }
+    })
+);
+
+
+// app.use('/', indexRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/csrf', csrfRouter);
+app.use('/api/confessions', confessionsRouter);
+app.use('/api/topics', topicsRouter);
+
+
 if (isProduction) {
     const path = require('path');
     // Serve the frontend's index.html file at the root route
@@ -52,26 +71,10 @@ if (isProduction) {
     });
 }
 
-if(!isProduction) {
+if (!isProduction) {
     app.use(cors());
 }
 
-app.use(
-    csurf({
-        cookie: {
-            secure: isProduction,
-            sameSite: isProduction && "Lax",
-            httpOnly: true
-        }
-    })
-);
-
-
-app.use('/', indexRouter);
-app.use('/api/users', usersRouter);
-app.use('/api/csrf', csrfRouter);
-app.use('/api/confessions', confessionsRouter);
-app.use('/api/topics', topicsRouter);
 
 app.use((req, res, next) => {
     const err = new Error("Not Found");
