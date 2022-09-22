@@ -7,7 +7,7 @@ function Topic({topic,handleFunction}) {
     <div className='topic' onClick={handleFunction}>
       <div>{topic.title}</div>
       <div>{topic.mood}</div>
-      <div>{topic.userId?.username}</div>
+      <div>UserId: {topic.userId}</div>
     </div>
   )
 }

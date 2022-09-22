@@ -8,7 +8,7 @@ import MyTopicsDrawer from "./MyTopicsDrawer";
 import Topic from "./Topic";
 import { getCurrentUser } from "../../store/session";
 import { accessChat, getAllChats, fetchChatsbyUser } from "../../store/chat";
-import { getAllTopics, fetchAllTopics } from "../../store/topics";
+import { getAllTopics, fetchAllTopics, deleteTopic } from "../../store/topics";
 
 const TopicIndex = () => {
   const storeChats = useSelector((state) => getAllChats(state));
@@ -48,16 +48,19 @@ const TopicIndex = () => {
     }, []);
 
   useEffect(() => {
+    console.log(currentUser);
     setUser(currentUser);
   }, [currentUser]);
 
   const makeChat = (currentUserId, authorId, topicId) => {
-    // console.log('user._id', user._id)
-    // console.log('currentuserid', currentUser._id)
-    // console.log('authorId', authorId)
+    console.log('user._id', user._id)
+    console.log('currentuserid', currentUser._id)
+    console.log('authorId', authorId)
     dispatch(accessChat(currentUserId, authorId, topicId));
+    dispatch(deleteTopic(topicId));
   
   };
+
   
   useEffect(() => {
     if (currentChat){
@@ -77,7 +80,7 @@ const TopicIndex = () => {
       <div className="topic-container">
         <ul>
           
-          {topics && topics?.map ((topic=> 
+          {topics?.filter(topic => topic.userId !== user?._id).map ((topic=> 
                 <Topic topic={topic} handleFunction={() => makeChat(user._id,topic.userId,topic._id)}/>
             )) 
         }
