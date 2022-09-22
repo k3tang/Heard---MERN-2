@@ -21,7 +21,7 @@ import {fetchChatsbyUser, getAllChats, getCurrentChat, receiveCurrentChat} from 
 
 
 function MyTopicsDrawer() {
-  const {currentChatId} = useParams()
+  const {chatId} = useParams()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
   const history = useHistory()
@@ -51,7 +51,7 @@ function MyTopicsDrawer() {
    //
 useEffect(()=>{
    if(currentUser) dispatch(fetchChatsbyUser(currentUser._id))
-  },[currentUser,currentChatId])
+  },[currentUser,chatId])
 
   const moveChats=(chatId)=>{
     setSelectedChat(storeChats[chatId])
@@ -91,16 +91,16 @@ useEffect(()=>{
            
               <Stack>
                  {  userChats?.map(chat => {
-                  {console.log(chat)}
+                 
              return <Box
-                onClick={()=> moveChats(chat._id)}
+                onClick={()=> moveChats(chat?._id)}
                 cursor="pointer"
-                bg={selectedChat === chat ? 'blue' : 'white' }
-                color={selectedChat === chat ? 'white' : 'blue' }
+                bg={chatId === chat?._id ? 'blue' : 'white' }
+                color={chatId === chat?._id ? 'white' : 'blue' }
                 px={3}
                 py={2}
                 > 
-                <Text> {chat.title}</Text>
+                <Text> {chat?.title}</Text>
                 </Box>
                  })}
                            
