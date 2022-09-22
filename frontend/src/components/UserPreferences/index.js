@@ -15,10 +15,8 @@ const UserPreferences = () => {
     
 
 
-console.log(userMoods);
 // setting initial/saved mood preferences 
 useEffect(() => {
-    console.log(userMoods, "moods");
     if (userMoods) {
         for (let moodName of userMoods) {
             let cb = document.getElementById(`${moodName}`);
@@ -41,8 +39,7 @@ useEffect(() => {
             ele.classList.remove("mood-unchecked")
         }
     }
-    
-    console.log(checkedKeywords, "selected keywords")
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -62,13 +59,11 @@ useEffect(() => {
     // const toggleMode = () => {
     //     const body = document.getElementById("root")
     //     const container = document.getElementById("entire-container")
-    //     // console.log(container, "container")
     //     if (body.classList.contains("dark")) {
     //         body.classList.remove("dark");
     //         const container = document.getElementById("entire-container-dark")
     //         container.id = 'entire-container';
     //     } else {
-    //         console.log(container, "container")
     //         body.classList.add("dark");
     //         container.id = 'entire-container-dark';
     //     }

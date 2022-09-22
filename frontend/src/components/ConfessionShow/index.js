@@ -13,8 +13,6 @@ const ConfessionShow = () => {
 
     const [isLoading, setIsLoading] = useState(false)
     
-
-    // const showConfession = false
     
     useEffect(() => {
         dispatch(fetchConfessions())
@@ -22,26 +20,16 @@ const ConfessionShow = () => {
             setShowConfession(false);
             history.push(`/confession-next`)
         }, 10000)
-        // .then(console.log(confessions))
     },[])
     let posts = confessions[0]
     let total = posts.length
     let random = Math.floor(Math.random()*total)
     let randomConfession = posts[random]
-    console.log(random)
-    console.log(posts[random])
 
     const hideConfession = () =>{
         document.getElementsByClassName('confession-content').style.display = 'none'
     }
-    console.log(showConfession)
 
-    // useEffect(() => {
-        
-    // }, [])
-    // setTimeout(confessionTimer() {
-    //     $('#confession-content').fadeOut('fast');
-    // }, 1000)
      
 
     return (

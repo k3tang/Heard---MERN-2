@@ -49,7 +49,7 @@ function SignupForm () {
       username,
       password
     };
-    console.log('user in submit', user)
+
 
     dispatch(signup(user)); 
   }

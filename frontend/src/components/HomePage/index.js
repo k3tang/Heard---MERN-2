@@ -7,9 +7,6 @@ const HomePage = () => {
     const user = useSelector(state => state.session.user)
     const history = useHistory();
 
-    // if (!user) {
-    //     history.push("/")
-    // }
 
     window.onclick = function (event) {
         let modalBackground = document.getElementById("background-modal")
