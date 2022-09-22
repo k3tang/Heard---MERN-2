@@ -1,5 +1,9 @@
+
+import { Redirect } from 'react-router-dom';
 import jwtFetch from './jwt';
 import { RECEIVE_USER_LOGOUT } from './session';
+
+
 
 const RECEIVE_CONFESSIONS = "confessions/RECEIVE_CONFESSIONS";
 const RECEIVE_USER_CONFESSIONS = "confessions/RECEIVE_USER_CONFESSIONS";
@@ -75,11 +79,17 @@ export const createConfession = data => async dispatch => {
             body: JSON.stringify(data)
         });
         const confession = await res.json();
-        return dispatch(receiveNewConfession(confession));
+        console.log(confession)
+        console.log('Confession in create',confession)
+       return dispatch(receiveNewConfession(confession));
+        
     } catch (err) {
         const resBody = await err.json();
-        if (resBody.statusCode === 400) {
+        console.log(resBody)
+        if (resBody.statusCode === 500) {
             return dispatch(receiveErrors(resBody.errors));
+        } else {
+           
         }
     }
 };
