@@ -6,7 +6,7 @@ import { clearSessionErrors } from "../../store/session";
 
 function ConfessionCreate () {
     const sessionUser = useSelector(state=>state.session.user);
-    const errors = useSelector(state => state.errors.session);
+    const errors = useSelector(state => state.errors.confessions);
     const dispatch = useDispatch();
     const [checkedKeywords, setCheckedKeywords] = useState(sessionUser.moods)
 
@@ -38,7 +38,7 @@ function ConfessionCreate () {
         const setState = field === 'mood' ? setMood : setBody;
         return e => setState(e.currentTarget.value);
     }
-
+    console.log(errors)
     
 
     const handleSubmit = e => {
@@ -56,14 +56,20 @@ function ConfessionCreate () {
     return (
         <>
         {/* <h2 class='confession-create-title'> you may confess my child </    h2> */}
+ 
 
         <div class='confession-form-container'>
             <form class='confession-create-form' onSubmit={handleSubmit}>
-                <div class='mood-input-container'>
+                <div class='mood-input-container'>          
+                <div className="errors">{errors?.mood.message}</div>
+                <div className="errors">{errors?.body.message}</div>
+
+
+ 
                     {/* <label> mood </label> */}
                         <select className='confession-mood-dropdown'name="mood" id="mood" value={mood} onChange={update('mood')}>
                             <option defaultValue value='invalid'> I'm feeling...</option>
-                            <option value="angry" >Angry</option>
+                            <option value="pink" >Angry</option>
                             <option value="loved" >Loved</option>
                             <option value="anxious">Anxious</option>
                             <option value="happy" >Happy</option>
