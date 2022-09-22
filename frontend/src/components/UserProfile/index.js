@@ -7,7 +7,7 @@ import DeleteUser from "./deleteUser";
 
 const UserProfile = () => {
     const user = useSelector(state => state.session.user);
-    console.log("user", user)
+
     const dispatch = useDispatch();
     const history = useHistory();
 

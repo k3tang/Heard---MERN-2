@@ -33,7 +33,6 @@ export const clearConfessionErrors = errors => ({
 });
 
 export const getConfessions = state => {
-    console.log('i am here')
     if(!state.confessions) {
         return []
     } else {
@@ -47,7 +46,6 @@ export const fetchConfessions = () => async dispatch => {
     try {
         const res = await jwtFetch("/api/confessions");
         const confessions = await res.json();
-        // console.log(confessions)
         return dispatch(receiveConfessions(confessions))
     } catch (err) {
         const resBody = await err.json();
@@ -71,15 +69,12 @@ export const fetchUserConfessions = id => async dispatch => {
 };
 
 export const createConfession = data => async dispatch => {
-    console.log('i am here creating a confession:', data)
     try {
         const res = await jwtFetch('/api/confessions/', {
             method: 'POST',
             body: JSON.stringify(data)
         });
         const confession = await res.json();
-        console.log(confession)
-        console.log('Confession in create',confession)
         return dispatch(receiveNewConfession(confession));
     } catch (err) {
         const resBody = await err.json();

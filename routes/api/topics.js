@@ -6,7 +6,6 @@ const { Topic, TopicResponse } = require('../../models/Topics')
 const {restoreUser} = require('../../config/passport')
 
 const getAllTopics = asyncHandler(async (req, res) => {
-    console.log('req.user', req.user)
     const topics = await Topic.find()
     return res.json(topics);
 })
