@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const { admin, protect } = require("../../middleware/authMiddleware");
-const Confession = require('../../models/Confessions')
+const Confession = require('../../models/Confession')
 // router.get('/', function(req, res, next) {
 //     res.json({
 //         message: "GET /api/confessions"

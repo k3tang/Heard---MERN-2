@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const { admin, protect } = require("../../middleware/authMiddleware");
-const { Topic, TopicResponse } = require('../../models/Topics')
+const { Topic, TopicResponse } = require('../../models/Topic')
 const {restoreUser} = require('../../config/passport')
 
 const getAllTopics = asyncHandler(async (req, res) => {
