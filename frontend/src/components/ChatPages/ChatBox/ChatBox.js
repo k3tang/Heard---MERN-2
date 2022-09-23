@@ -9,16 +9,15 @@ import {
   Box,
   Spinner,
   Button,
-  Text,
-  useToast
+  Text
 } from "@chakra-ui/react";
 import {useParams} from 'react-router-dom'
-import jwtFetch from "../../../store/jwt";
+
 import {sendMessage, fetchMessages, getAllMessages, getLatestMessage} from '../../../store/messages'
 import { useEffect } from "react";
 
 function ChatBox() {
-  const toast = useToast
+
   const dispatch = useDispatch()
   const currentChat = useSelector(getCurrentChat);
   const currentUser = useSelector(_getCurrentUser);
