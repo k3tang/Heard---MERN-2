@@ -5,7 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require("./models/User")
 require("./models/Confession")
-require("./models/TopicResponse")
+// require("./models/TopicResponse")
 require("./models/Topic")
 const cors = require('cors');
 const debug = require('debug');
@@ -23,12 +23,6 @@ const topicsRouter = require('./routes/api/topics');
 
 const app = express();
 
-
-
-
-
-
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -37,7 +31,6 @@ app.use(passport.initialize());
 
 const { isProduction } = require('./config/keys');
 const { createSocket } = require('dgram');
-
 
 if (!isProduction) {
     app.use(cors());
@@ -52,8 +45,6 @@ app.use(
         }
     })
 );
-
-const csrfRouter = require('./routes/api/csrf');
 
 // app.use('/', indexRouter);
 app.use('/api/users', usersRouter);

@@ -5,7 +5,7 @@ const asyncHandler = require("express-async-handler");
 const { admin, protect } = require("../../middleware/authMiddleware");
 const Chat = require("../../models/Chats");
 const User = require("../../models/User");
-const Topic = require("../../models/Topics")
+const Topic = require("../../models/Topic")
 
 const getChats =  asyncHandler(async (req, res, next) => {
   const userId = req.params.userId
