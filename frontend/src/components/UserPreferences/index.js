@@ -13,8 +13,7 @@ const UserPreferences = () => {
     const [checkedKeywords, setCheckedKeywords] = useState(userMoods)
     const history = useHistory()
 
-   
-    
+
 
 
 // setting initial/saved mood preferences 
