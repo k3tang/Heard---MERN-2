@@ -16,6 +16,9 @@ import {useParams} from 'react-router-dom'
 import jwtFetch from "../../../store/jwt";
 import {sendMessage, fetchMessages, getAllMessages, getLatestMessage} from '../../../store/messages'
 import { useEffect } from "react";
+import { io } from "socket.io-client";
+
+let socket;
 
 function ChatBox() {
 
@@ -47,7 +50,14 @@ function ChatBox() {
 },[chatId,storeMessages?.length])
 
 
+// useEffect(()=>{
+// const socket = io('https://localhost5000',{
+//   cors:{
 
+//   }
+// });
+// socket.on('setup')
+// },[])
 
  
   const handleClick = (e) => {
