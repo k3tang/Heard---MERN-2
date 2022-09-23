@@ -42,6 +42,7 @@ const UserProfile = () => {
                     <div className="user-subtext">(Don't worry, your name won't appear anywhere else)</div>
                 <div className="user-button-container">
                     {/* <div className="user-stats">Stats </div> */}
+                    <div className="user-square-button" onClick={() => history.push("/user-confessions")}>see your confessions</div>
                     <div className="user-square-button" onClick={() => history.push("/settings")}>Edit User Preferences</div>
                     <div className="user-square-button" onClick={logout}>Logout</div>
                 </div>

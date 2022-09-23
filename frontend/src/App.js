@@ -1,7 +1,7 @@
 import { Switch, Redirect, Route } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from "./components/SessionForms/LoginForm";
 import SignupForm from "./components/SessionForms/SignupForm";
 import HomePage from "./components/HomePage/index";
@@ -20,13 +20,15 @@ import ChatPage from './components/ChatPages/ChatPage';
 import ChatPage1 from './components/ChatPages/ChatPage1/ChatPage1';
 import TopicIndex from './components/TopicIndex';
 
-import AnotherConfession from './components/AnotherConfession'
+import AnotherConfession from './components/AnotherConfession';
+import UserConfessions from './components/UserProfile/userConfessions';
 import "./index.css"
 
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(getCurrentUser()).then(() => setLoaded(true));
@@ -55,6 +57,7 @@ function App() {
           <Route exact path="/chats/:chatId" component={ChatPage}/>
 
         <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
+        <ProtectedRoute exact path="/user-confessions" component={UserConfessions}/>
 
 
       <Redirect to="/" />

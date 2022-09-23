@@ -8,6 +8,7 @@ import { RECEIVE_USER_LOGOUT } from './session';
 const RECEIVE_CONFESSIONS = "confessions/RECEIVE_CONFESSIONS";
 const RECEIVE_USER_CONFESSIONS = "confessions/RECEIVE_USER_CONFESSIONS";
 const RECEIVE_NEW_CONFESSION = "confessions/RECEIVE_NEW_CONFESSION";
+const REMOVE_CONFESSION = "confessions/REMOVE_CONFESSION";
 const RECEIVE_CONFESSION_ERRORS = "confessions/RECEIVE_CONFESSION_ERRORS";
 const CLEAR_CONFESSION_ERRORS = "confessions/CLEAR_CONFESSION_ERRORS";
 
@@ -30,6 +31,13 @@ const receiveErrors = errors => ({
     type: RECEIVE_CONFESSION_ERRORS,
     errors
 });
+
+const removeConfession = (id) => {
+    return {
+        type: REMOVE_CONFESSION,
+        id 
+    }
+}
 
 export const clearConfessionErrors = errors => ({
     type: CLEAR_CONFESSION_ERRORS,
@@ -93,6 +101,16 @@ export const createConfession = data => async dispatch => {
         }
     }
 };
+
+
+export const deleteConfession = id => async dispatch => {
+     console.log("deleting comment", id)
+        const res = await jwtFetch(`/api/confessions/${id}`, {
+            method: 'DELETE'
+        });
+        return dispatch(removeConfession(id))
+}
+
 
 //reducers 
 
