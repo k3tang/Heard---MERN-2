@@ -18,7 +18,7 @@ import {sendMessage, fetchMessages, getAllMessages, getLatestMessage} from '../.
 import { useEffect } from "react";
 
 function ChatBox() {
-  const toast = useToast
+
   const dispatch = useDispatch()
   const currentChat = useSelector(getCurrentChat);
   const currentUser = useSelector(_getCurrentUser);
@@ -54,7 +54,7 @@ function ChatBox() {
     if (e.type === 'keydown' && e.key === "Enter" && newMessage) {
  
      dispatch(sendMessage(newMessage,chatId))
-     console.log(messages)
+    //  console.log(messages)
         setMessages([...messages, newMessage]);
         // console.log(messages)
       setNewMessage("");
@@ -75,7 +75,7 @@ function ChatBox() {
       w={"100%"}
       bg='#f2f2f2'
     >
-      {loading ? (
+      {!messages ? (
         <Spinner
           size="xl"
           speed="0.9s"

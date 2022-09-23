@@ -6,11 +6,11 @@ const { admin, protect } = require("../../middleware/authMiddleware");
 const Chat = require("../../models/Chats");
 const User = require("../../models/User");
 const Topic = require("../../models/Topic")
-
+const { isProduction } = require("../../config/keys")
 const getChats =  asyncHandler(async (req, res, next) => {
   const userId = req.params.userId
   const foundChats = await Chat.find({users:{ $elemMatch: {$eq: userId}}})
-  console.log(foundChats, userId)
+  // console.log(foundChats, userId)
     res.json(foundChats);
   });
 
@@ -21,7 +21,7 @@ const getChat =  asyncHandler(async (req, res, next) => {
 
 const accessChat = asyncHandler(async (req,res,next)=>{
     const { userId, currentUserId, topicId } = req.body; 
-    console.log('in back end access chat', req.body)
+    // console.log('in back end access chat', req.body)
   
    if (!userId){
      return res.status(401).json({message: 'User Id not included or undefined or incorrectly formatted'})
@@ -61,10 +61,10 @@ const accessChat = asyncHandler(async (req,res,next)=>{
 })
 
 const deleteChat = asyncHandler(async (req,res) =>{
-  console.log(req.params)
-   const chat = await Chat.find({_id : req.params.id});
-   try {
-    chat.delete
+
+  try {
+   const chat = await Chat.findByIdAndDelete(req.params.id);
+  
     res.status(200).json(chat)
    }catch(err){
     res.status(400)
@@ -73,9 +73,13 @@ const deleteChat = asyncHandler(async (req,res) =>{
    
 })
 
+const allChats = asyncHandler(async (req, res, next) => {
+  const chats = await Chat.find();
+  res.json(chats);
+});
 
 
-
+if (!isProduction) router.route('/allchats').get(allChats)
 router.route("/:id").get(getChat).delete(deleteChat)
 router.route("/user/:userId").get(getChats)                 ///.put(editChatUsers)
 router.route("/").post(accessChat) // accessChat needs a userId (spelled this way as the key) in the body from the front. it checks to see if that user already has a chat with that userID. if they have one then it will return that chat. else it will make a new chat.  

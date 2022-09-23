@@ -51,7 +51,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 
 app.use('/api/chats', chatsRouter)
-app.use('api/messages', messageRoutes)
+app.use('/api/messages', messageRoutes)
 app.use('/api/confessions', confessionsRouter);
 app.use('/api/topics', topicsRouter);
 
