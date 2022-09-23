@@ -9,21 +9,23 @@ Getting a user's chats are the chats that are active and created by the user.
 
 
 */
-export const getCurrentChat =(state) =>{
-        if (!state) return null;
-      else if (!state.chats?.currentChat) return null;
-      else return state.chats.currentChat;
-    
-}
+export const getCurrentChat = (state) => {
+  if (!state) return null;
+  else if (!state.chats?.currentChat) return null;
+  else return state.chats.currentChat;
+};
 
-export const getAllChats =(state)=>{
-if (!state) return null;
-if (!state.chats) return null;
-else return Object.values(state.chats)
-}
+export const getAllChats = (state) => {
+  if (!state) return null;
+  if (!state.chats) return null;
+  else console.log(Object.values(state.chats));
 
-export const accessChat = (currentUserId, userId, topicId) => async (dispatch) => {
+  const allChats = Object.values(state.chats);
+  return [...new Set(allChats)];
+};
 
+export const accessChat =
+  (currentUserId, userId, topicId) => async (dispatch) => {
     // setLoadingChat(true)
     const res = await jwtFetch("/api/chats", {
       method: "POST",
@@ -34,44 +36,40 @@ export const accessChat = (currentUserId, userId, topicId) => async (dispatch) =
     dispatch(receiveCurrentChat(chat));
 
     return chat;
+  };
 
-};
-
-export const deleteChat =(chatId) => async dispatch =>{
+export const deleteChat = (chatId) => async (dispatch) => {
   const res = await jwtFetch(`/api/chats/${chatId}`, {
     method: "DELETE",
-
   });
   const chat = await res.json();
   dispatch(removeChat(chat));
-}
+};
 
 export const fetchChatsbyUser = (userId) => async (dispatch) => {
+  const res = await jwtFetch(`/api/chats/user/${userId}`);
+  const chats = await res.json();
+  dispatch(receiveChats(chats));
+};
 
-    const res = await jwtFetch(`/api/chats/user/${userId}`);
-    const chats = await res.json();
-    dispatch(receiveChats(chats));
-}
-
-export const RECEIVE_CURRENT_CHAT = 'RECEIVE_CURRENT_CHAT';
-export const REMOVE_CHAT = 'REMOVE_CHAT';
-export const RECEIVE_CHATS = 'RECEIVE_CHATS';
+export const RECEIVE_CURRENT_CHAT = "RECEIVE_CURRENT_CHAT";
+export const REMOVE_CHAT = "REMOVE_CHAT";
+export const RECEIVE_CHATS = "RECEIVE_CHATS";
 
 const receiveChats = (chats) => ({
-    type: RECEIVE_CHATS,
-    chats
-})
+  type: RECEIVE_CHATS,
+  chats,
+});
 
 export const receiveCurrentChat = (chat) => ({
-    type: RECEIVE_CURRENT_CHAT,
-    chat
-})
+  type: RECEIVE_CURRENT_CHAT,
+  chat,
+});
 
 export const removeChat = (chatId) => ({
-    type: REMOVE_CHAT,
-    chatId
-})
-
+  type: REMOVE_CHAT,
+  chatId,
+});
 
 // state {
 //   chats{
@@ -91,18 +89,17 @@ const chatsReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_CHATS:
       for (let chat of action.chats) {
-       newState[chat._id] = chat
-      } 
-      return { ...newState};
+        newState[chat._id] = chat;
+      }
+      return { ...newState };
     case RECEIVE_CURRENT_CHAT:
+      newState["currentChat"] = action.chat;
 
-      newState['currentChat'] = action.chat;
-     
       return { ...newState };
     case REMOVE_CHAT:
-        newState['currentChat'] = null
-       delete newState[action.chatId]
-        return newState;
+      newState["currentChat"] = null;
+      delete newState[action.chatId];
+      return newState;
     default:
       return newState;
   }

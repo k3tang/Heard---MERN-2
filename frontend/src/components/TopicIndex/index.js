@@ -43,16 +43,20 @@ const TopicIndex = () => {
   }, [currentUser]);
 
   const makeChat = (currentUserId, authorId, topicId) => {
-    console.log('user._id', user._id)
-    console.log('currentuserid', currentUser._id)
-    console.log('authorId', authorId)
+    // console.log('user._id', user._id)
+    // console.log('currentuserid', currentUser._id)
+    // console.log('authorId', authorId)
+    console.log('topic id from the chat clicked', topicId)
     dispatch(accessChat(currentUserId, authorId, topicId)).then(res => {
-      history.push(`/chats/${res._id}`);
+      history.push(`/chats/${res._id}`)
+        dispatch(deleteTopic(topicId))
     console.log('chatId',res._id)
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.log(err);
     })
-    dispatch(deleteTopic(topicId));
+
+  
     
   
   };

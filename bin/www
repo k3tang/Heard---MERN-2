@@ -104,14 +104,17 @@ function onListening() {
 }
 //below are new lines of code:
 
-const io = require('socket.io')(,{
-  pingTimeout:60000,
-  cors: {
-    origin: "http://localhost:3000"
-  }
-})
+// const io = require('socket.io').listen(5000)
 
-io.on('connection', (socket)=>{
-  console.log('connected to soket.io')
-  socket.on('setup', console.log('from hereeee')
-})
+
+// const io(server,{
+//   pingTimeout:60000,
+//   cors: {
+//     origin: "http://localhost:3000"
+//   }
+// })
+
+// io.on('connection', (socket)=>{
+//   console.log('connected to soket.io')
+//   socket.on('setup', console.log('from hereeee'))
+// })

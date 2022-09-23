@@ -9,7 +9,8 @@ import {
   Button,
   Stack,
   Box,
-  Text
+  Text,
+  CheckboxGroup
 } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/react'
 import React from 'react'
@@ -45,7 +46,8 @@ useEffect(()=>{
   },[currentUser])
 
   const moveChats=(chatId)=>{
-    const chat = chats.find(chat => chat._id === chatId)
+    console.log('what are the chats', chats)
+    const chat = chats.find(chat => chat?._id === chatId)
     console.log('what is',chat)
     dispatch(receiveCurrentChat(chat));
      history.push(`/chats/${chatId}`)
@@ -81,9 +83,10 @@ useEffect(()=>{
            
               <Stack>
                  {  chats?.map(chat => {
+                  {console.log('WHAT ARE THE CHATS??', chats)}
                  
              return <Box
-                  key={chat._id}
+                  key={chat?._id}
                 onClick={()=> moveChats(chat?._id)}
                 cursor="pointer"
                 bg={chatId === chat?._id ? 'blue' : 'white' }

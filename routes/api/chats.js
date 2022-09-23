@@ -7,10 +7,13 @@ const Chat = require("../../models/Chats");
 const User = require("../../models/User");
 const Topic = require("../../models/Topic")
 const { isProduction } = require("../../config/keys")
+const { restoreUser } = require("../../config/passport")
+
+
 const getChats =  asyncHandler(async (req, res, next) => {
-  const userId = req.params.userId
+  const userId = req.user._id
   const foundChats = await Chat.find({users:{ $elemMatch: {$eq: userId}}})
-  // console.log(foundChats, userId)
+  console.log('are we finding the cchats',foundChats, userId)
     res.json(foundChats);
   });
 
@@ -44,6 +47,7 @@ const accessChat = asyncHandler(async (req,res,next)=>{
       res.send(foundChat[0])
     } else {
       const topic = await Topic.findById(topicId)
+      console.log('topic in else statement', topic, topicId)
       const newChat = {
         title: topic.title,
         isGroupChat: false,
@@ -79,10 +83,10 @@ const allChats = asyncHandler(async (req, res, next) => {
 });
 
 
-if (!isProduction) router.route('/allchats').get(allChats)
-router.route("/:id").get(getChat).delete(deleteChat)
-router.route("/user/:userId").get(getChats)                 ///.put(editChatUsers)
-router.route("/").post(accessChat) // accessChat needs a userId (spelled this way as the key) in the body from the front. it checks to see if that user already has a chat with that userID. if they have one then it will return that chat. else it will make a new chat.  
+if (!isProduction) router.route('/allchats').get(restoreUser, allChats)
+router.route("/:id").get(getChat).delete(restoreUser, deleteChat)
+router.route("/user/:userId").get(restoreUser, getChats)                 ///.put(editChatUsers)
+router.route("/").post(restoreUser, accessChat) // accessChat needs a userId (spelled this way as the key) in the body from the front. it checks to see if that user already has a chat with that userID. if they have one then it will return that chat. else it will make a new chat.  
 // router.route('/chatadd').put(addToChat)
 // router.route("/chatremove").put(removeFromChat)
 // router.route("/groupchat").post(createGroupChat)
