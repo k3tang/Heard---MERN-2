@@ -7,7 +7,7 @@ const confessionSchema = mongoose.Schema({
     },
     mood :{
         type: String,
-        enum: ['blue', 'pink', 'green', 'yellow', 'red'],
+        enum: ['angry', 'loved', 'anxious', 'happy', 'sad'],
         required: true
     },
     body :{

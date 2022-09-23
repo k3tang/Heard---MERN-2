@@ -15,15 +15,15 @@ const userSchema = Schema({
         type: String,
         required: true
     },
-    audio: {
-        type: Boolean,
+    image: {
+        type: String,
         required: true,
-        default: false,
+        default: "https://images.nightcafe.studio//assets/profile.png?tr=w-1600,c-at_max",
     },
     moods: {
         type: Array,
         required: true,
-        default: ["red", "pink", "green", "yellow", "blue"], // red= anger pink=love, green=anxious, yellow= happy blue=sad
+        default: ['angry', 'loved', 'anxious', 'happy', 'sad'], // red= anger pink=love, green=anxious, yellow= happy blue=sad
     },
     admin: {
         type: Boolean,

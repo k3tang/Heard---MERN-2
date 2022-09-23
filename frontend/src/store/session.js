@@ -27,6 +27,12 @@ const logoutUser = () => ({
 export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 });
+ export const _getCurrentUser = (state) =>{
+    if (!state) return null;
+    else if (!state.session?.user) return null;
+    else return state.session.user;
+
+ }
 
 export const getCurrentUser = () => async dispatch => {
     const res = await jwtFetch('/api/users/current');
