@@ -31,7 +31,6 @@ export const clearSessionErrors = () => ({
 export const getCurrentUser = () => async dispatch => {
     const res = await jwtFetch('/api/users/current');
     const user = await res.json();
-    console.log(user);
     return dispatch(receiveCurrentUser({ user }));
   };
 
@@ -55,8 +54,6 @@ const startSession = (userInfo, route) => async dispatch => {
       });
 
       const user = await res.json();
-      console.log('user in start session',user)
-      // console.log('token in start session',token)
       localStorage.setItem('jwtToken', user.token);
       return dispatch(receiveCurrentUser(user));
     } catch(err) {
@@ -75,7 +72,6 @@ const startSession = (userInfo, route) => async dispatch => {
   }
 
 export const updateUser = (userData) => async dispatch => {
-  console.log("user id", userData._id)
   const res = await jwtFetch(`/api/users/${userData._id}`, {
     method: "PATCH",
     body: JSON.stringify(userData)

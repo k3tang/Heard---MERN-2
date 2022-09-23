@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const { admin, protect } = require("../../middleware/authMiddleware");
-const Confession = require('../../models/Confessions')
+const Confession = require('../../models/Confession')
 // router.get('/', function(req, res, next) {
 //     res.json({
 //         message: "GET /api/confessions"
@@ -16,7 +16,7 @@ const getAllConfessions = asyncHandler(async (req, res) => {
 })
 
 const createConfession = asyncHandler(async (req, res) => {
-    console.log('i am here')
+
     const { userId, mood, body ,persist } = req.body;
     if (!userId || !mood || !body) {
         res.status(400);
@@ -25,7 +25,6 @@ const createConfession = asyncHandler(async (req, res) => {
     const confession = await Confession.create({
         userId, mood, body, persist
     })
-    console.log(confession)
     if (confession) {
         res.status(201).json(confession);
     } else {
@@ -87,7 +86,6 @@ const getUserConfessions = asyncHandler(async (req, res) => {
 //WHEN USING THE ROUTE BELOW: needs the information in the body as such { moods: ["yellow","green"]} as json. 
 
 const getConfessionsByMoods = asyncHandler(async (req, res) => {
-    console.log('body in confessionby moods',req.body.moods)
     const {moods}  = req.body
     const confessions = await Confession.find({ mood: { $in: moods} }) //moods should be an array 
     if (!confessions) {

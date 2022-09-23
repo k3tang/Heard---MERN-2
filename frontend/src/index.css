@@ -39,3 +39,15 @@ body {
     box-shadow: inset 12.01px 12.01px 21px #444649, inset -12.01px -12.01px 21px #505255;
 } */
 
+@media screen and (max-width: 950px) {
+    body {
+        background: #EEF0F4;
+    }
+
+    #entire-container {
+        width: 95vw;
+        border-radius: 0;
+        box-shadow: none;
+        
+    }
+}
