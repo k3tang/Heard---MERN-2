@@ -22,32 +22,40 @@ function ChatBox() {
   const dispatch = useDispatch()
   const currentChat = useSelector(getCurrentChat);
   const currentUser = useSelector(_getCurrentUser);
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const {chatId} = useParams()
-  const storeMessages = useSelector((state)=>getAllMessages(state,chatId))
+  const [timetoFetch, setTimetoFetch] = useState(false);
+  const messages = useSelector((state)=>getAllMessages(state,chatId))
+
+  const timer = setInterval(() => {
+    setTimetoFetch(true);
+  }, 5000);
   // const latestMessage = getLatestMessage(chatId)
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
  
   };
 
+  useEffect(()=> {
+    if(timetoFetch) dispatch(fetchMessages(chatId)).then(()=> {
+      setTimetoFetch(false);
+    });
+  }, [timetoFetch]);
+
+  window.currentUser = currentUser;
+  window.messages = messages;
+
   useEffect(()=>{
    dispatch(fetchMessages(chatId))
-   if (storeMessages) setLoading(false)
+   if (messages) setLoading(false)
   //  console.log('are they here?',storeMessages)
-  },[currentUser,chatId])
-
-  useEffect(()=>{
-  if(storeMessages) { 
-    setMessages(storeMessages)
-    setLoading(false);
-  } 
-},[chatId,storeMessages?.length])
+  },[chatId])
 
 
 
+  // if(!messages) return null;
 
  
   const handleClick = (e) => {
@@ -55,14 +63,13 @@ function ChatBox() {
  
      dispatch(sendMessage(newMessage,chatId))
     //  console.log(messages)
-        setMessages([...messages, newMessage]);
         // console.log(messages)
       setNewMessage("");
     } else if (e.type === 'click' && newMessage) {
 
      dispatch(sendMessage(newMessage,chatId))
-        setMessages([...messages, newMessage]);
       setNewMessage("");
+      setTimetoFetch(true); 
     }
   };
   return (
@@ -85,7 +92,7 @@ function ChatBox() {
         />
       ) : (
         <div>
-          {messages.map((message)=>(
+          {messages?.map((message)=>(
             <div className={currentUser._id === message._id ? 'current-user-text' : 'listener-text'}>
               <Text>{message.content}</Text>
               </div>
@@ -93,28 +100,35 @@ function ChatBox() {
         }
         </div>
       )}
-      <FormControl
-        onKeyDown={handleClick}
-        isRequired
-        mt={3}
-        display="flex"
+      <Box
+      pos="absolute"
+      bottom="0"
+      
       >
-        <Input
-          variant="filled"
-          bg="f8f8f8"
-          placeholder="be heard..."
-          onChange={typingHandler}
-          value={newMessage}
-        />
-        <Button
-          onClick={handleClick}
-          colorScheme={"teal"}
-          size="md"
-          variant="outline"
+        <FormControl
+          onKeyDown={handleClick}
+          isRequired
+          mt={3}
+          display="flex"
+          mb="0"
         >
-          send
-        </Button>
-      </FormControl>
+          <Input
+            variant="filled"
+            bg="f8f8f8"
+            placeholder="be heard..."
+            onChange={typingHandler}
+            value={newMessage}
+          />
+          <Button
+            onClick={handleClick}
+            colorScheme={"teal"}
+            size="md"
+            variant="outline"
+          >
+            send
+          </Button>
+        </FormControl>
+      </Box>
     </Box>
   );
 }
