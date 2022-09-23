@@ -2,12 +2,20 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from "./session";
 import errors from "./errors";
+
+import topics from './topics';
+
 import confessions from './confessions'
+import chats from './chat'
+import messages from "./messages"
 
 const rootReducer = combineReducers({
   session,
   errors,
+  topics,
+  chats,
   confessions,
+  messages
 });
 
 let enhancer;

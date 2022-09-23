@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import configureStore from './store/store';
 import jwtFetch from "./store/jwt"
-
+import { ChakraProvider } from '@chakra-ui/react'
 let store = configureStore();
 
 if (process.env.NODE_ENV !== "production") {
@@ -18,7 +18,9 @@ function Root() {
   return (
     <Provider store={store}>
       <BrowserRouter>
+      <ChakraProvider>
         <App />
+        </ChakraProvider>
       </BrowserRouter>
     </Provider>
   );

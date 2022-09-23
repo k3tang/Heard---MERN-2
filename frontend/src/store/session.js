@@ -27,6 +27,12 @@ const logoutUser = () => ({
 export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 });
+ export const _getCurrentUser = (state) =>{
+    if (!state) return null;
+    else if (!state.session?.user) return null;
+    else return state.session.user;
+
+ }
 
 export const getCurrentUser = () => async dispatch => {
     const res = await jwtFetch('/api/users/current');
@@ -77,7 +83,7 @@ export const updateUser = (userData) => async dispatch => {
     body: JSON.stringify(userData)
   })
   const user = await res.json();
-  dispatch(receiveCurrentUser({ user }))
+  return dispatch(receiveCurrentUser({ user }))
 }
 
 export const logout = () => dispatch => {

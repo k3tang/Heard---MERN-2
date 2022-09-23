@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
+const { restoreUser } = require("../../config/passport");
 const { admin, protect } = require("../../middleware/authMiddleware");
 const Confession = require('../../models/Confession')
 // router.get('/', function(req, res, next) {
@@ -17,7 +18,8 @@ const getAllConfessions = asyncHandler(async (req, res) => {
 
 const createConfession = asyncHandler(async (req, res) => {
 
-    const { userId, mood, body ,persist } = req.body;
+   const {  mood, body ,persist } = req.body;
+    const userId = req.user._id;
     if (!userId || !mood || !body) {
         res.status(400);
         throw new Error('please add all fields to confession');
@@ -99,13 +101,13 @@ const getConfessionsByMoods = asyncHandler(async (req, res) => {
 
 router
   .route("/")
-  .get(getAllConfessions)
-  .post(createConfession);
+  .get(restoreUser, getAllConfessions)
+  .post(restoreUser, createConfession);
 router
     .route("/:id")
-    .put( editConfession)
-    .delete(deleteConfession);
-router.route("/moods").get(getConfessionsByMoods); // needs an array of moods in the body like moods: `${user.moods}`
-router.route("/user/:id").get( getUserConfessions);// this is api/confessions/userId and will get all confessions by user Id
+    .put(restoreUser, editConfession)
+    .delete(restoreUser, deleteConfession);
+router.route("/moods").get(restoreUser, getConfessionsByMoods); // needs an array of moods in the body like moods: `${user.moods}`
+router.route("/user/:id").get(restoreUser, getUserConfessions);// this is api/confessions/userId and will get all confessions by user Id
 
 module.exports = router;
