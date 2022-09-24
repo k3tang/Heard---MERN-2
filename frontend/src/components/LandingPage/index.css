@@ -11,13 +11,13 @@
     margin: auto;
     margin-top: 5vh;
     width: 12vw;
-    animation-name: bobble;
+    /* animation-name: bobble;
     animation-timing-function: ease-in;
     animation-duration: 4s;
-    animation-iteration-count: infinite;
+    animation-iteration-count: infinite; */
 }
 
-@keyframes bobble {
+/* @keyframes bobble {
     from {
         top: 10vh;
     }
@@ -25,7 +25,7 @@
     to {
         top: 0vh;
     }
-}
+} */
 
 .square-button {
     background: #EEF0F4;
@@ -38,9 +38,8 @@
     height: 5vw;
     text-align: center;
     text-transform: uppercase;
+    cursor: pointer;
 }
-
-
 
 .landing-title {
     display: block;
@@ -49,4 +48,23 @@
     text-align: center;
     letter-spacing: 0.04em;
     padding-top: 2vh;
+}
+
+.welcome-header {
+    display: block;
+    margin: auto;
+    font-size: 2.25vw;
+    text-align: center;
+    letter-spacing: 0.04em;
+    padding-top: 8vh;
+}
+
+.welcome-message {
+    text-align: center;
+    font-size: 1.25vw;
+    margin-top: 4vh;
+    margin-left: 6vw;
+    margin-right: 6vw;
+    line-height: 5vh;
+    color: #8794bf;
 }

@@ -57,7 +57,7 @@ function SignupForm () {
   return (
     <div className='form-container'>
       <div className='session-form-container'>
-      <h2>Sign Up Form</h2>
+      <h2 className='form-header'>Sign up with us!</h2>
         <form className="session-form" onSubmit={usernameSubmit}>
           <div className="errors">{errors?.email}</div>
           {/* <label className='session-form-title'>
