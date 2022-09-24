@@ -29,7 +29,7 @@ const leaveChat = (e) =>{
 }
   return (
     <>
-      <Button onClick={onOpen}>Leave Chat</Button>
+      <Button size="xs" onClick={onOpen}>Delete Thread</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
