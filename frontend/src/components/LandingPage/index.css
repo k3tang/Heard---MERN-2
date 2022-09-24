@@ -3,7 +3,28 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 75vh;
+    height: 50vh;
+}
+
+.bottle-logo {
+    display: block;
+    margin: auto;
+    margin-top: 5vh;
+    width: 12vw;
+    animation-name: bobble;
+    animation-timing-function: ease-in;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes bobble {
+    from {
+        top: 10vh;
+    }
+
+    to {
+        top: 0vh;
+    }
 }
 
 .square-button {
@@ -11,16 +32,21 @@
     border: none;
     border-radius: 40%;
     box-shadow: 2.55vh 2.55vh 2.88vh #D9DADE, -2.55vh -2.55vh 1.52vw #FFFFFF;
-    font-size: 2vw;
+    font-size: 1.5vw;
     border-radius: 2vh;
-    width: 10vw;
-    height: 10vw;
+    width: 20vw;
+    height: 5vw;
     text-align: center;
-    color: #5a6794;
+    text-transform: uppercase;
 }
 
+
+
 .landing-title {
-    font-size: 5vw;
+    display: block;
+    margin: auto;
+    font-size: 1.5vw;
     text-align: center;
     letter-spacing: 0.04em;
+    padding-top: 2vh;
 }

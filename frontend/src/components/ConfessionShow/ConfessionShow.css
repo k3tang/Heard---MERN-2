@@ -1,5 +1,17 @@
+.confession-show-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+}
+
 .loading-container{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .loading-title{
@@ -10,9 +22,9 @@
 .confession-body {
     margin-left: 5vw;
     margin-right: 5vw;
-    margin-top: 5vw;
     font-family: 'Lora', serif;
     text-transform: none;
     font-size: xx-large;
     font-style: italic;
+    text-align: center;
 }

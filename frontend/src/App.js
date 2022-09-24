@@ -22,12 +22,14 @@ import TopicIndex from './components/TopicIndex';
 
 import AnotherConfession from './components/AnotherConfession';
 import UserConfessions from './components/UserProfile/userConfessions';
-import "./index.css"
+import "./index.css";
+import { useLocation } from 'react-router-dom';
 
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const location = useLocation();
 
 
   useEffect(() => {
@@ -37,7 +39,7 @@ function App() {
   return loaded && (
     <>
     <div id='entire-container'>
-      <NavBar />
+        {(location.pathname === "/" || location.pathname === "/login" || location.pathname === "/signup") ? "" : <NavBar />}
       <Switch>
         <AuthRoute exact path="/" component={LandingPage} />
         <AuthRoute exact path="/login" component={LoginForm} />
