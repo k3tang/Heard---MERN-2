@@ -18,21 +18,18 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { getCurrentUser, _getCurrentUser } from '../../../store/session'
 import {fetchChatsbyUser, getAllChats, getCurrentChat, receiveCurrentChat} from '../../../store/chat'
+import { getAllTopics } from '../../../store/topics'
 
 
 function MyTopicsDrawer() {
-  const {chatId} = useParams()
+  const {topicId} = useParams()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
   const history = useHistory()
   const dispatch = useDispatch()
 
   const currentUser = useSelector(_getCurrentUser)
-  
-  const currentChat = useSelector((state)=>getCurrentChat(state))
-  
-  
-   const chats = useSelector((state)=>getAllChats(state))
+  const topics = useSelector(getAllTopics())
   
 
     useEffect(() => {
@@ -41,15 +38,12 @@ function MyTopicsDrawer() {
  
    //
 useEffect(()=>{
-   if(currentUser) dispatch(fetchChatsbyUser(currentUser._id))
+   if(currentUser) dispatch(fetchTopicsbyUser(currentUser._id))
   },[currentUser])
 
-  const moveChats=(chatId)=>{
-    const chat = chats.find(chat => chat._id === chatId)
-    console.log('what is',chat)
-    dispatch(receiveCurrentChat(chat));
-     history.push(`/chats/${chatId}`)
-  }
+if (topics && currentUser){
+  const myTopics = Object.values(topics).filter(topic => topic.userId = currentUser._id)
+}
 
   return (
     <>
@@ -80,14 +74,14 @@ useEffect(()=>{
             >
            
               <Stack>
-                 {  chats?.map(chat => {
+                 {  myTopics?.map(topic => {
                  
              return <Box
-                  key={chat._id}
-                onClick={()=> moveChats(chat?._id)}
+                  key={topic._id}
+                onClick={()=> moveTopics(topic?._id)}
                 cursor="pointer"
-                bg={chatId === chat?._id ? 'blue' : 'white' }
-                color={chatId === chat?._id ? 'white' : 'blue' }
+                bg={topicId === topic?._id ? 'blue' : 'white' }
+                color={topicId === topic?._id ? 'white' : 'blue' }
                 px={3}
                 py={2}
                 > 
@@ -105,7 +99,7 @@ useEffect(()=>{
               colorScheme="blue"
               onClick={() => history.push("/topic-create")}
             >
-              New Topic Request
+              New Topic
             </Button>
           </DrawerFooter>
         </DrawerContent>

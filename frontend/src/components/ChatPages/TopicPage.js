@@ -9,12 +9,14 @@ import { getCurrentUser, _getCurrentUser } from '../../store/session'
 import MyTopicsDrawer from '../TopicIndex/MyTopicsDrawer'
 import { Button } from '@chakra-ui/react'
 import Modal2 from './modal2'
+import { use } from 'passport'
+import { getAllMessages } from '../../store/messages'
 
 
 function TopicPage() {
- //get chat from store and in useEffect setChat
+ const {topicId} = useParams();
  const dispatch = useDispatch()
-  const [chat, setChat] = useState('')
+
   const [user, setUser] = useState()
   const currentUser = useSelector(_getCurrentUser)
   useEffect(()=>{
@@ -28,11 +30,16 @@ function TopicPage() {
   const handleClick=(e)=>{
     
   }
+
+  useEffect(()=>{
+    dispatch(fetchMessages(topicId))
+  },[topicId])
+
   return (
     <div className='chat-page'>
      <MyTopicsDrawer/>
       <Box>
-        <Modal2/>
+      
 
         {currentUser && <ChatBox />}
       </Box>
