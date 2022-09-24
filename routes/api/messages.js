@@ -28,8 +28,8 @@ const createMessage = asyncHandler(async (req, res) => {
 
     const foundTopic = await Topic.findById(topicId)
     if (foundTopic){
-      foundTopic.findByIdAndUpdate(topicId, req.body, {
-          new: true
+      foundTopic.findByIdAndUpdate(topicId, {
+        messages: [...foundTopic.messages,fullMessage._id]
       })
     res.status(200).json(fullMessage)
     }

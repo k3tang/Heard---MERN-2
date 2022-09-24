@@ -133,7 +133,7 @@ router
     // .post(pushTopicResponse)
     .delete(deleteTopic)
     .get(getTopic)
-router.route("/user/:id").get( getUserTopics);// this is api/confessions/userId and will get all confessions by user Id
+router.route("/user/:id").get(restoreUser, getUserTopics);// this is api/confessions/userId and will get all confessions by user Id
 // router.route("/addResponse/:topicId").post(addResponse)
 //addResponse needs: the topic id in the wildcard, 
 //{body: "user response blah"} in the body of the request.

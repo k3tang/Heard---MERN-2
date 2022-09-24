@@ -19,13 +19,13 @@ import { useEffect } from "react";
 function ChatBox() {
 
   const dispatch = useDispatch()
-  const currentChat = useSelector(getCurrentChat);
+
   const currentUser = useSelector(_getCurrentUser);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  const {chatId} = useParams()
-  const storeMessages = useSelector((state)=>getAllMessages(state,chatId))
+  const {topicId} = useParams()
+  const storeMessages = useSelector((state)=>getAllMessages(state,topicId))
   // const latestMessage = getLatestMessage(chatId)
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
@@ -33,17 +33,17 @@ function ChatBox() {
   };
 
   useEffect(()=>{
-   dispatch(fetchMessages(chatId))
+   dispatch(fetchMessages(topicId))
    if (storeMessages) setLoading(false)
   //  console.log('are they here?',storeMessages)
-  },[currentUser,chatId])
+  },[currentUser,topicId])
 
-  useEffect(()=>{
-  if(storeMessages) { 
-    setMessages(storeMessages)
-    setLoading(false);
-  } 
-},[chatId,storeMessages?.length])
+//   useEffect(()=>{
+//   if(storeMessages) { 
+//     setMessages(storeMessages)
+//     setLoading(false);
+//   } 
+// },[topicId,storeMessages?.length])
 
 
 
@@ -52,14 +52,14 @@ function ChatBox() {
   const handleClick = (e) => {
     if (e.type === 'keydown' && e.key === "Enter" && newMessage) {
  
-     dispatch(sendMessage(newMessage,chatId))
+     dispatch(sendMessage(newMessage,topicId))
      console.log(messages)
         setMessages([...messages, newMessage]);
         // console.log(messages)
       setNewMessage("");
     } else if (e.type === 'click' && newMessage) {
 
-     dispatch(sendMessage(newMessage,chatId))
+     dispatch(sendMessage(newMessage,topicId))
         setMessages([...messages, newMessage]);
       setNewMessage("");
     }
@@ -84,8 +84,8 @@ function ChatBox() {
         />
       ) : (
         <div>
-          {messages.map((message)=>(
-            <div className={currentUser._id === message._id ? 'current-user-text' : 'listener-text'}>
+          {storeMessages.map((message)=>(
+            <div >
               <Text>{message.content}</Text>
               </div>
           ))
