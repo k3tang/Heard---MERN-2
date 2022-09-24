@@ -73,6 +73,23 @@ export const createTopic = (topicInfo) => async dispatch =>{ // contains ownerId
   }
 }
 
+export const editTopic = (topicInfo, topicId) => async dispatch =>{ // contains ownerId, title, mood
+  // console.log('IN CREATE TOPIC',topicInfo);
+  const res = await jwtFetch(`/api/topics/${topicId}`,{
+    method: 'PUT',
+    body: JSON.stringify(topicInfo)
+  })
+  const topic = await res.json()
+  // console.log(topic._id);
+  if (res.ok){
+    dispatch(receiveTopic(topic))
+
+    return topic;
+  } else{
+    console.log('problems in fetching topic into store')
+  }
+}
+
 export const deleteTopic = (topicId) => async dispatch => {
   const res = await jwtFetch(`/api/topics/${topicId}`,{
     method: 'DELETE'
