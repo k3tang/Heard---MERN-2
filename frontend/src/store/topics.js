@@ -56,6 +56,21 @@ export const fetchTopic = (topicId) => async dispatch => {
   }
 }
 
+export const fetchTopicsbyUser = (userId) => async dispatch =>{
+  try {
+    const res = await jwtFetch(`/api/topics/user/${userId}`)
+    const topics = await res.json()
+    dispatch({type: RECEIVE_TOPICS, topics: topics})
+  } catch (err) {
+    const resBody = await err.json();
+    if (resBody.statusCode === 400) {
+      // insert error handling here
+      // dispatch(receiveErrors(resBody.errors));
+    }
+  }
+  
+}
+
 export const createTopic = (topicInfo) => async dispatch =>{ // contains ownerId, title, mood
   // console.log('IN CREATE TOPIC',topicInfo);
   const res = await jwtFetch("/api/topics/",{

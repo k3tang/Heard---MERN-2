@@ -18,7 +18,7 @@ export const getAllMessages = (topicId) => (state) => {
   if (!state) return null;
   if (!state.messages) return null;
   else {
-  return Object.values(state.messages);
+  return Object.values(state.messages).filter((message) => message.topicId === topicId);
   }
 };
 
@@ -33,11 +33,11 @@ export const getAllMessages = (topicId) => (state) => {
     } catch (error) {}
   };
 
- export  const addMessage = (topicId, userId, body) => async (dispatch)=>{
+ export  const addMessage = (topicId, content) => async (dispatch)=>{
      try {
-       const data = await jwtFetch(`/addResponse/${topicId}`, {
+       const data = await jwtFetch(`/api/messages/`, {
          method: "POST",
-         body: JSON.stringify({ userId, body }),
+         body: JSON.stringify({ topicId, content }),
        });
        const createdMessage = await data.json();
        if (createdMessage) {
