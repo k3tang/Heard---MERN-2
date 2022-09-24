@@ -84,8 +84,11 @@ if (topics && currentUser){
                 color={topicId === topic?._id ? 'white' : 'blue' }
                 px={3}
                 py={2}
+              
                 > 
                 <Text> {chat?.title}</Text>
+                <Button onClick={handleEdit}>Edit Title</Button>
+                <Button onClick={handleDelete}>Delete</Button>
                 </Box>
                  })}
                            

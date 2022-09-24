@@ -16,11 +16,11 @@ import { deleteChat } from "../../../store/chat";
 
 function Modal2() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {chatId} = useParams()
+  const {topicId} = useParams()
 const dispatch = useDispatch();
 const history = useHistory()
 const leaveChat = (e) =>{
-  dispatch(deleteChat(chatId))
+  dispatch(deleteTopic(topicId))
   setTimeout(()=>{
     history.push("/topic-index")
   },1000)
@@ -34,7 +34,7 @@ const leaveChat = (e) =>{
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Hope you feel better</ModalHeader>
+          <ModalHeader>Are you sure?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
    
@@ -42,9 +42,9 @@ const leaveChat = (e) =>{
 
           <ModalFooter>
             <Button colorScheme="blue" mr={3} onClick={onClose}>
-              keep chatting?
+              Keep Thread Open
             </Button>
-            <Button variant="ghost" onClick={(e)=>leaveChat(e)}>I've been heard</Button>
+            <Button variant="ghost" onClick={(e)=>leaveChat(e)}>I've been heard(delete)</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
