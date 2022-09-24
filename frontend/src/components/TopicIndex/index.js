@@ -12,7 +12,7 @@ import { getAllTopics, fetchAllTopics, deleteTopic } from "../../store/topics";
 
 const TopicIndex = () => {
 
-    // const [topics, setTopics] = useState();
+
 
   const topics = useSelector(getAllTopics);
   const dispatch = useDispatch();
@@ -81,7 +81,7 @@ const TopicIndex = () => {
 // console.log('store topics', storeTopics)
   return (
     <>
-      <MyTopicsDrawer />
+      <MyTopicsDrawer topics={topics}/>
       <div className="topic-container">
         <ul>
           

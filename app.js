@@ -99,5 +99,37 @@ app.use((err, req, res, next) => {
         errors: err.errors
     })
 });
+// TESTING BELOW
 
+// const socketio = require("socket.io");
+
+// const server = http.createServer(app);
+// const io = socketio(server, { cors: { origin: "http://localhost:3000" } }); //for omit cors error
+
+// const PORT = 5000;
+// app.use(express.json());
+// app.use(cors());
+
+// io.on("connect", (socket) => {
+//   console.log("user connected");
+
+//   socket.on("valor", ({ id, name }, callback) => {
+//     console.log("data::", id, name);
+
+//     socket.emit(
+//       "receiveGreet",
+//       { data: "This message from server" },
+//       (error) => {
+//         console.log("error::", error);
+//       }
+//     );
+//     callback();
+//   });
+
+//   socket.on("disconnect", () => {
+//     console.log("user disconnected");
+//   });
+// });
+
+// server.listen(PORT)
 module.exports = app;

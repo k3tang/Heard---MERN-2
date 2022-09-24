@@ -85,15 +85,7 @@ function ChatBox() {
       w={"100%"}
       bg='#f2f2f2'
     >
-      {!messages ? (
-        <Spinner
-          size="xl"
-          speed="0.9s"
-          emptyColor="gray.200"
-          alignSelf="center"
-          color="blue.400"
-        />
-      ) : (
+   
         <div>
           {messages.map((message)=>(
             <div className={currentUser._id === message._id ? 'current-user-text' : 'listener-text'}>
@@ -102,7 +94,7 @@ function ChatBox() {
           ))
         }
         </div>
-      )}
+    
       <FormControl
         onKeyDown={handleClick}
         isRequired
@@ -122,7 +114,7 @@ function ChatBox() {
           size="md"
           variant="outline"
         >
-          send
+          post
         </Button>
       </FormControl>
     </Box>

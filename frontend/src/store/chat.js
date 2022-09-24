@@ -84,20 +84,24 @@ export const removeChat = (chatId) => ({
 
 const chatsReducer = (state = {}, action) => {
   Object.freeze(state);
-  let newState = { ...state };
-  console.log(action);
+  let newState = {...state};
+  console.log(action);;
   switch (action.type) {
     case RECEIVE_CHATS:
+      newState={};
+    
       for (let chat of action.chats) {
+      
         newState[chat._id] = chat;
       }
+      newState['currentChat'] = newState[state['currentChat']?._id] || undefined;
       return { ...newState };
     case RECEIVE_CURRENT_CHAT:
       newState["currentChat"] = action.chat;
 
       return { ...newState };
     case REMOVE_CHAT:
-      newState["currentChat"] = null;
+      newState["currentChat"] = undefined;
       delete newState[action.chatId];
       return newState;
     default:

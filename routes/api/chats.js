@@ -12,7 +12,7 @@ const { restoreUser } = require("../../config/passport")
 
 const getChats =  asyncHandler(async (req, res, next) => {
   const userId = req.user._id
-  const foundChats = await Chat.find({users:{ $elemMatch: {$eq: userId}}})
+  const foundChats = await Chat.find({users:{ $in: [userId]}})
   console.log('are we finding the cchats',foundChats, userId)
     res.json(foundChats);
   });
@@ -29,12 +29,7 @@ const accessChat = asyncHandler(async (req,res,next)=>{
    if (!userId){
      return res.status(401).json({message: 'User Id not included or undefined or incorrectly formatted'})
    }
-  let foundChat = await Chat.find({
-    isGroupChat: false, $and: [ 
-      {users:{ $elemMatch: {$eq: currentUserId}}},
-        {users:{ $elemMatch: {$eq: userId}}}      // this check makes sure it is not a group chat and that the chat users array includes EITHER the current user OR the userID that was sent in from the front in the body. 
-    ]
-   }).populate('users',"-password").populate('latestMessage') 
+  let foundChat = await Chat.find({topicId :topicId}).populate('users',"-password").populate('latestMessage') 
      //once the chat is found, we set this user's id in the chat
      //below we add to the found chat the information we will need if it exists 
 

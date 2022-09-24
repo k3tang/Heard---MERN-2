@@ -77,9 +77,10 @@ export const deleteTopic = (topicId) => async dispatch => {
         
 const topicsReducer = (state = {}, action) => { 
   Object.freeze(state)
-  const newState = {...state}
+  let newState = {...state}
     switch (action.type) {
         case RECEIVE_TOPICS:
+            newState = {};
             for(let topic of action.topics) {
               newState[topic._id] = topic;
             }

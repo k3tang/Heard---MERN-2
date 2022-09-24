@@ -30,9 +30,9 @@ function ChatPage() {
   }
   return (
     <div className='chat-page'>
-     <MyTopicsDrawer/>
+     {/* <MyTopicsDrawer/> */}
       <Box>
-        <Modal2/>
+        {/* <Modal2/> */}
 
         {currentUser && <ChatBox />}
       </Box>

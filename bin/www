@@ -32,7 +32,7 @@ var server = http.createServer(app);
 
 mongoose.connect(db, { useNewUrlParser: true })
   .then(() => {
-    debug("Connectado a MongoDB con exito");
+    debug("Connected to MongoDB successfully");
 
     server.listen(port);
   })
@@ -104,10 +104,10 @@ function onListening() {
 }
 //below are new lines of code:
 
-// const io = require('socket.io').listen(5000)
 
 
-// const io(server,{
+
+// const io = require('socket.io')(server,{
 //   pingTimeout:60000,
 //   cors: {
 //     origin: "http://localhost:3000"
@@ -118,3 +118,26 @@ function onListening() {
 //   console.log('connected to soket.io')
 //   socket.on('setup', console.log('from hereeee'))
 // })
+
+// io.on("connection", (socket) => {
+//   console.log("user connected");
+
+//   socket.on("valor", ({ id, name }, callback) => {
+//     console.log("data::", id, name);
+
+//     socket.emit(
+//       "receiveGreet",
+//       { data: "This message from server" },
+//       (error) => {
+//         console.log("error::", error);
+//       }
+// //     );
+// //     callback();
+// //   });
+
+// //   socket.on("disconnect", () => {
+// //     console.log("user disconnected");
+// //   });
+// // });
+
+// server.listen(5000);
