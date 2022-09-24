@@ -8,9 +8,9 @@ const messageSchema = mongoose.Schema({
     type: String, 
     trim:true
   },
-  chatId: {
+  topicId: {
       type: mongoose.Schema.Types.ObjectId,
-       ref: 'Chat',
+       ref: 'Topic',
   }
 },{
   timestamps: true,

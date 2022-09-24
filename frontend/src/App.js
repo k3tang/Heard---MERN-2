@@ -16,7 +16,7 @@ import ConfessionShow from './components/ConfessionShow';
 import TopicCreate from './components/TopicCreate';
 import UserProfile from './components/UserProfile';
 
-import ChatPage from './components/ChatPages/ChatPage';
+import TopicPage from './components/ChatPages/TopicPage';
 import ChatPage1 from './components/ChatPages/ChatPage1/ChatPage1';
 import TopicIndex from './components/TopicIndex';
 
@@ -53,8 +53,8 @@ function App() {
         <Route exact path="/topic-create" component={TopicCreate} />
         <Route exact path="/topic-index" component={TopicIndex} />
 
-        <Route exact path="/talk" component={ChatPage1}/>
-          <Route exact path="/chats/:chatId" component={ChatPage}/>
+
+          <Route exact path="/topic/:topicId" component={TopicPage}/>
 
         <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
         <ProtectedRoute exact path="/user-confessions" component={UserConfessions}/>
