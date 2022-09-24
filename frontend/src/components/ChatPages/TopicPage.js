@@ -11,7 +11,7 @@ import { Button } from '@chakra-ui/react'
 import Modal2 from './modal2'
 
 
-function ChatPage() {
+function TopicPage() {
  //get chat from store and in useEffect setChat
  const dispatch = useDispatch()
   const [chat, setChat] = useState('')
@@ -40,5 +40,5 @@ function ChatPage() {
   )
 }
  
-export default ChatPage;
+export default TopicPage;
 
