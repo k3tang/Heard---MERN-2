@@ -19,9 +19,9 @@
     box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
     border-radius: 10px;
     font-size: 1.25vw;
-    border-radius: 2vh;
+    border-radius: 4vh;
     width: 25vw;
-    height: 10vw;
+    height: 7vw;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -42,8 +42,8 @@
     }
 
     .listen-square-button {
-        width: 50vw;
-        height: 13vh;
+        width: 60vw;
+        height: 11vh;
         font-size: 4vw;
         padding: 2vh;
     }
