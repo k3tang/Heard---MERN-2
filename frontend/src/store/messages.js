@@ -1,57 +1,47 @@
 import jwtFetch from "./jwt";
 
 const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES'
-const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
+const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE' // only for pushing messages. Editing or deleting will trigger RECEIVE_MESSAGES
 
-const receiveMessages = (messages,chatId) =>({
+const receiveMessages = (topicId) =>({
   type: RECEIVE_MESSAGES,
-  messages,
-  chatId
+  topicId
 })
 
-const receiveMessage = (message,chatId) =>({
+const receiveMessage = (message, topicId) =>({
   type: RECEIVE_MESSAGE,
   message,
-  chatId
+  topicId
 })
 
-export const getAllMessages = (state,chatId) => {
+export const getAllMessages = (topicId) => (state) => {
   if (!state) return null;
   if (!state.messages) return null;
   else {
-  return Object.values(state.messages).filter(
-    (message) => message.chatId === chatId
-  );
+  return Object.values(state.messages);
   }
 };
 
 
-// export const getLatestMessage = (state, chatId) => {
-//   if (!state) return null;
-//   if (!state.messages) return null;
-//   if (!state.messages[chatId]) return null;
-//    if (!state.messages[chatId].latestMessage) return null;
-//    else return state.messages[chatId].latestMessage;
-// };
- export const fetchMessages = (chatId) => async(dispatch) =>{
+ export const fetchMessages = (topicId) => async(dispatch) =>{
     try {
-      const data = await jwtFetch(`/api/messages/${chatId}`)
+      const data = await jwtFetch(`/api/messages/${topicId}`)
       const messages = await data.json();
       if (messages) {
-        dispatch(receiveMessages(messages,chatId))
+        dispatch(receiveMessages(topicId));
       }
     } catch (error) {}
   };
 
- export  const sendMessage = (content, chatId) => async (dispatch)=>{
+ export  const addMessage = (topicId, userId, body) => async (dispatch)=>{
      try {
-       const data = await jwtFetch("/api/messages", {
+       const data = await jwtFetch(`/addResponse/${topicId}`, {
          method: "POST",
-         body: JSON.stringify({ content, chatId }),
+         body: JSON.stringify({ userId, body }),
        });
        const createdMessage = await data.json();
        if (createdMessage) {
-             dispatch(receiveMessage(createdMessage,chatId))
+             dispatch(receiveMessage(createdMessage, topicId))
        }
      } catch (error) {}
    };
