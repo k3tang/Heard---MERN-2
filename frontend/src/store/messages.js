@@ -29,6 +29,7 @@ export const getAllMessages = (topicId) => (state) => {
       const messages = await data.json();
       if (messages) {
         dispatch(receiveMessages(topicId));
+        return messages;
       }
     } catch (error) {}
   };
@@ -42,6 +43,7 @@ export const getAllMessages = (topicId) => (state) => {
        const createdMessage = await data.json();
        if (createdMessage) {
              dispatch(receiveMessage(createdMessage, topicId))
+             return createdMessage;
        }
      } catch (error) {}
    };

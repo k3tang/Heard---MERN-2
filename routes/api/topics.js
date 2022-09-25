@@ -11,7 +11,7 @@ const getAllTopics = asyncHandler(async (req, res) => {
 })
 
 const getTopic = asyncHandler(async (req,res) => {
-    const topic = await Topic.findById(req.params.id)
+    const topic = await Topic.findById(req.params.id).populate('messages');
    if (topic){
     return res.status(200).json(topic)
    } else{

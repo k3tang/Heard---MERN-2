@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getCurrentChat } from "../../../store/chat";
+// import { getCurrentChat } from "../../../store/chat";
 import { useState } from "react";
 import "./chatbox.css";
 import { _getCurrentUser } from "../../../store/session";
@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import {useParams} from 'react-router-dom'
 
-import {sendMessage, fetchMessages, getAllMessages, getLatestMessage} from '../../../store/messages'
+import {fetchMessages, getAllMessages, addMessage } from '../../../store/messages'
 import { useEffect } from "react";
 
 function ChatBox() {
@@ -25,7 +25,7 @@ function ChatBox() {
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const {topicId} = useParams()
-  const storeMessages = useSelector((state)=>getAllMessages(state,topicId))
+  const storeMessages = useSelector(getAllMessages)
   // const latestMessage = getLatestMessage(chatId)
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
@@ -52,14 +52,14 @@ function ChatBox() {
   const handleClick = (e) => {
     if (e.type === 'keydown' && e.key === "Enter" && newMessage) {
  
-     dispatch(sendMessage(newMessage,topicId))
+     dispatch(addMessage(topicId, newMessage,))
      console.log(messages)
         setMessages([...messages, newMessage]);
         // console.log(messages)
       setNewMessage("");
     } else if (e.type === 'click' && newMessage) {
 
-     dispatch(sendMessage(newMessage,topicId))
+     dispatch(addMessage(topicId, newMessage))
         setMessages([...messages, newMessage]);
       setNewMessage("");
     }

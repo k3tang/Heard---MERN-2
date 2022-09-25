@@ -7,8 +7,8 @@ import { useHistory } from "react-router-dom";
 import MyTopicsDrawer from "./MyTopicsDrawer";
 import Topic from "./Topic";
 import { getCurrentUser } from "../../store/session";
-import { accessChat, getAllChats, fetchChatsbyUser } from "../../store/chat";
-import { getAllTopics, fetchAllTopics, deleteTopic } from "../../store/topics";
+// import { accessChat, getAllChats, fetchChatsbyUser } from "../../store/chat";
+import { getAllTopics, fetchAllTopics, fetchTopic } from "../../store/topics";
 
 const TopicIndex = () => {
 
@@ -17,8 +17,6 @@ const TopicIndex = () => {
   const topics = useSelector(getAllTopics);
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const [user, setUser] = useState();
 
   const currentUser = useSelector((state) => {
     if (!state) return null;
@@ -38,22 +36,13 @@ const TopicIndex = () => {
       dispatch(getCurrentUser());
     }, []);
 
-  useEffect(() => {
-    setUser(currentUser);
-  }, [currentUser]);
-
-  const makeChat = (currentUserId, authorId, topicId) => {
-    console.log('user._id', user._id)
-    console.log('currentuserid', currentUser._id)
-    console.log('authorId', authorId)
-    dispatch(accessChat(currentUserId, authorId, topicId)).then(res => {
-      history.push(`/chats/${res._id}`);
-    console.log('chatId',res._id)
+  const makeChat = (topicId) => {
+    dispatch(fetchTopic(topicId)).then(res => {
+      history.push(`/topic/${res._id}`);
+    console.log('topicId',res._id)
     }).catch((err) => {
       console.log(err);
     })
-    dispatch(deleteTopic(topicId));
-    
   
   };
 
@@ -72,7 +61,7 @@ const TopicIndex = () => {
   // }, [currentChat]);
 
 
-  if(!user || !topics) return null;
+  if(!currentUser || !topics) return null;
 
 // console.log('store topics', storeTopics)
   return (
@@ -80,12 +69,10 @@ const TopicIndex = () => {
       <MyTopicsDrawer />
       <div className="topic-container">
         <ul>
-          
-          {topics?.filter(topic => topic.userId !== user?._id).map ((topic=> 
-                <Topic topic={topic} key={topic._id} handleFunction={() => makeChat(user._id,topic.userId,topic._id)}/>
+          {topics?.map ((topic=> 
+                <Topic topic={topic} key={topic._id} handleFunction={() => makeChat(topic._id)}/>
             )) 
-        }
-      
+          }
         </ul>
       </div>
     </>
