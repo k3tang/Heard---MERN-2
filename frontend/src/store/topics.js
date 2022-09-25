@@ -16,6 +16,7 @@ const removeTopic = (topicId)=>({
   topicId
 })
 
+
 export const getAllTopics =  (state) => {
         if (!state) return [];
         else if (!state.topics) return [];

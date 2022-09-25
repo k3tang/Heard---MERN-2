@@ -25,7 +25,7 @@ function ChatBox() {
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const {topicId} = useParams()
-  const storeMessages = useSelector(getAllMessages)
+  const storeMessages = useSelector(getAllMessages(topicId));
   // const latestMessage = getLatestMessage(chatId)
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
@@ -34,7 +34,8 @@ function ChatBox() {
 
   useEffect(()=>{
    dispatch(fetchMessages(topicId))
-   if (storeMessages) setLoading(false)
+  //  if (storeMessages) setLoading(false)
+  setLoading(false);
   //  console.log('are they here?',storeMessages)
   },[currentUser,topicId])
 
@@ -46,9 +47,11 @@ function ChatBox() {
 // },[topicId,storeMessages?.length])
 
 
+window.currentUser = currentUser;
+window.loading = loading;
+window.storeMessages = storeMessages;
 
 
- 
   const handleClick = (e) => {
     if (e.type === 'keydown' && e.key === "Enter" && newMessage) {
  
