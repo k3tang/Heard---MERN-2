@@ -47,7 +47,7 @@ const editTopic = asyncHandler(async (req, res) => {
         throw new Error('topic not found')
     }
     // if (req.params.id === req.user.id) {
-        const updatedTopic = await Topic.findOneAndUpdate(req.params.id,{title: req.body.title} ,{
+        const updatedTopic = await Topic.findOneAndUpdate({_id: req.params.id}, req.body, {
             new: true
         })
         console.log('IN BACK END DID WE UPDATE THIS', updatedTopic)
