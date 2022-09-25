@@ -17,9 +17,10 @@ import {useHistory, useParams} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { getCurrentUser, _getCurrentUser } from '../../../store/session'
-import {fetchChatsbyUser, getAllChats, getCurrentChat, receiveCurrentChat} from '../../../store/chat'
-import { getAllTopics } from '../../../store/topics'
 
+import { getAllTopics, fetchTopicsbyUser } from '../../../store/topics'
+import Modal2 from '../../ChatPages/modal2'
+import Modal1 from "../../ChatPages/modal1";
 
 function MyTopicsDrawer() {
   const {topicId} = useParams()
@@ -27,13 +28,18 @@ function MyTopicsDrawer() {
   const btnRef = React.useRef()
   const history = useHistory()
   const dispatch = useDispatch()
-
+  const [myTopics, setMyTopics] = useState();
   const currentUser = useSelector(_getCurrentUser)
-  const topics = useSelector(getAllTopics())
+  // const topics = useSelector(getAllTopics())
   
 
     useEffect(() => {
-      dispatch(getCurrentUser());
+
+       const myTopics = Object.values(topics).filter(
+         (topic) => (topic.userId = currentUser._id)
+       );
+       setMyTopics(myTopics)
+
     }, []);
  
    //
@@ -41,8 +47,9 @@ useEffect(()=>{
    if(currentUser) dispatch(fetchTopicsbyUser(currentUser._id))
   },[currentUser])
 
-if (topics && currentUser){
-  const myTopics = Object.values(topics).filter(topic => topic.userId = currentUser._id)
+const moveTopics = (id) =>{
+  history.push(`/topics/${id}`)
+  
 }
 
   return (
@@ -84,8 +91,11 @@ if (topics && currentUser){
                 color={topicId === topic?._id ? 'white' : 'blue' }
                 px={3}
                 py={2}
+              
                 > 
-                <Text> {chat?.title}</Text>
+                <Text> {topic?.title}</Text>
+                {topic && <Modal1 topic={topic}/> }
+                <Modal2/>
                 </Box>
                  })}
                            

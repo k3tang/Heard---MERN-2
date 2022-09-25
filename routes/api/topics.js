@@ -129,7 +129,7 @@ router
   .post(restoreUser, createTopic);
 router
     .route("/:id")
-    .put(editTopic)
+    .put(restoreUser, editTopic)
     // .post(pushTopicResponse)
     .delete(deleteTopic)
     .get(getTopic)
