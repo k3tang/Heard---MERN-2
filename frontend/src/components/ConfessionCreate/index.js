@@ -66,16 +66,17 @@ function ConfessionCreate () {
         {/* <h2 class='confession-create-title'> you may confess my child </    h2> */}
  
 
-        <div class='confession-form-container'>
-            <form class='confession-create-form' onSubmit={handleSubmit}>
-                <div class='mood-input-container'>          
+        <div className='confession-form-container'>
+            <h1 className="confession-form-title">Let it out, tell us how you're feeling...</h1>
+
+            <form className='confession-create-form' onSubmit={handleSubmit}>
+                <div className='mood-input-container'>          
 
 
 
  
                     {/* <label> mood </label> */}
                         <select className='confession-mood-dropdown'name="mood" title="Select a Mood" id="mood" value={mood} onChange={update('mood')}>
-                            <option defaultValue value='invalid'> I'm feeling...</option>
                             <option value="angry" >Angry</option>
                             <option value="loved" >Loved</option>
                             <option value="anxious">Anxious</option>
@@ -83,7 +84,7 @@ function ConfessionCreate () {
                             <option value="sad" >Sad</option>
                         </select>
                 
-                        <div className="errors">{errors?.mood.message}</div>
+                        <div className="errors">{errors?.mood?.message}</div>
                 </div>
                 {/* <label> body </label> */}
 
@@ -96,12 +97,12 @@ function ConfessionCreate () {
                         title="Tell us What's on Your Mind"
                         placeholder="what's on your mind?"
                         onChange={update('body')} />
-                        {/* <div className="errors">{errors?.body.message}</div> */}
+                        <div className="errors">{errors?.body?.message}</div>
                 </div>
                 <input 
                     className="form-submit-button"
                     type='submit' 
-                    title="Select a Mood and Tell What's on Your Mind"
+                    title="First Select a Mood and Tell What's on Your Mind"
                     style={{cursor: mood || body ? 'pointer' : 'not-allowed'}}
                     disabled={!mood || !body}
                     value='confess'/>
@@ -113,8 +114,8 @@ function ConfessionCreate () {
             <div className="success-modal" id='success-modal'>
                 <h1 >your secret's safe with us</h1>
                 <div className="success-button-container">
-                    <button id="create-another-confession" onClick={() => history.push("/share")}>Keep Sharing</button>
-                    <button className="return-home-button" onClick={() => history.push("/")}>Return Home</button>
+                    <button className="confession-modal-button" id="create-another-confession" onClick={() => history.push("/share")}>Keep Sharing</button>
+                    <button className="confession-modal-button" onClick={() => history.push("/")}>Return Home</button>
                 </div>
             </div>
             </>

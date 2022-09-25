@@ -45,7 +45,31 @@
 .confession-create-title {
     text-align: center;
     line-height: 4vh;
-    
+}
+
+.confession-form-title{
+    text-transform: lowercase;
+    font-style: italic;
+}
+
+.confession-modal-button{
+    background: #EEF0F4;
+    border: none;
+    border-radius: 40%;
+    box-shadow: 2.55vh 2.55vh 2.88vh #d9dade, -2.55vh -2.55vh 1.52vw #ffffff;
+    font-size: 14px;
+    border-radius: 2vh;
+    width: 15vw;
+    height: 4vw;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+}
+
+.confession-modal-button:active{
+    background: #EDF0F4;
+    box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+    border-radius: 10px;    
 }
 
 .confession-text-area {
@@ -78,6 +102,12 @@
     font-style: italic;
     color: #5a6794;
     cursor: pointer;
+}
+
+.confession-mood-dropdown:active{
+    background: #EDF0F4;
+    box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
 }
 
 .confession-mood-dropdown .select select {
