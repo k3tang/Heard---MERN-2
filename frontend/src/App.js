@@ -37,7 +37,6 @@ function App() {
     dispatch(getCurrentUser()).then(() => setLoaded(true));
   }, [dispatch]);
 
-<<<<<<< HEAD
   return loaded && (
     <>
     <div id='entire-container'>
@@ -98,7 +97,6 @@ function App() {
               path="/confession-create"
               component={ConfessionCreate}
             />
-        <ProtectedRoute exact path="/listen/confessions" component={ConfessionShowLanding} />
             <ProtectedRoute
               exact
               path="/confession-show"
