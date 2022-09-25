@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./TopicIndex.css";
-// import fetchAllTopics from "../../store/topics";
-// import { getAllTopics } from "../../store/topics";
+
+
 import { useHistory } from "react-router-dom";
 import MyTopicsDrawer from "./MyTopicsDrawer";
 import Topic from "./Topic";
 import { getCurrentUser } from "../../store/session";
-// import { accessChat, getAllChats, fetchChatsbyUser } from "../../store/chat";
+
 import { getAllTopics, fetchAllTopics, fetchTopic } from "../../store/topics";
 
 const TopicIndex = () => {

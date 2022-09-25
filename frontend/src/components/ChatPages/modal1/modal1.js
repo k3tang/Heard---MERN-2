@@ -7,12 +7,14 @@ import {
   ModalBody,
   ModalCloseButton,
   Button,
+  Input
 
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { useDisclosure } from "@chakra-ui/react";
 import { useParams} from 'react-router-dom'
 import {editTopic} from '../../../store/topics'
+import {useState} from 'react'
 
 function Modal1({topic}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -22,7 +24,7 @@ const dispatch = useDispatch();
 const [title, setTitle] = useState(topic.title)
 // const [mood, setMood] = useState(topic.mood)
 
-const editTopic = (e) =>{
+const saveTitle = (e) =>{
   dispatch(editTopic(title,topicId))
   onClose();
 }
@@ -64,7 +66,7 @@ const editTopic = (e) =>{
             <Button colorScheme="blue" mr={3} onClick={onClose}>
               Discard Changes
             </Button>
-            <Button variant="ghost" onClick={(e) => editTopic(e)}>
+            <Button variant="ghost" onClick={(e) => saveTitle(e)}>
               Save
             </Button>
           </ModalFooter>
