@@ -9,12 +9,14 @@ import MyTopicsDrawer from '../TopicIndex/MyTopicsDrawer'
 import { Button } from '@chakra-ui/react'
 import Modal2 from './modal2'
 import { fetchMessages, getAllMessages } from '../../store/messages'
+import FlagModal from '../FlagModal'
+import { getTopic } from "../../store/topics"
 
 
 function TopicPage() {
  const {topicId} = useParams();
  const dispatch = useDispatch()
-
+  const topic = useSelector((state)=>getTopic(state,topicId))
   const currentUser = useSelector(_getCurrentUser)
   useEffect(()=>{
     dispatch(getCurrentUser())
@@ -28,6 +30,7 @@ function TopicPage() {
 
         {currentUser && <ChatBox />}
       </Box>
+      <FlagModal topic={topic}/>
     </div>
   )
 }
