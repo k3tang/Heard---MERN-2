@@ -96,7 +96,7 @@ window.storeMessages = storeMessages;
     >
       
         <div>
-          {storeMessages.map((message)=> { return !!message && (
+          {storeMessages.map((message)=> { return !!message._id && (
             <div >
               <Text key={message._id}>{message.sender === currentUser._id ? "You" : message.sender?.slice(-5)} said: {message.content}</Text>
               </div>
