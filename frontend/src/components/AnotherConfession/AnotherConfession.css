@@ -1,5 +1,9 @@
 .another-confession-container{
     text-align: center;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 a {
@@ -9,3 +13,23 @@ a {
 a:visited {
     text-decoration: none;
   }
+
+.another-header { 
+    font-size: 2vw;
+    padding-bottom: 5vh;
+}
+
+#another-icon {
+    font-size: 3vw;
+    color:#515151;
+}
+
+@media screen and (max-width: 950px) {
+    .another-header {
+        font-size: 5vw;
+    }
+
+    #another-icon {
+        font-size: 6vw;
+    }
+}

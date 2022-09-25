@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './index.css';
-
 import { login, clearSessionErrors } from '../../store/session';
 import { useHistory } from 'react-router-dom';
+
 
 function LoginForm () {
   const [email, setEmail] = useState('');
@@ -11,6 +11,11 @@ function LoginForm () {
   const errors = useSelector(state => state.errors.session);
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const demoLogin = (e) => {
+    e.preventDefault();
+    dispatch(login({ email: "demo@test.com", password: "password" }));
+  }
 
   const sessionUser = useSelector(state=>state.session.user) 
 
@@ -30,17 +35,14 @@ function LoginForm () {
     dispatch(login({ email, password })); 
   }
 
-  const demoLogin = (e) => {
-    e.preventDefault();
-    dispatch(login({email: "demo@test.com", password: "password"}));
-  }
+ 
 
   return (
     <div className='form-container'>
       <div className='session-form-container'>
-      <h2 className='session-form-title'>Log In Form</h2>
+      <h2 className='form-header'>Welcome back!</h2>
         <form className="session-form" onSubmit={handleSubmit}>
-         
+         <div className='login-input'>
           <div className="errors">{errors?.email}</div>
           {/* <label className='session-form-title'>
             Email     </label> <br /> */}
@@ -50,7 +52,7 @@ function LoginForm () {
               placeholder="Email"
               className='form-input'
             />
-            <span class="focus-bg"></span>
+            {/* <span class="focus-bg"></span> */}
 
           <div className="errors">{errors?.password}</div>
           {/* <label className='session-form-title'>
@@ -61,7 +63,7 @@ function LoginForm () {
               placeholder="Password"
               className='form-input'
             />
-        
+          </div>
           <input
             type="submit"
             value="Log In"

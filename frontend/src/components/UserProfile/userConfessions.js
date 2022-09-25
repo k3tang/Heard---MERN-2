@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserConfessions } from "../../store/confessions";
 import ConfessionListing from "./confessionListing";
+import bottleLogo from "../../assets/bottle pic.png";
 import "./index.css";
 
 const UserConfessions = () => {
@@ -10,6 +11,7 @@ const UserConfessions = () => {
     const uConfessions = useSelector(state => state.confessions.user);
     const [isLoading, setIsLoading] = useState(true);
 
+
     
     console.log("user id", user)
     console.log("confessions", uConfessions)
@@ -17,9 +19,10 @@ const UserConfessions = () => {
 
     useEffect(() => {
         dispatch(fetchUserConfessions(user))
-        setTimeout(function () {
+        const timer = setTimeout(function () {
             setIsLoading(false);
         }, 3000)
+         return () => clearTimeout(timer)
     }, [uConfessions.length])
 
 
@@ -32,14 +35,16 @@ const UserConfessions = () => {
     return (
         <>
             <div className="user-confession-container">
-                <h1>All your confessions</h1>
                 {isLoading ?
                     <div className="loading-container">
-                        <h1 className="loading-title"> gathering your secrets... </h1>
-                        <img src="https://derailed-seed.s3.us-west-1.amazonaws.com/loading-gif.gif"></img>
+                        <img className="logo-timer" src={bottleLogo}></img>
+                        <h1 className="loading-title"> Quietly gathering your secrets... </h1>
                     </div>
                     :
-                    <div>{mapConfessions()}</div>
+                    <>
+                        <h1 className="user-conf-header">All your confessions</h1>
+                        <div className="mapped-conf">{mapConfessions()}</div>
+                    </>
                 }
                
             </div>

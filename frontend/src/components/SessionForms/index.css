@@ -1,14 +1,16 @@
 .form-button {
-    border-radius: 50px;
-    background: linear-gradient(145deg, #F0F0F0, #CACACA);
-    box-shadow: 20px 20px 41px #A4A4A4,
-        -20px -20px 41px #FFFFFF;
+    background: #EEF0F4;
+    border: none;
+    border-radius: 40%;
+    box-shadow: 2.55vh 2.55vh 2.88vh #D9DADE, -2.55vh -2.55vh 1.52vw #FFFFFF;
+    cursor: pointer;
 }
 
 .form-input {
     background: #EDF0F4;
     box-shadow: -1px -1px 7px #f5f5f5, -5px -4px 17px #ffffff, 1px 2px 5px #a0b0c5, 4px 6px 22px #c0cad8;
-    /* border-radius: 10px; */
+    width: 20vw;
+    height: 4vw;
     font-size: 1.25vw;
     border-radius: 2vh;
     border-style: none;
@@ -24,7 +26,14 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 75vh;
+    height: 90vh;
+}
+
+.login-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 28vh;
 }
 
 input { 
@@ -34,12 +43,11 @@ input {
 
 
 .session-form-submit-button{background: #EEF0F4;
-    border: none;
-    border-radius: 40%;
-    box-shadow: 2.55vh 2.55vh 2.88vh #d9dade, -2.55vh -2.55vh 1.52vw #ffffff;
-    font-size: 2vw;
+    background: #EDF0F4;
+    box-shadow: -1px -1px 7px #f5f5f5, -5px -4px 17px #ffffff, 1px 2px 5px #a0b0c5, 4px 6px 22px #c0cad8;
+    font-size: 1.5vw;
     border-radius: 2vh;
-    width: 8vw;
+    width: 15vw;
     height: 4vw;
     text-align: center;
     display: block;
@@ -49,16 +57,42 @@ input {
 
 .demo-login{
     cursor: pointer;
+    font-size: 1vw;
 }
 
-.signup-link{
+.signup-link, .login-link {
     cursor: pointer;
     font-weight: normal;
     font-style: italic;
+    font-size: 1vw;
 }
 
-.login-link{
-    cursor: pointer;
-    font-weight: normal;
-    font-style: italic;
+
+
+.form-header {
+    font-size: 2vw;
+    padding-top: 8vh;
+}
+
+@media screen and (max-width: 950px) {
+    .form-header {
+        font-size: 5vw;
+    }
+
+    .form-input {
+        width: 50vw;
+        height: 6vh;
+        font-size: 3.5vw;
+    }
+
+    .session-form-submit-button {
+        width: 35vw;
+        height: 5vh;
+        font-size: 3.5vw;
+    }
+
+        .signup-link,
+        .login-link, .demo-login {
+            font-size: 3vw;
+        }
 }
