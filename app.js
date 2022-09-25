@@ -15,10 +15,7 @@ const passport = require('passport');
 const usersRouter = require('./routes/api/users');
 const confessionsRouter = require('./routes/api/confessions');
 const csrfRouter = require('./routes/api/csrf');
-<<<<<<< HEAD
-=======
 const http = require('http');
->>>>>>> origin/topics-be
 
 const messageRoutes = require("./routes/api/messages")
 const topicsRouter = require('./routes/api/topics');

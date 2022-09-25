@@ -1,15 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const asyncHandler = require("express-async-handler");
-const Chat = require("../../models/Chats");
-const Message = require('../../models/Messages');
+const Message = require('../../models/Message');
+const Topic = require("../../models/Topic");
 const User = require("../../models/User");
 const { restoreUser} = require('../../config/passport')
 
 const createMessage = asyncHandler(async (req, res) => {
-  console.log('hellooooo in send message back end controller')
+
   const { topicId, content } = req.body;
+  
   const userId = req.user._id
+  console.log(`hellooooo in send message back end controller. userid: ${userId}, topicId: ${topicId}, content: ${content}`)
+  
   if (!topicId|| !content || !userId) {
     res.status(400);
     throw new Error("invalid date or data missing. need chat id,content, and userid");
@@ -19,21 +22,23 @@ const createMessage = asyncHandler(async (req, res) => {
     content,
     topicId
   };
-  console.log('message unfo in back', messageInfo)
+  console.log('message info in back', messageInfo)
   try {
     const newMessage = await Message.create(messageInfo)
+    
     const fullMessage = await Message.findOne({_id : newMessage._id})
     .populate('topicId')
 
-
     const foundTopic = await Topic.findById(topicId)
+    console.log(`topic is ${foundTopic}`);
     if (foundTopic){
-      foundTopic.findByIdAndUpdate(topicId, {
-        messages: [...foundTopic.messages,fullMessage._id]
+      Topic.findByIdAndUpdate(topicId, {
+        messages: [...foundTopic.messages, fullMessage._id]
       })
     res.status(200).json(fullMessage)
     }
   }catch(error) {
+    console.log(error);
     res.status(401).json({message: 'problem in messages controller', error: error})
   }
 });

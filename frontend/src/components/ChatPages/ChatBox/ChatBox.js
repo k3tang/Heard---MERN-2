@@ -21,10 +21,12 @@ function ChatBox() {
   const dispatch = useDispatch()
 
   const currentUser = useSelector(_getCurrentUser);
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const {topicId} = useParams()
+
+  const [timetoFetch, setTimetoFetch] = useState(true);
   const storeMessages = useSelector(getAllMessages(topicId));
   // const latestMessage = getLatestMessage(chatId)
   const typingHandler = (e) => {
@@ -32,12 +34,31 @@ function ChatBox() {
  
   };
 
+  useEffect(() => {
+     const timer = setInterval(() => {
+      setTimetoFetch(true);
+    }, 10000);
+
+    return () => {
+      clearInterval(timer);
+    }
+
+  }, [])
+
+
+
+
   useEffect(()=>{
-   dispatch(fetchMessages(topicId))
-  //  if (storeMessages) setLoading(false)
+    if(timetoFetch) {
+      dispatch(fetchMessages(topicId)).then(() => {
+        setTimetoFetch(false);  
+      })
+ 
+    }
+ //  if (storeMessages) setLoading(false)
   setLoading(false);
   //  console.log('are they here?',storeMessages)
-  },[currentUser,topicId])
+  },[currentUser,topicId, timetoFetch])
 
 //   useEffect(()=>{
 //   if(storeMessages) { 
@@ -55,15 +76,13 @@ window.storeMessages = storeMessages;
   const handleClick = (e) => {
     if (e.type === 'keydown' && e.key === "Enter" && newMessage) {
  
-     dispatch(addMessage(topicId, newMessage,))
-     console.log(messages)
-        setMessages([...messages, newMessage]);
+     dispatch(addMessage(topicId, newMessage)).then(res => console.log(res))
         // console.log(messages)
       setNewMessage("");
     } else if (e.type === 'click' && newMessage) {
 
-     dispatch(addMessage(topicId, newMessage))
-        setMessages([...messages, newMessage]);
+     dispatch(addMessage(topicId, newMessage)).then(res => console.log(res))
+
       setNewMessage("");
     }
   };
@@ -89,7 +108,7 @@ window.storeMessages = storeMessages;
         <div>
           {storeMessages.map((message)=>(
             <div >
-              <Text>{message.content}</Text>
+              <Text key={message._id}>{message.content}</Text>
               </div>
           ))
         }
