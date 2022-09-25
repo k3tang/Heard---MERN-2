@@ -61,76 +61,11 @@ function App() {
         <ProtectedRoute exact path="/topic/:topicId" component={TopicPage}/>
         <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
         <ProtectedRoute exact path="/user-confessions" component={UserConfessions}/>
+        <ProtectedRoute exact path="/admin" component={Admin}/>
       <Redirect to="/" />
       </Switch>
       </div>
     </>
-=======
-  return (
-    loaded && (
-      <>
-        <div id="entire-container">
-          {location.pathname === "/" ||
-          location.pathname === "/login" ||
-          location.pathname === "/signup" ||
-          location.pathname === "/welcome" ? (
-            ""
-          ) : (
-            <NavBar />
-          )}
-          <Switch>
-            <AuthRoute exact path="/" component={LandingPage} />
-            <AuthRoute exact path="/welcome" component={Welcome} />
-            <AuthRoute exact path="/login" component={LoginForm} />
-            <AuthRoute exact path="/signup" component={SignupForm} />
-            <ProtectedRoute exact path="/home" component={HomePage} />
-            <ProtectedRoute exact path="/account" component={UserProfile} />
-            <ProtectedRoute
-              exact
-              path="/settings"
-              component={UserPreferences}
-            />
-            <ProtectedRoute exact path="/listen" component={ListenStart} />
-            <ProtectedRoute exact path="/share" component={ShareStart} />
-            <ProtectedRoute
-              exact
-              path="/confession-create"
-              component={ConfessionCreate}
-            />
-            <ProtectedRoute
-              exact
-              path="/confession-show"
-              component={ConfessionShow}
-            />
-
-            <Route exact path="/topic-create" component={TopicCreate} />
-            <Route exact path="/topic-index" component={TopicIndex} />
-
-            <Route exact path="/topic/:topicId" component={TopicPage} />
-
-            <ProtectedRoute
-              exact
-              path="/confession-next"
-              component={AnotherConfession}
-            />
-            <ProtectedRoute
-              exact
-              path="/user-confessions"
-              component={UserConfessions}
-            />
-
-            <ProtectedRoute
-              exact
-              path="/admin"
-              component={Admin}
-            />
-            <Redirect to="/" />
-          </Switch>
-        </div>
-      </>
-    )
->>>>>>> refs/remotes/origin/main
-  ); 
-}
+)}
 
 export default App;
