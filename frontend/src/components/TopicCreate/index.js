@@ -47,28 +47,17 @@ const TopicCreate = () => {
                 <h1 className="topic-title">let's start a discussion</h1>
                 <div className="topic-form">
                     <form onSubmit={handleSubmit}>
-                        <label>
-                            <p>
-                            Enter a title!
-                            </p>
-                            <Input 
-                            w="40%"
-                            type="text" value={topicTitle} onChange={(e) => setTopicTitle(e.target.value)} />
-                        <label>
-                            <p>
-                            Choose a mood:
-                            </p>
-                            <select value={mood} onChange={(e) => setMood(e.target.value)}>
-                            
+                            <textarea className="topic-form-text" rows="2" cols="50"
+                                 value={topicTitle} placeholder="  Enter a title" onChange={(e) => setTopicTitle(e.target.value)}/>
+                            <select className="topic-mood-dropdown" value={mood} onChange={(e) => setMood(e.target.value)}>
+                                <option defaultValue value='invalid'> I'm feeling...</option>
                                 <option value="angry">Angry</option>
                                 <option value="loved">Loved</option>
                                 <option value="anxious">Anxious</option>
                                 <option value="happy">Happy</option>
                                 <option value="sad">Sad</option>
                             </select>
-                        </label>
-                        <input type="submit" value="Create Topic" />                       
-                        </label>
+                        <input className="topic-submit-button" type="submit" value="Create Topic"/>                       
                     </form>
                 </div>
             </div>

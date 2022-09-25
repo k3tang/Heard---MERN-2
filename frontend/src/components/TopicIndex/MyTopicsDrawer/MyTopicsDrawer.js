@@ -21,6 +21,7 @@ import { getCurrentUser, _getCurrentUser } from '../../../store/session'
 import { getAllTopics, fetchTopicsbyUser, deleteTopic } from '../../../store/topics'
 import Modal2 from '../../ChatPages/modal2'
 import Modal1 from "../../ChatPages/modal1";
+import "./index.css"
 
 function MyTopicsDrawer() {
   const {topicId} = useParams()
@@ -55,9 +56,9 @@ const moveTopics = (id) =>{
 
   return (
     <>
-      <Button ref={btnRef} colorScheme="teal" onClick={onOpen}>
+      <button ref={btnRef} className="chat-button" onClick={onOpen}>
         My Chats
-      </Button>
+      </button>
       <Drawer
         isOpen={isOpen}
         placement="left"
@@ -78,7 +79,8 @@ const moveTopics = (id) =>{
               w="100%"
               h="100%"
               overflowY="hidden"
-              borderRadius={'3px'}
+              borderRadius='1vw'
+              fontFamily="Lora"
             >
            
               <Stack>
@@ -88,8 +90,9 @@ const moveTopics = (id) =>{
                   key={topic._id}
                 onClick={()=> moveTopics(topic?._id)}
                 cursor="pointer"
-                bg={topicId === topic?._id ? 'blue' : 'white' }
-                color={topicId === topic?._id ? 'white' : 'blue' }
+                bg={topicId === topic?._id ? 'lightgray' : 'white' }
+                color={topicId === topic?._id ? 'white' : 'slategray' }
+                borderRadius="1vw"
                 px={3}
                 py={2}
               
@@ -108,7 +111,11 @@ const moveTopics = (id) =>{
 
           <DrawerFooter>
             <Button
-              colorScheme="blue"
+              colorScheme="gray"
+              textTransform="uppercase"
+              boxShadow={
+                "-1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;"
+              }
               onClick={() => history.push("/topic-create")}
             >
               New Topic

@@ -1,0 +1,65 @@
+.pink {
+    background-color: #f6dbd9;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
+    margin-bottom: 1vw;
+    padding: 1vw;
+    cursor: pointer;
+}
+
+.red {
+    background-color: #f3c6ba;
+        box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+        border-radius: 10px;
+        margin-bottom: 1vw;
+        padding: 1vw;
+        cursor: pointer;
+    
+}
+
+.green {
+    background-color: #bfdcd0;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
+    margin-bottom: 1vw;
+    padding: 1vw;
+    cursor: pointer;
+  
+}
+
+.blue {
+    background-color: #cdd7e6;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
+    margin-bottom: 1vw;
+    padding: 1vw;
+    cursor: pointer;
+      
+}
+
+.yellow {
+    background-color: #ebe2b1;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
+    margin-bottom: 1vw;
+    padding: 1vw;
+    cursor: pointer;
+}
+
+.topic-container {
+    height: 70vh;
+    overflow-y: scroll;
+}
+.topic-listing {
+    list-style: none;
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+
+.topic-mood {
+    font-size: 0.65vw;
+}
+
+.topic-title {
+    font-size: 1vw;
+}
