@@ -10,7 +10,7 @@ const TopicSchema = mongoose.Schema(
     title: {
       type: String,
       required: true,
-      minLength: 15,
+      minLength: 3,
       maxLength: 60,
     },
     mood: {

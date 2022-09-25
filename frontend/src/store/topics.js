@@ -89,11 +89,11 @@ export const createTopic = (topicInfo) => async dispatch =>{ // contains ownerId
   }
 }
 
-export const editTopic = (topicInfo, topicId) => async dispatch =>{ // contains userId, title, mood
-  // console.log('IN CREATE TOPIC',topicInfo);
-  const res = await jwtFetch(`/api/topics/${topicId}`,{
-    method: 'PUT',
-    body: JSON.stringify(topicInfo)
+export const editTopic = (updatedTopic) => async dispatch =>{ // contains userId, title, mood
+  console.log('IN EDIT TOPIC',updatedTopic);
+  const res = await jwtFetch(`/api/topics/${updatedTopic._id}`,{
+    method: 'PATCH',
+    body: JSON.stringify({updatedTopic})
   })
   const topic = await res.json()
   // console.log(topic._id);

@@ -40,15 +40,17 @@ const createTopic = asyncHandler(async (req, res) => {
 
 
 const editTopic = asyncHandler(async (req, res) => {
-    const topic = Topic.findById(req.params.id)
+    console.log('trying to pudate: ',req.body)
+    const topic = await Topic.findById(req.params.id)
     if (!topic) {
         res.status(400)
         throw new Error('topic not found')
     }
     // if (req.params.id === req.user.id) {
-        const updatedTopic = await Topic.findByIdAndUpdate(req.params.id, req.body, {
+        const updatedTopic = await Topic.findOneAndUpdate(req.params.id,{title: req.body.title} ,{
             new: true
         })
+        console.log('IN BACK END DID WE UPDATE THIS', updatedTopic)
         res.status(200).json(updatedTopic);
     // } else {
         // res.status(401);
@@ -129,7 +131,7 @@ router
   .post(restoreUser, createTopic);
 router
     .route("/:id")
-    .put(restoreUser, editTopic)
+    .patch(restoreUser, editTopic)
     // .post(pushTopicResponse)
     .delete(deleteTopic)
     .get(getTopic)
