@@ -33,7 +33,6 @@
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-    "react-countdown-circle-timer": "^3.0.9",
     "socket.io": "^4.5.2",
     "socket.io-client": "^4.5.2"
   },
