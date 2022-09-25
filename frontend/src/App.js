@@ -17,7 +17,7 @@ import TopicCreate from './components/TopicCreate';
 import UserProfile from './components/UserProfile';
 
 import TopicPage from './components/ChatPages/TopicPage';
-import ChatPage1 from './components/ChatPages/ChatPage1/ChatPage1';
+
 import TopicIndex from './components/TopicIndex';
 
 import AnotherConfession from './components/AnotherConfession';

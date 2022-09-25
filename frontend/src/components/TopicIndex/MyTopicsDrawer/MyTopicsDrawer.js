@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { getCurrentUser, _getCurrentUser } from '../../../store/session'
 
-import { getAllTopics } from '../../../store/topics'
+import { getAllTopics, fetchTopicsbyUser } from '../../../store/topics'
 import Modal2 from '../../ChatPages/modal2'
 import Modal1 from "../../ChatPages/modal1";
 
@@ -30,11 +30,11 @@ function MyTopicsDrawer() {
   const dispatch = useDispatch()
   const [myTopics, setMyTopics] = useState();
   const currentUser = useSelector(_getCurrentUser)
-  const topics = useSelector(getAllTopics())
+  // const topics = useSelector(getAllTopics())
   
 
     useEffect(() => {
-      dispatch(getCurrentUser());
+
        const myTopics = Object.values(topics).filter(
          (topic) => (topic.userId = currentUser._id)
        );
