@@ -55,17 +55,11 @@ function App() {
         <ProtectedRoute exact path="/share" component={ShareStart} />
         <ProtectedRoute exact path="/confession-create" component={ConfessionCreate} />
         <ProtectedRoute exact path="/confession-show" component={ConfessionShow} />
-
-        <Route exact path="/topic-create" component={TopicCreate} />
-        <Route exact path="/topic-index" component={TopicIndex} />
-
-
-        <Route exact path="/topic/:topicId" component={TopicPage}/>
-
+        <ProtectedRoute exact path="/topic-create" component={TopicCreate} />
+        <ProtectedRoute exact path="/topic-index" component={TopicIndex} />
+        <ProtectedRoute exact path="/topic/:topicId" component={TopicPage}/>
         <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
         <ProtectedRoute exact path="/user-confessions" component={UserConfessions}/>
-
-
       <Redirect to="/" />
       </Switch>
       </div>

@@ -30,7 +30,12 @@ const leaveChat = (e) =>{
 }
   return (
     <>
-      <Button size="xs" onClick={onOpen}>Delete Thread</Button>
+      <Button 
+      size="xs"
+      textTransform={"uppercase"}
+      marginLeft="0.5vw"
+       onClick={onOpen}
+       >Delete Thread</Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />

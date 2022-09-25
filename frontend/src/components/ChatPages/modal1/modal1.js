@@ -33,7 +33,10 @@ const saveTitle = (e) =>{
 }
   return (
     <>
-      <Button size="xs" onClick={onOpen}>
+      <Button 
+      size="xs" 
+      textTransform={"uppercase"}
+      onClick={onOpen}>
         Edit
       </Button>
 
@@ -66,10 +69,10 @@ const saveTitle = (e) =>{
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button colorScheme="gray" textTransform={"uppercase"} mr={3} onClick={onClose}>
               Discard Changes
             </Button>
-            <Button variant="ghost" onClick={(e) => saveTitle(e)}>
+            <Button colorScheme="gray" textTransform={"uppercase"} onClick={(e) => saveTitle(e)}>
               Save
             </Button>
           </ModalFooter>

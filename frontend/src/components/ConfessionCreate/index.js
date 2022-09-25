@@ -41,6 +41,7 @@ function ConfessionCreate () {
     const handleSubmit = e => {
         e.preventDefault();
         const confession = {
+            userId,
             mood,
             body
         }

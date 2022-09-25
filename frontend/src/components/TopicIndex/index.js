@@ -69,10 +69,12 @@ const TopicIndex = () => {
       <MyTopicsDrawer />
       <div className="topic-container">
         <ul>
-          {topics?.map ((topic=> 
-                <Topic topic={topic} key={topic._id} handleFunction={() => makeChat(topic._id)}/>
-            )) 
-          }
+          <li className="topic-listing">
+            {topics?.map ((topic=> 
+                  <Topic topic={topic} key={topic._id} handleFunction={() => makeChat(topic._id)}/>
+              )) 
+            }
+          </li>
         </ul>
       </div>
     </>
