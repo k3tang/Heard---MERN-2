@@ -7,11 +7,11 @@ import { Link, useHistory } from "react-router-dom";
 
 const ConfessionShow = () => {
     const dispatch = useDispatch();
-    const confessions = useSelector(getConfessions)
-    const [showConfession, setShowConfession] = useState(true)
-    const history = useHistory()
+    const confessions = useSelector(getConfessions);
+    const [showConfession, setShowConfession] = useState(true);
+    const history = useHistory();
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
     
     
     useEffect(() => {
@@ -24,11 +24,11 @@ const ConfessionShow = () => {
             history.push(`/confession-next`)
         }, 13000)
         // .then(console.log(confessions))
-    },[])
-    let posts = confessions[0]
-    let total = posts.length
-    let random = Math.floor(Math.random()*total)
-    let randomConfession = posts[random]
+    },[]);
+    let posts = confessions[0];
+    let total = posts.length;
+    let random = Math.floor(Math.random()*total);
+    let randomConfession = posts[random];
 
     const hideConfession = () =>{
         document.getElementsByClassName('confession-content').style.display = 'none'

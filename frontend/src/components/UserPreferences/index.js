@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./index.css";
 import getCurrentUser, { updateUser } from "../../store/session.js"
 import { useHistory } from "react-router-dom";
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 
 const UserPreferences = () => {

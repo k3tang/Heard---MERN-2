@@ -15,6 +15,7 @@ import ConfessionCreate from './components/ConfessionCreate';
 import ConfessionShow from './components/ConfessionShow';
 import TopicCreate from './components/TopicCreate';
 import UserProfile from './components/UserProfile';
+import ConfessionShowLanding from './components/ConfessionShowLanding';
 
 import ChatPage from './components/ChatPages/ChatPage';
 import ChatPage1 from './components/ChatPages/ChatPage1/ChatPage1';
@@ -48,13 +49,14 @@ function App() {
         <ProtectedRoute exact path="/listen" component={ListenStart} />
         <ProtectedRoute exact path="/share" component={ShareStart} />
         <ProtectedRoute exact path="/confession-create" component={ConfessionCreate} />
+        <ProtectedRoute exact path="/listen/confessions" component={ConfessionShowLanding} />
         <ProtectedRoute exact path="/confession-show" component={ConfessionShow} />
 
         <Route exact path="/topic-create" component={TopicCreate} />
         <Route exact path="/topic-index" component={TopicIndex} />
 
         <Route exact path="/talk" component={ChatPage1}/>
-          <Route exact path="/chats/:chatId" component={ChatPage}/>
+        <Route exact path="/chats/:chatId" component={ChatPage}/>
 
         <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
         <ProtectedRoute exact path="/user-confessions" component={UserConfessions}/>

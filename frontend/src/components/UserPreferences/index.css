@@ -104,6 +104,7 @@ input:checked+.slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .mood-checked {
@@ -118,6 +119,7 @@ input:checked+.slider:before {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 .mood-submit {

@@ -48,6 +48,7 @@
 }
 .confession-mood-dropdown{
     background: transparent;
+    cursor: pointer;
     font-size: 48px;
     border: none;
     font-style: italic;
