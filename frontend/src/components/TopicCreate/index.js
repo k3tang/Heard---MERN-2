@@ -44,7 +44,7 @@ const TopicCreate = () => {
     return (
         <>
             <div className="topic-create-container">
-                <h1 className="topic-title">Create a Topic for Chat!!!</h1>
+                <h1 className="topic-title">let's start a discussion</h1>
                 <div className="topic-form">
                     <form onSubmit={handleSubmit}>
                         <label>
