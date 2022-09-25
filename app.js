@@ -15,7 +15,7 @@ const passport = require('passport');
 const usersRouter = require('./routes/api/users');
 const confessionsRouter = require('./routes/api/confessions');
 const csrfRouter = require('./routes/api/csrf');
-const http = require("http")
+const http = require('http');
 
 const messageRoutes = require("./routes/api/messages")
 const topicsRouter = require('./routes/api/topics');
@@ -30,7 +30,7 @@ app.use(cookieParser());
 app.use(passport.initialize());
 
 const { isProduction } = require('./config/keys');
-const { createSocket } = require('dgram');
+
 
 if (!isProduction) {
     app.use(cors());
@@ -51,7 +51,7 @@ app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 
 
-app.use('api/messages', messageRoutes)
+app.use('/api/messages', messageRoutes)
 app.use('/api/confessions', confessionsRouter);
 app.use('/api/topics', topicsRouter);
 

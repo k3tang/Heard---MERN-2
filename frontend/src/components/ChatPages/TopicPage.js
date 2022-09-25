@@ -9,7 +9,7 @@ import { getCurrentUser, _getCurrentUser } from '../../store/session'
 import MyTopicsDrawer from '../TopicIndex/MyTopicsDrawer'
 import { Button } from '@chakra-ui/react'
 import Modal2 from './modal2'
-import { use } from 'passport'
+
 import { fetchMessages, getAllMessages } from '../../store/messages'
 
 

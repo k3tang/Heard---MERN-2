@@ -30,17 +30,17 @@ function MyTopicsDrawer() {
   const dispatch = useDispatch()
   const [myTopics, setMyTopics] = useState();
   const currentUser = useSelector(_getCurrentUser)
-  // const topics = useSelector(getAllTopics())
+  const topics = useSelector(getAllTopics)
   
 
     useEffect(() => {
 
        const myTopics = Object.values(topics).filter(
-         (topic) => (topic.userId = currentUser._id)
+         (topic) => (topic.userId === currentUser._id)
        );
        setMyTopics(myTopics)
 
-    }, []);
+    }, [topics]);
  
    //
 useEffect(()=>{
@@ -48,7 +48,8 @@ useEffect(()=>{
   },[currentUser])
 
 const moveTopics = (id) =>{
-  history.push(`/topics/${id}`)
+  console.log(id)
+  history.push(`/topic/${id}`)
   
 }
 
@@ -83,7 +84,7 @@ const moveTopics = (id) =>{
               <Stack>
                  {  myTopics?.map(topic => {
                  
-             return <Box
+             return <Box><Box
                   key={topic._id}
                 onClick={()=> moveTopics(topic?._id)}
                 cursor="pointer"
@@ -94,6 +95,7 @@ const moveTopics = (id) =>{
               
                 > 
                 <Text> {topic?.title}</Text>
+                </Box>
                 {topic && <Modal1 topic={topic}/> }
                 <Modal2/>
                 </Box>
