@@ -8,9 +8,8 @@
     padding: 0.15vh;
 }
 
-body {
-      background: #929ab6;
-        color: #5a6794;
+#root {
+    background: #EDF0F4;      
 }
 
 /* .dark {
@@ -23,9 +22,9 @@ body {
     height: 99vh;
     margin: auto;
     display: block;
-    background: #EEF0F4;
+    background: #EDF0F4;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
     border-radius: 5%;
-    box-shadow: inset 9.91px 9.91px 15px #BBBCC0, inset -9.91px -9.91px 15px #FFFFFF;
 }
 /* 
 #entire-container-dark {

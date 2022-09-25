@@ -13,7 +13,7 @@ const confessionSchema = mongoose.Schema({
     body :{
         type: String,
         required: true,
-        minLength: 30,
+        minLength: 1,
         maxLength: 300
     },
     persist :{

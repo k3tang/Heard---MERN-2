@@ -3,24 +3,86 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 75vh;
+    height: 50vh;
 }
 
+.bottle-logo {
+    display: block;
+    margin: auto;
+    margin-top: 10vh;
+    width: 12vw;
+}
+
+
 .square-button {
-    background: #EEF0F4;
-    border: none;
-    border-radius: 40%;
-    box-shadow: 2.55vh 2.55vh 2.88vh #D9DADE, -2.55vh -2.55vh 1.52vw #FFFFFF;
-    font-size: 2vw;
+    background: #EDF0F4;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    font-size: 1.5vw;
     border-radius: 2vh;
-    width: 10vw;
-    height: 10vw;
+    width: 20vw;
+    height: 5vw;
     text-align: center;
-    color: #5a6794;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 .landing-title {
-    font-size: 5vw;
+    display: block;
+    margin: auto;
+    font-size: 1.5vw;
     text-align: center;
     letter-spacing: 0.04em;
+    padding-top: 2vh;
+}
+
+.welcome-header {
+    display: block;
+    margin: auto;
+    font-size: 2.25vw;
+    text-align: center;
+    letter-spacing: 0.04em;
+    padding-top: 8vh;
+}
+
+.welcome-message {
+    text-align: center;
+    font-size: 1.25vw;
+    margin-top: 4vh;
+    margin-left: 6vw;
+    margin-right: 6vw;
+    line-height: 5vh;
+    color: #8794bf;
+}
+
+@media screen and (max-width: 950px) {
+    .bottle-logo {
+        width: 30vw;
+        margin-top: 15vh;
+    }
+
+    .landing-title {
+        font-size: 5vw;
+    }
+
+    .square-button {
+        width: 50vw;
+        height: 12vw;
+        font-size: 3vw;
+    }
+
+    .welcome-header {
+        font-size: 5vw;
+        padding-top: 15vh;
+    }
+
+    .welcome-message {
+        font-size: 3vw;
+        margin-top: 6vh;
+        margin-bottom: 4vh;
+    }
+
+    .button-container {
+        height: 40vh;
+        padding-top: 5vh;
+    }
 }
