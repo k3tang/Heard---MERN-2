@@ -12,15 +12,16 @@ import {
 import { useDispatch } from "react-redux";
 import { useDisclosure } from "@chakra-ui/react";
 import { useParams, useHistory } from 'react-router-dom'
-import { deleteChat } from "../../../store/chat";
+import { deleteTopic } from "../../../store/topics";
 
-function Modal2() {
+function Modal2({topic}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {topicId} = useParams()
+
 const dispatch = useDispatch();
 const history = useHistory()
 const leaveChat = (e) =>{
-  dispatch(deleteTopic(topicId))
+
+  dispatch(deleteTopic(topic._id))
   setTimeout(()=>{
     history.push("/topic-index")
   },1000)

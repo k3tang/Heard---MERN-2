@@ -25,7 +25,10 @@ const [title, setTitle] = useState(topic.title)
 // const [mood, setMood] = useState(topic.mood)
 
 const saveTitle = (e) =>{
-  dispatch(editTopic(title,topicId))
+  let updatedTopic = topic
+  updatedTopic.title = title
+  dispatch(editTopic(updatedTopic))
+  
   onClose();
 }
   return (

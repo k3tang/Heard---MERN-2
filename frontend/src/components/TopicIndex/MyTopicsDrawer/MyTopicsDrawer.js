@@ -18,7 +18,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { getCurrentUser, _getCurrentUser } from '../../../store/session'
 
-import { getAllTopics, fetchTopicsbyUser } from '../../../store/topics'
+import { getAllTopics, fetchTopicsbyUser, deleteTopic } from '../../../store/topics'
 import Modal2 from '../../ChatPages/modal2'
 import Modal1 from "../../ChatPages/modal1";
 
@@ -97,7 +97,7 @@ const moveTopics = (id) =>{
                 <Text> {topic?.title}</Text>
                 </Box>
                 {topic && <Modal1 topic={topic}/> }
-                <Modal2/>
+                <Modal2 topic={topic}/>
                 </Box>
                  })}
                            

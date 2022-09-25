@@ -133,7 +133,7 @@ window.storeMessages = storeMessages;
           size="md"
           variant="outline"
         >
-          send
+          post
         </Button>
       </FormControl>
     </Box>
