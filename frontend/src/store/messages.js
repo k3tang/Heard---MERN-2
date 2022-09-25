@@ -59,7 +59,7 @@ export const getAllMessages = () => (state) => {
         newState = {...action.messages}
         return newState
       case RECEIVE_MESSAGE:
-        newState = {...newState, ...action.message}
+        newState = {...state, ...action.message}
         return newState;
       default:
         return newState;

@@ -36,16 +36,13 @@ function ChatBox() {
   useEffect(() => {
      const timer = setInterval(() => {
       setTimetoFetch(true);
-    }, 10000);
+    }, 15000);
 
     return () => {
       clearInterval(timer);
     }
 
   }, [])
-
-
-
 
   useEffect(()=>{
     if(timetoFetch) {
@@ -99,11 +96,11 @@ window.storeMessages = storeMessages;
     >
       
         <div>
-          {storeMessages.map((message)=>(
+          {storeMessages.map((message)=> { return !!message && (
             <div >
-              <Text key={message._id}>{message.content}</Text>
+              <Text key={message._id}>{message.sender === currentUser._id ? "You" : message.sender?.slice(-5)} said: {message.content}</Text>
               </div>
-          ))
+          )})
         }
         </div>
     
