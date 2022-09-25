@@ -14,7 +14,11 @@
     font-weight:bolder;
     color: #5a6794;
     cursor: pointer;
+}
 
+.form-input {
+    min-width: 300px;
+    min-height: 50px;
 }
 
 .confession-form-container{
@@ -65,6 +69,8 @@
 
 .errors {
     color: red;
-    font-weight: 400;
+    font-weight: bold;
     text-align: center;
+    font-style: italic;
+    font-size: 12px;
 }
