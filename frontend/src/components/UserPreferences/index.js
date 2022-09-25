@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.css";
 import getCurrentUser, { updateUser } from "../../store/session.js"
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 
 const UserPreferences = () => {
@@ -15,7 +15,7 @@ const UserPreferences = () => {
 
 console.log(userMoods, "user moods")
 
-
+console.log('is admin?', user)
 // setting initial/saved mood preferences 
 useEffect(() => {
     if (userMoods) {
@@ -80,8 +80,8 @@ useEffect(() => {
     
     // add mode toggle for light/dark mode 
     return (
-        <>
-            {/* <div className="light-dark-mode">
+      <>
+        {/* <div className="light-dark-mode">
                 <div id="light-mode-icon" className="fas fa-sun"></div>
                 <div className="toggle-container">
                     <label className="switch">
@@ -91,13 +91,29 @@ useEffect(() => {
                 </div>
                 <div id="dark-mode-icon" className=" fas fa-moon"></div>
             </div> */}
-            <h2 className="mood-header">Mood Preferences</h2>
-            <div className="mood-button-container">
-              {moodState.map((moodName) => <p key={moodName} id={moodName} className="mood-item mood-unchecked" onClick={(e) => toggleItem(moodName)}>{moodName}</p>)}
-            </div>
-            <button className="mood-submit" onClick={handleSubmit}>Submit</button>
-        </>
-    )
+        <h2 className="mood-header">Mood Preferences</h2>
+        <div className="mood-button-container">
+          {moodState.map((moodName) => (
+            <p
+              key={moodName}
+              id={moodName}
+              className="mood-item mood-unchecked"
+              onClick={(e) => toggleItem(moodName)}
+            >
+              {moodName}
+            </p>
+          ))}
+        </div>
+        <button className="mood-submit" onClick={handleSubmit}>
+          Submit
+        </button>
+        {user.admin && (
+          <Link to="/admin">
+            <div>Admin</div>
+          </Link>
+        )}
+      </>
+    );
 }
 
 export default UserPreferences;

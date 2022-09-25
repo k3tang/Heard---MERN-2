@@ -3,7 +3,7 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const { admin, protect } = require("../../middleware/authMiddleware");
 const Topic = require('../../models/Topic')
-const {restoreUser} = require('../../config/passport')
+const {restoreUser, isAuthorized} = require('../../config/passport')
 
 const getAllTopics = asyncHandler(async (req, res) => {
     const topics = await Topic.find()
@@ -59,7 +59,10 @@ const editTopic = asyncHandler(async (req, res) => {
 })
 
 const deleteTopic = asyncHandler(async (req, res) => {
-    const topic = Topic.findById(req.params.id);
+    const topic = await Topic.findById(req.params.id);
+    if (!isAuthorized(req.user, topic.userId)){
+        res.status(400).json({message: 'Uh oh, you have to be an admin to delete this topic'})
+    }
     if (!topic) {
         res.status(400);
         throw new Error("topic not found");
@@ -133,8 +136,8 @@ router
     .route("/:id")
     .patch(restoreUser, editTopic)
     // .post(pushTopicResponse)
-    .delete(deleteTopic)
-    .get(getTopic)
+    .delete(restoreUser, deleteTopic)
+    .get(restoreUser,getTopic)
 router.route("/user/:id").get(restoreUser, getUserTopics);// this is api/confessions/userId and will get all confessions by user Id
 // router.route("/addResponse/:topicId").post(addResponse)
 //addResponse needs: the topic id in the wildcard, 
