@@ -3,22 +3,23 @@ import jwtFetch from "./jwt";
 const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES'
 const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE' // only for pushing messages. Editing or deleting will trigger RECEIVE_MESSAGES
 
-const receiveMessages = (topicId) =>({
+const receiveMessages = (messages) =>({
   type: RECEIVE_MESSAGES,
-  topicId
+  messages
 })
 
-const receiveMessage = (message, topicId) =>({
+const receiveMessage = (message) =>({
   type: RECEIVE_MESSAGE,
-  message,
-  topicId
+  message
+ 
 })
 
-export const getAllMessages = (topicId) => (state) => {
+export const getAllMessages = () => (state) => {
   if (!state) return null;
   if (!state.messages) return null;
   else {
-  return Object.values(state.messages).filter((message) => message.topicId === topicId);
+  return Object.values(state.messages)
+  // .filter((message) => message.topicId === topicId);
   }
 };
 
@@ -28,7 +29,8 @@ export const getAllMessages = (topicId) => (state) => {
       const data = await jwtFetch(`/api/messages/${topicId}`)
       const messages = await data.json();
       if (messages) {
-        dispatch(receiveMessages(topicId));
+        // console.log('what do we get back from the backi', messages)
+        dispatch(receiveMessages(messages));
         return messages;
       }
     } catch (error) {}
@@ -42,7 +44,7 @@ export const getAllMessages = (topicId) => (state) => {
        });
        const createdMessage = await data.json();
        if (createdMessage) {
-             dispatch(receiveMessage(createdMessage, topicId))
+             dispatch(receiveMessage(createdMessage))
              return createdMessage;
        }
      } catch (error) {}
@@ -57,7 +59,7 @@ export const getAllMessages = (topicId) => (state) => {
         newState = {...action.messages}
         return newState
       case RECEIVE_MESSAGE:
-        newState = {...action.messages, ...action.message}
+        newState = {...newState, ...action.message}
         return newState;
       default:
         return newState;

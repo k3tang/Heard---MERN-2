@@ -44,8 +44,10 @@ const createMessage = asyncHandler(async (req, res) => {
 });
 
 const getAllMessages = asyncHandler(async(req, res)=>{
+  // console.log(req.params.topicId)
   try {
-  const messages = await Message.find({chatId: req.params.chatId})
+  const messages = await Message.find({topicId: req.params.topicId})
+  console.log(messages)
   res.status(200).json(messages)
 } catch (error) {
 res.status(400).json({message: 'error in get all messages controller'})
@@ -79,7 +81,7 @@ const editMessage = asyncHandler (async (req, res)=>{
 
 
 router.route('/').post(restoreUser, createMessage)
-router.route('/:chatId').get(restoreUser, getAllMessages)
+router.route('/:topicId').get(restoreUser, getAllMessages)
 router.route("/:id").delete(restoreUser, deleteMessage).put(restoreUser, editMessage)
 
 module.exports = router

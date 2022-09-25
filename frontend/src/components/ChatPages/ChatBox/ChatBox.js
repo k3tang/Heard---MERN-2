@@ -27,11 +27,10 @@ function ChatBox() {
   const {topicId} = useParams()
 
   const [timetoFetch, setTimetoFetch] = useState(true);
-  const storeMessages = useSelector(getAllMessages(topicId));
+  const storeMessages = useSelector(getAllMessages());
   // const latestMessage = getLatestMessage(chatId)
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
- 
   };
 
   useEffect(() => {
@@ -76,12 +75,14 @@ window.storeMessages = storeMessages;
   const handleClick = (e) => {
     if (e.type === 'keydown' && e.key === "Enter" && newMessage) {
  
-     dispatch(addMessage(topicId, newMessage)).then(res => console.log(res))
+     dispatch(addMessage(topicId, newMessage)).then(res => setTimetoFetch(true))
         // console.log(messages)
       setNewMessage("");
     } else if (e.type === 'click' && newMessage) {
 
-     dispatch(addMessage(topicId, newMessage)).then(res => console.log(res))
+     dispatch(addMessage(topicId, newMessage)).then((res) =>
+       setTimetoFetch(true)
+     );
 
       setNewMessage("");
     }
@@ -96,15 +97,7 @@ window.storeMessages = storeMessages;
       w={"100%"}
       bg='#f2f2f2'
     >
-      {loading ? (
-        <Spinner
-          size="xl"
-          speed="0.9s"
-          emptyColor="gray.200"
-          alignSelf="center"
-          color="blue.400"
-        />
-      ) : (
+      
         <div>
           {storeMessages.map((message)=>(
             <div >
@@ -113,7 +106,7 @@ window.storeMessages = storeMessages;
           ))
         }
         </div>
-      )}
+    
       <FormControl
         onKeyDown={handleClick}
         isRequired
