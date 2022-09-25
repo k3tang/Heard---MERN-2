@@ -88,7 +88,7 @@ export const createTopic = (topicInfo) => async dispatch =>{ // contains ownerId
   }
 }
 
-export const editTopic = (topicInfo, topicId) => async dispatch =>{ // contains ownerId, title, mood
+export const editTopic = (topicInfo, topicId) => async dispatch =>{ // contains userId, title, mood
   // console.log('IN CREATE TOPIC',topicInfo);
   const res = await jwtFetch(`/api/topics/${topicId}`,{
     method: 'PUT',

@@ -54,7 +54,7 @@ function App() {
         <Route exact path="/topic-index" component={TopicIndex} />
 
 
-          <Route exact path="/topic/:topicId" component={TopicPage}/>
+        <Route exact path="/topic/:topicId" component={TopicPage}/>
 
         <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
         <ProtectedRoute exact path="/user-confessions" component={UserConfessions}/>
