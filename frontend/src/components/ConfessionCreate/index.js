@@ -24,7 +24,7 @@ function ConfessionCreate () {
           dispatch(clearConfessionErrors());
         };
       }, [dispatch]);
-
+    const [persist, setPersist] = useState(false)
     const [mood, setMood] = useState('');
     const [body, setBody] = useState('');
     const userId = sessionUser._id
@@ -43,7 +43,8 @@ function ConfessionCreate () {
         const confession = {
             userId,
             mood,
-            body
+            body,
+            persist
         }
         console.log('listing in submit', confession)
     
@@ -96,6 +97,9 @@ function ConfessionCreate () {
                         onChange={update('body')} />
                         <div className="errors">{errors?.body.message}</div>
                 </div>
+                {sessionUser.admin && <div>
+                    <input type='checkbox'  name='persist' value='perist' onChange={(e)=>setPersist(e.target.checked)}/>
+                </div> }
                 <input 
                     className="form-submit-button"
                     type='submit' 
