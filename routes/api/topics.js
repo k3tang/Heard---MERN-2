@@ -3,7 +3,7 @@ const router = express.Router();
 const asyncHandler = require("express-async-handler");
 const { admin, protect } = require("../../middleware/authMiddleware");
 const Topic = require('../../models/Topic')
-const {restoreUser} = require('../../config/passport')
+const {restoreUser, isAuthorized} = require('../../config/passport')
 
 const getAllTopics = asyncHandler(async (req, res) => {
     const topics = await Topic.find()
@@ -11,7 +11,7 @@ const getAllTopics = asyncHandler(async (req, res) => {
 })
 
 const getTopic = asyncHandler(async (req,res) => {
-    const topic = await Topic.findById(req.params.id)
+    const topic = await Topic.findById(req.params.id).populate('messages');
    if (topic){
     return res.status(200).json(topic)
    } else{
@@ -40,15 +40,17 @@ const createTopic = asyncHandler(async (req, res) => {
 
 
 const editTopic = asyncHandler(async (req, res) => {
-    const topic = Topic.findById(req.params.id)
+    console.log('trying to pudate: ',req.body)
+    const topic = await Topic.findById(req.params.id)
     if (!topic) {
         res.status(400)
         throw new Error('topic not found')
     }
     // if (req.params.id === req.user.id) {
-        const updatedTopic = await Topic.findByIdAndUpdate(req.params.id, req.body, {
+        const updatedTopic = await Topic.findOneAndUpdate(req.params.id,{title: req.body.title} ,{
             new: true
         })
+        console.log('IN BACK END DID WE UPDATE THIS', updatedTopic)
         res.status(200).json(updatedTopic);
     // } else {
         // res.status(401);
@@ -57,7 +59,10 @@ const editTopic = asyncHandler(async (req, res) => {
 })
 
 const deleteTopic = asyncHandler(async (req, res) => {
-    const topic = Topic.findById(req.params.id);
+    const topic = await Topic.findById(req.params.id);
+    if (!isAuthorized(req.user, topic.userId)){
+        res.status(400).json({message: 'Uh oh, you have to be an admin to delete this topic'})
+    }
     if (!topic) {
         res.status(400);
         throw new Error("topic not found");
@@ -68,12 +73,7 @@ const deleteTopic = asyncHandler(async (req, res) => {
             const deletingTopic = await Topic.findByIdAndDelete(req.params.id);
             res.status(200).json(deletingTopic);
         
-    // } else {
-    //     res.status(401);
-    //     throw new Error(
-    //         "You must either be an admin confession author to delete confession"
-    //     );
-    // }
+
 
 })
 
@@ -89,40 +89,40 @@ const getUserTopics = asyncHandler(async (req, res) => {
 
 
 
-const addResponse = asyncHandler(async (req, res) => {
-    const topic = await Topic.findById(req.params.topicId);
-    const { userId, body} = req.body;
-    if (!topic) {
-        res.status(400);
-        throw new Error("topic not found");
-    }
-    if(!userId) {
-        res.status(400);
-        throw new Error('Missing a user for your response');
-    }
+// const addResponse = asyncHandler(async (req, res) => {
+//     const topic = await Topic.findById(req.params.topicId);
+//     const { userId, body} = req.body;
+//     if (!topic) {
+//         res.status(400);
+//         throw new Error("topic not found");
+//     }
+//     if(!userId) {
+//         res.status(400);
+//         throw new Error('Missing a user for your response');
+//     }
     
-    if (!body) {
-        res.status(400);
-        throw new Error('please make sure you typed in a response body');
-    }
+//     if (!body) {
+//         res.status(400);
+//         throw new Error('please make sure you typed in a response body');
+//     }
 
-    const newResponse = {userId, body }
+    // const newResponse = {userId, body }
 
     // const newResponse = TopicResponse.create(userId, body);
 
-    if (newResponse) {
-        res.status(201).json(newResponse); // return back latest response
-    } else {
-        res.status(400);
-        throw new Error('Could not create a topic response');
-    }
+//     if (newResponse) {
+//         res.status(201).json(newResponse); // return back latest response
+//     } else {
+//         res.status(400);
+//         throw new Error('Could not create a topic response');
+//     }
 
-    topic.responses = [...topic.responses, newResponse ]
+//     topic.responses = [...topic.responses, newResponse ]
 
-    await topic.save()
+//     await topic.save()
     
 
-});
+// });
 
 // router
 //   .route("/")
@@ -134,12 +134,12 @@ router
   .post(restoreUser, createTopic);
 router
     .route("/:id")
-    .put( editTopic)
+    .patch(restoreUser, editTopic)
     // .post(pushTopicResponse)
-    .delete(deleteTopic)
-    .get(getTopic)
-router.route("/user/:id").get( getUserTopics);// this is api/confessions/userId and will get all confessions by user Id
-router.route("/addResponse/:topicId").post(addResponse)
+    .delete(restoreUser, deleteTopic)
+    .get(restoreUser,getTopic)
+router.route("/user/:id").get(restoreUser, getUserTopics);// this is api/confessions/userId and will get all confessions by user Id
+// router.route("/addResponse/:topicId").post(addResponse)
 //addResponse needs: the topic id in the wildcard, 
 //{body: "user response blah"} in the body of the request.
 // {userId : banana } in the body of the request. this is the user sending the post 

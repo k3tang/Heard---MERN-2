@@ -1,2 +1,2 @@
-import ChatPage from './ChatPage';
-export default ChatPage;
+import TopicPage from './TopicPage';
+export default TopicPage;

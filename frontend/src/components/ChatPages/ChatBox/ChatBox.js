@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getCurrentChat } from "../../../store/chat";
+// import { getCurrentChat } from "../../../store/chat";
 import { useState } from "react";
 import "./chatbox.css";
 import { _getCurrentUser } from "../../../store/session";
@@ -13,54 +13,74 @@ import {
 } from "@chakra-ui/react";
 import {useParams} from 'react-router-dom'
 
-import {sendMessage, fetchMessages, getAllMessages, getLatestMessage} from '../../../store/messages'
+import {fetchMessages, getAllMessages, addMessage } from '../../../store/messages'
 import { useEffect } from "react";
 
 function ChatBox() {
 
   const dispatch = useDispatch()
-  const currentChat = useSelector(getCurrentChat);
+
   const currentUser = useSelector(_getCurrentUser);
-  const [messages, setMessages] = useState([]);
+  // const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  const {chatId} = useParams()
-  const storeMessages = useSelector((state)=>getAllMessages(state,chatId))
+  const {topicId} = useParams()
+
+  const [timetoFetch, setTimetoFetch] = useState(true);
+  const storeMessages = useSelector(getAllMessages());
   // const latestMessage = getLatestMessage(chatId)
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
- 
   };
 
-  useEffect(()=>{
-   dispatch(fetchMessages(chatId))
-   if (storeMessages) setLoading(false)
-  //  console.log('are they here?',storeMessages)
-  },[currentUser,chatId])
+  useEffect(() => {
+     const timer = setInterval(() => {
+      setTimetoFetch(true);
+    }, 15000);
+
+    return () => {
+      clearInterval(timer);
+    }
+
+  }, [])
 
   useEffect(()=>{
-  if(storeMessages) { 
-    setMessages(storeMessages)
-    setLoading(false);
-  } 
-},[chatId,storeMessages?.length])
-
-
-
-
+    if(timetoFetch) {
+      dispatch(fetchMessages(topicId)).then(() => {
+        setTimetoFetch(false);  
+      })
  
+    }
+ //  if (storeMessages) setLoading(false)
+  setLoading(false);
+  //  console.log('are they here?',storeMessages)
+  },[currentUser,topicId, timetoFetch])
+
+//   useEffect(()=>{
+//   if(storeMessages) { 
+//     setMessages(storeMessages)
+//     setLoading(false);
+//   } 
+// },[topicId,storeMessages?.length])
+
+
+window.currentUser = currentUser;
+window.loading = loading;
+window.storeMessages = storeMessages;
+
+
   const handleClick = (e) => {
     if (e.type === 'keydown' && e.key === "Enter" && newMessage) {
  
-     dispatch(sendMessage(newMessage,chatId))
-     console.log(messages)
-        setMessages([...messages, newMessage]);
+     dispatch(addMessage(topicId, newMessage)).then(res => setTimetoFetch(true))
         // console.log(messages)
       setNewMessage("");
     } else if (e.type === 'click' && newMessage) {
 
-     dispatch(sendMessage(newMessage,chatId))
-        setMessages([...messages, newMessage]);
+     dispatch(addMessage(topicId, newMessage)).then((res) =>
+       setTimetoFetch(true)
+     );
+
       setNewMessage("");
     }
   };
@@ -74,24 +94,16 @@ function ChatBox() {
       w={"100%"}
       bg='#f2f2f2'
     >
-      {loading ? (
-        <Spinner
-          size="xl"
-          speed="0.9s"
-          emptyColor="gray.200"
-          alignSelf="center"
-          color="blue.400"
-        />
-      ) : (
+      
         <div>
-          {messages.map((message)=>(
-            <div className={currentUser._id === message._id ? 'current-user-text' : 'listener-text'}>
-              <Text>{message.content}</Text>
+          {storeMessages.map((message)=> { return !!message._id && (
+            <div >
+              <Text key={message._id}>{message.sender === currentUser._id ? "You" : message.sender?.slice(-5)} said: {message.content}</Text>
               </div>
-          ))
+          )})
         }
         </div>
-      )}
+    
       <FormControl
         onKeyDown={handleClick}
         isRequired

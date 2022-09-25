@@ -17,39 +17,41 @@ import {useHistory, useParams} from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { getCurrentUser, _getCurrentUser } from '../../../store/session'
-import {fetchChatsbyUser, getAllChats, getCurrentChat, receiveCurrentChat} from '../../../store/chat'
 
+import { getAllTopics, fetchTopicsbyUser, deleteTopic } from '../../../store/topics'
+import Modal2 from '../../ChatPages/modal2'
+import Modal1 from "../../ChatPages/modal1";
 
 function MyTopicsDrawer() {
-  const {chatId} = useParams()
+  const {topicId} = useParams()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
   const history = useHistory()
   const dispatch = useDispatch()
-
+  const [myTopics, setMyTopics] = useState();
   const currentUser = useSelector(_getCurrentUser)
-  
-  const currentChat = useSelector((state)=>getCurrentChat(state))
-  
-  
-   const chats = useSelector((state)=>getAllChats(state))
+  const topics = useSelector(getAllTopics)
   
 
     useEffect(() => {
-      dispatch(getCurrentUser());
-    }, []);
+
+       const myTopics = Object.values(topics).filter(
+         (topic) => (topic.userId === currentUser._id)
+       );
+       setMyTopics(myTopics)
+
+    }, [topics]);
  
    //
 useEffect(()=>{
-   if(currentUser) dispatch(fetchChatsbyUser(currentUser._id))
+   if(currentUser) dispatch(fetchTopicsbyUser(currentUser._id))
   },[currentUser])
 
-  const moveChats=(chatId)=>{
-    const chat = chats.find(chat => chat._id === chatId)
-    console.log('what is',chat)
-    dispatch(receiveCurrentChat(chat));
-     history.push(`/chats/${chatId}`)
-  }
+const moveTopics = (id) =>{
+  console.log(id)
+  history.push(`/topic/${id}`)
+  
+}
 
   return (
     <>
@@ -80,18 +82,22 @@ useEffect(()=>{
             >
            
               <Stack>
-                 {  chats?.map(chat => {
+                 {  myTopics?.map(topic => {
                  
-             return <Box
-                  key={chat._id}
-                onClick={()=> moveChats(chat?._id)}
+             return <Box><Box
+                  key={topic._id}
+                onClick={()=> moveTopics(topic?._id)}
                 cursor="pointer"
-                bg={chatId === chat?._id ? 'blue' : 'white' }
-                color={chatId === chat?._id ? 'white' : 'blue' }
+                bg={topicId === topic?._id ? 'blue' : 'white' }
+                color={topicId === topic?._id ? 'white' : 'blue' }
                 px={3}
                 py={2}
+              
                 > 
-                <Text> {chat?.title}</Text>
+                <Text> {topic?.title}</Text>
+                </Box>
+                {topic && <Modal1 topic={topic}/> }
+                <Modal2 topic={topic}/>
                 </Box>
                  })}
                            
@@ -105,7 +111,7 @@ useEffect(()=>{
               colorScheme="blue"
               onClick={() => history.push("/topic-create")}
             >
-              New Topic Request
+              New Topic
             </Button>
           </DrawerFooter>
         </DrawerContent>

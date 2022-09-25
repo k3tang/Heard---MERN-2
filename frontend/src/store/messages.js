@@ -1,57 +1,51 @@
 import jwtFetch from "./jwt";
 
 const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES'
-const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE'
+const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE' // only for pushing messages. Editing or deleting will trigger RECEIVE_MESSAGES
 
-const receiveMessages = (messages,chatId) =>({
+const receiveMessages = (messages) =>({
   type: RECEIVE_MESSAGES,
-  messages,
-  chatId
+  messages
 })
 
-const receiveMessage = (message,chatId) =>({
+const receiveMessage = (message) =>({
   type: RECEIVE_MESSAGE,
-  message,
-  chatId
+  message
+ 
 })
 
-export const getAllMessages = (state,chatId) => {
+export const getAllMessages = () => (state) => {
   if (!state) return null;
   if (!state.messages) return null;
   else {
-  return Object.values(state.messages).filter(
-    (message) => message.chatId === chatId
-  );
+  return Object.values(state.messages)
+  // .filter((message) => message.topicId === topicId);
   }
 };
 
 
-// export const getLatestMessage = (state, chatId) => {
-//   if (!state) return null;
-//   if (!state.messages) return null;
-//   if (!state.messages[chatId]) return null;
-//    if (!state.messages[chatId].latestMessage) return null;
-//    else return state.messages[chatId].latestMessage;
-// };
- export const fetchMessages = (chatId) => async(dispatch) =>{
+ export const fetchMessages = (topicId) => async(dispatch) =>{
     try {
-      const data = await jwtFetch(`/api/messages/${chatId}`)
+      const data = await jwtFetch(`/api/messages/${topicId}`)
       const messages = await data.json();
       if (messages) {
-        dispatch(receiveMessages(messages,chatId))
+        // console.log('what do we get back from the backi', messages)
+        dispatch(receiveMessages(messages));
+        return messages;
       }
     } catch (error) {}
   };
 
- export  const sendMessage = (content, chatId) => async (dispatch)=>{
+ export  const addMessage = (topicId, content) => async (dispatch)=>{
      try {
-       const data = await jwtFetch("/api/messages", {
+       const data = await jwtFetch(`/api/messages/`, {
          method: "POST",
-         body: JSON.stringify({ content, chatId }),
+         body: JSON.stringify({ topicId, content }),
        });
        const createdMessage = await data.json();
        if (createdMessage) {
-             dispatch(receiveMessage(createdMessage,chatId))
+             dispatch(receiveMessage(createdMessage))
+             return createdMessage;
        }
      } catch (error) {}
    };
@@ -65,7 +59,7 @@ export const getAllMessages = (state,chatId) => {
         newState = {...action.messages}
         return newState
       case RECEIVE_MESSAGE:
-        newState = {...action.messages, ...action.message}
+        newState = {...state, ...action.message}
         return newState;
       default:
         return newState;

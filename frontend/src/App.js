@@ -15,10 +15,10 @@ import ConfessionCreate from './components/ConfessionCreate';
 import ConfessionShow from './components/ConfessionShow';
 import TopicCreate from './components/TopicCreate';
 import UserProfile from './components/UserProfile';
+import Admin from './components/Admin/Admin';
+import TopicPage from './components/ChatPages/TopicPage';
 import ConfessionShowLanding from './components/ConfessionShowLanding';
 
-import ChatPage from './components/ChatPages/ChatPage';
-import ChatPage1 from './components/ChatPages/ChatPage1/ChatPage1';
 import TopicIndex from './components/TopicIndex';
 
 import AnotherConfession from './components/AnotherConfession';
@@ -37,41 +37,70 @@ function App() {
     dispatch(getCurrentUser()).then(() => setLoaded(true));
   }, [dispatch]);
 
-  return loaded && (
-    <>
-    <div id='entire-container'>
-        {(location.pathname === "/" || 
-        location.pathname === "/login" || 
-        location.pathname === "/signup" || 
-        location.pathname === "/welcome") ? "" : <NavBar />}
-      <Switch>
-        <AuthRoute exact path="/" component={LandingPage} />
-        <AuthRoute exact path="/welcome" component={Welcome}/>
-        <AuthRoute exact path="/login" component={LoginForm} />
-        <AuthRoute exact path="/signup" component={SignupForm} />
-        <ProtectedRoute exact path="/home" component={HomePage} />
-        <ProtectedRoute exact path="/account" component={UserProfile} />
-        <ProtectedRoute exact path="/settings" component={UserPreferences} />
-        <ProtectedRoute exact path="/listen" component={ListenStart} />
-        <ProtectedRoute exact path="/share" component={ShareStart} />
-        <ProtectedRoute exact path="/confession-create" component={ConfessionCreate} />
+  return (
+    loaded && (
+      <>
+        <div id="entire-container">
+          {location.pathname === "/" ||
+          location.pathname === "/login" ||
+          location.pathname === "/signup" ||
+          location.pathname === "/welcome" ? (
+            ""
+          ) : (
+            <NavBar />
+          )}
+          <Switch>
+            <AuthRoute exact path="/" component={LandingPage} />
+            <AuthRoute exact path="/welcome" component={Welcome} />
+            <AuthRoute exact path="/login" component={LoginForm} />
+            <AuthRoute exact path="/signup" component={SignupForm} />
+            <ProtectedRoute exact path="/home" component={HomePage} />
+            <ProtectedRoute exact path="/account" component={UserProfile} />
+            <ProtectedRoute
+              exact
+              path="/settings"
+              component={UserPreferences}
+            />
+            <ProtectedRoute exact path="/listen" component={ListenStart} />
+            <ProtectedRoute exact path="/share" component={ShareStart} />
+            <ProtectedRoute
+              exact
+              path="/confession-create"
+              component={ConfessionCreate}
+            />
         <ProtectedRoute exact path="/listen/confessions" component={ConfessionShowLanding} />
-        <ProtectedRoute exact path="/confession-show" component={ConfessionShow} />
+            <ProtectedRoute
+              exact
+              path="/confession-show"
+              component={ConfessionShow}
+            />
 
-        <Route exact path="/topic-create" component={TopicCreate} />
-        <Route exact path="/topic-index" component={TopicIndex} />
+            <Route exact path="/topic-create" component={TopicCreate} />
+            <Route exact path="/topic-index" component={TopicIndex} />
 
-        <Route exact path="/talk" component={ChatPage1}/>
-        <Route exact path="/chats/:chatId" component={ChatPage}/>
+            <Route exact path="/topic/:topicId" component={TopicPage} />
 
-        <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
-        <ProtectedRoute exact path="/user-confessions" component={UserConfessions}/>
+            <ProtectedRoute
+              exact
+              path="/confession-next"
+              component={AnotherConfession}
+            />
+            <ProtectedRoute
+              exact
+              path="/user-confessions"
+              component={UserConfessions}
+            />
 
-
-      <Redirect to="/" />
-      </Switch>
-      </div>
-    </>
+            <ProtectedRoute
+              exact
+              path="/admin"
+              component={Admin}
+            />
+            <Redirect to="/" />
+          </Switch>
+        </div>
+      </>
+    )
   ); 
 }
 
