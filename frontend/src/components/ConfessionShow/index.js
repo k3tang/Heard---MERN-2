@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import bottleLogo from "../../assets/bottle pic.png";
 import { useLocation } from "react-router-dom";
+import { CountdownCircleTimer } from 'react-countdown-circle-timer'
 
 const ConfessionShow = () => {
     const dispatch = useDispatch();
@@ -56,6 +57,16 @@ const ConfessionShow = () => {
                         
                         {/* <p>{randomConfession.mood}</p> */}
                         <p class='confession-body'>{randomConfession.body}</p>
+                        <div className="circle-container">
+                        <CountdownCircleTimer
+                            isPlaying
+                            duration={10}
+                            colors={["#d3e7ee", "#abd1da", "#7097a7", "#7097a7"]}
+                            colorsTime={[10, 6, 3, 0]}
+                            onComplete={() => ({ shouldRepeat: true, delay: 1 })}
+                        >  
+                        </CountdownCircleTimer>
+                        </div>
                     </div>  
                 }
                 {/* { showConfession  && ( */}

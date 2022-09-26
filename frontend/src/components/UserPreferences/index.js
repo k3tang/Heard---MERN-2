@@ -12,6 +12,8 @@ const UserPreferences = () => {
     const moodState = ["angry","loved", "anxious", "happy", "sad"]
     const [checkedKeywords, setCheckedKeywords] = useState(userMoods)
     const history = useHistory()
+    const [successModal, setSuccessModal] = useState(false)
+
 
 console.log(userMoods, "user moods")
 
@@ -57,8 +59,7 @@ useEffect(() => {
         dispatch(updateUser(newUser)).then( res =>{
             console.log(res.type)
             if(res.type === 'session/RECEIVE_CURRENT_USER') {
-                history.push('/account')
-                alert('updates saved')
+                setSuccessModal(true)
             }
         // } 
     } )
@@ -107,6 +108,18 @@ useEffect(() => {
         <button className="mood-submit" onClick={handleSubmit}>
           Submit
         </button>
+        { successModal ? 
+            <>
+            <div className="user-modal-background"></div>
+            <div className="user-modal" id='user-modal'>
+                <h1 >preferences edited!</h1>
+                <div className="edit-user-button-container">
+                    <button className="confession-modal-button" id="create-another-confession" onClick={() => history.push("/account")}>Return to Profile</button>
+                    <button className="confession-modal-button" onClick={() => history.push("/")}>Return Home</button>
+                </div>
+            </div>
+            </>
+               : "" }
         {user?.admin && (
           <Link to="/admin">
             <div>Admin</div>
