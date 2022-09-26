@@ -17,6 +17,12 @@ const removeTopic = (topicId)=>({
 })
 
 
+export const getTopic = (topicId) => (state) => {
+  if(!state.topics) return null;
+  if(!state.topics[topicId]) return null;
+  return state.topics[topicId];
+}
+
 export const getAllTopics =  (state) => {
         if (!state) return [];
         else if (!state.topics) return [];
@@ -93,7 +99,7 @@ export const editTopic = (updatedTopic) => async dispatch =>{ // contains userId
   console.log('IN EDIT TOPIC',updatedTopic);
   const res = await jwtFetch(`/api/topics/${updatedTopic._id}`,{
     method: 'PATCH',
-    body: JSON.stringify({updatedTopic})
+    body: JSON.stringify(updatedTopic)
   })
   const topic = await res.json()
   // console.log(topic._id);

@@ -13,7 +13,7 @@ const ConfessionShow = () => {
     const history = useHistory()
     const location = useLocation();
 
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true);
     
     
     useEffect(() => {

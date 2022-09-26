@@ -17,6 +17,7 @@ import TopicCreate from './components/TopicCreate';
 import UserProfile from './components/UserProfile';
 import Admin from './components/Admin/Admin';
 import TopicPage from './components/ChatPages/TopicPage';
+import ConfessionShowLanding from './components/ConfessionShowLanding';
 
 import TopicIndex from './components/TopicIndex';
 
@@ -60,17 +61,25 @@ function App() {
         <ProtectedRoute exact path="/topic/:topicId" component={TopicPage}/>
         <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
         <ProtectedRoute exact path="/user-confessions" component={UserConfessions}/>
+<<<<<<< HEAD
            <ProtectedRoute
               exact
               path="/admin"
               component={Admin}
             />
+=======
+        <ProtectedRoute exact path="/admin" component={Admin}/>
+>>>>>>> main
       <Redirect to="/" />
       </Switch>
       </div>
     </>
+<<<<<<< HEAD
 
     ) 
 }
+=======
+)}
+>>>>>>> main
 
 export default App;

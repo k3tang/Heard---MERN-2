@@ -15,7 +15,23 @@
     font-weight:bolder;
     color: #5a6794;
     cursor: pointer;
+}
 
+.form-submit-button:active{
+    background: #EDF0F4;
+    box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+    border-radius: 10px;    
+}
+
+.form-input {
+    min-width: 300px;
+    min-height: 50px;
+}
+
+.success-modal-title{
+    color: #5a6794;
+    font-style: italic;
+    font-weight: 300;
 }
 
 .confession-form-container{
@@ -29,15 +45,41 @@
 .confession-create-title {
     text-align: center;
     line-height: 4vh;
-    
+}
+
+.confession-form-title{
+    text-transform: lowercase;
+    font-style: italic;
+}
+
+.confession-modal-button{
+    background: #EEF0F4;
+    border: none;
+    border-radius: 40%;
+    box-shadow: 2.55vh 2.55vh 2.88vh #d9dade, -2.55vh -2.55vh 1.52vw #ffffff;
+    font-size: 14px;
+    border-radius: 2vh;
+    width: 15vw;
+    height: 4vw;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+}
+
+.confession-modal-button:active{
+    background: #EDF0F4;
+    box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+    border-radius: 10px;    
 }
 
 .confession-text-area {
+
     border: none;
     background-color: transparent;
     box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
     border-radius: 10px;
     width: 70vh;
+    /* width: 100%; */
     text-align: center;
     resize: none;
     height: 35vh;
@@ -48,17 +90,25 @@
 }
 
 .confession-mood-dropdown {
+    width: 20vw;
+    height: 4vw;
+    font-size: 1.75vw;
     background-color: #EDF0F4;
     box-shadow: -1px -1px 7px #f5f5f5, -5px -4px 17px #ffffff, 1px 2px 5px #a0b0c5, 4px 6px 22px #c0cad8;
-    font-size: 3vw;
+    cursor: pointer;
+    font-size: 1.75vw;
     border-radius: 2vh;
-    width: 25vw;
-    height: 6vw;
     text-align: center;
     border: none;
     font-style: italic;
     color: #5a6794;
     cursor: pointer;
+}
+
+.confession-mood-dropdown:active{
+    background: #EDF0F4;
+    box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
 }
 
 .confession-mood-dropdown .select select {
@@ -73,7 +123,52 @@
 
 .errors {
     color: red;
-    font-weight: 400;
+    font-weight: bold;
     text-align: center;
+    font-style: italic;
+    font-size: 12px;
 }
 
+.confession-modal-background {
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s
+}
+.success-modal {
+    display: block;
+    position: fixed;
+    top: 25vh;
+    left: 30vw;
+    width: 40vw;
+    height: 20vw;
+    font-size: 2vw;
+    background: #EDF0F4;
+    border-radius: 2vw;
+    padding: 2.5vw;
+    text-align: center;
+    display: grid;
+    align-items: center;
+}
+
+<<<<<<< HEAD
+.success-button-container {
+    display: flex;
+    justify-content: space-around;
+}
+=======
+>>>>>>> f977020bea6aef67ebf2c54cb5ab4f08c8d0c791
+
+.success-button-container {
+    display: flex;
+    justify-content: space-around;
+}
