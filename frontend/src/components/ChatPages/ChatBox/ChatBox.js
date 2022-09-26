@@ -51,17 +51,12 @@ function ChatBox() {
       })
  
     }
- //  if (storeMessages) setLoading(false)
+
   setLoading(false);
-  //  console.log('are they here?',storeMessages)
+
   },[currentUser,topicId, timetoFetch])
 
-//   useEffect(()=>{
-//   if(storeMessages) { 
-//     setMessages(storeMessages)
-//     setLoading(false);
-//   } 
-// },[topicId,storeMessages?.length])
+
 
 
 window.currentUser = currentUser;
@@ -73,7 +68,7 @@ window.storeMessages = storeMessages;
     if (e.type === 'keydown' && e.key === "Enter" && newMessage) {
  
      dispatch(addMessage(topicId, newMessage)).then(res => setTimetoFetch(true))
-        // console.log(messages)
+      
       setNewMessage("");
     } else if (e.type === 'click' && newMessage) {
 
@@ -97,7 +92,7 @@ window.storeMessages = storeMessages;
       
         <div>
           {storeMessages.map((message)=> { return !!message._id && (
-            <div >
+            <div key={message._id}>
               <Text key={message._id}>{message.sender === currentUser._id ? "You" : message.sender?.slice(-5)} said: {message.content}</Text>
               </div>
           )})

@@ -11,7 +11,7 @@ const createMessage = asyncHandler(async (req, res) => {
   const { topicId, content } = req.body;
   
   const userId = req.user._id
-  console.log(`hellooooo in send message back end controller. userid: ${userId}, topicId: ${topicId}, content: ${content}`)
+
   
   if (!topicId|| !content || !userId) {
     res.status(400);
@@ -22,7 +22,7 @@ const createMessage = asyncHandler(async (req, res) => {
     content,
     topicId
   };
-  console.log('message info in back', messageInfo)
+
   try {
     const newMessage = await Message.create(messageInfo)
     
@@ -30,7 +30,7 @@ const createMessage = asyncHandler(async (req, res) => {
     .populate('topicId')
 
     const foundTopic = await Topic.findById(topicId)
-    console.log(`topic is ${foundTopic}`);
+   
     if (foundTopic){
       Topic.findByIdAndUpdate(topicId, {
         messages: [...foundTopic.messages, fullMessage._id]
@@ -44,10 +44,10 @@ const createMessage = asyncHandler(async (req, res) => {
 });
 
 const getAllMessages = asyncHandler(async(req, res)=>{
-  // console.log(req.params.topicId)
+
   try {
   const messages = await Message.find({topicId: req.params.topicId})
-  console.log(messages)
+
   res.status(200).json(messages)
 } catch (error) {
 res.status(400).json({message: 'error in get all messages controller'})

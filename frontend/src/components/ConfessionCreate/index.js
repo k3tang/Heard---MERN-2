@@ -44,21 +44,17 @@ function ConfessionCreate () {
             body,
             persist
         }
-        console.log('listing in submit', confession)
+       
     
         dispatch(createConfession(confession)).then( res =>{
             if(res.type === 'confessions/RECEIVE_NEW_CONFESSION') {
                 setSuccessModal(true)
-                // history.push('/')  
+               
             } else {
 
             }
         } )
-            // .then(onFulfilled)
-        // if(totalConfessions !== confessions.length) {
-        //    
-        // }
-
+     
     }
     
 

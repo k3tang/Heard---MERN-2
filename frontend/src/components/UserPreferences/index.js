@@ -15,10 +15,10 @@ const UserPreferences = () => {
     const [successModal, setSuccessModal] = useState(false)
 
 
-console.log(userMoods, "user moods")
 
-console.log('is admin?', user)
-// setting initial/saved mood preferences 
+
+
+
 useEffect(() => {
     if (userMoods) {
         for (let moodName of userMoods) {
@@ -57,7 +57,7 @@ useEffect(() => {
         }
 
         dispatch(updateUser(newUser)).then( res =>{
-            console.log(res.type)
+         
             if(res.type === 'session/RECEIVE_CURRENT_USER') {
                 setSuccessModal(true)
             }

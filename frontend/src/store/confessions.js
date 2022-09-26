@@ -87,13 +87,12 @@ export const createConfession = data => async dispatch => {
             body: JSON.stringify(data)
         });
         const confession = await res.json();
-        console.log(confession)
-        console.log('Confession in create',confession)
+     
        return dispatch(receiveNewConfession(confession));
         
     } catch (err) {
         const resBody = await err.json();
-        console.log(resBody)
+    
         if (resBody.statusCode === 500) {
             return dispatch(receiveErrors(resBody.errors));
         } else {
