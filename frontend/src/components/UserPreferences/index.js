@@ -107,7 +107,7 @@ useEffect(() => {
         <button className="mood-submit" onClick={handleSubmit}>
           Submit
         </button>
-        {user.admin && (
+        {user?.admin && (
           <Link to="/admin">
             <div>Admin</div>
           </Link>
