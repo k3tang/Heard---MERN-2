@@ -23,9 +23,10 @@ function FlagModal({ topic }) {
   const currentUser = useSelector(_getCurrentUser)
 
   const flagThread = (e) => {
-    let updatedTopic = topic;
+    console.log('what is the topic', topic)
+    let updatedTopic = {...topic};
     updatedTopic.flagged.isFlagged = true;
-    updatedTopic.flagged.flaggedBy = currentUser._id
+    updatedTopic.flagged['flaggedBy'] = currentUser._id
     console.log('useriod', updatedTopic)
     dispatch(editTopic(updatedTopic));
     onClose();
