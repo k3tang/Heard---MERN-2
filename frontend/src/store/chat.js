@@ -87,7 +87,6 @@ export const removeChat = (chatId) => ({
 const chatsReducer = (state = {}, action) => {
   Object.freeze(state);
   let newState = { ...state };
-  console.log(action);
   switch (action.type) {
     case RECEIVE_CHATS:
       for (let chat of action.chats) {
