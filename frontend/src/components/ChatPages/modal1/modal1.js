@@ -22,11 +22,13 @@ function Modal1({topic}) {
 const dispatch = useDispatch();
 
 const [title, setTitle] = useState(topic.title)
-// const [mood, setMood] = useState(topic.mood)
+const [mood, setMood] = useState(topic.mood)
 
 const saveTitle = (e) =>{
-  let updatedTopic = topic
-  updatedTopic.title = title
+  let updatedTopic = {...topic}
+  updatedTopic.title = title;
+  updatedTopic.mood = mood;
+  console.log(updatedTopic);
   dispatch(editTopic(updatedTopic))
   
   onClose();
@@ -43,26 +45,21 @@ const saveTitle = (e) =>{
           <ModalHeader>Edit Title</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            {/* <form> */}
-              <Input onChange={(e) => setTitle(e.target.value)}></Input>
-              {/* <select
+
+              <Input value={title} onChange={(e) => setTitle(e.target.value)}></Input>
+              <select
                 className="confession-mood-dropdown"
                 name="mood"
                 id="mood"
                 value={mood}
-                onChange={setMood(mood)}
+                onChange={(e) => setMood(e.target.value)}
               >
-                <option defaultValue value={topic.mood}>
-                  {" "}
-                  I'm feeling...
-                </option>
                 <option value="angry">Angry</option>
                 <option value="loved">Loved</option>
                 <option value="anxious">Anxious</option>
                 <option value="happy">Happy</option>
                 <option value="sad">Sad</option>
               </select>
-            </form> */}
           </ModalBody>
 
           <ModalFooter>

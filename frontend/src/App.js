@@ -73,11 +73,17 @@ function App() {
               component={ConfessionShow}
             />
 
+<<<<<<< HEAD
             <Route exact path="/topic-create" component={TopicCreate} />
             <Route exact path="/topic-index" component={TopicIndex} />
+=======
+        <ProtectedRoute exact path="/topic-create" component={TopicCreate} />
+        <ProtectedRoute exact path="/topic-index" component={TopicIndex} />
+>>>>>>> remotes/origin/topics-frontend-new
 
             <Route exact path="/topic/:topicId" component={TopicPage} />
 
+<<<<<<< HEAD
             <ProtectedRoute
               exact
               path="/confession-next"
@@ -88,6 +94,9 @@ function App() {
               path="/user-confessions"
               component={UserConfessions}
             />
+=======
+        <ProtectedRoute exact path="/topic/:topicId" component={TopicPage}/>
+>>>>>>> remotes/origin/topics-frontend-new
 
             <ProtectedRoute
               exact

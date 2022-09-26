@@ -84,20 +84,21 @@ const moveTopics = (id) =>{
               <Stack>
                  {  myTopics?.map(topic => {
                  
-             return <Box><Box
-                  key={topic._id}
-                onClick={()=> moveTopics(topic?._id)}
-                cursor="pointer"
-                bg={topicId === topic?._id ? 'blue' : 'white' }
-                color={topicId === topic?._id ? 'white' : 'blue' }
-                px={3}
-                py={2}
-              
-                > 
-                <Text> {topic?.title}</Text>
-                </Box>
-                {topic && <Modal1 topic={topic}/> }
-                <Modal2 topic={topic}/>
+             return <Box key={topic._id}>
+                      <Box
+                        key={topic._id}
+                      onClick={()=> moveTopics(topic?._id)}
+                      cursor="pointer"
+                      bg={topicId === topic?._id ? 'blue' : 'white' }
+                      color={topicId === topic?._id ? 'white' : 'blue' }
+                      px={3}
+                      py={2}
+                    
+                      > 
+                      <Text> {topic?.title}</Text>
+                      </Box>
+                      {topic && <Modal1 topic={topic}/> }
+                      <Modal2 topic={topic}/>
                 </Box>
                  })}
                            
