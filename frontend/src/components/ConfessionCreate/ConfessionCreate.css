@@ -3,10 +3,10 @@
     border-radius: 40%;
     background-color: #EDF0F4;
     box-shadow: -1px -1px 7px #f5f5f5, -5px -4px 17px #ffffff, 1px 2px 5px #a0b0c5, 4px 6px 22px #c0cad8;
-    font-size: 2vw;
     border-radius: 2vh;
-    width: 15vw;
-    height: 9vh;
+    width: 20vw;
+    height: 4vw;
+    font-size: 1.75vw;
     text-align: center;
     display: block;
     cursor: pointer;
@@ -160,13 +160,6 @@
     align-items: center;
 }
 
-<<<<<<< HEAD
-.success-button-container {
-    display: flex;
-    justify-content: space-around;
-}
-=======
->>>>>>> f977020bea6aef67ebf2c54cb5ab4f08c8d0c791
 
 .success-button-container {
     display: flex;

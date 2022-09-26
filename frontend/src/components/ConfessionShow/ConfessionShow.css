@@ -27,7 +27,17 @@
     font-size: 1.75vw;
     font-style: italic;
     text-align: center;
-    overflow: scroll;
+    overflow: hidden ;
+}
+
+.circle-container {
+    display: flex;
+    justify-content: center;
+}
+
+svg {
+    width: auto;
+    height: auto;
 }
 
 .logo-timer {
