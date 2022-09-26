@@ -8,7 +8,10 @@ import {useHistory} from "react-router-dom"
 
 function ConfessionCreate () {
     const sessionUser = useSelector(state=>state.session.user);
-    const errors = useSelector(state => state.errors.confessions);
+    // const moodErrors = useSelector(state => state.errors.confessions.mood);
+    // const bodyErrors = useSelector(state => state.errors.confessions.body);
+    const errors = useSelector(state => state.errors);
+
     const dispatch = useDispatch();
     const history = useHistory()
     const [errorModal, setErrorModal] = useState(false)
@@ -25,9 +28,6 @@ function ConfessionCreate () {
     const [body, setBody] = useState('');
     const userId = sessionUser._id
 
-    if(errors) {
-        setErrorModal(true)
-    }
 
 
 
@@ -69,7 +69,6 @@ function ConfessionCreate () {
  
 
         <div className='confession-form-container'>
-            <h1 className="confession-form-title">Let it out, tell us how you're feeling...</h1>
 
             <form className='confession-create-form' onSubmit={handleSubmit}>
                 <div className='mood-input-container'>          
@@ -79,6 +78,7 @@ function ConfessionCreate () {
  
                     {/* <label> mood </label> */}
                         <select className='confession-mood-dropdown'name="mood" title="Select a Mood" id="mood" value={mood} onChange={update('mood')}>
+                            <option defaultValue value='invalid'>I'm feeling...</option>
                             <option value="angry" >Angry</option>
                             <option value="loved" >Loved</option>
                             <option value="anxious">Anxious</option>
@@ -86,7 +86,7 @@ function ConfessionCreate () {
                             <option value="sad" >Sad</option>
                         </select>
                 
-                        <div className="errors">{errors?.mood?.message}</div>
+                        {/* <div className="errors">{errors?.mood.message}</div> */}
                 </div>
                 {/* <label> body </label> */}
 
@@ -99,7 +99,7 @@ function ConfessionCreate () {
                         title="Tell us What's on Your Mind"
                         placeholder="what's on your mind?"
                         onChange={update('body')} />
-                        <div className="errors">{errors?.body?.message}</div>
+                        {/* <div className="errors">{errors?.body.message}</div> */}
                 </div>
                 {sessionUser.admin && <div>
                     <input type='checkbox'  name='persist' value='perist' onChange={(e)=>setPersist(e.target.checked)}/>

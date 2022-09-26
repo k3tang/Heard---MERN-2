@@ -44,7 +44,6 @@ const TopicCreate = () => {
     return (
         <>
             <div className="topic-create-container">
-                <h1 className="topic-title">let's start a discussion</h1>
                 <div className="topic-form">
                     <form onSubmit={handleSubmit}>
                             <select className="topic-mood-dropdown" value={mood} onChange={(e) => setMood(e.target.value)}>
