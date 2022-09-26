@@ -73,19 +73,29 @@ window.storeMessages = storeMessages;
       setNewMessage("");
     }
   };
-
+let color;
 
   return (
     <>
         <div id="chat-messages">
-          {storeMessages.map((message)=> { return !!message._id && (
-            <div className="chat-inner-container">
-              <div className="chat-message-user" key={message._id}>
-               {message.sender === currentUser._id ? "You" : "Anon"} said: 
-              </div>
-              <div className="chat-message-body">{message.content}</div>
-            </div>
-          )})
+          {storeMessages.map((message)=> {
+              {message.sender === currentUser._id
+                ? (color = "#FBD8B0")
+                : (color = "#D5F1F3");}
+           return (
+             !!message._id && (
+               <div className="chat-inner-container" style={{ backgroundColor: color }}>
+                 <div
+                   className="chat-message-user"
+                   key={message._id}
+                  //  style={{ color: color }}
+                 >
+                   {message.sender === currentUser._id ? "You" : "Anon"} said:
+                 </div>
+                 <div className="chat-message-body">{message.content}</div>
+               </div>
+             )
+           );})
         }
         </div>
       <form
