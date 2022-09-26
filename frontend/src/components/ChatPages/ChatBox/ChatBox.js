@@ -88,6 +88,7 @@ window.storeMessages = storeMessages;
       h={"100vh"}
       w={"100%"}
       bg='#f2f2f2'
+      // overflowY={'scroll'}
     >
       
         <div>
@@ -104,6 +105,7 @@ window.storeMessages = storeMessages;
         isRequired
         mt={3}
         display="flex"
+        
       >
         <Input
           variant="filled"
