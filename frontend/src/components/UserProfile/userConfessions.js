@@ -13,8 +13,7 @@ const UserConfessions = () => {
 
 
     
-    console.log("user id", user)
-    console.log("confessions", uConfessions)
+
     
 
     useEffect(() => {

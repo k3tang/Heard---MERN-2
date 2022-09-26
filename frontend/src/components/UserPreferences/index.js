@@ -13,10 +13,10 @@ const UserPreferences = () => {
     const [checkedKeywords, setCheckedKeywords] = useState(userMoods)
     const history = useHistory()
 
-console.log(userMoods, "user moods")
 
-console.log('is admin?', user)
-// setting initial/saved mood preferences 
+
+
+
 useEffect(() => {
     if (userMoods) {
         for (let moodName of userMoods) {
@@ -55,7 +55,7 @@ useEffect(() => {
         }
 
         dispatch(updateUser(newUser)).then( res =>{
-            console.log(res.type)
+         
             if(res.type === 'session/RECEIVE_CURRENT_USER') {
                 history.push('/account')
                 alert('updates saved')

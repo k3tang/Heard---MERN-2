@@ -39,7 +39,7 @@ const TopicIndex = () => {
   const makeChat = (topicId) => {
     dispatch(fetchTopic(topicId)).then(res => {
       history.push(`/topic/${res._id}`);
-    console.log('topicId',res._id)
+    
     }).catch((err) => {
       console.log(err);
     })
@@ -47,23 +47,13 @@ const TopicIndex = () => {
   };
 
 
-  // const currentChat = useSelector((state) => {
-  //   if (!state) return null;
-  //   else if (!state.chats?.currentChat) return null;
-  //   else return state.chats.currentChat;
-  // });
 
-  // useEffect(() => {
-  //   if (currentChat){
-  //   history.push(`/chats/${currentChat?._id}`);
-  //   console.log('chatId',currentChat._id)
-  //   }
-  // }, [currentChat]);
+
 
 
   if(!currentUser || !topics) return null;
 
-// console.log('store topics', storeTopics)
+
   return (
     <>
       <MyTopicsDrawer />
