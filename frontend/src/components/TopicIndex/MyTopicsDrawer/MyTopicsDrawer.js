@@ -49,7 +49,7 @@ useEffect(()=>{
   },[currentUser])
 
 const moveTopics = (id) =>{
-  console.log(id)
+
   history.push(`/topic/${id}`)
   
 }

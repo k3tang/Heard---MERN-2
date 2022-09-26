@@ -40,7 +40,7 @@ const createTopic = asyncHandler(async (req, res) => {
 
 
 const editTopic = asyncHandler(async (req, res) => {
-    console.log('trying to pudate: ',req.body)
+   
     const topic = await Topic.findById(req.params.id)
     if (!topic) {
         res.status(400)
@@ -51,19 +51,13 @@ const editTopic = asyncHandler(async (req, res) => {
          throw new Error("not authorized to edit");
      }
   
-
-      
-
         const updatedTopic = await Topic.findOneAndUpdate({_id: req.params.id}, req.body, {
 
             new: true
         })
-        console.log('IN BACK END DID WE UPDATE THIS', updatedTopic)
+   
         res.status(200).json(updatedTopic);
-    // } else {
-        // res.status(401);
-        // throw new Error('you must be an admin or author of confession to edit')
-    // }
+ 
 })
 
 const deleteTopic = asyncHandler(async (req, res) => {

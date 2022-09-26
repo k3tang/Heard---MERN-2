@@ -9,7 +9,7 @@ const TopicCreate = () => {
     const dispatch = useDispatch();
     const [topicTitle, setTopicTitle] = useState("");
     const [mood, setMood] = useState("loved");
-    // const [user, setUser] = useState();
+  
 
     const errors = useSelector(state => state.errors.session);
 
@@ -27,10 +27,10 @@ const TopicCreate = () => {
             mood,
             title: topicTitle,
         } 
-        console.log(newTopic);
+   
 
         dispatch(createTopic(newTopic)).then((res) => {
-            console.log(res);
+         
             history.push("/topic-index");
         }).catch((err) => console.log(`Error ${err.status}: ${err.statusText}`));
 

@@ -27,7 +27,7 @@ export const getAllTopics =  (state) => {
         if (!state) return [];
         else if (!state.topics) return [];
         else {
-          // console.log(Object.values(state.topics)); 
+   
           return Object.values(state.topics);
         }
     }
@@ -79,13 +79,13 @@ export const fetchTopicsbyUser = (userId) => async dispatch =>{
 }
 
 export const createTopic = (topicInfo) => async dispatch =>{ // contains ownerId, title, mood
-  // console.log('IN CREATE TOPIC',topicInfo);
+
   const res = await jwtFetch("/api/topics/",{
     method: 'POST',
     body: JSON.stringify(topicInfo)
   })
   const topic = await res.json()
-  // console.log(topic._id);
+
   if (res.ok){
     dispatch(receiveTopic(topic))
 
@@ -96,13 +96,13 @@ export const createTopic = (topicInfo) => async dispatch =>{ // contains ownerId
 }
 
 export const editTopic = (updatedTopic) => async dispatch =>{ // contains userId, title, mood
-  console.log('IN EDIT TOPIC',updatedTopic);
+ 
   const res = await jwtFetch(`/api/topics/${updatedTopic._id}`,{
     method: 'PATCH',
     body: JSON.stringify(updatedTopic)
   })
   const topic = await res.json()
-  // console.log(topic._id);
+
   if (res.ok){
     dispatch(receiveTopic(topic))
 
@@ -117,7 +117,7 @@ export const deleteTopic = (topicId) => async dispatch => {
     method: 'DELETE'
   })
   const topic = await res.json()
-  // console.log(topic._id);
+
   if (res.ok){
     dispatch(removeTopic(topic._id))
 

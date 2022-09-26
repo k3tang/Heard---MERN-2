@@ -28,7 +28,7 @@ const saveTitle = (e) =>{
   let updatedTopic = {...topic}
   updatedTopic.title = title;
   updatedTopic.mood = mood;
-  console.log(updatedTopic);
+
   dispatch(editTopic(updatedTopic))
   
   onClose();
