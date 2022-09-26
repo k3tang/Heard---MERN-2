@@ -15,14 +15,7 @@ const removeTopic = (topicId)=>({
   type: REMOVE_TOPIC,
   topicId
 })
-export const getTopic = (state, topicId) => {
-  if (!state) return [];
-  else if (!state.topics) return [];
-  else {
 
-    return state.topics[topicId]
-  }
-};
 
 export const getTopic = (topicId) => (state) => {
   if(!state.topic) return null;

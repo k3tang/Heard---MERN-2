@@ -21,7 +21,7 @@ function TopicPage() {
  const {topicId} = useParams();
  const dispatch = useDispatch()
 
-  const topic = useSelector((state)=>getTopic(state,topicId))
+  const topic = useSelector(getTopic(topicId))
 
 
 //  const [title, set Title] = useState("");
