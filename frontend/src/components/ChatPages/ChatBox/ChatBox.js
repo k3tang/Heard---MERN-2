@@ -86,13 +86,12 @@ window.storeMessages = storeMessages;
   };
   return (
     <Box
+      className="chat-box"
       d="flex"
       flexDirection={'column'}
       alignItems={"center"}
       justifyContent={"center"}
-      h={"100vh"}
       w={"100%"}
-      bg='#f2f2f2'
     >
       
         <div>
@@ -105,26 +104,27 @@ window.storeMessages = storeMessages;
         </div>
     
       <FormControl
+        className="chat-container"
         onKeyDown={handleClick}
         isRequired
         mt={3}
-        display="flex"
       >
-        <Input
+        <textarea
+          className="chat-text"
+          role={"textbox"}
+          contentEditable
           variant="filled"
           bg="f8f8f8"
           placeholder="be heard..."
           onChange={typingHandler}
           value={newMessage}
         />
-        <Button
+        <button
+          className="chat-send-button"
           onClick={handleClick}
-          colorScheme={"teal"}
-          size="md"
-          variant="outline"
         >
           send
-        </Button>
+        </button>
       </FormControl>
     </Box>
   );

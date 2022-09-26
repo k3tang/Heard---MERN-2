@@ -4,8 +4,16 @@
     background: #EDF0F4;
     box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
     border-radius: 10px;
-    width: 10vw;
+    width: 20vw;
     height: 3vw;
     text-transform: uppercase;
     margin-bottom: 3vh;
+}
+
+@media screen and (max-width: 950px) {
+    .chat-button {
+        width: 50vw;
+        height: 10vw;
+        font-size: 4vw;
+    }
 }

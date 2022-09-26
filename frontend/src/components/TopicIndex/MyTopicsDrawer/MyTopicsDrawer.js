@@ -57,7 +57,7 @@ const moveTopics = (id) =>{
   return (
     <>
       <button ref={btnRef} className="chat-button" onClick={onOpen}>
-        My Chats
+        My message threads
       </button>
       <Drawer
         isOpen={isOpen}

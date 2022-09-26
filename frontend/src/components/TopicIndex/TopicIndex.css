@@ -49,6 +49,7 @@
 .topic-container {
     height: 70vh;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 .topic-listing {
     list-style: none;
@@ -62,4 +63,19 @@
 
 .topic-title {
     font-size: 1vw;
+}
+
+@media screen and (max-width: 950px) {
+  .yellow, .red, .pink, .green, .blue {
+    padding: 2.5vw;
+    margin-bottom: 5vw;
+  }
+
+  .topic-title {
+    font-size: 4vw;
+  }
+
+  .topic-mood {
+    font-size: 3vw;
+  }
 }
