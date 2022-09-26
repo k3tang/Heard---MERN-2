@@ -61,6 +61,7 @@ const ConfessionShow = () => {
                         <CountdownCircleTimer
                             isPlaying
                             duration={10}
+                            size='100'
                             colors={["#d3e7ee", "#abd1da", "#7097a7", "#7097a7"]}
                             colorsTime={[10, 6, 3, 0]}
                             onComplete={() => ({ shouldRepeat: true, delay: 1 })}
