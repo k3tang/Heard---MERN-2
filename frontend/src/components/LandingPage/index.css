@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    height: 50vh;
+    height: 40vh;
 }
 
 .bottle-logo {
@@ -47,7 +47,7 @@
 .welcome-message {
     text-align: center;
     font-size: 1.25vw;
-    margin-top: 4vh;
+    margin-top: 6vh;
     margin-left: 6vw;
     margin-right: 6vw;
     line-height: 5vh;

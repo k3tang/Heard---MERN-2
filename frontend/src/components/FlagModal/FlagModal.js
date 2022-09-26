@@ -33,14 +33,14 @@ function FlagModal({ topic }) {
   };
   return (
     <>
-      <Button size="xs" onClick={onOpen}>
+      <Button size="xs" textTransform={"uppercase"} cursor="pointer" onClick={onOpen}>
         Report Topic
       </Button>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Are you sure you want to flag this thread?</ModalHeader>
+          <ModalHeader paddingTop={"5vw"}>Are you sure you want to flag this thread?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
    
@@ -48,10 +48,10 @@ function FlagModal({ topic }) {
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-             No,It's Ok
+            <Button colorScheme="gray" textTransform={"uppercase"} mr={3} onClick={onClose}>
+             No, It's Ok
             </Button>
-            <Button variant="ghost" onClick={(e) => flagThread(e)}>
+            <Button colorScheme="red" textTransform={"uppercase"} onClick={(e) => flagThread(e)}>
               Flag Thread
             </Button>
           </ModalFooter>

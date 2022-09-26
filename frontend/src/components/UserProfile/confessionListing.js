@@ -33,7 +33,7 @@ const ConfessionListing = ({conf}) => {
     return (
         <>
             <div className='listing-container'>
-                <div>{conf.body}</div>
+                <div className={conf.mood}>{conf.body}</div>
                 <div id="trash-icon" className="fa-solid fa-trash" onClick={() => setConfModal(true)}></div>
             </div>
             { confModal ? 

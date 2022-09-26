@@ -8,7 +8,7 @@
 }
 
 .red {
-    background-color: #f3c6ba;
+    background-color: #d1b0a7;
         box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
         border-radius: 10px;
         margin-bottom: 1vw;
@@ -49,6 +49,7 @@
 .topic-container {
     height: 70vh;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 .topic-listing {
     list-style: none;
@@ -62,4 +63,19 @@
 
 .topic-title {
     font-size: 1vw;
+}
+
+@media screen and (max-width: 950px) {
+  .yellow, .red, .pink, .green, .blue {
+    padding: 2.5vw;
+    margin-bottom: 5vw;
+  }
+
+  .topic-title {
+    font-size: 4vw;
+  }
+
+  .topic-mood {
+    font-size: 3vw;
+  }
 }

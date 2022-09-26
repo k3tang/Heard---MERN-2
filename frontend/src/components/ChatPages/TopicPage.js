@@ -14,7 +14,7 @@ import FlagModal from '../FlagModal'
 import { getTopic } from "../../store/topics"
 
 import { fetchTopic } from '../../store/topics'
-
+import "./chatpage.css"
 
 
 function TopicPage() {
@@ -38,18 +38,15 @@ function TopicPage() {
 
 
   return (
-    <div className='chat-page'>
+    <>
      <MyTopicsDrawer/>
-     <Box>
-      <h1>{topic?.title}</h1>
-      {topic?.flagged.isFlagged && <h2 style={{color: 'red'}}>THIS TOPIC HAS BEEN FLAGGED FOR REVIEW</h2>}
-     {topic && <FlagModal topic={topic}/>}
-     </Box>
-      <Box>
-    
-        {currentUser && <ChatBox />}
-      </Box>
-    </div>
+      <div className='chat-title-container'>
+        <h1 className='chat-title'>{topic?.title}</h1>
+        {topic?.flagged.isFlagged && <h2 className="flagged-text" style={{color: 'red'}}>THIS TOPIC HAS BEEN FLAGGED FOR REVIEW</h2>}
+      {topic && <FlagModal topic={topic}/>}
+      </div>
+      {currentUser && <ChatBox />}
+  </>
   )
 }
  

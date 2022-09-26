@@ -16,9 +16,6 @@ const UserPreferences = () => {
 
 
 
-
-
-
 useEffect(() => {
     if (userMoods) {
         for (let moodName of userMoods) {
@@ -66,32 +63,9 @@ useEffect(() => {
 }
 
 
-    // const toggleMode = () => {
-    //     const body = document.getElementById("root")
-    //     const container = document.getElementById("entire-container")
-    //     if (body.classList.contains("dark")) {
-    //         body.classList.remove("dark");
-    //         const container = document.getElementById("entire-container-dark")
-    //         container.id = 'entire-container';
-    //     } else {
-    //         body.classList.add("dark");
-    //         container.id = 'entire-container-dark';
-    //     }
-    // }
-    
-    // add mode toggle for light/dark mode 
+  
     return (
       <>
-        {/* <div className="light-dark-mode">
-                <div id="light-mode-icon" className="fas fa-sun"></div>
-                <div className="toggle-container">
-                    <label className="switch">
-                        <input type="checkbox" onClick={toggleMode} />
-                            <span className="slider round"></span>
-                    </label>
-                </div>
-                <div id="dark-mode-icon" className=" fas fa-moon"></div>
-            </div> */}
         <h2 className="mood-header">Mood Preferences</h2>
         <div className="mood-button-container">
           {moodState.map((moodName) => (

@@ -159,14 +159,50 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    border-bottom: 1px solid lightgray;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
 }
 
 #trash-icon {
     padding: 2vw;
 }
+
+
+.angry {
+    background-color: #d1b0a7;
+    padding: 1vw 2vw;
+    border-radius: 15px;
+    width: 60vw;
+}
+
+.loved {
+    background-color: #f6dbd9;
+    padding: 1vw 2vw;
+    border-radius: 15px;
+    width: 60vw;
+}
+
+.anxious {
+    background-color: #bfdcd0;
+    padding: 1vw 2vw;
+    border-radius: 15px;
+    width: 60vw;
+}
+
+.sad {
+    background-color: #cdd7e6;
+    padding: 1vw 2vw;
+    border-radius: 15px;
+    width: 60vw;
+}
+
+.happy {
+    background-color: #ebe2b1;
+    padding: 1vw 2vw;
+    border-radius: 15px;
+    width: 60vw;
+}
+
 
 /* conf-modal */
 #delete-modal-background {
