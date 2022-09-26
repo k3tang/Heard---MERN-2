@@ -45,8 +45,6 @@ function ChatBox() {
     }
 
   setLoading(false);
-  let objDiv = document.getElementById("chat-messages");
-     objDiv.scrollTop = objDiv.scrollHeight;
 
   },[currentUser,topicId, timetoFetch])
 
@@ -73,18 +71,13 @@ window.storeMessages = storeMessages;
       setNewMessage("");
     }
   };
-
-
   return (
     <>
         <div id="chat-messages">
           {storeMessages.map((message)=> { return !!message._id && (
-            <div className="chat-inner-container">
-              <div className="chat-message-user" key={message._id}>
-               {message.sender === currentUser._id ? "You" : "Anon"} said: 
+            <div key={message._id}>
+              <Text key={message._id}>{message.sender === currentUser._id ? "You" : message.sender?.slice(-5)} said: {message.content}</Text>
               </div>
-              <div className="chat-message-body">{message.content}</div>
-            </div>
           )})
         }
         </div>
