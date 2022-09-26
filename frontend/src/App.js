@@ -61,25 +61,11 @@ function App() {
         <ProtectedRoute exact path="/topic/:topicId" component={TopicPage}/>
         <ProtectedRoute exact path="/confession-next" component={AnotherConfession} />
         <ProtectedRoute exact path="/user-confessions" component={UserConfessions}/>
-<<<<<<< HEAD
-           <ProtectedRoute
-              exact
-              path="/admin"
-              component={Admin}
-            />
-=======
         <ProtectedRoute exact path="/admin" component={Admin}/>
->>>>>>> main
       <Redirect to="/" />
       </Switch>
       </div>
     </>
-<<<<<<< HEAD
-
-    ) 
-}
-=======
 )}
->>>>>>> main
 
 export default App;

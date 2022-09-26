@@ -112,7 +112,6 @@ window.storeMessages = storeMessages;
         <textarea
           className="chat-text"
           role={"textbox"}
-          contentEditable
           variant="filled"
           bg="f8f8f8"
           placeholder="be heard..."

@@ -1,11 +1,15 @@
-.chat-page {
-  position: relative;
+.chat-box {
+  /* height: 37vw; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow-y: hidden;
 }
 
 .chat-container {
   display: flex;
   position: absolute;
-  top: 22vw;
+  bottom: 1vw;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
