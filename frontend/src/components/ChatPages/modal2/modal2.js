@@ -40,17 +40,17 @@ const leaveChat = (e) =>{
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Are you sure?</ModalHeader>
+          <ModalHeader paddingTop={"3vw"}>Are you sure?</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
    
           </ModalBody>
 
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
+            <Button colorScheme="gray" mr={3} onClick={onClose}>
               Keep Thread Open
             </Button>
-            <Button variant="ghost" onClick={(e)=>leaveChat(e)}>I've been heard(delete)</Button>
+            <Button colorScheme="yellow" onClick={(e)=>leaveChat(e)}>I've been heard (delete)</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

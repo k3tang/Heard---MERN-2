@@ -3,14 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import "./chatbox.css";
 import { _getCurrentUser } from "../../../store/session";
-import {
-  FormControl,
-  Input,
-  Box,
-  Spinner,
-  Button,
-  Text
-} from "@chakra-ui/react";
 import {useParams} from 'react-router-dom'
 
 import {fetchMessages, getAllMessages, addMessage } from '../../../store/messages'
@@ -53,6 +45,8 @@ function ChatBox() {
     }
 
   setLoading(false);
+  let objDiv = document.getElementById("chat-messages");
+     objDiv.scrollTop = objDiv.scrollHeight;
 
   },[currentUser,topicId, timetoFetch])
 
@@ -79,26 +73,22 @@ window.storeMessages = storeMessages;
       setNewMessage("");
     }
   };
+
+
   return (
-    <Box
-      className="chat-box"
-      d="flex"
-      flexDirection={'column'}
-      alignItems={"center"}
-      justifyContent={"center"}
-      w={"100%"}
-    >
-      
-        <div>
+    <>
+        <div id="chat-messages">
           {storeMessages.map((message)=> { return !!message._id && (
-            <div key={message._id}>
-              <Text key={message._id}>{message.sender === currentUser._id ? "You" : message.sender?.slice(-5)} said: {message.content}</Text>
+            <div className="chat-inner-container">
+              <div className="chat-message-user" key={message._id}>
+               {message.sender === currentUser._id ? "You" : "Anon"} said: 
               </div>
+              <div className="chat-message-body">{message.content}</div>
+            </div>
           )})
         }
         </div>
-    
-      <FormControl
+      <form
         className="chat-container"
         onKeyDown={handleClick}
         isRequired
@@ -119,8 +109,8 @@ window.storeMessages = storeMessages;
         >
           send
         </button>
-      </FormControl>
-    </Box>
+      </form>
+      </>
   );
 }
 
