@@ -1,40 +1,16 @@
-# MERN-Chirper
+# Heard
+
+[Click here to view!](https://heard--app.herokuapp.com/)
+
+## Background
+--- 
+Heard is an application that aims to foster a safe, anonymous community of secret sharers and secret bearers. Users can choose to share a confession or start a message thread about a specific topic. The application design takes a mobile-focused approach as most of the interactions will likely take place sporadically throughout the day on an accessible device. 
 
 
+## Features 
+---
+### User Authentication - Login/Signup 
 
+Heard features a fully functional user authentication system, complete with a demo user login and error handling for incomplete entries. Upon successful login, the user will be redirected to a home page where the user can choose to participate in the application as a listener or create confessions or message threads. 
 
-
-{
-    "ownerId": "632a01dd3edcc578ceef55df",
-    "title": "I had to put my dog down today. He was the best dog.",
-    "mood": "blue",
-    "persist": true,
-    "flagged": {
-        "isFlagged": false
-    },
-    "_id": "632a4ee6a04b1bbe7a8d1bd4",
-    "responses": [],
-    "createdAt": "2022-09-20T23:38:14.799Z",
-    "updatedAt": "2022-09-20T23:38:14.799Z",
-    "__v": 0
-}   TOPIC
-
-
-test5@email.com 
-632a0f709bc7a2130c345dc8
-
-topic id: 632a4c4ba72f81898cb60bf9
-
-owner id: 632a01dd3edcc578ceef55df
-
-responder id: 
-
-route path="/socket/:socketId" component={ChatPage}
-
-make a topic:
-on >
-make a chatroom.
-
-open chats in user page -> link to their chat page
-
-clicks the link - > routes to that page
+<img width="400" alt="Screen Shot 2022-09-27 at 9 38 39 AM" src="https://user-images.githubusercontent.com/107089418/192585733-4cb3a8b0-b84b-43b0-8a63-df325bf0cc51.png"><img width="400" alt="Screen Shot 2022-09-27 at 9 39 08 AM" src="https://user-images.githubusercontent.com/107089418/192585750-666d1c0e-f3c6-4bd1-82dd-fffda55b6856.png">
