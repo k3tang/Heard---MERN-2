@@ -83,3 +83,30 @@ const createMessage = asyncHandler(async (req, res) => {
 It is then populated with its `topicId` before the topic is found and updated by appending the message to its list of `messages` using `findByIdAndUpdate()`.
 
 Updating the title's title and / or mood or deleting it is simpler, involving mainly the findById and findByIdAndUpdate methods, since a new instance of a `Message` object does not have to be created.
+
+
+### Confessions - Creation and Display
+
+On Heard, users can anonymously share their deepest secrets with our confessions tab, where they're sent to our MongoDatabase and stored until randomly selected to be seen by another user. Once seen confessions are then deleted, never to be seen again. If a user ever regrets a confession, they can be deleted on their profile where only they can see it.  
+
+<img  width="350" alt="Gathering Secrets Loading Animations" src="https://user-images.githubusercontent.com/101153713/192821901-17dde078-f9ce-47d7-a5ab-399b00b2db26.png">
+<img  width="350" alt="Random Confession Exapmle" src="https://user-images.githubusercontent.com/101153713/192822026-ca3adcbf-9268-4c18-b05f-efe7192d060e.png">
+
+```
+    useEffect(() => {
+        dispatch(fetchConfessions())
+        setTimeout(function () {
+            setIsLoading(false);
+        }, 3000)
+        setTimeout(function () {
+            setShowConfession(false);
+            history.push(`/confession-next`)
+        }, 13000)
+        // .then(console.log(confessions))
+    },[]);
+    let posts = confessions[0];
+    let total = posts.length;
+    let random = Math.floor(Math.random()*total);
+    let randomConfession = posts[random];
+    
+  ```
