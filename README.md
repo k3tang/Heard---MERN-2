@@ -110,3 +110,13 @@ On Heard, users can anonymously share their deepest secrets with our confessions
     let randomConfession = posts[random];
     
   ```
+  
+## Technologies Utilized 
+___ 
+
+ * MongoDB
+ * Javascript
+ * React/Redux
+ * Express.js
+ * Node.js
+ 
