@@ -45,7 +45,8 @@ function ChatBox() {
     }
 
   setLoading(false);
-  let objDiv = document.getElementById("chat-messages");
+    let objDiv = document.getElementById("chat-messages");
+    console.log(objDiv, "obj")
      objDiv.scrollTop = objDiv.scrollHeight;
 
   },[currentUser,topicId, timetoFetch])
@@ -90,7 +91,7 @@ let color;
                    key={message._id}
                   //  style={{ color: color }}
                  >
-                   {message.sender === currentUser._id ? "You" : "Anon"} said:
+                   {message.sender === currentUser._id ? "You" : `${message.sender?.slice(-5)}`} said:
                  </div>
                  <div className="chat-message-body">{message.content}</div>
                </div>

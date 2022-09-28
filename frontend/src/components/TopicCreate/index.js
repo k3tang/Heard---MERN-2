@@ -1,8 +1,8 @@
-import "./index.css"
-import { useSelector,useDispatch } from "react-redux";
-import getCurrentUser from "../../store/session"
-import { createTopic } from "../../store/topics"
-import { useState, useEffect, } from "react";
+import "./index.css";
+import { useSelector, useDispatch } from "react-redux";
+import getCurrentUser from "../../store/session";
+import { createTopic } from "../../store/topics";
+import { useState, useEffect } from "react";
 import { Input } from "@chakra-ui/react";
 import { useHistory } from 'react-router-dom';
 import { clearTopicErrors } from "../../store/topics";
@@ -48,6 +48,9 @@ const TopicCreate = () => {
         
     }
 
+  useEffect(() => {
+    dispatch(getCurrentUser);
+  }, []);
 
     return (
         <>

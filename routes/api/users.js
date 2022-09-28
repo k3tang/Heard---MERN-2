@@ -30,14 +30,14 @@ router.post('/signup', validateRegisterInput, async (req, res, next) => {
   })
 
   if (user) {
-    const err = new Error("Error de validacion");
+    const err = new Error("Validation error");
     err.statusCode = 400;
     const errors = {};
     if(user.email === req.body.email) {
-      errors.email = "Ya se registro un usuario con este correo";
+      errors.email = "A user already exists with this email";
     }
     if(user.username === req.body.username) {
-      errors.username = "Ya se registro un usuario con este nombre de usuario";
+      errors.username = "A user already exists with this username";
     }
     err.errors = errors;
     return next(err);
@@ -137,7 +137,7 @@ const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id)
   if(!user){
     res.status(400)
-    throw new Error('user not found' )
+    throw new Error('User not found' )
   } 
   // if (req.user.admin || req.params.id === req.user.id){
   // if (req.params.password){
