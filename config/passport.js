@@ -72,10 +72,12 @@ exports.restoreUser = (req, res, next) => {
 exports.isAuthorized = (user, userIdfromItem) =>{
 
   if (user.admin){
-    return 'admin'
-  } else if (user._id === userIdfromItem){
-    return 'user'
+    return true
+  } else if (user._id.equals(userIdfromItem)){
+    
+    return true
   } else{
+    console.log(user._id, userIdfromItem);
     return false
   }
 }
