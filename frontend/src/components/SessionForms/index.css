@@ -1,8 +1,8 @@
 .form-button {
     background: #EEF0F4;
     border: none;
-    border-radius: 40%;
-    box-shadow: 2.55vh 2.55vh 2.88vh #D9DADE, -2.55vh -2.55vh 1.52vw #FFFFFF;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -44,10 +44,9 @@ input {
 
 
 .session-form-submit-button{
-    background: #EEF0F4;
+ background: #EDF0F4;
+box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
     border: none;
-    border-radius: 40%;
-    box-shadow: 2.55vh 2.55vh 2.88vh #d9dade, -2.55vh -2.55vh 1.52vw #ffffff;
     font-size: 14px;
     border-radius: 2vh;
     width: 15vw;

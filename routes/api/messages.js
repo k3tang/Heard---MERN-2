@@ -11,7 +11,6 @@ const createMessage = asyncHandler(async (req, res) => {
   const { topicId, content } = req.body;
   
   const userId = req.user._id
-
   
   if (!topicId|| !content || !userId) {
     res.status(400);

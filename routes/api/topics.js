@@ -49,7 +49,7 @@ const editTopic = asyncHandler(async (req, res) => {
     throw new Error("topic not found");
   }
 
-  if (req.user._id.equals(req.body.flagged.flaggedBy)) {
+  if (isAuthorized(req.user, topic.userId)) {
     const updatedTopic = await Topic.findOneAndUpdate(
       { _id: req.params.id },
       req.body,
@@ -58,21 +58,25 @@ const editTopic = asyncHandler(async (req, res) => {
       }
     );
 
-    return res.status(200).json(updatedTopic);
-  } else if (!isAuthorized(req.user, topic.userId)) {
-    res.status(400);
-    throw new Error("not authorized to edit");
+    res.status(200).json(updatedTopic);
   }
+  if (!isAuthorized(req.user, topic.userId)) {
+    if (req.user._id.equals(req.body.flagged.flaggedBy)) {
+      const updatedTopic = await Topic.findOneAndUpdate(
+        { _id: req.params.id },
+        req.body,
+        {
+          new: true,
+        }
+      );
 
-  const updatedTopic = await Topic.findOneAndUpdate(
-    { _id: req.params.id },
-    req.body,
-    {
-      new: true,
+      return res.status(200).json(updatedTopic);
+    } else {
+      console.log(isAuthorized(req.user, topic.userId));
+      res.status(400);
+      throw new Error("not authorized to edit");
     }
-  );
-
-  res.status(200).json(updatedTopic);
+  }
 });
 
 const deleteTopic = asyncHandler(async (req, res) => {

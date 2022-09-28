@@ -1,21 +1,20 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 
-import { useEffect } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-
-import {useHistory,Link} from 'react-router-dom'
-import {fetchAllTopics,getAllTopics,deleteTopic} from "../../store/topics"
-import { Box, Text, Button } from '@chakra-ui/react'
+import { useHistory, Link } from "react-router-dom";
+import { fetchAllTopics, getAllTopics, deleteTopic } from "../../store/topics";
+import { Box, Text, Button } from "@chakra-ui/react";
 
 function Admin() {
   const history = useHistory();
   const admin = useSelector((state) => state.session.user.admin);
-  if (!admin) history.push("/home")
+  if (!admin) history.push("/home");
   const dispatch = useDispatch();
-   const topics = useSelector((state)=>getAllTopics(state))
+  const topics = useSelector((state) => getAllTopics(state));
 
-  useEffect(()=>{
-   dispatch(fetchAllTopics())
-  },[])
+  useEffect(() => {
+    dispatch(fetchAllTopics());
+  }, []);
 
   return (
     <>
@@ -41,4 +40,4 @@ function Admin() {
   );
 }
 
-export default Admin
+export default Admin;

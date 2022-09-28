@@ -1,40 +1,112 @@
-# MERN-Chirper
+# Heard
+
+[Click here to view!](https://heard--app.herokuapp.com/)
+
+## Background
+--- 
+Heard is an application that aims to foster a safe, anonymous community of secret sharers and secret bearers. Users can choose to share a confession or start a message thread about a specific topic. The application design takes a mobile-focused approach as most of the interactions will likely take place sporadically throughout the day on an accessible device. 
 
 
+## Features 
+---
+### User Authentication - Login/Signup 
 
+Heard features a fully functional user authentication system, complete with a demo user login and error handling for incomplete entries. Upon successful login, the user will be redirected to a home page where the user can choose to participate in the application as a listener or create confessions or message threads. 
 
+<img width="350" alt="Screen Shot 2022-09-27 at 9 49 23 AM" src="https://user-images.githubusercontent.com/107089418/192587580-7cb3dd42-b8f9-4626-9483-f76ade558ce6.png">
+<img width="350" alt="Screen Shot 2022-09-27 at 9 49 35 AM" src="https://user-images.githubusercontent.com/107089418/192587576-aad07c04-440e-4291-93d8-8454974fc00a.png">
 
-{
-    "ownerId": "632a01dd3edcc578ceef55df",
-    "title": "I had to put my dog down today. He was the best dog.",
-    "mood": "blue",
-    "persist": true,
-    "flagged": {
-        "isFlagged": false
+## Message Thread Feature
+Users can create topics that open message threads, or proceed directly to an index of topics. From a side menu, they can edit and/or delete the threads that they created.
+
+<img width="350" alt="TopicDrawerScreenshot" src="https://user-images.githubusercontent.com/100994924/192670284-437fb40d-6aa4-4c5c-bfcd-d11f1e748f4d.png">
+
+Within a chat, users are anonymized except for the last five characters of their user ID. New messages are fetched at regular short intervals from the server.
+
+<img width="350" alt="TopicMessageScreenShot" src="https://user-images.githubusercontent.com/100994924/192670264-92079b49-52d2-4f04-9bb8-61246c826364.png">
+
+Topics are organized in the database so that they are affiliated with a `user` and an array of `messages` in Mongoose:
+
+```javascript
+const TopicSchema = mongoose.Schema(
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "User",
     },
-    "_id": "632a4ee6a04b1bbe7a8d1bd4",
-    "responses": [],
-    "createdAt": "2022-09-20T23:38:14.799Z",
-    "updatedAt": "2022-09-20T23:38:14.799Z",
-    "__v": 0
-}   TOPIC
+    ...
+    messages: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Message",
+      },
+    ],
+    ...
+```
+In order to create messages then, the frontend must send in not only the content of the new message, but the `topicId` of the topic the message is affiliated with. Authentication middleware grabs the `userId` from the JSON Web Token (JWT).
+```javascript
+const createMessage = asyncHandler(async (req, res) => {
+
+  const { topicId, content } = req.body;
+  
+  const userId = req.user._id
+  
+  if (!topicId|| !content || !userId) {
+    res.status(400);
+    throw new Error("Data missing. need topic ID, content, and user ID");
+  }
+  const messageInfo ={
+   sender: userId,
+    content,
+    topicId
+  };
+  try {
+    const newMessage = await Message.create(messageInfo)
+    
+    const fullMessage = await Message.findOne({_id : newMessage._id})
+    .populate('topicId')
+
+    const foundTopic = await Topic.findById(topicId)
+    if (foundTopic){
+      Topic.findByIdAndUpdate(topicId, {
+        messages: [...foundTopic.messages, fullMessage._id]
+      })
+    res.status(200).json(fullMessage)
+    }
+  }catch(error) {
+    res.status(401).json({message: 'problem in messages controller', error: error})
+  }
+});
+```
+
+It is then populated with its `topicId` before the topic is found and updated by appending the message to its list of `messages` using `findByIdAndUpdate()`.
+
+Updating the title's title and / or mood or deleting it is simpler, involving mainly the findById and findByIdAndUpdate methods, since a new instance of a `Message` object does not have to be created.
 
 
-test5@email.com 
-632a0f709bc7a2130c345dc8
+### Confessions - Creation and Display
 
-topic id: 632a4c4ba72f81898cb60bf9
+On Heard, users can anonymously share their deepest secrets with our confessions tab, where they're sent to our MongoDatabase and stored until randomly selected to be seen by another user. Once seen confessions are then deleted, never to be seen again. If a user ever regrets a confession, they can be deleted on their profile where only they can see it.  
 
-owner id: 632a01dd3edcc578ceef55df
+<img  width="350" alt="Gathering Secrets Loading Animations" src="https://user-images.githubusercontent.com/101153713/192821901-17dde078-f9ce-47d7-a5ab-399b00b2db26.png">
+<img  width="350" alt="Random Confession Exapmle" src="https://user-images.githubusercontent.com/101153713/192822026-ca3adcbf-9268-4c18-b05f-efe7192d060e.png">
 
-responder id: 
-
-route path="/socket/:socketId" component={ChatPage}
-
-make a topic:
-on >
-make a chatroom.
-
-open chats in user page -> link to their chat page
-
-clicks the link - > routes to that page
+```
+    useEffect(() => {
+        dispatch(fetchConfessions())
+        setTimeout(function () {
+            setIsLoading(false);
+        }, 3000)
+        setTimeout(function () {
+            setShowConfession(false);
+            history.push(`/confession-next`)
+        }, 13000)
+        // .then(console.log(confessions))
+    },[]);
+    let posts = confessions[0];
+    let total = posts.length;
+    let random = Math.floor(Math.random()*total);
+    let randomConfession = posts[random];
+    
+  ```
