@@ -3,12 +3,12 @@
 [Click here to view!](https://heard--app.herokuapp.com/)
 
 ## Background
---- 
+
 Heard is an application that aims to foster a safe, anonymous community of secret sharers and secret bearers. Users can choose to share a confession or start a message thread about a specific topic. The application design takes a mobile-focused approach as most of the interactions will likely take place sporadically throughout the day on an accessible device. 
 
 
 ## Features 
----
+
 ### User Authentication - Login/Signup 
 
 Heard features a fully functional user authentication system, complete with a demo user login and error handling for incomplete entries. Upon successful login, the user will be redirected to a home page where the user can choose to participate in the application as a listener or create confessions or message threads. 
@@ -112,7 +112,7 @@ On Heard, users can anonymously share their deepest secrets with our confessions
   ```
   
 ## Technologies Utilized 
-___ 
+
 
  * MongoDB
  * Javascript
