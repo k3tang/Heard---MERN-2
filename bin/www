@@ -32,7 +32,7 @@ var server = http.createServer(app);
 
 mongoose.connect(db, { useNewUrlParser: true })
   .then(() => {
-    debug("Connectado a MongoDB con exito");
+    debug("Connected to MongoDB successfully");
 
     server.listen(port);
   })
