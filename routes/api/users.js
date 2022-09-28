@@ -69,9 +69,10 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
     // debug(user, "passport user")
     if (err) return next(err);
     if (!user) {
-      const err = new Error('Invalid credentials');
+      const err = new Error('Email or Password is Incorrect');
       err.statusCode = 400;
-      err.errors = { email: "Invalid credentials" };
+      err.errors = { email: "Email or Password is Incorrect" };
+      err.password = { password: "Email or Password is Incorrect" }
       return next(err);
     }
     return res.json(await loginUser(user));

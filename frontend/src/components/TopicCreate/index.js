@@ -5,19 +5,26 @@ import { createTopic } from "../../store/topics"
 import { useState, useEffect, } from "react";
 import { Input } from "@chakra-ui/react";
 import { useHistory } from 'react-router-dom';
+import { clearTopicErrors } from "../../store/topics";
+import { clearConfessionErrors } from "../../store/confessions";
+
 const TopicCreate = () => {
     const dispatch = useDispatch();
     const [topicTitle, setTopicTitle] = useState("");
     const [mood, setMood] = useState("loved");
-  
-
-    const errors = useSelector(state => state.errors.session);
-
+    const errors = useSelector(state => state.errors);
      const sessionUser = useSelector(state => state.session.user);
-
      const history = useHistory();
-
      const userId = sessionUser._id;
+
+     useEffect(() => {
+        dispatch(getCurrentUser);
+    }, []);
+
+    useEffect(() =>{
+        dispatch(clearTopicErrors())
+    }, [dispatch]);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,16 +37,17 @@ const TopicCreate = () => {
    
 
         dispatch(createTopic(newTopic)).then((res) => {
-         
-            history.push("/topic-index");
-        }).catch((err) => console.log(`Error ${err.status}: ${err.statusText}`));
+            console.log(res)
+            if(res.type === 'RECEIVE_NEW_TOPIC') {
+                history.push("/topic-index")
+            }
+            // ;
+        })
+        // ).catch((err) => console.log(`Error ${err.status}: ${err.statusText}`));
 
         
     }
 
-    useEffect(() => {
-        dispatch(getCurrentUser);
-    }, []);
 
     return (
         <>
@@ -58,6 +66,7 @@ const TopicCreate = () => {
                             value={topicTitle} placeholder="  Enter a title" onChange={(e) => setTopicTitle(e.target.value)} />
                         <input className="topic-submit-button" type="submit" value="Create Topic"/>                       
                     </form>
+                    <div className="topic-errors">{errors?.topics}</div>
                 </div>
             </div>
         </>
