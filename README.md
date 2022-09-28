@@ -111,6 +111,21 @@ On Heard, users can anonymously share their deepest secrets with our confessions
     
   ```
   
+### Edit controller
+This controller was designed to allow only the user of the post or an admin to edit the title, mood, etc. However, ANY user can edit the flagged field of any document. This was fun to think about and adds a great safety feature for the admin users who can see all posts and comments and delete or un-flag them upon review. It also provides safety for the user knowing no-one can edit confessions by them or edit their topic threads.
+
+<img width="693" alt="Screen Shot 2022-09-28 at 2 56 56 PM" src="https://user-images.githubusercontent.com/107089418/192908369-7555c5d9-a329-4091-a97d-8c97a710685a.png">
+
+
+Similar safety features are in place for all requests that involve editing or deleting a user's content. The team felt that an admin user feature were important when creating an Anonymous platform so as to be able to hold those who chose to share irresponsibly accountable. Fun fun to code :)
+
+
+## BackEnd safety summary
+* protection for user from others editing their content
+* ablility to flag other's content when innapropriate
+* admin abilities to edit and delete any user's content
+
+  
 ## Technologies Utilized 
 
 
