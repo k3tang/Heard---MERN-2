@@ -34,23 +34,48 @@ const UserProfile = () => {
 
 
     return (
-        <>
-            {/* <h1>this is a userprofile</h1> */}
-            <div id="user-modal-background"></div>
-            <div className="user-container">
-                    <div className="user-name">Hi {user.username}!</div>
-                    <div className="user-subtext">(Don't worry, your name won't appear anywhere else)</div>
-                <div className="user-button-container">
-                    {/* <div className="user-stats">Stats </div> */}
-                    <div className="user-square-button" onClick={() => history.push("/user-confessions")}>see your confessions</div>
-                    <div className="user-square-button" onClick={() => history.push("/settings")}>Edit User Preferences</div>
-                    <div className="user-square-button" onClick={logout}>Logout</div>
-                </div>
-                    <div className="delete-user-button" onClick={showDeleteModal} >Delete User Profile</div>
-                    <div id="delete-user-modal" ><DeleteUser/></div>
+      <>
+        {/* <h1>this is a userprofile</h1> */}
+        <div id="user-modal-background"></div>
+        <div className="user-container">
+          <div className="user-name">Hi {user.username}!</div>
+          <div className="user-subtext">
+            (Don't worry, your name won't appear anywhere else)
+          </div>
+          <div className="user-button-container">
+            {/* <div className="user-stats">Stats </div> */}
+            <div
+              className="user-square-button"
+              onClick={() => history.push("/user-confessions")}
+            >
+              see your confessions
             </div>
-        </>
-    )
+            <div
+              className="user-square-button"
+              onClick={() => history.push("/user-topics")}
+            >
+              see your topic threads
+            </div>
+
+            <div
+              className="user-square-button"
+              onClick={() => history.push("/settings")}
+            >
+              Edit User Preferences
+            </div>
+            <div className="user-square-button" onClick={logout}>
+              Logout
+            </div>
+          </div>
+          <div className="delete-user-button" onClick={showDeleteModal}>
+            Delete User Profile
+          </div>
+          <div id="delete-user-modal">
+            <DeleteUser />
+          </div>
+        </div>
+      </>
+    );
 }
 
 export default UserProfile;
