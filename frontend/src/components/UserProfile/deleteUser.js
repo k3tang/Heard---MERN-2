@@ -17,9 +17,9 @@ const DeleteUser = () => {
     return (
         <>
             <div id="close-delete-modal" className="fa-solid fa-x" onClick={closeModal}></div>
-            <h1 className="delete-modal">Are you sure you want to delete user?</h1>
+            <h1 className="delete-modal">Thank you for playing. The user can be deleted, but not on the demo page ;).</h1>
             <div className="delete-button-container">
-                <div id="delete-user" className="delete-square-button" onClick={() => dispatch(deleteUser(userId))}>Delete User</div>
+                <div id="delete-user" className="delete-square-button">Delete User</div>
                 <div className="delete-square-button" onClick={closeModal}>Cancel</div>
             </div>
         </>

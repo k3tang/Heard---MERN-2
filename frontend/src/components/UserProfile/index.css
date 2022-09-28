@@ -41,7 +41,7 @@
     text-align: center;
     font-size: 1.5vw;
     letter-spacing: 0.03em;
-    padding-top: 4vh;
+    /* padding-top: 1vh; */
 }
 
 .user-name {
@@ -258,7 +258,7 @@
     }
 
     .delete-modal {
-        font-size: 4vw;
+        font-size: 3vw;
         padding-top: 1vh;
     }
 
