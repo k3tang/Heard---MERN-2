@@ -29,7 +29,6 @@ function ConfessionCreate () {
     const userId = sessionUser._id
 
 
-
     const update = (field) => {
         const setState = field === 'mood' ? setMood : setBody;
         return e => setState(e.currentTarget.value);
@@ -94,10 +93,10 @@ function ConfessionCreate () {
                         title="Tell us What's on Your Mind"
                         placeholder="what's on your mind?"
                         onChange={update('body')} />
-                        {/* <div className="errors">{errors?.body.message}</div> */}
+                     
                 </div>
                 {sessionUser.admin && <div>
-                    <input type='checkbox'  name='persist' value='perist' onChange={(e)=>setPersist(e.target.checked)}/>
+                    <input type='checkbox'  name='persist' value='persist' onChange={(e)=>setPersist(e.target.checked)}/>
                 </div> }
                 <input 
                     className="form-submit-button"
