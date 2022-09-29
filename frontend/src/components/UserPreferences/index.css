@@ -106,7 +106,7 @@
 }
 
 
-.user-modal-background {
+#user-edit-modal-background {
     display: block;
     position: fixed;
     left: 0;

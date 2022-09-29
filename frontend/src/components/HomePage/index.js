@@ -8,12 +8,6 @@ const HomePage = () => {
     const history = useHistory();
 
 
-    window.onclick = function (event) {
-        let modalBackground = document.getElementById("background-modal")
-        if (event.target === modalBackground) {
-            modalBackground.style.display = "none"
-        }
-    }
 
     // useEffect(() => {
         
