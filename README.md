@@ -3,12 +3,12 @@
 [Click here to view!](https://heard--app.herokuapp.com/)
 
 ## Background
---- 
+
 Heard is an application that aims to foster a safe, anonymous community of secret sharers and secret bearers. Users can choose to share a confession or start a message thread about a specific topic. The application design takes a mobile-focused approach as most of the interactions will likely take place sporadically throughout the day on an accessible device. 
 
 
 ## Features 
----
+
 ### User Authentication - Login/Signup 
 
 Heard features a fully functional user authentication system, complete with a demo user login and error handling for incomplete entries. Upon successful login, the user will be redirected to a home page where the user can choose to participate in the application as a listener or create confessions or message threads. 
@@ -110,3 +110,28 @@ On Heard, users can anonymously share their deepest secrets with our confessions
     let randomConfession = posts[random];
     
   ```
+  
+### Edit controller
+This controller was designed to allow only the user of the post or an admin to edit the title, mood, etc. However, ANY user can edit the flagged field of any document. This was fun to think about and adds a great safety feature for the admin users who can see all posts and comments and delete or un-flag them upon review. It also provides safety for the user knowing no-one can edit confessions by them or edit their topic threads.
+
+<img width="693" alt="Screen Shot 2022-09-28 at 2 56 56 PM" src="https://user-images.githubusercontent.com/107089418/192908369-7555c5d9-a329-4091-a97d-8c97a710685a.png">
+
+
+Similar safety features are in place for all requests that involve editing or deleting a user's content. The team felt that an admin user feature were important when creating an Anonymous platform so as to be able to hold those who chose to share irresponsibly accountable. Fun fun to code :)
+
+
+## BackEnd safety summary
+* protection for user from others editing their content
+* ablility to flag other's content when innapropriate
+* admin abilities to edit and delete any user's content
+
+  
+## Technologies Utilized 
+
+
+ * MongoDB
+ * Javascript
+ * React/Redux
+ * Express.js
+ * Node.js
+ 
