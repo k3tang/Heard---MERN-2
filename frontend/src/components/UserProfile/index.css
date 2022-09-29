@@ -141,7 +141,7 @@
 }
 
 /* show all confessions */
-.user-conf-header {
+.user-conf-header, .user-topics-header {
     text-align: center;
     font-size: 2vw;
     padding-bottom: 1vh;
@@ -279,18 +279,18 @@
         font-size: 2.5vw;
     }
 
-    .user-conf-header {
+    .user-conf-header, .user-topics-header {
         font-size: 5vw;
     }
 
-    .mapped-conf {
+    .mapped-conf div {
         font-size: 3vw;
-        padding-left: 3vw;
-        padding-right: 3vw;
+        padding: 3vw;
     }
 
     #trash-icon {
         padding: 5vw;
+        font-size: 4vw;
     }
 
     #delete-conf-modal {
