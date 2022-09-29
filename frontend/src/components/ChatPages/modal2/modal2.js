@@ -50,7 +50,7 @@ const leaveChat = (e) =>{
             <Button colorScheme="gray" mr={3} onClick={onClose}>
               Keep Thread Open
             </Button>
-            <Button colorScheme="yellow" onClick={(e)=>leaveChat(e)}>I've been heard (delete)</Button>
+            <Button colorScheme="yellow" onClick={(e)=>leaveChat(e)}>Delete my Thread</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

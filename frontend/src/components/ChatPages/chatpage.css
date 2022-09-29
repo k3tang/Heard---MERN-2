@@ -15,3 +15,10 @@
 .chat-page{
   height: fit-content;
 }
+
+@media screen and (max-width: 950px) {
+
+  .chat-title {
+    font-size: 4vw;
+  }
+}

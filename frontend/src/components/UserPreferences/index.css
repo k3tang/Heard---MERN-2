@@ -89,21 +89,22 @@
     background-color: #ebe2b1;
 }
 
-@media screen and (max-width: 950px) {
-    .mood-header {
-        font-size: 4.75vw;
-    }
-
-    .mood-button-container > p {
-        width: 50vw;
-        font-size: 4vw;
-    }
-
-    .mood-submit {
-        width: 35vw;
-        font-size: 3.75vw;
-    }
+.user-modal {
+    display: block;
+    position: fixed;
+    top: 25vh;
+    left: 30vw;
+    width: 40vw;
+    height: 20vw;
+    font-size: 2vw;
+    background: #EDF0F4;
+    border-radius: 2vw;
+    padding: 2.5vw;
+    text-align: center;
+    display: grid;
+    align-items: center;
 }
+
 
 .user-modal-background {
     display: block;
@@ -121,23 +122,32 @@
     animation-duration: 0.4s;
 }
 
-.user-modal{
-    display: block;
-    position: fixed;
-    top: 25vh;
-    left: 30vw;
-    width: 40vw;
-    height: 20vw;
-    font-size: 2vw;
-    background: #EDF0F4;
-    border-radius: 2vw;
-    padding: 2.5vw;
-    text-align: center;
-    display: grid;
-    align-items: center;
-}
 
 .edit-user-button-container {
     display: flex;
     justify-content: space-around;
+}
+
+@media screen and (max-width: 950px) {
+    .mood-header {
+        font-size: 4.75vw;
+    }
+
+    .mood-button-container > p {
+        width: 50vw;
+        font-size: 4vw;
+    }
+
+    .mood-submit {
+        width: 35vw;
+        font-size: 3.75vw;
+    }
+    
+    .user-modal {
+        top: 35vh;
+        left: 12vw;
+        width: 75vw;
+        height: 30vh;
+    }
+
 }

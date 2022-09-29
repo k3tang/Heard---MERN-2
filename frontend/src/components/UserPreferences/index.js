@@ -86,7 +86,7 @@ useEffect(() => {
             <>
             <div className="user-modal-background"></div>
             <div className="user-modal" id='user-modal'>
-                <h1 >preferences edited!</h1>
+                <h1 className="delete-modal">preferences edited!</h1>
                 <div className="edit-user-button-container">
                     <button className="confession-modal-button" id="create-another-confession" onClick={() => history.push("/account")}>Return to Profile</button>
                     <button className="confession-modal-button" onClick={() => history.push("/")}>Return Home</button>
