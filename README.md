@@ -134,4 +134,11 @@ Similar safety features are in place for all requests that involve editing or de
  * React/Redux
  * Express.js
  * Node.js
+
+## Team Members 
+
+* [Anna Luz Fisher] (https://github.com/annaluzfisher)
+* [Dan Kam] (https://github.com/danronkam)
+* [Karen Siu] (https://github.com/k3tang)
+* [Vincent Shuali] (https://github.com/canjalal)
  
