@@ -103,7 +103,6 @@ export const createConfession = data => async dispatch => {
 
 
 export const deleteConfession = id => async dispatch => {
-     console.log("deleting comment", id)
         const res = await jwtFetch(`/api/confessions/${id}`, {
             method: 'DELETE'
         });
@@ -144,7 +143,6 @@ const confessionsReducer = (state = { all: {}, user: {}, new: undefined }, actio
         case RECEIVE_USER_LOGOUT:
             return { ...state, user: {}, new: undefined };
         case REMOVE_CONFESSION:
-            console.log(newState[action.id], "action id")
             delete newState.user[action.id];
           return newState;
         default:

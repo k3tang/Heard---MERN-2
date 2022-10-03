@@ -13,7 +13,6 @@ const UserConfessions = () => {
     })
     const [isLoading, setIsLoading] = useState(true);
 
-    console.log(uConfessions, "confessions")
     
 
     useEffect(() => {

@@ -72,7 +72,6 @@ const editTopic = asyncHandler(async (req, res) => {
 
       return res.status(200).json(updatedTopic);
     } else {
-      console.log(isAuthorized(req.user, topic.userId));
       res.status(400);
       throw new Error("not authorized to edit");
     }

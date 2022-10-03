@@ -46,7 +46,6 @@ function ChatBox() {
 
   setLoading(false);
     let objDiv = document.getElementById("chat-messages");
-    console.log(objDiv, "obj")
      objDiv.scrollTop = objDiv.scrollHeight;
 
   },[currentUser,topicId, timetoFetch])
