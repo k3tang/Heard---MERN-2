@@ -46,3 +46,17 @@
 .chat-message-text {
   margin-bottom: 1vw;
 }
+
+
+@media screen and (max-width: 950px) {
+
+  .chat-send-button {
+    width: 18vw;
+    height: 12vw;
+  }
+  .chat-text {
+    font-size: 5vw;
+    width: 70vw;
+    height: 12vw;
+  }
+}

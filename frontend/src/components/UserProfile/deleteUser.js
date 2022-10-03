@@ -7,6 +7,8 @@ const DeleteUser = () => {
     const userId = useSelector(state => state.session.user._id)
     const dispatch = useDispatch();
 
+
+
     const closeModal = () => {
         let ele = document.getElementById("delete-user-modal");
         ele.style.display = "none";
@@ -17,11 +19,23 @@ const DeleteUser = () => {
     return (
         <>
             <div id="close-delete-modal" className="fa-solid fa-x" onClick={closeModal}></div>
-            <h1 className="delete-modal">Are you sure you want to delete user?</h1>
-            <div className="delete-button-container">
-                <div id="delete-user" className="delete-square-button" onClick={() => dispatch(deleteUser(userId))}>Delete User</div>
-                <div className="delete-square-button" onClick={closeModal}>Cancel</div>
-            </div>
+            {userId ===  "632a4e3a051314b073af83db" ? 
+            <>
+                <h1 className="delete-modal">Thank you for playing. The user can be deleted, but not on the demo page ;).</h1>
+                <div className="delete-button-container">
+                    <div id="delete-user" className="delete-square-button">Delete User</div>
+                    <div className="delete-square-button" onClick={closeModal}>Cancel</div>
+                </div>
+            </>
+                : 
+                <>
+                <h1 className="delete-modal">Are you sure you would like to delete this user?</h1>
+                <div className="delete-button-container">
+                    <div id="delete-user" className="delete-square-button" onClick={() => dispatch(deleteUser(userId))}>Delete User</div>
+                    <div className="delete-square-button" onClick={closeModal}>Cancel</div>
+                </div>
+                </>
+            }
         </>
     )
 }

@@ -25,6 +25,14 @@ useEffect(() => {
     } }
 }, [userMoods])
 
+    window.onclick = function (event) {
+    let modal = document.getElementById("user-modal");
+    let modalBackground = document.getElementById("user-edit-modal-background")
+    if (event.target == modalBackground) {
+      modal.style.display = "none";
+      modalBackground.style.display = "none";
+    }
+  };
 
 //toggle item based on user interaction 
     const toggleItem = (e) => {
@@ -84,9 +92,9 @@ useEffect(() => {
         </button>
         { successModal ? 
             <>
-            <div className="user-modal-background"></div>
+            <div id="user-edit-modal-background"></div>
             <div className="user-modal" id='user-modal'>
-                <h1 >preferences edited!</h1>
+                <h1 className="delete-modal">preferences edited!</h1>
                 <div className="edit-user-button-container">
                     <button className="confession-modal-button" id="create-another-confession" onClick={() => history.push("/account")}>Return to Profile</button>
                     <button className="confession-modal-button" onClick={() => history.push("/")}>Return Home</button>

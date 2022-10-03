@@ -48,7 +48,7 @@ function UserTopics() {
           </div>
         ) : (
           <>
-            <h1 className="user-conf-header">All your confessions</h1>
+            <h1 className="user-topics-header">All your message threads</h1>
             <div className="mapped-conf">{mapConfessions()}</div>
           </>
         )}
