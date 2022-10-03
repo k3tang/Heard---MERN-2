@@ -17,10 +17,12 @@ const ConfessionListing = ({ conf }) => {
       dispatch(deleteConfession(conf._id)).then(
         dispatch(fetchUserConfessions(conf.userId))
       );
+      closeModal();
     } else {
       dispatch(deleteTopic(conf._id)).then(
         dispatch(fetchTopicsbyUser(conf.userId))
       );
+      closeModal();
     }
   };
 
