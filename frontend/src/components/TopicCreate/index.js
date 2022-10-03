@@ -37,13 +37,12 @@ const TopicCreate = () => {
    
 
         dispatch(createTopic(newTopic)).then((res) => {
-            console.log(res)
             if(res.type === 'RECEIVE_NEW_TOPIC') {
                 history.push("/topic-index")
             }
             // ;
         })
-        // ).catch((err) => console.log(`Error ${err.status}: ${err.statusText}`));
+     
 
         
     }

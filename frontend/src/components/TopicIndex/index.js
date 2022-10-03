@@ -41,7 +41,6 @@ const TopicIndex = () => {
       history.push(`/topic/${res._id}`);
     
     }).catch((err) => {
-      console.log(err);
     })
   
   };

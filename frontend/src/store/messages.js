@@ -29,7 +29,6 @@ export const getAllMessages = () => (state) => {
       const data = await jwtFetch(`/api/messages/${topicId}`)
       const messages = await data.json();
       if (messages) {
-        // console.log('what do we get back from the backi', messages)
         dispatch(receiveMessages(messages));
         return messages;
       }

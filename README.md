@@ -102,7 +102,6 @@ On Heard, users can anonymously share their deepest secrets with our confessions
             setShowConfession(false);
             history.push(`/confession-next`)
         }, 13000)
-        // .then(console.log(confessions))
     },[]);
     let posts = confessions[0];
     let total = posts.length;

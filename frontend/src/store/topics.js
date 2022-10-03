@@ -98,22 +98,7 @@ export const fetchTopicsbyUser = (userId) => async dispatch =>{
   
 }
 
-// export const createTopic = (topicInfo) => async dispatch =>{ // contains ownerId, title, mood
 
-//   const res = await jwtFetch("/api/topics/",{
-//     method: 'POST',
-//     body: JSON.stringify(topicInfo)
-//   })
-//   const topic = await res.json()
-
-//   if (res.ok){
-//     dispatch(receiveTopic(topic))
-
-//     return topic;
-//   } else{
-//     console.log('problems in fetching topic into store')
-//   }
-// }
 
 export const createTopic = topicData => async dispatch =>{
   try {
@@ -126,7 +111,7 @@ export const createTopic = topicData => async dispatch =>{
     return dispatch(receiveNewTopic(topic))
   } catch (err) {
     const resBody = await err.json();
-    console.log(resBody.message)
+
     
     if (resBody.statusCode === 500) {
       return dispatch(receiveErrors(resBody.message));
