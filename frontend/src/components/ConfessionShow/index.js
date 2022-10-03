@@ -15,6 +15,8 @@ const ConfessionShow = () => {
     const location = useLocation();
 
     const [isLoading, setIsLoading] = useState(true);
+
+    let test = 3000
     
     
     useEffect(() => {
@@ -37,6 +39,7 @@ const ConfessionShow = () => {
     let total = posts.length
     let random = Math.floor(Math.random()*total)
     let randomConfession = posts[random]
+    // console.log(randomConfession.length)
 
     const hideConfession = () =>{
         document.getElementsByClassName('confession-content').style.display = 'none'
@@ -56,7 +59,7 @@ const ConfessionShow = () => {
                     <div className="confession-content" style={{display: showConfession ? 'block' : 'none'}}>
                         
                         {/* <p>{randomConfession.mood}</p> */}
-                        <p class='confession-body'>{randomConfession.body}</p>
+                        <p className='confession-body'>{randomConfession.body}</p>
                         <div className="circle-container">
                         <CountdownCircleTimer
                             isPlaying

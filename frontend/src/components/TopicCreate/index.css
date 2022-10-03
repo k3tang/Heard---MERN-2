@@ -1,4 +1,4 @@
-.topic-form-title {
+git .topic-form-title {
   text-align: center;
   font-size: 1.5vw;
   margin-top: 6vw;
@@ -67,6 +67,13 @@
   margin-top: 3vw;
 }
 
+.topic-errors{
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    font-style: italic;
+    font-size: 2vw;
+}
 @media screen and (max-width: 950px) {
    .topic-mood-dropdown {
         font-size: 5vw;
