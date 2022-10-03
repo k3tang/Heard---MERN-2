@@ -59,7 +59,7 @@ const ConfessionShow = () => {
                     <div className="confession-content" style={{display: showConfession ? 'block' : 'none'}}>
                         
                         {/* <p>{randomConfession.mood}</p> */}
-                        <p class='confession-body'>{randomConfession.body}</p>
+                        <p className='confession-body'>{randomConfession.body}</p>
                         <div className="circle-container">
                         <CountdownCircleTimer
                             isPlaying

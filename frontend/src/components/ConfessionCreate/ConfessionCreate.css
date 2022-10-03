@@ -90,20 +90,18 @@
 }
 
 .confession-mood-dropdown {
-    width: 20vw;
-    height: 4vw;
-    font-size: 1.75vw;
-    background-color: #EDF0F4;
-    box-shadow: -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
-    
-    cursor: pointer;
+    background-color: #edf0f4;
+    box-shadow: -1px -1px 7px #f5f5f5, -5px -4px 17px #ffffff, 1px 2px 5px #a0b0c5, 4px 6px 22px #c0cad8;
     font-size: 1.75vw;
     border-radius: 2vh;
+    width: 20vw;
+    height: 4vw;
     text-align: center;
     border: none;
     font-style: italic;
     color: #5a6794;
     cursor: pointer;
+    margin-top: 3vw;
 }
 
 .confession-mood-dropdown:active{

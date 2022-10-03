@@ -103,7 +103,7 @@ function ConfessionCreate () {
                     type='submit' 
                     title="First Select a Mood and Tell What's on Your Mind"
                     // style={{background: mood || body ? '#EDF0F4' }}
-                    style={{cursor: mood || body ? 'pointer' : 'not-allowed'}}
+                    style={{cursor: mood && body ? 'pointer' : 'not-allowed'}}
                     disabled={!mood || !body}
                     value='confess'/>
             </form>
