@@ -61,7 +61,8 @@ const deleteConfession = asyncHandler(async (req, res) => {
         throw new Error("confession not found");
     }
 
-    if (isAuthorized(req.user.id === confession.userId)) {
+
+    if (isAuthorized(req.user, confession.userId)) {
         if (confession.persist) {
             res.status(200).json({ message: "Seed confession recycled" });
         } else {
