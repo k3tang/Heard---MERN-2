@@ -55,7 +55,7 @@ const ConfessionListing = ({ conf }) => {
           <div id="delete-modal-background"></div>
           <div id="delete-conf-modal">
             <h1 className="delete-modal">
-              Are you sure you want to delete this confession?
+              Are you sure you want to delete this secret?
             </h1>
             <div className="delete-button-container">
               <div
@@ -63,7 +63,7 @@ const ConfessionListing = ({ conf }) => {
                 className="delete-square-button"
                 onClick={handleDelete}
               >
-                Delete confession
+                Delete secret
               </div>
               <div className="delete-square-button" onClick={closeModal}>
                 Cancel
