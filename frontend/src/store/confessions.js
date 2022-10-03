@@ -127,15 +127,26 @@ export const confessionErrorsReducer = (state = nullErrors, action) => {
 };
 
 const confessionsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
+    let newState = {...state}
     switch (action.type) {
         case RECEIVE_CONFESSIONS:
-            return { ...state, all: action.confessions, new: undefined };
+            for(let confession of action.confessions) {
+              newState[confession._id] = confession;
+            }
+            return newState;
         case RECEIVE_USER_CONFESSIONS:
-            return { ...state, user: action.confessions, new: undefined };
+           for(let confession of action.confessions) {
+              newState.user[confession._id] = confession;
+            }
+            return newState;
         case RECEIVE_NEW_CONFESSION:
             return { ...state, new: action.confession };
         case RECEIVE_USER_LOGOUT:
-            return { ...state, user: {}, new: undefined }
+            return { ...state, user: {}, new: undefined };
+        case REMOVE_CONFESSION:
+            console.log(newState[action.id], "action id")
+            delete newState.user[action.id];
+          return newState;
         default:
             return state;
     }

@@ -12,6 +12,8 @@ const ConfessionListing = ({ conf }) => {
   const uConfessions = useSelector((state) => state.confessions.user);
   const [confModal, setConfModal] = useState(false);
 
+  
+
   const handleDelete = () => {
     if (conf.body) {
       dispatch(deleteConfession(conf._id)).then(

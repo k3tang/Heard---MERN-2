@@ -8,12 +8,12 @@ import "./index.css";
 const UserConfessions = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user._id);
-    const uConfessions = useSelector(state => state.confessions.user);
+    const uConfessions = useSelector(state => {
+        return Object.values(state.confessions.user)
+    })
     const [isLoading, setIsLoading] = useState(true);
 
-
-    
-
+    console.log(uConfessions, "confessions")
     
 
     useEffect(() => {
