@@ -118,6 +118,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #delete-user {
@@ -165,6 +166,7 @@
 
 #trash-icon {
     padding: 2vw;
+    cursor: pointer;
 }
 
 
