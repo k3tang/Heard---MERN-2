@@ -15,6 +15,8 @@ const ConfessionShow = () => {
     const location = useLocation();
 
     const [isLoading, setIsLoading] = useState(true);
+
+    let test = 3000
     
     
     useEffect(() => {
@@ -37,6 +39,7 @@ const ConfessionShow = () => {
     let total = posts.length
     let random = Math.floor(Math.random()*total)
     let randomConfession = posts[random]
+    // console.log(randomConfession.length)
 
     const hideConfession = () =>{
         document.getElementsByClassName('confession-content').style.display = 'none'
