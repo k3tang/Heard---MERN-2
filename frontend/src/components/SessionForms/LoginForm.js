@@ -69,9 +69,9 @@ function LoginForm() {
             disabled={!email || !password}
             className="session-form-submit-button"
           />
-          <div className="demo-login" onClick={demoLogin}>
+          <button className="demo-login" onClick={demoLogin}>
             Login as Demo User
-          </div>
+          </button>
           <div className="signup-link" onClick={() => history.push("/signup")}>
             Don't have an account?
           </div>
