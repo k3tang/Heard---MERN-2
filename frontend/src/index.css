@@ -45,6 +45,7 @@
 @media screen and (max-width: 950px) {
     body {
         background: #EEF0F4;
+        height: 100vh;
     }
 
     #entire-container {
