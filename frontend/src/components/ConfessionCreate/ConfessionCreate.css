@@ -173,6 +173,8 @@
         border-radius: 2.5vh;
         margin-top: 3vw;
         -webkit-appearance: none;
+        text-align: -moz-center;
+        text-align: -webkit-center;
     }
 
     .confession-text-area {

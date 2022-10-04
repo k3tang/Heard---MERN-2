@@ -49,8 +49,10 @@
 
     #entire-container {
         width: 95vw;
+        height: 100vh;
         border-radius: 0;
         box-shadow: none;
+
         
     }
 }
