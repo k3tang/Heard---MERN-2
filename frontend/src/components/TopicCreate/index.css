@@ -74,6 +74,14 @@ git .topic-form-title {
     font-style: italic;
     font-size: 2vw;
 }
+
+#title-error {
+  display: none;
+}
+
+#mood-error {
+  color: inherit;
+}
 @media screen and (max-width: 950px) {
    .topic-mood-dropdown {
         font-size: 5vw;
