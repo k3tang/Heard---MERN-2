@@ -111,7 +111,7 @@ const TopicCreate = () => {
                           </div>
                         <input className="topic-submit-button" type="submit" value="Create Topic"  />                       
                     </form>
-                    <div className="topic-errors">{errors?.topics}</div> // fall back in case front end error fails to capture errors, backend ones will come here
+                    <div className="topic-errors">{errors?.topics}</div> {/* fall back in case front end error fails to capture errors, backend ones will come here */}
                 </div>
             </div>
         </>
