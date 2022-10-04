@@ -23,9 +23,17 @@ const getTopic = asyncHandler(async (req, res) => {
 const createTopic = asyncHandler(async (req, res) => {
   const { title, mood } = req.body;
   const userId = req.user._id;
-  if (!userId || !mood || !title) {
-    res.status(400);
-    throw new Error("please add all fields to topic");
+  if(!userId) {
+    throw new Error("You're not properly logged in. Try logging back in to create a topic");
+  }
+  if(!mood || mood === "invalid") {
+      throw new Error("Select one of the moods from the dropdown menu");
+  }
+  if(title.length < 3) {
+    throw new Error("Your title must be as least 3 characters long");
+  }
+  if(title.length > 60) {
+    throw new Error("Your title must be 60 characters long or less");
   }
   const topic = await Topic.create({
     userId,
