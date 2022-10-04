@@ -11,6 +11,8 @@
 .about-page-container{
     animation-duration: 2s;
     animation-fill-mode: both;
+    margin-left: 0.3vw;
+    margin-right: 0.3vw;
 }
 
 .fadeInBottom { animation-name: fadeInBottom }
@@ -99,3 +101,4 @@
     font-size: .75vw;
     text-align: right;
 }
+
