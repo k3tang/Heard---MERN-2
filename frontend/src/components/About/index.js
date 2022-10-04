@@ -11,7 +11,7 @@ const AboutPage = () => {
     return(
         <>
         
-        <div className="about-page-container">
+        <div className="about-page-container fadeInBottom">
             <div className="about-page-title-container">
                 <h1 className="about-page-title">Meet the Team</h1>
             </div>

@@ -8,6 +8,20 @@
     /* possible issues here */
 }
 
+.about-page-container{
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}
+
+.fadeInBottom { animation-name: fadeInBottom }
+    @keyframes fadeInBottom {
+        from {
+            opacity: 0;
+            transform: translateY(100%);
+        }
+        to { opacity: 1 }
+}
+
 .about-page-title{
     text-align: center;
     font-size: 2vw;
