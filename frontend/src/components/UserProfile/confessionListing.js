@@ -2,6 +2,7 @@ import "./index.css";
 import {
   deleteConfession,
   fetchUserConfessions,
+  getConfessions,
 } from "../../store/confessions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
@@ -10,22 +11,22 @@ import { deleteTopic, fetchTopicsbyUser } from "../../store/topics";
 
 const ConfessionListing = ({ conf }) => {
   const dispatch = useDispatch();
-  const uConfessions = useSelector((state) => state.confessions.user);
+  // const uConfessions = useSelector(getConfessions);
   const [confModal, setConfModal] = useState(false);
 
   
 
   const handleDelete = () => {
+    closeModal();
     if (conf.body) {
       dispatch(deleteConfession(conf._id)).then(
         dispatch(fetchUserConfessions(conf.userId))
       );
-      closeModal();
     } else {
       dispatch(deleteTopic(conf._id)).then(
         dispatch(fetchTopicsbyUser(conf.userId))
       );
-      closeModal();
+      // closeModal();
     }
   };
 
@@ -44,12 +45,12 @@ const ConfessionListing = ({ conf }) => {
       modalBackground.style.display = "none";
     }
   };
-
+  if(!conf) return null;
   return (
     <>
-      {conf.body ? (
+      {conf?.body ? (
         <div className="listing-container">
-          <div className={conf.mood}>{conf.body || conf.title}</div>
+          <div className={conf.mood}>{ conf.body}</div>
           <div
             id="trash-icon"
             className="fa-solid fa-trash"
@@ -60,7 +61,7 @@ const ConfessionListing = ({ conf }) => {
         <Link to={`/topic/${conf._id}`}>
           {" "}
           <div className="listing-container">
-            <div className={conf.mood}>{conf.body || conf.title}</div>
+            <div className={conf.mood}>{conf.title}</div>
             <div
               id="trash-icon"
               className="fa-solid fa-trash"

@@ -45,6 +45,7 @@ export const clearConfessionErrors = errors => ({
 });
 
 export const getConfessions = state => {
+    if (!state) return [];
     if(!state.confessions) {
         return []
     } else {
@@ -71,7 +72,7 @@ export const fetchUserConfessions = id => async dispatch => {
     try {
         const res = await jwtFetch(`/api/confessions/user/${id}`);
         const confessions = await res.json();
-        dispatch(receiveUserConfessions(confessions));
+        dispatch(receiveConfessions(confessions));
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
@@ -126,12 +127,14 @@ export const confessionErrorsReducer = (state = nullErrors, action) => {
 };
 
 const confessionsReducer = (state = { }, action) => {
+    Object.freeze(state);
     let newState = {...state}
     switch (action.type) {
         case RECEIVE_CONFESSIONS:
             for(let confession of action.confessions) {
               newState[confession._id] = confession;
             }
+          
             return newState;
         case RECEIVE_USER_CONFESSIONS:
            for(let confession of action.confessions) {

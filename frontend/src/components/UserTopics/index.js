@@ -9,7 +9,6 @@ import { getAllTopics, fetchTopicsbyUser } from "../../store/topics";
 function UserTopics() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user._id);
-  const uTopics = useSelector((state) => state.confessions.user);
   const [isLoading, setIsLoading] = useState(true);
   const topics = useSelector(getAllTopics);
   const [myTopics, setMyTopics] = useState();
