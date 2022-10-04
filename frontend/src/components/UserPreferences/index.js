@@ -66,7 +66,7 @@ useEffect(() => {
     return (
       <>
         <h2 className="mood-header">Mood Preferences</h2>
-        <h3 className="mood-subtext">You will only see confessions and message threads of the moods you selected.</h3>
+        <h3 className="user-subtext">You will only see confessions and message threads of the moods you selected (in bold)</h3>
         <div className="mood-button-container">
           {moodState.map((moodName) => (
             <p
