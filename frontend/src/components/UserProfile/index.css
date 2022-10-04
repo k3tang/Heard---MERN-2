@@ -54,6 +54,8 @@
 .user-subtext {
     text-align: center;
     font-size: 0.85vw;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 
 .user-button-container {
