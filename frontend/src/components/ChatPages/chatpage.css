@@ -16,9 +16,25 @@
   height: fit-content;
 }
 
-@media screen and (max-width: 950px) {
+.edit-topic-dropdown {
+  display: block;
+  margin: auto;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  font-size: 2.25vh;
+  text-transform: uppercase;
+  padding: 0.5vw;
+  margin-top: 1vw;
+}
 
+@media screen and (max-width: 950px) {
   .chat-title {
     font-size: 4vw;
+  }
+
+  .edit-topic-dropdown {
+  text-transform: uppercase;
+  padding: 1vw;
+  margin-top: 1vw;
   }
 }

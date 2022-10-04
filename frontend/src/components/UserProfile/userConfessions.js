@@ -11,6 +11,7 @@ const UserConfessions = () => {
   const user = useSelector(_getCurrentUser);
   const uConfessions = useSelector(getConfessions);
   const [isLoading, setIsLoading] = useState(true);
+  console.log(uConfessions, "uconf")
 
   useEffect(() => {
     dispatch(fetchUserConfessions(user._id));
@@ -21,8 +22,8 @@ const UserConfessions = () => {
   }, [uConfessions.length]);
 
   const mapConfessions = () => {
-
-      let confessions = uConfessions?.filter((conf) => conf.userId === user._id);
+      let confessions = uConfessions?.filter((conf) => conf?.userId === user._id);
+      if (confessions.length === 0) return <div className="no-confessions">You have no confessions yet.</div>
       return confessions.map((conf) => {
         return <ConfessionListing key={conf._id} conf={conf} />;
       });

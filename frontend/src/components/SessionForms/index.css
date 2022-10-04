@@ -16,6 +16,7 @@
     border-style: none;
     padding: 15px;
     letter-spacing: 0.1vw;
+    text-transform: none;
 }
 
 .session-form {
@@ -36,6 +37,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     height: 28vh;
+    text-transform: none;
 }
 
 input { 

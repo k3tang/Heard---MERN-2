@@ -19,7 +19,7 @@ const DeleteUser = () => {
     return (
         <>
             <div id="close-delete-modal" className="fa-solid fa-x" onClick={closeModal}></div>
-            {userId ===  "632a4e3a051314b073af83db" ? 
+            {userId ===  "633badefc06853fa74163e94" ? 
             <>
                 <h1 className="delete-modal">Thank you for playing. The user can be deleted, but not on the demo page ;).</h1>
                 <div className="delete-button-container">

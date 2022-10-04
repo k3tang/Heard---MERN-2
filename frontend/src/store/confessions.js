@@ -134,7 +134,6 @@ const confessionsReducer = (state = { }, action) => {
             for(let confession of action.confessions) {
               newState[confession._id] = confession;
             }
-          
             return newState;
         case RECEIVE_USER_CONFESSIONS:
            for(let confession of action.confessions) {

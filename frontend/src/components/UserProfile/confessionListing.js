@@ -35,16 +35,10 @@ const ConfessionListing = ({ conf }) => {
     ele.style.display = "none";
     let bg = document.getElementById("delete-modal-background");
     bg.style.display = "none";
+    setConfModal(false);
   };
 
-  window.onclick = function (event) {
-    let modal = document.getElementById("delete-conf-modal");
-    let modalBackground = document.getElementById("delete-modal-background");
-    if (event.target == modalBackground) {
-      modal.style.display = "none";
-      modalBackground.style.display = "none";
-    }
-  };
+ 
   if(!conf) return null;
   return (
     <>

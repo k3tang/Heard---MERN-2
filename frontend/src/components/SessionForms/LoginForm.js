@@ -13,7 +13,7 @@ function LoginForm() {
 
   const demoLogin = (e) => {
     e.preventDefault();
-    dispatch(login({ email: "demo@test.com", password: "password" }));
+    dispatch(login({ email: "demo@moore.com", password: "password" }));
   };
 
   const sessionUser = useSelector((state) => state.session.user);
