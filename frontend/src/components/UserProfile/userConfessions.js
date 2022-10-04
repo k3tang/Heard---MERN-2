@@ -9,9 +9,10 @@ import { _getCurrentUser } from "../../store/session";
 const UserConfessions = () => {
   const dispatch = useDispatch();
   const user = useSelector(_getCurrentUser);
-  const uConfessions = useSelector(getConfessions);
+  const confessions = useSelector(getConfessions);
   const [isLoading, setIsLoading] = useState(true);
-  console.log(uConfessions, "uconf")
+  const confessionArray = Object.values(confessions)
+  console.log(confessionArray, "uconf")
 
   useEffect(() => {
     dispatch(fetchUserConfessions(user._id));
@@ -19,10 +20,10 @@ const UserConfessions = () => {
       setIsLoading(false);
     }, 3000);
     return () => clearTimeout(timer);
-  }, [uConfessions.length]);
+  }, [confessionArray.length]);
 
   const mapConfessions = () => {
-      let confessions = uConfessions?.filter((conf) => conf?.userId === user._id);
+    //   let confessions = uConfessions?.filter((conf) => conf?.userId === user._id);
       if (confessions.length === 0) return <div className="no-confessions">You have no confessions yet.</div>
       return confessions.map((conf) => {
         return <ConfessionListing key={conf._id} conf={conf} />;
