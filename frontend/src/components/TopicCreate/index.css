@@ -96,6 +96,7 @@ git .topic-form-title {
         margin-top: 15vh;
         margin-bottom: 5vh;
         -webkit-appearance: none;
+        appearance: none;
         text-align: -moz-center;
         text-align: -webkit-center;
         text-align: center;
