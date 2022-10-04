@@ -68,6 +68,7 @@ function SignupForm() {
             placeholder="Email"
             className="form-input"
           />
+          {!email && "Please Enter Email"}
           <div className="errors">{errors?.username}</div>
           {/* <label className='session-form-title'>
             Username     </label> <br /> */}

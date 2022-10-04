@@ -5,12 +5,12 @@ const validateLoginInput = [
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
-        .withMessage('Email is invalid'),
+        .withMessage('Email or Password is incorrect'),
 
     check('password')
         .exists({ checkFalsy: true })
         .isLength({ min: 6, max: 30 })
-        .withMessage('Password must be between 6 and 30 characters'),
+        .withMessage('Email or Password is incorrect'),
 
     handleValidationErrors
 ];
