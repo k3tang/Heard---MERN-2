@@ -305,11 +305,23 @@
         font-size: 4vw;
     }
 
+    .flag-div{
+           padding: 5vw;
+        font-size: 4vw;
+    }
+   
+    #flag-tooltip{
+        align-self: center;
+        text-align: center;
+        font-size: 1em;
+    }
+
     #delete-conf-modal {
         top: 35vh;
         left: 15vw;
         width: 70vw;
         height: 25vh;
     }
+    
 }
 
