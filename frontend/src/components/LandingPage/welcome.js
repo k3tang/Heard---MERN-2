@@ -9,7 +9,7 @@ const Welcome = () => {
 
     const demoLogin = (e) => {
         e.preventDefault();
-        dispatch(login({ email: "demo@test.com", password: "password" }));
+        dispatch(login({ email: "demo@moore.com", password: "password" }));
     }
 
     return (
