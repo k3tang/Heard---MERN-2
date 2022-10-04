@@ -2,9 +2,9 @@ import "./ConfessionShow.css";
 import { useEffect, useState } from "react";
 import { fetchConfessions, getConfessions } from "../../store/confessions";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import bottleLogo from "../../assets/bottle pic.png";
-import { useLocation } from "react-router-dom";
+
 import { CountdownCircleTimer } from "react-countdown-circle-timer";
 import { _getCurrentUser } from "../../store/session";
 
@@ -14,11 +14,9 @@ const ConfessionShow = () => {
   const [showConfession, setShowConfession] = useState(true);
   const history = useHistory();
 
-
   const currentUser = useSelector(_getCurrentUser);
   const [isLoading, setIsLoading] = useState(true);
   const [randomConfession, setRandomConfession] = useState("");
-
 
   useEffect(() => {
     dispatch(fetchConfessions());
@@ -49,7 +47,7 @@ const ConfessionShow = () => {
       let random = Math.floor(Math.random() * total);
       setRandomConfession(posts[random]);
     }
-    console.log("random confession", randomConfession);
+ 
   }, [isLoading, confessions.length]);
 
   const hideConfession = () => {
@@ -70,7 +68,7 @@ const ConfessionShow = () => {
             className="confession-content"
             style={{ display: showConfession ? "block" : "none" }}
           >
-            {/* <p>{randomConfession.mood}</p> */}
+        
             <p className="confession-body">{randomConfession?.body}</p>
             <div className="circle-container">
               <CountdownCircleTimer
@@ -84,12 +82,7 @@ const ConfessionShow = () => {
             </div>
           </div>
         )}
-        {/* { showConfession  && ( */}
-
-        {/* <div className="confession-content" style={{display: showConfession ? 'none' : 'block'}}>Confession here
-                      <Link to={`/confession-show`}> <button value='Another Question'  > Another Question?</button> </Link>
-                    </div>   */}
-        {/* )}                 */}
+ 
       </div>
     </>
   );
