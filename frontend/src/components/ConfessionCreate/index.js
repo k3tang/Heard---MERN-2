@@ -59,18 +59,12 @@ function ConfessionCreate () {
 
     return (
         <>
-        {/* <h2 class='confession-create-title'> you may confess my child </    h2> */}
  
-
         <div className='confession-form-container'>
 
             <form className='confession-create-form' onSubmit={handleSubmit}>
                 <div className='mood-input-container'>          
 
-
-
- 
-                    {/* <label> mood </label> */}
                         <select className='confession-mood-dropdown'name="mood" title="Select a Mood" id="mood" value={mood} onChange={update('mood')}>
                             <option defaultValue value='invalid'>I'm feeling...</option>
                             <option value="angry" >ANGRY</option>

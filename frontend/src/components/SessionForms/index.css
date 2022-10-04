@@ -28,6 +28,7 @@
     justify-content: space-evenly;
     align-items: center;
     height: 90vh;
+    border-radius: 5%;
 }
 
 .login-input {
