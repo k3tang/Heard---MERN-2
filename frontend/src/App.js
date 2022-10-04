@@ -18,6 +18,7 @@ import UserProfile from './components/UserProfile';
 import Admin from './components/Admin/Admin';
 import TopicPage from './components/ChatPages/TopicPage';
 import ConfessionShowLanding from './components/ConfessionShowLanding';
+import AboutPage from './components/About';
 
 import TopicIndex from './components/TopicIndex';
 
@@ -44,6 +45,7 @@ function App() {
         <div id="entire-container">
           {location.pathname === "/" ||
           location.pathname === "/login" ||
+          location.pathname === "/about" ||
           location.pathname === "/signup" ||
           location.pathname === "/welcome" ? (
             ""
@@ -54,6 +56,7 @@ function App() {
             <AuthRoute exact path="/" component={LandingPage} />
             <AuthRoute exact path="/welcome" component={Welcome} />
             <AuthRoute exact path="/login" component={LoginForm} />
+            <AuthRoute exact path="/about" component={AboutPage} />
             <AuthRoute exact path="/signup" component={SignupForm} />
             <ProtectedRoute exact path="/home" component={HomePage} />
             <ProtectedRoute exact path="/account" component={UserProfile} />

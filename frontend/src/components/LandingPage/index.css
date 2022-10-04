@@ -86,3 +86,13 @@
         padding-top: 5vh;
     }
 }
+
+.about-link{
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    /* left: 45%; */
+    /* position: fixed; */
+    cursor: pointer;
+    font-size: .75vw;
+}

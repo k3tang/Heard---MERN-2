@@ -75,6 +75,9 @@ function LoginForm() {
           <div className="signup-link" onClick={() => history.push("/signup")}>
             Don't have an account?
           </div>
+          <div className="about-link" onClick={() => history.push("/about")}>
+            About the Creators
+          </div>
         </form>
       </div>
     </div>

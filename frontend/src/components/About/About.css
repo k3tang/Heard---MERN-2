@@ -1,0 +1,78 @@
+.about-page-left{
+    margin-bottom: 1vh;
+    display: flow-root;
+}
+
+.about-page-title{
+    text-align: center;
+    font-size: 2vw;
+}
+
+.about-page-left-names{
+    display: contents;
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+.about-page-left-photo{
+    display: flex;
+    float: left;
+    width: 10vw;
+    border-radius: 30%;
+    margin-right: 1vw;
+    box-shadow: 
+        /* -1px -1px 7px #f5f5f5, 
+        -5px -4px 17px #ffffff,  */
+        1px 2px 5px #a0b0c5, 
+        4px 6px 22px #c0cad8;
+}
+
+.about-page-links{
+    font-size: .9vw;
+    justify-content: space-between;
+    display: contents;
+}
+
+.about-page-jobs{
+    font-style: italic;
+    font-weight: 400;
+    font-size: .8vw;
+}
+
+.about-page-left-bios{
+    font-family: 'Lora', serif;
+    text-transform: none;
+    font-size: .75vw;
+}
+
+.about-page-right{
+    text-align: right;
+    margin-bottom: 1vh;
+    display: flow-root;
+}
+
+
+.about-page-right-photo{
+    display: flex;
+    float: right;
+    width: 10vw;
+    border-radius: 30%;
+    margin-left: 1vw;
+    box-shadow: -1px -1px 7px #f5f5f5, 
+        -5px -4px 17px #ffffff, 
+        1px 2px 5px #a0b0c5, 
+        4px 6px 22px #c0cad8;
+}
+
+.about-page-right-names{
+    display: contents;
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+.about-page-right-bios{
+    font-family: 'Lora', serif;
+    text-transform: none;
+    font-size: .75vw;
+    text-align: right;
+}

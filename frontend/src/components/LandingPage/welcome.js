@@ -22,6 +22,9 @@ const Welcome = () => {
                     <button className="square-button" onClick={demoLogin}>Login as demo user</button>
                 </div>
             </div>
+            <div className="about-link" onClick={() => history.push("/about")}>
+                About the Creators
+            </div>
         </>
     )
 };

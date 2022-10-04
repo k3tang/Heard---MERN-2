@@ -14,9 +14,14 @@ const LandingPage = () => {
                 <button className="square-button" onClick={() => history.push("/login")}>Login</button>
                 <button className="square-button" onClick={() => history.push("/welcome")}>First time here?</button>
             </div>
+            <div className="landing-about-link" onClick={() => history.push("/about")}>
+                About the Creators
+            </div>
         </div>
+
         </>
     )
 };
 
 export default LandingPage;
+

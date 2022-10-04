@@ -110,9 +110,7 @@ export const createTopic = topicData => async dispatch =>{
 
     return dispatch(receiveNewTopic(topic))
   } catch (err) {
-    const resBody = await err.json();
-
-    
+    const resBody = await err.json();    
     if (resBody.statusCode === 500) {
       return dispatch(receiveErrors(resBody.message));
     } else {

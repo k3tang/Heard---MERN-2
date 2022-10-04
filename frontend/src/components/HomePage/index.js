@@ -21,6 +21,9 @@ const HomePage = () => {
                 <div className="home-square-button" onClick={() => history.push("/listen")}>Be a Listener</div>
                 <div className="home-square-button" onClick={() => history.push("/share")}>Share your thoughts</div>
             </div>
+            <div className="about-link" onClick={() => history.push("/about")}>
+                About the Creators
+            </div>
         </>
     )
 }
