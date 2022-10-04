@@ -73,6 +73,7 @@ function ConfessionCreate () {
             body,
             persist
         }
+        
        
     
         dispatch(createConfession(confession)).then( res =>{

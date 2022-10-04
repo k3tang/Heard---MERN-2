@@ -85,7 +85,7 @@ git .topic-form-title {
 }
 
 #mood-error {
-  color: inherit;
+  color: red;
 }
 @media screen and (max-width: 950px) {
    .topic-mood-dropdown {
@@ -121,7 +121,7 @@ git .topic-form-title {
     }
     .topic-submit-button {
         font-size: 2.5vh;
-        width: 35vw;
+        width: 40vw;
         height: 5.5vh;
     }
 }

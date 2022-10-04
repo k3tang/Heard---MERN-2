@@ -37,7 +37,7 @@ function LoginForm() {
     if(!email || !password) {
       setEmptyErrors(true)
     } else {
-      setEmptyErrors(false)
+      
       dispatch(login({ email, password })); }
   };
 
