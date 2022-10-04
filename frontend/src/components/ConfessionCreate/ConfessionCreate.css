@@ -53,10 +53,9 @@
 }
 
 .confession-modal-button{
-    background: #EEF0F4;
-    border: none;
-    border-radius: 40%;
-    box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+    background: #EDF0F4;
+    box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+    border-radius: 10px;
     font-size: 14px;
     border-radius: 2vh;
     width: 15vw;
@@ -187,7 +186,6 @@
         background: #EDF0F4;
         box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
         border-radius: 10px;
-
     }
     .success-modal {
         top: 35vh;

@@ -61,12 +61,11 @@ useEffect(() => {
             
         }
 
-        dispatch(updateUser(newUser)).then( res =>{
+        dispatch(updateUser(newUser)).then(res =>{
          
             if(res.type === 'session/RECEIVE_CURRENT_USER') {
                 setSuccessModal(true)
             }
-        // } 
     } )
 }
 

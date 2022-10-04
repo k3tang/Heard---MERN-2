@@ -58,10 +58,13 @@ const TopicCreate = () => {
               <option value="happy">Happy</option>
               <option value="sad">Sad</option>
             </select>
+
+            <div className="topic-character-limit">Topic titles are 60 characters max</div>
             <textarea
               className="topic-form-text"
               rows="2"
               cols="50"
+              maxLength={"60"}
               value={topicTitle}
               placeholder="  Enter a title"
               onChange={(e) => setTopicTitle(e.target.value)}
