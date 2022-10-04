@@ -48,7 +48,7 @@ function LoginForm() {
       
         <form className="session-form" onSubmit={handleSubmit}>
           <div className="login-input">
-            <div className="errors">{errors?.email}</div>
+        
             {/* <label className='session-form-title'>
             Email     </label> <br /> */}
             <input
@@ -60,7 +60,7 @@ function LoginForm() {
             />
             {/* <span class="focus-bg"></span> */}
 
-            <div className="errors">{errors?.password}</div>
+            {/* <div className="errors">{errors?.password}</div> */}
             {/* <label className='session-form-title'>
             Password </label> <br /> */}
             <input
@@ -72,7 +72,8 @@ function LoginForm() {
             />
           </div>
           {emptyErrors && 
-            <p className="errors">Please Enter a Email and Password</p>}
+            <div className="errors">Please Enter a Email and Password</div>}
+          <div className="errors">{errors?.email}</div>
           <input
             type="submit"
             value="Log In"

@@ -9,6 +9,7 @@ function SignupForm() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [emptyErrors, setEmptyErrors] = useState(false);
   const errors = useSelector((state) => state.errors.session);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -50,7 +51,14 @@ function SignupForm() {
       password,
     };
 
-    dispatch(signup(user));
+    if(!email || !username || !password) {
+      setEmptyErrors(true)
+    } else {
+      setEmptyErrors(false)
+      dispatch(signup(user));
+    }
+
+
   };
 
   return (
@@ -68,7 +76,6 @@ function SignupForm() {
             placeholder="Email"
             className="form-input"
           />
-          {!email && "Please Enter Email"}
           <div className="errors">{errors?.username}</div>
           {/* <label className='session-form-title'>
             Username     </label> <br /> */}
@@ -102,10 +109,12 @@ function SignupForm() {
             className="form-input"
           />{" "}
           <br />
+          {emptyErrors &&
+          <div className="errors">Please Fill Out All Fields</div>}
           <input
             type="submit"
             value="Sign Up"
-            disabled={!email || !password || password !== password2}
+            // disabled={!email || !password || password !== password2}
             className="session-form-submit-button"
           />
           <div className="login-link" onClick={() => history.push("/login")}>
