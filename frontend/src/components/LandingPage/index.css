@@ -13,6 +13,11 @@
     width: 12vw;
 }
 
+.landing-about-link {
+    text-align: center;
+    cursor: pointer;
+}
+
 
 .square-button {
     background: #EDF0F4;

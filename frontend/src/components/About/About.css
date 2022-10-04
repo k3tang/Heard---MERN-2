@@ -3,6 +3,11 @@
     display: flow-root;
 }
 
+#entire-container{
+    overflow-y: scroll;
+    /* possible issues here */
+}
+
 .about-page-title{
     text-align: center;
     font-size: 2vw;

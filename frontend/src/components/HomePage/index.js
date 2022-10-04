@@ -1,6 +1,8 @@
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./index.css";
+import { Link } from 'react-router-dom'
+
 import { useEffect } from "react";
 
 const HomePage = () => {
@@ -21,9 +23,12 @@ const HomePage = () => {
                 <div className="home-square-button" onClick={() => history.push("/listen")}>Be a Listener</div>
                 <div className="home-square-button" onClick={() => history.push("/share")}>Share your thoughts</div>
             </div>
-            <div className="about-link" onClick={() => history.push("/about")}>
+            {/* <div className="about-link" onClick={() => history.push("/about")}>
                 About the Creators
             </div>
+            <Link className="about-link" to={`/about`}>
+                About the Creators
+            </Link> */}
         </>
     )
 }
