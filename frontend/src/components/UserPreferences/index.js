@@ -25,14 +25,6 @@ useEffect(() => {
     } }
 }, [userMoods])
 
-    window.onclick = function (event) {
-    let modal = document.getElementById("user-modal");
-    let modalBackground = document.getElementById("user-edit-modal-background")
-    if (event.target == modalBackground) {
-      modal.style.display = "none";
-      modalBackground.style.display = "none";
-    }
-  };
 
 //toggle item based on user interaction 
     const toggleItem = (e) => {

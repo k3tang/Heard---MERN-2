@@ -48,7 +48,6 @@ const TopicCreate = () => {
             if(res.type === 'RECEIVE_NEW_TOPIC') {
                 history.push("/topic-index")
             }
-            // ;
         })
      
 
