@@ -95,20 +95,26 @@ git .topic-form-title {
         border-radius: 2.5vh;
         margin-top: 15vh;
         margin-bottom: 5vh;
+        -webkit-appearance: none;
+        text-align: -moz-center;
+        text-align: -webkit-center;
     }
 
     .topic-form-text {
         width: 90vw;
         height: 7vh;
         font-size: 3vh;
-         margin-bottom: 5vh;
+        margin-bottom: 5vh;
+        -webkit-appearance: none;
     }
 
     .confession-modal-button {
         width: 30vw;
         height: 12vw;
+        -webkit-appearance: none;
         background: #EDF0F4;
         box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+        -webkit-box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
         border-radius: 10px;
 
     }
@@ -122,6 +128,10 @@ git .topic-form-title {
     .topic-submit-button {
         font-size: 2.5vh;
         width: 40vw;
+        /* font-size: 4vw; */
+        /* width: 35vw; */
         height: 5.5vh;
+         -webkit-appearance: none;
+
     }
 }

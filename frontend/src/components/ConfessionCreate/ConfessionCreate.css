@@ -172,17 +172,23 @@
         height: 6vh;
         border-radius: 2.5vh;
         margin-top: 3vw;
+        -webkit-appearance: none;
+        text-align: -moz-center;
+        text-align: -webkit-center;
     }
 
     .confession-text-area {
         width: 90vw;
+        -webkit-appearance: none;
     }
 
     .confession-modal-button {
         width: 30vw;
         height: 12vw;
         background: #EDF0F4;
+        -webkit-appearance: none;
         box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
+        -webkit-box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
         border-radius: 10px;
     }
     .success-modal {
@@ -196,5 +202,6 @@
         font-size: 3vh;
         width: 35vw;
         height: 5.5vh;
+        -webkit-appearance: none;
     }
 }
