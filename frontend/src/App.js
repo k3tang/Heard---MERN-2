@@ -45,7 +45,6 @@ function App() {
         <div id="entire-container">
           {location.pathname === "/" ||
           location.pathname === "/login" ||
-          location.pathname === "/about" ||
           location.pathname === "/signup" ||
           location.pathname === "/welcome" ? (
             ""
