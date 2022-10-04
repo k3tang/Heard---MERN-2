@@ -3,10 +3,10 @@ import { useSelector, useDispatch } from "react-redux";
 import getCurrentUser from "../../store/session";
 import { createTopic } from "../../store/topics";
 import { useState, useEffect } from "react";
-import { Input } from "@chakra-ui/react";
+// import { Input } from "@chakra-ui/react";
 import { useHistory } from 'react-router-dom';
 import { clearTopicErrors } from "../../store/topics";
-import { clearConfessionErrors } from "../../store/confessions";
+// import { clearConfessionErrors } from "../../store/confessions";
 
 const TopicCreate = () => {
     const dispatch = useDispatch();
@@ -111,7 +111,7 @@ const TopicCreate = () => {
                           </div>
                         <input className="topic-submit-button" type="submit" value="Create Topic"  />                       
                     </form>
-                    <div className="topic-errors">{errors?.topics}</div>
+                    <div className="topic-errors">{errors?.topics}</div> {/* fall back in case front end error fails to capture errors, backend ones will come here */}
                 </div>
             </div>
         </>

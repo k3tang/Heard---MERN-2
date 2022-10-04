@@ -7,14 +7,14 @@ const confessionSchema = mongoose.Schema({
     },
     mood :{
         type: String,
-        enum: ['angry', 'loved', 'anxious', 'happy', 'sad'],
+        enum: {values: ['angry', 'loved', 'anxious', 'happy', 'sad'], message: "Please make sure that you selected one of the emotions in the dropdown"},
         required: true
     },
     body :{
         type: String,
         required: true,
-        minLength: 1,
-        maxLength: 300
+        minLength: [3, "Your confession needs to be at least 3 characters long"],
+        maxLength: [300, "Your confession can only be a maximum of 300 characers long"]
     },
     persist :{
         type: Boolean,

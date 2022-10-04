@@ -14,7 +14,7 @@ function ConfessionCreate () {
 
     const dispatch = useDispatch();
     const history = useHistory()
-    const [errorModal, setErrorModal] = useState(false)
+    // const [errorModal, setErrorModal] = useState(false)
     const [successModal, setSuccessModal] = useState(false)
 
 
@@ -24,15 +24,45 @@ function ConfessionCreate () {
         };
       }, [dispatch]);
     const [persist, setPersist] = useState(false)
-    const [mood, setMood] = useState('');
+    const [isFormComplete, setIsFormComplete] = useState(false);
+    const [mood, setMood] = useState('invalid');
+    
     const [body, setBody] = useState('');
-    const userId = sessionUser._id
+    const [bodyError, setBodyError] = useState("Make sure your confession is at least 3 characters long!");
+    const userId = sessionUser._id;
 
 
-    const update = (field) => {
-        const setState = field === 'mood' ? setMood : setBody;
-        return e => setState(e.currentTarget.value);
+    // const update = (field) => {
+    //     const setState = field === 'mood' ? setMood : setBody;
+    //     return e => setState(e.currentTarget.value);
+    // }
+
+    const changeBody = (e) => {
+        document.querySelector("#title-error").style.display = "block";
+        document.querySelector("#mood-error").style.color = "red";
+        setBody(e.target.value);
+        if(e.target.value.length < 3) {
+            setBodyError("Make sure your confession is at least 3 characters long!");
+            setIsFormComplete(false);
+        } else if(e.target.value.length > 300) {
+            setBodyError("Make sure your confession is 300 characters or less!");
+            setIsFormComplete(false);
+        } else {
+            setBodyError("");
+            setIsFormComplete(mood !== "invalid");
+        }
     }
+
+    const changeMood = (e) => {
+        document.querySelector("#mood-error").style.color = "red";
+        setMood(e.target.value);
+        setIsFormComplete(e.target.value !== "invalid" && bodyError === "");
+    }
+
+    useEffect(() => {
+        document.querySelector(".form-submit-button").disabled = !isFormComplete;
+        document.querySelector(".form-submit-button").style.cursor = isFormComplete ? "pointer" : "not-allowed";
+    }, [isFormComplete])
     
 
     const handleSubmit = e => {
@@ -65,7 +95,7 @@ function ConfessionCreate () {
             <form className='confession-create-form' onSubmit={handleSubmit}>
                 <div className='mood-input-container'>          
 
-                        <select className='confession-mood-dropdown'name="mood" title="Select a Mood" id="mood" value={mood} onChange={update('mood')}>
+                        <select className='confession-mood-dropdown'name="mood" title="Select a Mood" id="mood" value={mood} onChange={changeMood}>
                             <option defaultValue value='invalid'>I'm feeling...</option>
                             <option value="angry" >ANGRY</option>
                             <option value="loved" >LOVED</option>
@@ -73,8 +103,10 @@ function ConfessionCreate () {
                             <option value="happy" >HAPPY</option>
                             <option value="sad" >SAD</option>
                         </select>
+                        <div className="errors" id="mood-error">
+                            {mood === "invalid" ? "Please select a mood above" : ""}
+                        </div>
                 
-                        {/* <div className="errors">{errors?.mood.message}</div> */}
                 </div>
                 {/* <label> body </label> */}
 
@@ -86,7 +118,10 @@ function ConfessionCreate () {
                         value={body} 
                         title="Tell us What's on Your Mind"
                         placeholder="what's on your mind?"
-                        onChange={update('body')} />
+                        onChange={changeBody} />
+                    <div className="errors" id="title-error">
+                            {bodyError}
+                    </div>
                      
                 </div>
                 {sessionUser.admin && <div>
@@ -97,8 +132,8 @@ function ConfessionCreate () {
                     type='submit' 
                     title="First Select a Mood and Tell What's on Your Mind"
                     // style={{background: mood || body ? '#EDF0F4' }}
-                    style={{cursor: mood && body ? 'pointer' : 'not-allowed'}}
-                    disabled={!mood || !body}
+                    // style={{cursor: mood && body ? 'pointer' : 'not-allowed'}}
+                    // disabled={!mood || !body}
                     value='confess'/>
             </form>
         </div>
