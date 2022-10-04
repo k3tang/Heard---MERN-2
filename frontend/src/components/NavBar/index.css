@@ -22,6 +22,27 @@
 
 }
 
+#nav-profile-icon{
+    animation-name: none;
+    animation-duration: 2s ;
+    animation-iteration-count: infinite;
+}
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(1.1);
+        /* transform: scale(1.1); */
+        color: #6e6e6e
+    }
+    100%{
+         transform: scale(1);
+    }
+}
+
+
+
 @media screen and (max-width: 950px) {
     .nav-bar div {
         font-size: 6vw;
