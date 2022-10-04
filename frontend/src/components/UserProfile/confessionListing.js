@@ -13,8 +13,17 @@ const ConfessionListing = ({ conf }) => {
   const dispatch = useDispatch();
   // const uConfessions = useSelector(getConfessions);
   const [confModal, setConfModal] = useState(false);
-
+  const [displayTooltip, setDisplayTooltip] = useState(false)
   
+  const handleFlagClick =(e) =>{
+    if (!displayTooltip){
+    setDisplayTooltip(true);
+
+    } else {
+      setDisplayTooltip(false)
+    }
+  }
+
 
   const handleDelete = () => {
     closeModal();
@@ -38,13 +47,14 @@ const ConfessionListing = ({ conf }) => {
     setConfModal(false);
   };
 
- 
+
   if(!conf) return null;
   return (
     <>
       {conf?.body ? (
         <div className="listing-container">
-          <div className={conf.mood}>{ conf.body}</div>
+          <div className={conf.mood}>{conf.body}</div>
+
           <div
             id="trash-icon"
             className="fa-solid fa-trash"
@@ -52,17 +62,24 @@ const ConfessionListing = ({ conf }) => {
           ></div>
         </div>
       ) : (
-        <Link to={`/topic/${conf._id}`}>
-          {" "}
+        <>
           <div className="listing-container">
+            <Link to={`/topic/${conf._id}`}>
             <div className={conf.mood}>{conf.title}</div>
+            </Link>
+            {conf.flagged.isFlagged && (
+              <div className ='flag-div' onClick={(e)=>handleFlagClick(e)}>
+                <i className="fa-solid fa-flag" style={{color : 'darkred'}}></i>
+              </div>
+            )}
             <div
               id="trash-icon"
               className="fa-solid fa-trash"
               onClick={() => setConfModal(true)}
-            ></div>
-          </div>{" "}
-        </Link>
+              ></div>
+          </div>
+              {displayTooltip && <div id="flag-tooltip"><span>{"This post has been flagged for review. No action is needed but your account may be suspended upon admin review. Please review Heard guidelines before chosing a title for a topic thread. If you believe this has been a mistake you can"}<br/><Link to={"/about"} style={{color: 'darkblue'}}>{' contact and admin'}</Link>{"."}</span></div> }
+      </>
       )}
       {confModal ? (
         <>
