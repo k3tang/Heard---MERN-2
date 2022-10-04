@@ -31,7 +31,9 @@
   .chat-title {
     font-size: 4vw;
   }
-
+  .flagged-text {
+    font-size: 2.5vw;
+  }
   .edit-topic-dropdown {
   text-transform: uppercase;
   padding: 1vw;

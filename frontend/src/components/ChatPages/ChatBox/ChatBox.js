@@ -17,7 +17,7 @@ function ChatBox() {
   const [newMessage, setNewMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const {topicId} = useParams()
-
+  const [authorNames, setAuthorNames] = useState({});
   const [timetoFetch, setTimetoFetch] = useState(true);
   const storeMessages = useSelector(getAllMessages());
   // const latestMessage = getLatestMessage(chatId)
@@ -35,6 +35,21 @@ function ChatBox() {
     }
 
   }, [])
+
+  useEffect(() => {
+    const authorObj = {};
+    authorObj[currentUser._id] = "You";
+    let i = 1;
+    for(let msg of storeMessages) {
+      if(!authorObj[msg.sender]) {
+        authorObj[msg.sender] = `User ${i}`;
+        i += 1;
+      }
+    }
+    setAuthorNames({...authorObj});
+
+
+  }, [storeMessages.length])
 
   useEffect(()=>{
     if(timetoFetch) {
@@ -90,7 +105,7 @@ let color;
                    key={message._id}
                   //  style={{ color: color }}
                  >
-                   {message.sender === currentUser._id ? "You" : `${message.sender?.slice(-5)}`} said:
+                   {authorNames[message.sender]} said:
                  </div>
                  <div className="chat-message-body">{message.content}</div>
                </div>
