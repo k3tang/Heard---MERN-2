@@ -125,7 +125,7 @@ export const confessionErrorsReducer = (state = nullErrors, action) => {
     }
 };
 
-const confessionsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
+const confessionsReducer = (state = { }, action) => {
     let newState = {...state}
     switch (action.type) {
         case RECEIVE_CONFESSIONS:

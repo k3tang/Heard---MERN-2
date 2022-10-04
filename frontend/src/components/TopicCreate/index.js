@@ -16,7 +16,15 @@ const TopicCreate = () => {
      const sessionUser = useSelector(state => state.session.user);
      const history = useHistory();
      const userId = sessionUser._id;
+    //  const [error,setError] = useState(); 
 
+    //  useEffect(()=>{
+    //     if (errors.topics){
+    //         if (errors.topics.include("is longer than"){
+    //             setError ('Uh oh that topic is longer than 60 characters')
+    //         }
+    //     }
+    //  },[errors])
      useEffect(() => {
         dispatch(getCurrentUser);
     }, []);
