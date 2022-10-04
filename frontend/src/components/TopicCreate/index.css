@@ -44,6 +44,11 @@ git .topic-form-title {
   color: #5a6794;
   cursor: pointer;
   margin-top: 3vw;
+  margin-bottom: 1vw;
+}
+
+.topic-character-limit {
+  font-size: 0.75vw;
 }
 
 .topic-submit-button {

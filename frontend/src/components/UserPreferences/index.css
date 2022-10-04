@@ -5,7 +5,14 @@
         font-size: 1.75vw;
         letter-spacing: 0.03em;
         padding-top: 5vh;
-        padding-bottom: 2vh;
+        padding-bottom: 1vh;
+}
+
+.mood-subtext {
+    text-align: center;
+    font-size: 0.75vw;
+    letter-spacing: 0.03em;
+    padding-bottom: 2vh;
 }
 
 .mood-button-container {
@@ -17,7 +24,6 @@
 }
 
 .mood-unchecked {
-    /* background: #EDF0F4; */
     box-shadow: -1px -1px 7px #F5F5F5, -5px -4px 17px #FFFFFF, 1px 2px 5px #A0B0C5, 4px 6px 22px #C0CAD8;
     border-radius: 10px;
     font-size: 1.25vw;
@@ -28,14 +34,17 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    filter: opacity(60%);
+
 }
 
 .mood-checked {
-    background: #EDF0F4;
-    box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+    /* background: #EDF0F4; */
+    /* box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8; */
     border-radius: 10px;
     font-size: 1.25vw;
-    color: #969eba;
+    color: black;
+    font-weight: 700;
     width: 20vw;
     height: 7vh;
     text-align: center;
@@ -43,6 +52,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    filter: opacity(1);
 }
 
 .mood-submit {

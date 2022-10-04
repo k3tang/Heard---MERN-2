@@ -51,28 +51,47 @@ const TopicCreate = () => {
     dispatch(getCurrentUser);
   }, []);
 
-    return (
-        <>
-            <div className="topic-create-container">
-                <div className="topic-form">
-                    <form onSubmit={handleSubmit}>
-                            <select className="topic-mood-dropdown" value={mood} onChange={(e) => setMood(e.target.value)}>
-                                <option defaultValue value='invalid'> I'm feeling...</option>
-                                <option value="angry">Angry</option>
-                                <option value="loved">Loved</option>
-                                <option value="anxious">Anxious</option>
-                                <option value="happy">Happy</option>
-                                <option value="sad">Sad</option>
-                            </select>
-                             <textarea className="topic-form-text" rows="2" cols="50"
-                            value={topicTitle} placeholder="  Enter a title" onChange={(e) => setTopicTitle(e.target.value)} />
-                        <input className="topic-submit-button" type="submit" value="Create Topic"/>                       
-                    </form>
-                    <div className="topic-errors">{errors?.topics}</div>
-                </div>
-            </div>
-        </>
-    )
-}
+  return (
+    <>
+      <div className="topic-create-container">
+        <div className="topic-form">
+          <form onSubmit={handleSubmit}>
+            <select
+              className="topic-mood-dropdown"
+              value={mood}
+              onChange={(e) => setMood(e.target.value)}
+            >
+              <option defaultValue value="invalid">
+                {" "}
+                I'm feeling...
+              </option>
+              <option value="angry">Angry</option>
+              <option value="loved">Loved</option>
+              <option value="anxious">Anxious</option>
+              <option value="happy">Happy</option>
+              <option value="sad">Sad</option>
+            </select>
+
+            <div className="topic-character-limit">Topic titles are 60 characters max</div>
+            <textarea
+              className="topic-form-text"
+              rows="2"
+              cols="50"
+              maxLength={"60"}
+              value={topicTitle}
+              placeholder="  Enter a title"
+              onChange={(e) => setTopicTitle(e.target.value)}
+            />
+            <input
+              className="topic-submit-button"
+              type="submit"
+              value="Create Topic"
+            />
+          </form>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default TopicCreate;
