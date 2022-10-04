@@ -121,6 +121,12 @@
     cursor: pointer;
 }
 
+.delete-square-button:active{
+    background: #EDF0F4;
+    box-shadow: inset -1px -1px 7px #F5F5F5, inset -5px -4px 17px #FFFFFF, inset 1px 2px 5px #A0B0C5, inset 4px 6px 22px #C0CAD8;
+    border-radius: 10px;  
+}
+
 #delete-user {
     color: rgb(178, 83, 83);
 }
