@@ -78,7 +78,7 @@ const ConfessionListing = ({ conf }) => {
               onClick={() => setConfModal(true)}
               ></div>
           </div>
-              {displayTooltip && <div id="flag-tooltip"><span>{"This post has been flagged for review. No action is needed but your account may be suspended upon admin review. Please review Heard guidelines before chosing a title for a topic thread. If you believe this has been a mistake you can"}<br/><Link to={"/about"} style={{color: 'darkblue'}}>{' contact and admin'}</Link>{"."}</span></div> }
+              {displayTooltip && <div id="flag-tooltip"><span>{"This post has been flagged for review. No action is needed but your account may be suspended upon admin review. Please review Heard guidelines before chosing a title for a topic thread. If you believe this has been a mistake you can"}<br/><Link to={"/about"} style={{color: 'darkblue'}}>{'contact an admin'}</Link>{"."}</span></div> }
       </>
       )}
       {confModal ? (
