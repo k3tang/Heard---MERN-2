@@ -18,7 +18,7 @@ const AboutPage = () => {
 
             <div className="about-page-left">
                 <h2 className="about-page-left-names"> Karen Siu </h2>
-                <img className="about-page-left-photo" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"/>
+                <img className="about-page-left-photo" src="https://derailed-seed.s3.us-west-1.amazonaws.com/IMG_9554.JPG"/>
                 <div className="about-page-links" >
                     <a href="https://github.com/k3tang" target="_blank"><i class="fab fa-github-square"></i></a>
                     <a href="https://www.linkedin.com/in/karentsiu/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -32,7 +32,7 @@ const AboutPage = () => {
             </div>
             <div className="about-page-right">
                 <h2 className="about-page-right-names"> Anna Luz Fisher </h2>
-                <img className="about-page-right-photo" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"/>
+                <img className="about-page-right-photo" src="https://derailed-seed.s3.us-west-1.amazonaws.com/PXL_20220930_233023537.PORTRAIT.jpg"/>
                 <div className="about-page-links" >
                     <a href="https://github.com/annaluzfisher" target="_blank"><i class="fab fa-github-square"></i></a>
                     <a href="https://www.linkedin.com/in/anna-luz-fisher-599862245/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -47,7 +47,7 @@ const AboutPage = () => {
             
             <div className="about-page-left">
                 <h2 className="about-page-left-names"> Vincent Shuali </h2>
-                <img className="about-page-left-photo" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"/>
+                <img className="about-page-left-photo" src="https://derailed-seed.s3.us-west-1.amazonaws.com/IMG_2967.jpg"/>
                 <div className="about-page-links" >
                     <a href="https://github.com/canjalal" target="_blank"><i class="fab fa-github-square"></i></a>
                     <a href="https://www.linkedin.com/in/vincentshuali/" target="_blank"><i class="fab fa-linkedin"></i></a>

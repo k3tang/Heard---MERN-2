@@ -55,8 +55,9 @@ function App() {
             <AuthRoute exact path="/" component={LandingPage} />
             <AuthRoute exact path="/welcome" component={Welcome} />
             <AuthRoute exact path="/login" component={LoginForm} />
-            <AuthRoute exact path="/about" component={AboutPage} />
+            <Route exact path="/about" component={AboutPage} />
             <AuthRoute exact path="/signup" component={SignupForm} />
+            {/* <ProtectedRoute exact path="/about" component={AboutPage} /> */}
             <ProtectedRoute exact path="/home" component={HomePage} />
             <ProtectedRoute exact path="/account" component={UserProfile} />
             <ProtectedRoute
