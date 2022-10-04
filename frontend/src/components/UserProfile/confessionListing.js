@@ -5,6 +5,7 @@ import {
 } from "../../store/confessions";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import {Link} from 'react-router-dom'
 import { deleteTopic, fetchTopicsbyUser } from "../../store/topics";
 
 const ConfessionListing = ({ conf }) => {
@@ -46,14 +47,28 @@ const ConfessionListing = ({ conf }) => {
 
   return (
     <>
-      <div className="listing-container">
-        <div className={conf.mood}>{conf.body || conf.title}</div>
-        <div
-          id="trash-icon"
-          className="fa-solid fa-trash"
-          onClick={() => setConfModal(true)}
-        ></div>
-      </div>
+      {conf.body ? (
+        <div className="listing-container">
+          <div className={conf.mood}>{conf.body || conf.title}</div>
+          <div
+            id="trash-icon"
+            className="fa-solid fa-trash"
+            onClick={() => setConfModal(true)}
+          ></div>
+        </div>
+      ) : (
+        <Link to={`/topic/${conf._id}`}>
+          {" "}
+          <div className="listing-container">
+            <div className={conf.mood}>{conf.body || conf.title}</div>
+            <div
+              id="trash-icon"
+              className="fa-solid fa-trash"
+              onClick={() => setConfModal(true)}
+            ></div>
+          </div>{" "}
+        </Link>
+      )}
       {confModal ? (
         <>
           <div id="delete-modal-background"></div>
