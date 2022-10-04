@@ -14,7 +14,7 @@ function LoginForm() {
 
   const demoLogin = (e) => {
     e.preventDefault();
-    dispatch(login({ email: "demo@test.com", password: "password" }));
+    dispatch(login({ email: "demo@moore.com", password: "password" }));
   };
 
   const sessionUser = useSelector((state) => state.session.user);
@@ -80,9 +80,9 @@ function LoginForm() {
             // disabled={!email || !password}
             className="session-form-submit-button"
           />
-          <div className="demo-login" onClick={demoLogin}>
+          <button className="demo-login" onClick={demoLogin}>
             Login as Demo User
-          </div>
+          </button>
           <div className="signup-link" onClick={() => history.push("/signup")}>
             Don't have an account?
           </div>

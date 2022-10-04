@@ -25,14 +25,6 @@ useEffect(() => {
     } }
 }, [userMoods])
 
-    window.onclick = function (event) {
-    let modal = document.getElementById("user-modal");
-    let modalBackground = document.getElementById("user-edit-modal-background")
-    if (event.target == modalBackground) {
-      modal.style.display = "none";
-      modalBackground.style.display = "none";
-    }
-  };
 
 //toggle item based on user interaction 
     const toggleItem = (e) => {
@@ -61,12 +53,11 @@ useEffect(() => {
             
         }
 
-        dispatch(updateUser(newUser)).then( res =>{
+        dispatch(updateUser(newUser)).then(res =>{
          
             if(res.type === 'session/RECEIVE_CURRENT_USER') {
                 setSuccessModal(true)
             }
-        // } 
     } )
 }
 
@@ -75,6 +66,7 @@ useEffect(() => {
     return (
       <>
         <h2 className="mood-header">Mood Preferences</h2>
+        <h3 className="mood-subtext">You will only see confessions and message threads of the moods you selected.</h3>
         <div className="mood-button-container">
           {moodState.map((moodName) => (
             <p

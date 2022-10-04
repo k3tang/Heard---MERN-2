@@ -17,10 +17,10 @@ const receiveConfessions = confessions => ({
     confessions
 });
 
-const receiveUserConfessions = confessions => ({
-    type: RECEIVE_USER_CONFESSIONS,
-    confessions
-});
+// const receiveUserConfessions = confessions => ({
+//     type: RECEIVE_USER_CONFESSIONS,
+//     confessions
+// });
 
 const receiveNewConfession = confession => ({
     type: RECEIVE_NEW_CONFESSION,
@@ -32,12 +32,11 @@ const receiveErrors = errors => ({
     errors
 });
 
-const removeConfession = (id) => {
-    return {
-        type: REMOVE_CONFESSION,
-        id 
-    }
-}
+const removeConfession = (id) => ({
+       type: REMOVE_CONFESSION,
+       id 
+   });
+
 
 export const clearConfessionErrors = errors => ({
     type: CLEAR_CONFESSION_ERRORS,
@@ -45,6 +44,7 @@ export const clearConfessionErrors = errors => ({
 });
 
 export const getConfessions = state => {
+    if (!state) return [];
     if(!state.confessions) {
         return []
     } else {
@@ -71,7 +71,7 @@ export const fetchUserConfessions = id => async dispatch => {
     try {
         const res = await jwtFetch(`/api/confessions/user/${id}`);
         const confessions = await res.json();
-        dispatch(receiveUserConfessions(confessions));
+        dispatch(receiveConfessions(confessions));
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
@@ -125,26 +125,28 @@ export const confessionErrorsReducer = (state = nullErrors, action) => {
     }
 };
 
-const confessionsReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
+const confessionsReducer = (state = { }, action) => {
+    Object.freeze(state);
     let newState = {...state}
     switch (action.type) {
         case RECEIVE_CONFESSIONS:
             for(let confession of action.confessions) {
               newState[confession._id] = confession;
             }
-            return newState;
-        case RECEIVE_USER_CONFESSIONS:
-           for(let confession of action.confessions) {
-              newState.user[confession._id] = confession;
-            }
-            return newState;
+            return {...newState};
+        // case RECEIVE_USER_CONFESSIONS:
+        //    for(let confession of action.confessions) {
+        //       newState.user[confession._id] = confession;
+        //     }
+        //     return newState;
         case RECEIVE_NEW_CONFESSION:
-            return { ...state, new: action.confession };
+            newState[action.confession._id] = action.confession;
+            return newState;
         case RECEIVE_USER_LOGOUT:
             return { ...state, user: {}, new: undefined };
         case REMOVE_CONFESSION:
-            delete newState.user[action.id];
-          return newState;
+            delete newState[action.id];
+            return newState;
         default:
             return state;
     }

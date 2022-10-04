@@ -62,7 +62,7 @@ function SignupForm() {
   };
 
   return (
-    <div className="form-container">
+
       <div className="session-form-container">
         <h2 className="form-header">Sign up with us!</h2>
         <form className="session-form" onSubmit={usernameSubmit}>
@@ -124,7 +124,6 @@ function SignupForm() {
             About the Creators
           </div>
         </form>
-      </div>
     </div>
   );
 }

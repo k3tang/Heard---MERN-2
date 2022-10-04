@@ -15,6 +15,7 @@ import { useDisclosure } from "@chakra-ui/react";
 import { useParams} from 'react-router-dom'
 import {editTopic} from '../../../store/topics'
 import {useState} from 'react'
+import "../ChatBox/chatbox.css"
 
 function Modal1({topic}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -51,7 +52,7 @@ const saveTitle = (e) =>{
 
               <Input value={title} onChange={(e) => setTitle(e.target.value)}></Input>
               <select
-                className="confession-mood-dropdown"
+                className="edit-topic-dropdown"
                 name="mood"
                 id="mood"
                 value={mood}
