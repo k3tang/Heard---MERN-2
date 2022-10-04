@@ -38,7 +38,7 @@ const AboutPage = () => {
                     <a href="https://www.linkedin.com/in/anna-luz-fisher-599862245/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 </div>
                 <div className="about-bio-container">
-                    <h3 className="about-page-jobs">Backend Lead</h3>
+                    <h3 className="about-page-jobs">Backend Developer</h3>
                     <p className="about-page-right-bios">
                         I'm a quick learner and a fun person. I love extreme sports and the puzzle solving that comes with both adventure and software engineering. My goal in life is to be a good person above all else. What is life if you can't say you were kind and true to yourself?                     
                     </p>
