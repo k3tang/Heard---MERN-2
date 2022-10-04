@@ -102,3 +102,47 @@
     text-align: right;
 }
 
+@media screen and (max-width: 950px) {
+    .about-page-left-photo{
+        width: 25vw;
+        height: 25vw;
+    }
+
+    .about-page-right-photo{
+        width: 25vw;
+        height: 25vw;
+    }
+
+    .about-link{
+        font-size: 1.5vh;
+    }
+
+    .about-page-title{
+        text-align: center;
+        font-size: 5vw;
+    }
+
+    .about-page-left-names{
+        font-size: 2vh;
+    }
+
+    .about-page-right-names{
+        font-size: 2vh;
+    }
+
+    .about-page-links{
+        font-size: 1.5vh;
+    }
+
+    .about-page-jobs{
+        font-size: 2vw;
+    }
+
+    .about-page-left-bios{
+        font-size: 1.25vh;
+    }
+
+    .about-page-right-bios{
+        font-size: 1.25vh;
+    }
+}
