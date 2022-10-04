@@ -6,6 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 import bottleLogo from "../../assets/bottle pic.png";
 import { useLocation } from "react-router-dom";
 import { CountdownCircleTimer } from 'react-countdown-circle-timer'
+import { _getCurrentUser } from "../../store/session";
 
 const ConfessionShow = () => {
     const dispatch = useDispatch();
@@ -13,11 +14,10 @@ const ConfessionShow = () => {
     const [showConfession, setShowConfession] = useState(true)
     const history = useHistory()
     const location = useLocation();
-
+    const currentUser = useSelector(_getCurrentUser)
     const [isLoading, setIsLoading] = useState(true);
-
+    const [randomConfession, setRandomConfession] = useState('')
     let test = 3000
-    
     
     useEffect(() => {
         dispatch(fetchConfessions())
@@ -31,15 +31,28 @@ const ConfessionShow = () => {
         return () => {
             clearTimeout(timer);
         };
-    },[]);
+    },[currentUser.moods.length]);
 
-    
-
-    let posts = confessions[0]
-    let total = posts.length
-    let random = Math.floor(Math.random()*total)
-    let randomConfession = posts[random]
+    let posts;
+   
+    useEffect(()=>{
+       if (confessions && currentUser){ 
+        let moods =[]
+        for (let mood of currentUser.moods){
+            moods.push(mood.toUpperCase())
+        }
+         posts = confessions.filter((post)=> {
+          return moods.includes(post.mood.toUpperCase())
+        })    
+         let total = posts.length
+         let random = Math.floor(Math.random()*total)
+        setRandomConfession(posts[random])
+       }
+       console.log('random confession', randomConfession)
+    },[isLoading,confessions.length])
+  
     // console.log(randomConfession.length)
+
 
     const hideConfession = () =>{
         document.getElementsByClassName('confession-content').style.display = 'none'
@@ -59,7 +72,7 @@ const ConfessionShow = () => {
                     <div className="confession-content" style={{display: showConfession ? 'block' : 'none'}}>
                         
                         {/* <p>{randomConfession.mood}</p> */}
-                        <p className='confession-body'>{randomConfession.body}</p>
+                        <p className='confession-body'>{randomConfession?.body}</p>
                         <div className="circle-container">
                         <CountdownCircleTimer
                             isPlaying
