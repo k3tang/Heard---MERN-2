@@ -30,6 +30,17 @@
     overflow: hidden ;
 }
 
+.no-confessions{
+     margin-left: 5vw;
+    margin-right: 5vw;
+    font-family: 'Lora', serif;
+    text-transform: none;
+    font-size: 1.75vw;
+    color: rgb(33, 30, 100);
+    text-align: center;
+    overflow: hidden ;
+}
+
 .circle-container {
     display: flex;
     justify-content: center;
@@ -66,6 +77,10 @@ svg {
     
     .confession-body {
         font-size: 4vw;
+    }
+
+    .no-confessions{
+         font-size: 4vw;
     }
 
 }

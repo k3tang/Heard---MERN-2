@@ -76,6 +76,7 @@ function MyTopicsDrawer() {
               overflowY="hidden"
               borderRadius="1vw"
               fontFamily="Lora"
+              sx={{ overflowY: "scroll" }}
             >
               <Stack>
                 {myTopics?.map((topic) => {

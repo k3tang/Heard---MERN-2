@@ -34,6 +34,13 @@ const ConfessionShow = () => {
 
   let posts;
 
+  const pulsePreferences = ()=>{
+   const icon = document.getElementById("nav-profile-icon")
+   icon.style.animationName = 'pulse'
+   setTimeout(() => {
+    icon.style.animationName = 'none'
+   }, 12000);
+  }
   useEffect(() => {
     if (confessions && currentUser) {
       let moods = [];
@@ -46,6 +53,9 @@ const ConfessionShow = () => {
       let total = posts.length;
       let random = Math.floor(Math.random() * total);
       setRandomConfession(posts[random]);
+      if(!randomConfession) setTimeout(()=>{
+        pulsePreferences();
+      },3000) 
     }
  
   }, [isLoading, confessions.length]);
@@ -68,21 +78,25 @@ const ConfessionShow = () => {
             className="confession-content"
             style={{ display: showConfession ? "block" : "none" }}
           >
-        
-            <p className="confession-body">{randomConfession?.body}</p>
-            <div className="circle-container">
-              <CountdownCircleTimer
-                isPlaying
-                duration={10}
-                size="50"
-                colors={["#d3e7ee", "#abd1da", "#7097a7", "#7097a7"]}
-                colorsTime={[10, 6, 3, 0]}
-                onComplete={() => ({ shouldRepeat: true, delay: 1 })}
-              ></CountdownCircleTimer>
-            </div>
+            {randomConfession ? (
+              <>
+                <p className="confession-body">{randomConfession?.body}</p>
+                <div className="circle-container">
+                  <CountdownCircleTimer
+                    isPlaying
+                    duration={10}
+                    size="50"
+                    colors={["#d3e7ee", "#abd1da", "#7097a7", "#7097a7"]}
+                    colorsTime={[10, 6, 3, 0]}
+                    onComplete={() => ({ shouldRepeat: true, delay: 1 })}
+                  ></CountdownCircleTimer>
+                </div>
+              </>
+            ) : (
+              <p className="no-confessions">{"Uh Oh"}<br/> {"It looks like there are no confessions that match your mood preferences. Check back later, or modify your preferences."}<br/>{"~ The Heard Team"}</p>
+            )}
           </div>
         )}
- 
       </div>
     </>
   );
