@@ -55,7 +55,8 @@
         min-height: -webkit-fill-available;
         border-radius: 0;
         box-shadow: none;
-
-        
+    }
+    html {
+        height: -webkit-fill-available;
     }
 }
