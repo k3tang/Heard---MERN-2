@@ -39,7 +39,7 @@ function TopicPage() {
 
   return (
     <>
-     <MyTopicsDrawer/>
+     <MyTopicsDrawer />
       <div className='chat-title-container'>
         <h1 className='chat-title'>{topic?.title}</h1>
         {topic?.flagged.isFlagged && <h2 className="flagged-text" style={{color: 'red'}}>THIS TOPIC HAS BEEN FLAGGED FOR REVIEW</h2>}
