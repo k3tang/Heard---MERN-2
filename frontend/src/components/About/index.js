@@ -61,7 +61,7 @@ const AboutPage = () => {
             </div>
             <div className="about-page-right">
                 <h2 className="about-page-right-names"> Dan Kam </h2>
-                <img className="about-page-right-photo" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"/>
+                <img className="about-page-right-photo" src="https://derailed-seed.s3.us-west-1.amazonaws.com/1517616254622+(1).jpeg"/>
                 <div className="about-page-links" >
                     <a href="https://github.com/annaluzfisher" target="_blank"><i class="fab fa-github-square"></i></a>
                     <a href="https://www.linkedin.com/in/danronkam/" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -69,7 +69,7 @@ const AboutPage = () => {
                 <div className="about-bio-container">
                     <h3 className="about-page-jobs">Frontend Developer</h3>
                     <p className="about-page-right-bios">
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."                    
+                    I'm a software engineer with a passion for React, Redux, and a love of old media. I use my skills as a software engineer to design seamless user experiences and my background in publishing to stay on top of the latest design trends. 
                     </p>
                 </div>
             </div>

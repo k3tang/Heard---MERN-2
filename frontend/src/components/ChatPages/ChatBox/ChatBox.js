@@ -63,9 +63,18 @@ function ChatBox() {
     let objDiv = document.getElementById("chat-messages");
      objDiv.scrollTop = objDiv.scrollHeight;
 
-  },[currentUser,topicId, timetoFetch])
+  },[timetoFetch])
 
+  useEffect(()=>{
+      dispatch(fetchMessages(topicId)).then(() => {
+        setTimetoFetch(false);   
+    })
 
+  setLoading(false);
+    let objDiv = document.getElementById("chat-messages");
+     objDiv.scrollTop = objDiv.scrollHeight;
+
+  },[currentUser, topicId])
 
 
 window.currentUser = currentUser;
@@ -80,7 +89,7 @@ window.storeMessages = storeMessages;
       
       setNewMessage("");
     } else if (e.type === 'click' && newMessage) {
-
+      e.preventDefault();
      dispatch(addMessage(topicId, newMessage)).then((res) =>
        setTimetoFetch(true)
      );
@@ -121,7 +130,6 @@ let color;
       >
         <textarea
           className="chat-text"
-          role={"textbox"}
           variant="filled"
           bg="f8f8f8"
           placeholder="be heard..."
