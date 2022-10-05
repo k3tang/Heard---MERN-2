@@ -45,12 +45,14 @@
 @media screen and (max-width: 950px) {
     body {
         background: #EEF0F4;
-        height: 100vh;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
     }
 
     #entire-container {
         width: 95vw;
-        height: 100vh;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
         border-radius: 0;
         box-shadow: none;
 
