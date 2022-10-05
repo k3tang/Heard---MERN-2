@@ -39,7 +39,7 @@ const ConfessionShow = () => {
    icon.style.animationName = 'pulse'
    setTimeout(() => {
     icon.style.animationName = 'none'
-   }, 12000);
+   }, 8000);
   }
   useEffect(() => {
     if (confessions && currentUser) {
@@ -53,9 +53,9 @@ const ConfessionShow = () => {
       let total = posts.length;
       let random = Math.floor(Math.random() * total);
       setRandomConfession(posts[random]);
-      if(!randomConfession) setTimeout(()=>{
-        pulsePreferences();
-      },3000) 
+   
+     
+     
     }
  
   }, [isLoading, confessions.length]);
@@ -93,7 +93,10 @@ const ConfessionShow = () => {
                 </div>
               </>
             ) : (
+              <>
+              {  pulsePreferences()}
               <p className="no-confessions">{"Uh Oh"}<br/> {"It looks like there are no confessions that match your mood preferences. Check back later, or modify your preferences."}<br/>{"~ The Heard Team"}</p>
+              </>
             )}
           </div>
         )}
