@@ -46,9 +46,10 @@
     cursor: pointer;
 }
 
+
 .topic-container {
     height: 70vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 .topic-listing {
