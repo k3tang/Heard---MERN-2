@@ -6,6 +6,13 @@
 
 Heard is an application that aims to foster a safe, anonymous community of secret sharers and secret bearers. Users can choose to share a confession or start a message thread about a specific topic. The application design takes a mobile-focused approach as most of the interactions will likely take place sporadically throughout the day on an accessible device. 
 
+## Technologies Utilized 
+
+ * MongoDB
+ * Javascript
+ * React/Redux
+ * Express.js
+ * Node.js
 
 ## Features 
 
@@ -125,14 +132,6 @@ Similar safety features are in place for all requests that involve editing or de
 * admin abilities to edit and delete any user's content
 
   
-## Technologies Utilized 
-
-
- * MongoDB
- * Javascript
- * React/Redux
- * Express.js
- * Node.js
 
 ## Team Members 
 
