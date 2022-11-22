@@ -28,7 +28,7 @@ Users can create topics that open message threads, or proceed directly to an ind
 
 <img width="350" alt="TopicDrawerScreenshot" src="https://user-images.githubusercontent.com/100994924/192670284-437fb40d-6aa4-4c5c-bfcd-d11f1e748f4d.png">
 
-Within a chat, users are anonymized except for the last five characters of their user ID. New messages are fetched at regular short intervals from the server.
+Within a chat, users are anonymized. New messages are fetched at regular short intervals from the server.
 
 <img width="350" alt="TopicMessageScreenShot" src="https://user-images.githubusercontent.com/100994924/192670264-92079b49-52d2-4f04-9bb8-61246c826364.png">
 
