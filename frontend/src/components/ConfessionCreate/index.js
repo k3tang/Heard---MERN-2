@@ -1,20 +1,19 @@
- import { useEffect, useState } from "react";
+ import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import './ConfessionCreate.css'
 import { createConfession, getConfessions, fetchConfessions } from "../../store/confessions";
 import { clearSessionErrors } from "../../store/session";
 import { clearConfessionErrors } from "../../store/confessions";
 import {useHistory} from "react-router-dom"
+import { AlertTitle } from "@chakra-ui/react";
 
 function ConfessionCreate () {
     const sessionUser = useSelector(state=>state.session.user);
-    // const moodErrors = useSelector(state => state.errors.confessions.mood);
-    // const bodyErrors = useSelector(state => state.errors.confessions.body);
     const errors = useSelector(state => state.errors);
 
     const dispatch = useDispatch();
     const history = useHistory()
-    // const [errorModal, setErrorModal] = useState(false)
+    const titleError = useRef(null)
     const [successModal, setSuccessModal] = useState(false)
 
 
@@ -38,7 +37,8 @@ function ConfessionCreate () {
     // }
 
     const changeBody = (e) => {
-        document.querySelector("#title-error").style.display = "block";
+        titleError.current.style.display = "block";
+        // document.querySelector("#title-error").style.display = "block";
         document.querySelector("#mood-error").style.color = "red";
         setBody(e.target.value);
         if(e.target.value.length < 3) {
@@ -120,7 +120,7 @@ function ConfessionCreate () {
                         title="Tell us What's on Your Mind"
                         placeholder="what's on your mind?"
                         onChange={changeBody} />
-                    <div className="errors" id="title-error">
+                    <div className="errors" id="title-error" ref={titleError}>
                             {bodyError}
                     </div>
                      
