@@ -9,11 +9,12 @@ import { AlertTitle } from "@chakra-ui/react";
 
 function ConfessionCreate () {
     const sessionUser = useSelector(state=>state.session.user);
-    const errors = useSelector(state => state.errors);
 
     const dispatch = useDispatch();
-    const history = useHistory()
-    const titleError = useRef(null)
+    const history = useHistory();
+    const titleError = useRef(null);
+    const moodError = useRef(null);
+    const formSubmitButton = useRef(null);
     const [successModal, setSuccessModal] = useState(false)
 
 
@@ -31,15 +32,9 @@ function ConfessionCreate () {
     const userId = sessionUser._id;
 
 
-    // const update = (field) => {
-    //     const setState = field === 'mood' ? setMood : setBody;
-    //     return e => setState(e.currentTarget.value);
-    // }
-
     const changeBody = (e) => {
         titleError.current.style.display = "block";
-        // document.querySelector("#title-error").style.display = "block";
-        document.querySelector("#mood-error").style.color = "red";
+        moodError.current.style.color = "red";
         setBody(e.target.value);
         if(e.target.value.length < 3) {
             setBodyError("Make sure your confession is at least 3 characters long!");
@@ -54,14 +49,14 @@ function ConfessionCreate () {
     }
 
     const changeMood = (e) => {
-        document.querySelector("#mood-error").style.color = "red";
+        moodError.current.style.color = "red";
         setMood(e.target.value);
         setIsFormComplete(e.target.value !== "invalid" && bodyError === "");
     }
 
     useEffect(() => {
-        document.querySelector(".form-submit-button").disabled = !isFormComplete;
-        document.querySelector(".form-submit-button").style.cursor = isFormComplete ? "pointer" : "not-allowed";
+        formSubmitButton.current.style.cursor = isFormComplete ? "pointer" : "not-allowed";
+        formSubmitButton.current.disabled = !isFormComplete;
     }, [isFormComplete])
     
 
@@ -104,12 +99,11 @@ function ConfessionCreate () {
                             <option value="happy" >HAPPY</option>
                             <option value="sad" >SAD</option>
                         </select>
-                        <div className="errors" id="mood-error">
+                        <div className="errors" id="mood-error" ref={moodError}>
                             {mood === "invalid" ? "Please select a mood above" : ""}
                         </div>
                 
                 </div>
-                {/* <label> body </label> */}
 
 
                 <div className="confession-textarea-container">
@@ -132,9 +126,7 @@ function ConfessionCreate () {
                     className="form-submit-button"
                     type='submit' 
                     title="First Select a Mood and Tell What's on Your Mind"
-                    // style={{background: mood || body ? '#EDF0F4' }}
-                    // style={{cursor: mood && body ? 'pointer' : 'not-allowed'}}
-                    // disabled={!mood || !body}
+                    ref={formSubmitButton}
                     value='confess'/>
             </form>
         </div>
