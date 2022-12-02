@@ -7,6 +7,8 @@ import {useParams} from 'react-router-dom'
 
 import {fetchMessages, getAllMessages, addMessage } from '../../../store/messages'
 import { useEffect } from "react";
+import anonymizer from "./anonymizer";
+import { useRef } from "react";
 
 function ChatBox() {
 
@@ -20,6 +22,7 @@ function ChatBox() {
   const [authorNames, setAuthorNames] = useState({});
   const [timetoFetch, setTimetoFetch] = useState(true);
   const storeMessages = useSelector(getAllMessages());
+  const chatMsgsRef = useRef(null);
   // const latestMessage = getLatestMessage(chatId)
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
@@ -37,15 +40,7 @@ function ChatBox() {
   }, [])
 
   useEffect(() => {
-    const authorObj = {};
-    authorObj[currentUser._id] = "You";
-    let i = 1;
-    for(let msg of storeMessages) {
-      if(!authorObj[msg.sender]) {
-        authorObj[msg.sender] = `User ${i}`;
-        i += 1;
-      }
-    }
+    const authorObj = anonymizer(currentUser, storeMessages);
     setAuthorNames({...authorObj});
 
 
@@ -60,8 +55,7 @@ function ChatBox() {
     }
 
   setLoading(false);
-    let objDiv = document.getElementById("chat-messages");
-     objDiv.scrollTop = objDiv.scrollHeight;
+     chatMsgsRef.current.scrollTop = chatMsgsRef.current.scrollHeight;
 
   },[timetoFetch])
 
@@ -71,15 +65,14 @@ function ChatBox() {
     })
 
   setLoading(false);
-    let objDiv = document.getElementById("chat-messages");
-     objDiv.scrollTop = objDiv.scrollHeight;
+     chatMsgsRef.current.scrollTop = chatMsgsRef.current.scrollHeight;
 
   },[currentUser, topicId])
 
 
-window.currentUser = currentUser;
-window.loading = loading;
-window.storeMessages = storeMessages;
+// window.currentUser = currentUser;
+// window.loading = loading;
+// window.storeMessages = storeMessages;
 
 
   const handleClick = (e) => {
@@ -101,7 +94,7 @@ let color;
 
   return (
     <>
-        <div id="chat-messages">
+        <div id="chat-messages" ref={chatMsgsRef}>
           {storeMessages.map((message)=> {
               {message.sender === currentUser._id
                 ? (color = "#FBD8B0")

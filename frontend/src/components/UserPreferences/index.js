@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { createRef, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./index.css";
 import getCurrentUser, { updateUser } from "../../store/session.js"
 import { useHistory, Link } from "react-router-dom";
+import { useMemo } from "react";
 
 
 const UserPreferences = () => {
@@ -10,6 +11,8 @@ const UserPreferences = () => {
     const user = useSelector(state => state.session.user)
     const userMoods = useSelector(state => state.session.user.moods)
     const moodState = ["angry","loved", "anxious", "happy", "sad"]
+    const moodRefs = useMemo(() => moodState.map( (ele) => createRef()), []);
+    // useMemo isn't really necessary because this array is small, but is good practice
     const [checkedKeywords, setCheckedKeywords] = useState(userMoods)
     const history = useHistory()
     const [successModal, setSuccessModal] = useState(false)
@@ -18,8 +21,8 @@ const UserPreferences = () => {
 
 useEffect(() => {
     if (userMoods) {
-        for (let moodName of userMoods) {
-            let cb = document.getElementById(`${moodName}`);
+        for (let i = 0; i < userMoods.length; i++) {
+            const cb = moodRefs[i].current;
             cb.classList.add("mood-checked");
             cb.classList.remove("mood-unchecked")
     } }
@@ -27,8 +30,9 @@ useEffect(() => {
 
 
 //toggle item based on user interaction 
-    const toggleItem = (e) => {
-        const ele = document.getElementById(`${e}`)
+    const toggleItem = (i) => {
+        const ele = moodRefs[i].current;
+        console.log(ele.id);
         if (ele.classList.contains("mood-checked")) {
             setCheckedKeywords(checkedKeywords.filter((x) => x !== ele.id));
             ele.classList.remove("mood-checked");
@@ -68,12 +72,13 @@ useEffect(() => {
         <h2 className="mood-header">Mood Preferences</h2>
         <h3 className="user-subtext">You will only see confessions with the moods you selected (in bold)</h3>
         <div className="mood-button-container">
-          {moodState.map((moodName) => (
+          {moodState.map((moodName, i) => (
             <p
               key={moodName}
               id={moodName}
+              ref={moodRefs[i]}
               className="mood-item mood-unchecked"
-              onClick={(e) => toggleItem(moodName)}
+              onClick={(e) => toggleItem(i)}
             >
               {moodName}
             </p>
