@@ -21,8 +21,8 @@ const UserPreferences = () => {
 
 useEffect(() => {
     if (userMoods) {
-        for (let i = 0; i < userMoods.length; i++) {
-            const cb = moodRefs[i].current;
+        for (let mood of userMoods) {
+            const cb = moodRefs[moodState.indexOf(mood)].current;
             cb.classList.add("mood-checked");
             cb.classList.remove("mood-unchecked")
     } }
@@ -32,7 +32,7 @@ useEffect(() => {
 //toggle item based on user interaction 
     const toggleItem = (i) => {
         const ele = moodRefs[i].current;
-        console.log(ele.id);
+        // console.log(ele.id);
         if (ele.classList.contains("mood-checked")) {
             setCheckedKeywords(checkedKeywords.filter((x) => x !== ele.id));
             ele.classList.remove("mood-checked");
